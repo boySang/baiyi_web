@@ -19,3 +19,7 @@ web/common/conf/config.php
 gulpfile.js
 
 package-lock.json  
+
+.DS_Store
+
+/**/.DS_Store
