@@ -30,5 +30,9 @@ class IndexController extends Controller {
     	$this->display();
     }
 
+    public function wellcome(){
+    	$this->display();
+    }
+
 
 }

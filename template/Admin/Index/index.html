@@ -1,20 +1,212 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>后台管理系统</title>
+    <title>后台管理</title>
+    <link href="__PUBLIC__/admin/css/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script type="text/javascript">
+    $(function() {
+        //顶部导航切换
+        $(".nav li a").click(function() {
+            $(".nav li a.selected").removeClass("selected")
+            $(this).addClass("selected");
+        })
+    })
+    </script>
 </head>
-<frameset rows="88,*" cols="*" frameborder="no" border="0" framespacing="0">
-    <frame src="__CONTROLLER__/top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" title="topFrame" />
-    <frameset cols="187,*" frameborder="no" border="0" framespacing="0">
-        <frame src="__CONTROLLER__/left" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" title="leftFrame" />
-        <frame src="__CONTROLLER__/main" name="rightFrame" id="rightFrame" title="rightFrame" />
-    </frameset>
-</frameset>
-<noframes>
-    <body>
-    </body>
-</noframes>
 
+<div class="home">
+	<table style="width: 100%;" id="frametable" height="100%" width="100%" cellpadding="0" cellspacing="0">
+		<tbody>
+			<tr>
+				<td colspan="2">
+					<div class="tops clearfix">
+					    <div class="topleft">
+					        <a href="main.html" target="_parent"><img src="__PUBLIC__/admin/img/logo.png" title="系统首页" /></a>
+					    </div>
+					    <ul class="nav">
+					        <li><a href="javascript:index.selectLeftMenu(this,'1');" class="selected"><img src="__PUBLIC__/admin/img/icon01.png" title="工作台" /><h2>工作台</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'2');"><img src="__PUBLIC__/admin/img/icon02.png" title="设置" /><h2>设置</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'3');"><img src="__PUBLIC__/admin/img/icon03.png" title="商品" /><h2>商品</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'4');"><img src="__PUBLIC__/admin/img/icon04.png" title="会员" /><h2>会员</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'5');"><img src="__PUBLIC__/admin/img/icon05.png" title="交易" /><h2>交易</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'6');"><img src="__PUBLIC__/admin/img/icon06.png" title="网站" /><h2>网站</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'7');"><img src="__PUBLIC__/admin/img/icon06.png" title="运营" /><h2>运营</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu(this,'8');"><img src="__PUBLIC__/admin/img/icon06.png" title="统计" /><h2>统计</h2></a></li>
+					    </ul>
+					    <div class="topright">
+					        <ul>
+					            <li><span><img src="__PUBLIC__/admin/img/help.png" title="帮助"  class="helpimg"/></span><a href="#">帮助</a></li>
+					            <li><a href="#">关于</a></li>
+					            <li><a href="login.html" target="_parent">退出</a></li>
+					        </ul>
+					        <div class="user">
+					            <span>admin</span>
+					            <i>消息</i>
+					            <b>5</b>
+					        </div>
+					    </div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td valign="top" width="187">
+					<div class="lefts" style="background:#f0f9fd;">
+					    <dl class="leftmenu">
+				            <ul class="menuson" id="leftMenu"></ul>
+					    </dl>
+					</div>
+				</td>
+				<td valign="top" width="100%">
+					<iframe class="rights" src="" id="workSpace" name="rightFrame" frameborder="0" width="100%" height="100%" scrolling="yes"></iframe>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<link href="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery-confirm/2.5.1/jquery-confirm.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	index.load();
+});
+
+var index = {
+	selectLeftMenu : function(obj,id){
+		var that = $(obj);
+		var html = '';
+		switch(id){
+			case '1':
+				this.workSpace(html);
+				break;
+			case '2':
+				this.webSetting(html);
+				break;
+			case '3':
+				this.goodsCenter(html);
+				break;
+			case '4':
+				this.member(html);
+				break;
+			case '5':
+				this.trade(html);
+				break;
+			case '6':
+				this.webSite(html);
+				break;
+			case '7':
+				this.operation(html);
+				break;
+			case '8':
+				this.stat(html);
+				break;
+			default:
+				$.alert('没有这个页面~');
+		}
+	},
+	// 工作台
+	workSpace : function(html){
+		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">欢迎页面</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">关于我们</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">站点设置</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">商品管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">订单管理</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
+	},
+	// 站点设置
+	webSetting : function(html){
+		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">站点设置</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">SEO设置</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">消息通知</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">支付方式</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">权限设置</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">清理缓存</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">数据备份</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">性能优化</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">搜索设置</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">操作日志</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
+	},
+	// 产品中心
+	goodsCenter : function(html){
+		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">分类管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">产品管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">图片空间</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
+	},
+	member : function(html){
+		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员级别</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员通知</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员相册</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">买家动态</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
+	},
+	trade : function(html){
+		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">订单管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">待寄订单</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">咨询管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">评价管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">投诉管理</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
+	},
+	webSite : function(html){
+		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">文章分类</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">文章管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员协议</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">页面导航</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">广告管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">首页管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">推荐位</a><i></i></li>';
+		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">友情链接</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
+	},
+	operation : function(){
+		$.alert('运营中心正在完善');
+	},
+	stat : function(){
+		$.alert('统计功能正在完善');
+	},
+	// 设置左侧和右侧的高度
+	setHight : function(){
+		var windowHeight = $(window).height();        //获取浏览器窗口高度
+		var topHeight = $('.home .tops').height();        //获取文档高度
+		var boxHeight = windowHeight - topHeight;
+		$('.home .lefts').css('height',boxHeight+'px');
+		$('.home .right').css('height',boxHeight+'px');
+	},
+	firstShow : function(){
+		$('.home .rights').attr("src",$('#leftMenu li').eq(0).find('a').attr("href"));
+	},
+	checkLeftMenu : function(){
+		$('body').on('click','.menuson li',function(){
+			$('.menuson li').removeClass('active');
+			$(this).addClass('active');
+		});
+	},
+	load : function(){
+		index.workSpace();
+		index.setHight();
+		index.firstShow();
+		index.checkLeftMenu();
+	},
+}
+</script>
 </html>

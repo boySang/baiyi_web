@@ -29,10 +29,10 @@ class MemberModel extends Model{
 	public function ajaxLogin(){
 		$d = $this->field('uniqid,nickname,face,state')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
 		if(!$d['uniqid']){
-			return returnApi(202,'账号或密码不正确');
+			return returnApi(202,'账号或密码不正确!');
 		}
 		if($d['state'] == 0){
-			return returnApi(202,'该用户禁止登陆系统，请联系客服');
+			return returnApi(202,'该用户禁止登陆系统，请联系客服!');
 		}
 		setcookie("uniqid",$d['uniqid'], time()+2592000,'/');
 		setcookie("nickname",$d['nickname'], time()+2592000,'/');
