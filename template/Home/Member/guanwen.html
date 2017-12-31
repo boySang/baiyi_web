@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>百一知识产权</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css">
+    <link rel="stylesheet" type="text/css" href="//res.layui.com/layui/dist/css/layui.css?t=1512706101045">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/layer/3.1.0/layer.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_i9dc7cn28dkotj4i.css">
+</head>
+<body>
+
+<div class="full commen-header">
+	<div class="quick-nav wid1200 clearfix">
+		<div class="r app">
+			<span>移动应用</span>
+			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
+		</div>
+		<div class="r reg">
+			<span>注册</span>
+			<ul>
+				<li>个人注册</li>
+				<li>企业注册</li>
+			</ul>
+		</div>
+		<div class="r login">登录</div>
+		<div class="r phone">客服电话：40000000000</div>
+	</div>
+</div>
+
+<div class="pub-header wid1200 clearfix">
+	<div class="logo-header clearfix">
+		<div class="logo l">
+			<a href="#"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+		</div>
+	</div>
+	<div class="pub-navs clearfix">
+		<div class="navs-list l text-c">
+			<h4>全部服务分类</h4>
+			<div class="nav-box hide"></div>
+		</div>
+		<div class="quick-link r">
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">首页</a>
+			<a href="#">知识产权专家顾问</a>
+		</div>
+	</div>
+</div>
+
+<div class="member-index guanwen wid1200 clearfix">
+	<div class="search text-r">
+        <div class="dis_inline">
+			<form action="" method="get" id="search-form">
+	        	<div class="input-search l">
+	                <input type="text" class="input-text" placeholder="请输入合同号/订单号">
+	            </div>
+	            <div class="submit l">
+	                <a href="javascript:;" id="search-submit"><i class="iconfont icon-sousuo"></i></a>
+	            </div>
+        	</form>
+        </div>
+	</div>
+	<div class="main-inner clearfix">
+		<include file='Public/memLeftMenu' />
+		<div class="main r">
+			<div class="count-info">
+				<span>已收文<font color="red">（14）</font>份</span>
+				<span>已下发未邮寄<font color="red">（14）</font>份</span>
+				<span>已申请邮寄<font color="red">（14）</font>份</span>
+				<span>历史邮寄<font color="red">（14）</font>份</span>
+			</div>
+			<div class="search-box clearfix">
+				<form action="" method="get" id="search-info">
+					<div class="left l input-box">
+						<input type="text" name="cpn_name" class="input-text" placeholder="主体名称">
+					</div>
+					<div class="mid l input-box">
+						<input type="text" name="cpn_name" class="input-text" placeholder="商标名称">
+					</div>
+					<div class="right l input-box clearfix">
+						<select class="input-select l">
+							<option value="all">全部商标文件</option>
+						</select>
+						<a href="javascript:void(0);" id="submit-button" class="submit l">查询</a>
+					</div>
+				</form>
+			</div>
+			<div class="result clearfix">
+				<div class="chkall">
+					<input type="checkbox" name="chkall">
+				</div>
+				<div class="tit">商标名称</div>
+				<div class="tit">商标名称</div>
+				<div class="tit">商标名称</div>
+				<div class="tit">商标名称</div>
+				<div class="tit">商标名称</div>
+			</div>
+			<div class="editor text-c">
+				<a href="javascript:void(0);" id="express">邮寄</a>
+				<a href="javascript:void(0);" id="dowmload">下载</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="full">
+	<div class="reputation clearfix">
+		<div class="lists img1 l">
+			<p>支付安全</p>
+			<span>明码标价支付及信息安全</span>
+		</div>
+		<div class="lists img2 l">
+			<p>支付安全</p>
+			<span>明码标价支付及信息安全</span>
+		</div>
+		<div class="lists img3 l">
+			<p>支付安全</p>
+			<span>明码标价支付及信息安全</span>
+		</div>
+	</div>
+	<div class="wid1200 bor_top_1px">
+		<div class="footer text-c">
+			<p>备案信息</p>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	
+$('body').on('click','#express',function(){
+	//iframe层-父子操作
+	layer.open({
+	  type: 2,
+	  title: false,
+	  area: ['500px', '280px'],
+	  fixed: false, //不固定
+	  maxmin: true,
+	  content: 'address-add.html'
+	});
+});
+
+</script>
+
+</body>
+</html>

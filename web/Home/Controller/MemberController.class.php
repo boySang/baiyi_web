@@ -37,4 +37,12 @@ class MemberController extends Controller {
     	$m = D('Member');
 		echo $m->ajaxLogin();
     }
+
+    // 官文页面
+    public function guanwen(){
+    	$this->assign(array(
+    		'active'		=>		true,
+    	));
+    	$this->display();
+    }
 }

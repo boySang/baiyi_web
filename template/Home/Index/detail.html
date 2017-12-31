@@ -14,9 +14,9 @@
 	<meta name="keywords" content="关键字">
 	<title>百一知识产权</title>
 	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
     <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/detail.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/detail.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_9yxm5gf37m0zr529.css">
 </head>
@@ -103,32 +103,37 @@
 				<div class="pro-pic l">
 					<img src="__PUBLIC__/home/img/productpic.jpg">
 				</div>
-				<ul class="baseinfo r">
-					<li><h4 class="tit">商标注册</h4></li>
-					<li><p class="tips">连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年</p></li>
-					<li class="types clearfix text-c">
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-					</li>
-					<li class="price">价格：<span><b>123元</b></span></li>
-					<li class="other clearfix">
-						<span class="l">数量：</span>
-						<span class="l reduce" id="reduce"><i class="iconfont icon-jian"></i></span>
-						<span class="l good_nums_input"><input type="text" name="good_nums"></span>
-						<span class="l add" id="add"><i class="iconfont icon-jia"></i></span>
-						<div class="btns r">
-							<a href="./" class="buy_now">立即购买</a>
-							<a href="#" class="add_to_car">加入购物车</a>
-							<a href="#" class="need_help">详情咨询</a>
-						</div>
-					</li>
-				</ul>
+				<form id="buyForm" action="__MODULE__/OrderDetail/confirm" method="post">
+					<input type="hidden" name="id" value="1">
+					<ul class="baseinfo r">
+						<li><h4 class="tit">商标注册</h4></li>
+						<li><p class="tips">连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年</p></li>
+						<li class="types clearfix text-c">
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
+						</li>
+						<li class="price">价格：<span><b>123元</b></span></li>
+						<li class="other clearfix">
+							<span class="l">数量：</span>
+							<div class="num-box l clearfix">
+								<span class="l reduce" id="reduce"><i class="iconfont icon-jian"></i></span>
+								<span class="l good_nums_input"><input type="text" name="good_nums" value="1"></span>
+								<span class="l add" id="add"><i class="iconfont icon-jia"></i></span>
+							</div>
+							<div class="btns r">
+								<a href="javascript:detailIndex.chk();" class="buy_now">立即购买</a>
+								<a href="#" class="add_to_car">加入购物车</a>
+								<a href="#" class="need_help">详情咨询</a>
+							</div>
+						</li>
+					</ul>
+				</form>
 			</div>
 			<div class="detail-banner">
 				<img src="__PUBLIC__/home/img/detail_banner.jpg">
@@ -163,12 +168,26 @@
 	</div>
 </div>
 
-<style type="text/css">
+<script type="text/javascript">
+	
+$(function(){
+	detailIndex.load();
+});
 
+var detailIndex = {
 
+	chk : function(){
+		if(true){
+			$('#buyForm').submit();
+		}
+	},
 
+	load : function(){
 
+	},
+}
 
-</style>
+</script>
+
 </body>
 </html>

@@ -20,45 +20,23 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_i9dc7cn28dkotj4i.css">
 </head>
-<body>
+<body class="member-index">
 
-<div class="full commen-header">
-	<div class="quick-nav wid1200 clearfix">
-		<div class="r app">
-			<span>移动应用</span>
-			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
-		</div>
-		<div class="r reg">
-			<span>注册</span>
-			<ul>
-				<li>个人注册</li>
-				<li>企业注册</li>
-			</ul>
-		</div>
-		<div class="r login">登录</div>
-		<div class="r phone">客服电话：40000000000</div>
-	</div>
-</div>
-
-<div class="pub-header wid1200 clearfix">
-	<div class="logo-header clearfix">
-		<div class="logo l">
-			<a href="__APP__"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
-		</div>
-	</div>
-	<div class="pub-navs clearfix">
-		<div class="navs-list l text-c">
-			<h4>全部服务分类</h4>
-			<div class="nav-box hide"></div>
-		</div>
-		<div class="quick-link r">
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">知识产权专家顾问</a>
+<div class="full bgcolor_3baaf2">
+	<div class="pub-header wid1200 clearfix">
+		<div class="logo-header clearfix">
+			<div class="logo l">
+				<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+			</div>
+			<div class="quick-link l">
+				<a href="#">首页</a>
+				<a href="#">首页</a>
+				<a href="#">首页</a>
+				<a href="#">首页</a>
+				<a href="#">首页</a>
+				<a href="#">首页</a>
+				<a href="#">知识产权专家顾问</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -77,22 +55,7 @@
         </div>
 	</div>
 	<div class="main-inner clearfix">
-		<div class="menu l text-c">
-			<div class="order-list">
-				<div class="tit">订单中心</div>
-				<ul>
-					<a href="javascript:void(0);"><li class="active">我的订单</li></a>
-					<a href="javascript:void(0);"><li class="last">官文下载</li></a>
-				</ul>
-			</div>
-			<div class="option">
-				<div class="tit">设置</div>
-				<ul>
-					<a href="javascript:void(0);"><li>基本信息</li></a>
-					<a href="javascript:void(0);"><li class="last">主体信息</li></a>
-				</ul>
-			</div>
-		</div>
+		<include file='Public/memLeftMenu' />
 		<div class="main r">
 			<div class="main-list">
 				<div class="tit big clearfix">
@@ -114,17 +77,17 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l no mid">
 							<span>1900.00</span>
 							<span class="status">未付款</span>
 						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
+						</div>
 						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="config-order">合同确认</a>
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
@@ -133,17 +96,17 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l no mid">
 							<span>1900.00</span>
 							<span class="status">未付款</span>
 						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
+						</div>
 						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="config-order">合同确认</a>
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
@@ -152,14 +115,15 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l mid">
 							<span>1900.00</span>
 							<span class="status">已付款</span>
+						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
 						</div>
 						<div class="editor text-c l last">
 							<a href="javascript:void(0);" id="viewarticle" class="viewarticle">《查看官文》</a>
@@ -169,17 +133,17 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l no mid">
 							<span>1900.00</span>
 							<span class="status">未付款</span>
 						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
+						</div>
 						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="config-order">合同确认</a>
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
@@ -206,17 +170,17 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l no mid">
 							<span>1900.00</span>
 							<span class="status">未付款</span>
 						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
+						</div>
 						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="config-order">合同确认</a>
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
@@ -225,17 +189,17 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l no mid">
 							<span>1900.00</span>
 							<span class="status">未付款</span>
 						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
+						</div>
 						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="config-order">合同确认</a>
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
@@ -244,14 +208,15 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l mid">
 							<span>1900.00</span>
 							<span class="status">已付款</span>
+						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
 						</div>
 						<div class="editor text-c l last">
 							<a href="javascript:void(0);" id="viewarticle" class="viewarticle">《查看官文》</a>
@@ -261,17 +226,17 @@
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
+							<span>合同编号：BY201712120325</span>
 							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>qweqweqwe</span>
 						</div>
 						<div class="pay-moneys text-c l no mid">
 							<span>1900.00</span>
 							<span class="status">未付款</span>
 						</div>
+						<div class="order-num text-c l mid">
+							<span>合同确认</span>
+						</div>
 						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="config-order">合同确认</a>
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
