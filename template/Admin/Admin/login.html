@@ -4,19 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>后台管理</title>
-    <link href="__PUBLIC__/admin/css/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <script src="__PUBLIC__/admin/js/cloud.js" type="text/javascript"></script>
-    <!-- bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-    <!-- bootstrap end -->
-    <!-- jqueryValidate -->
-    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>
-    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.min.js"></script>
-    <!-- jqueryValidate end -->
-    <!-- jqueryConfig -->
-    <script src="https://cdn.bootcss.com/jquery-confirm/3.0.3/jquery-confirm.min.js"></script>
-    <link href="https://cdn.bootcss.com/jquery-confirm/3.0.3/jquery-confirm.min.css" rel="stylesheet">
+    <include file='Public/meta' />
     <!-- jqueryConfig end -->
     <script language="javascript">
     $(function() {
@@ -47,10 +35,10 @@
             <form method="post" id="login-box">
                 <ul>
                     <li>
-                        <input name="name" type="text" class="loginuser" placeholder="账户名" required="" />
+                        <input name="name" type="text" autocomplete="off" class="loginuser" placeholder="账户名" required="" />
                     </li>
                     <li>
-                        <input name="paswd" type="password" class="loginpwd" placeholder="密码" required="" />
+                        <input name="paswd" type="password" autocomplete="off" class="loginpwd" placeholder="密码" required="" />
                     </li>
                     <li>
                         <input type="submit" class="loginbtn submit" value="登录"/>
@@ -76,7 +64,10 @@ $('#login-box').validate({
             success:function(data){
                 console.log(data);
                 if(data.state == 200){
-                    window.location.href=data.url;
+                    $.alert(data.msg);
+                    setTimeout(function(){
+                        window.location.href=data.url;
+                    },1500);
                 }else{
                     $.alert(data.msg);
                 }

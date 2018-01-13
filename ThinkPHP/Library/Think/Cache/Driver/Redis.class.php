@@ -22,6 +22,7 @@ class Redis extends Cache {
      * @param array $options 缓存参数
      * @access public
      */
+
     public function __construct($options=array()) {
         if ( !extension_loaded('redis') ) {
             E(L('_NOT_SUPPORT_').':redis');
@@ -31,8 +32,8 @@ class Redis extends Cache {
             'port'          => C('REDIS_PORT') ? : 6379,
             'timeout'       => C('DATA_CACHE_TIMEOUT') ? : false,
             'persistent'    => false,
+            'auth'          => C('REDIS_AUTH') ? : null,//AUTH认证密码
         ),$options);
-
         $this->options =  $options;
         $this->options['expire'] =  isset($options['expire'])?  $options['expire']  :   C('DATA_CACHE_TIME');
         $this->options['prefix'] =  isset($options['prefix'])?  $options['prefix']  :   C('DATA_CACHE_PREFIX');        
@@ -42,6 +43,11 @@ class Redis extends Cache {
         $options['timeout'] === false ?
             $this->handler->$func($options['host'], $options['port']) :
             $this->handler->$func($options['host'], $options['port'], $options['timeout']);
+ 
+        if($this->options['auth']!=null)
+        {
+            $this->handler->auth($this->options['auth']); //说明有配置redis的认证配置密码 需要认证一下
+        }
     }
 
     /**

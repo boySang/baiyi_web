@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>属性值管理</title>
+    <include file='Public/meta' />
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul clearfix">
+            <li><a href="javascript:void(0);">首页</a></li>
+            <li><a href="javascript:void(0);">属性及分类管理</a></li>
+            <li><a href="javascript:void(0);">属性值列表</a></li>
+        </ul>
+    </div>
+    <div class="rightinfo">
+        <div class="tools">
+            <ul class="toolbar">
+                <li class="click"><a href="__CONTROLLER__/add/attr_id/<?php echo I('get.attr_id'); ?>"><span><img src="__PUBLIC__/admin/img/t01.png" /></span>添加属性值</a></li>
+                <li class="click"><a href="__MODULE__/OptAttr/show"><span></span>返回属性列表</a></li>
+                <!-- <li class="click"><span><img src="__PUBLIC__/admin/img/t02.png" /></span>修改</li>
+                <li><span><img src="__PUBLIC__/admin/img/t03.png" /></span>删除</li> -->
+                <!-- <li><span><img src="__PUBLIC__/admin/img/t04.png" /></span>统计</li> -->
+            </ul>
+            <!-- <ul class="toolbar1">
+                <li><span><img src="__PUBLIC__/admin/img/t05.png" /></span>设置</li>
+            </ul> -->
+        </div>
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th>属性名</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <foreach name="data.data" item="val">
+                <tr>
+                    <td>{$val.name}</td>
+                    <td>
+                        <a href="__CONTROLLER__/update/id/{$val.id}" class="tablelink">修改</a>
+                        <a href="__CONTROLLER__/id/{$val.id}" class="tablelink"> 删除</a></td>
+                </tr>
+                </foreach>
+            </tbody>
+        </table>
+        <div class="pagin">
+            <div class="message">共<i class="blue">{$data.total}</i>条记录</div>
+            <ul class="paginList">
+                {$data.page}
+            </ul>
+        </div>
+    </div>
+    <script type="text/javascript">
+    $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</body>
+
+</html>

@@ -18,18 +18,6 @@ class IndexController extends Controller {
         $this->display();
     }
 
-    public function top(){
-    	$this->display();
-    }
-
-    public function left(){
-    	$this->display();
-    }
-
-    public function main(){
-    	$this->display();
-    }
-
     public function wellcome(){
     	$this->display();
     }

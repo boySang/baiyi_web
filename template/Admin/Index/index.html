@@ -4,18 +4,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>后台管理</title>
-    <link href="__PUBLIC__/admin/css/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script type="text/javascript">
-    $(function() {
-        //顶部导航切换
-        $(".nav li a").click(function() {
-            $(".nav li a.selected").removeClass("selected")
-            $(this).addClass("selected");
-        })
-    })
-    </script>
+    <include file='Public/meta' />
 </head>
 
 <div class="home">
@@ -28,14 +17,14 @@
 					        <a href="main.html" target="_parent"><img src="__PUBLIC__/admin/img/logo.png" title="系统首页" /></a>
 					    </div>
 					    <ul class="nav">
-					        <li><a href="javascript:index.selectLeftMenu(this,'1');" class="selected"><img src="__PUBLIC__/admin/img/icon01.png" title="工作台" /><h2>工作台</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'2');"><img src="__PUBLIC__/admin/img/icon02.png" title="设置" /><h2>设置</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'3');"><img src="__PUBLIC__/admin/img/icon03.png" title="商品" /><h2>商品</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'4');"><img src="__PUBLIC__/admin/img/icon04.png" title="会员" /><h2>会员</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'5');"><img src="__PUBLIC__/admin/img/icon05.png" title="交易" /><h2>交易</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'6');"><img src="__PUBLIC__/admin/img/icon06.png" title="网站" /><h2>网站</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'7');"><img src="__PUBLIC__/admin/img/icon06.png" title="运营" /><h2>运营</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu(this,'8');"><img src="__PUBLIC__/admin/img/icon06.png" title="统计" /><h2>统计</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('1');" class="selected"><img src="__PUBLIC__/admin/img/icon01.png" title="工作台" /><h2>工作台</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('2');"><img src="__PUBLIC__/admin/img/icon02.png" title="设置" /><h2>设置</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('3');"><img src="__PUBLIC__/admin/img/icon03.png" title="商品" /><h2>商品</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('4');"><img src="__PUBLIC__/admin/img/icon04.png" title="会员" /><h2>会员</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('5');"><img src="__PUBLIC__/admin/img/icon05.png" title="交易" /><h2>交易</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('6');"><img src="__PUBLIC__/admin/img/icon06.png" title="网站" /><h2>网站</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('7');"><img src="__PUBLIC__/admin/img/icon06.png" title="运营" /><h2>运营</h2></a></li>
+					        <li><a href="javascript:index.selectLeftMenu('8');"><img src="__PUBLIC__/admin/img/icon06.png" title="统计" /><h2>统计</h2></a></li>
 					    </ul>
 					    <div class="topright">
 					        <ul>
@@ -76,8 +65,7 @@ $(function(){
 });
 
 var index = {
-	selectLeftMenu : function(obj,id){
-		var that = $(obj);
+	selectLeftMenu : function(id){
 		var html = '';
 		switch(id){
 			case '1':
@@ -116,6 +104,7 @@ var index = {
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员管理</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">商品管理</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">订单管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="/README.md" target="rightFrame">更新日志</a><i></i></li>';
 		$('#leftMenu').html(html);
 		// 默认打开第一个
 		index.firstShow();
@@ -138,8 +127,8 @@ var index = {
 	},
 	// 产品中心
 	goodsCenter : function(html){
-		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">分类管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">产品管理</a><i></i></li>';
+		html = '<li class="active"><cite></cite><a href="__MODULE__/OptAttr/show" target="rightFrame">属性及分类管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__MODULE__/Goods/show" target="rightFrame">产品管理</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">图片空间</a><i></i></li>';
 		$('#leftMenu').html(html);
 		// 默认打开第一个
@@ -190,7 +179,12 @@ var index = {
 		var topHeight = $('.home .tops').height();        //获取文档高度
 		var boxHeight = windowHeight - topHeight;
 		$('.home .lefts').css('height',boxHeight+'px');
-		$('.home .right').css('height',boxHeight+'px');
+		$('.home .rights').css('height',boxHeight+'px');
+	},
+	listenWindowChg : function(){
+		$(window).resize(function(){
+			index.setHight();
+		}); 
 	},
 	firstShow : function(){
 		$('.home .rights').attr("src",$('#leftMenu li').eq(0).find('a').attr("href"));
@@ -201,11 +195,19 @@ var index = {
 			$(this).addClass('active');
 		});
 	},
+	navState : function(){
+		$('body').on('click','.nav li a',function(){
+			var that = $(this);
+			$('.nav li a').removeClass('selected');
+			that.addClass('selected');
+		});
+	},
 	load : function(){
-		index.workSpace();
-		index.setHight();
-		index.firstShow();
-		index.checkLeftMenu();
+		this.workSpace();
+		this.setHight();
+		this.firstShow();
+		this.checkLeftMenu();
+		this.navState();
 	},
 }
 </script>
