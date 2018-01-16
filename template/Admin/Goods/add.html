@@ -61,26 +61,11 @@
                     </li>
                     <li>
                         <label>属性及价格</label>
-                        <a href="javascript:;" id="pro-attr-add" class="btn-s-private-big"> 添加属性 </a>
+                        <a href="javascript:;" id="pro-attr-price-add" class="btn-s-private-big"> 添加属性 </a>
                     </li>
                     <li id="proAttrShowOrHide" style="display: none;">
                         <label></label>
-                        <div class="proListOutside" id="proListOutside">
-                            <div id="attrList">
-                                <select class="input-select proAttrName" name="attr[]" style="width:100px">
-                                    <foreach name="optAttrData.attr" item="attr">
-                                        <option value="{$attr.id}">{$attr.name}</option>
-                                    </foreach>
-                                </select>
-                                <select class="input-select proAttrNameVal" name="attrval[]" style="width:100px">
-                                    <foreach name="optAttrData.firstval" item="val">
-                                        <option value="{$val.id}">{$val.name}</option>
-                                    </foreach>
-                                </select>
-                                <input name="attr_price[]" type="text" class="dfinput" value="'+defaultPrice+'" placeholder="该属性下的价格" style="width:108px;" /> 元
-                                <div class="del"><i class="iconfont icon-delete"></i></div>
-                            </div>
-                        </div>
+                        <div class="proListOutside" id="proListOutside"></div>
                     </li>
                     <li>
                         <label>排序</label>
@@ -104,19 +89,31 @@ $(function(){
 var productAddAction = {
 
     add : function(){
-        $('body').on('click','#pro-attr-add',function(){
+        var i = 0;
+        $('body').on('click','#pro-attr-price-add',function(){
             $('#proAttrShowOrHide').show();
             // 获取默认价格
             var defaultPrice = $('input[name="goods_default_price"]').val()!=''?$('input[name="goods_default_price"]').val():'0.00';
-            var html = '<div id="attrList"><select class="input-select proAttrName" name="attr[]" style="width:100px"><foreach name="optAttrData.attr" item="attr"><option value="{$attr.id}">{$attr.name}</option></foreach></select><select class="input-select proAttrNameVal" name="attrval[]" style="width:100px"><foreach name="optAttrData.firstval" item="val"><option value="{$val.id}">{$val.name}</option></foreach></select><input name="attr_price[]" type="text" class="dfinput" value="'+defaultPrice+'" placeholder="该属性下的价格" style="width:108px;" /> 元<div class="del"><i class="iconfont icon-delete"></i></div></div>';
+            var html = '<div class="attrListOutside" data-i="'+i+'"><div class="attrBox"><div id="attrList"><select class="input-select proAttrName" name="attr['+i+'][]" style="width:100px"><foreach name="optAttrData.attr" item="attr"><option value="{$attr.id}">{$attr.name}</option></foreach></select><select class="input-select proAttrNameVal" name="attrval['+i+'][]" style="width:100px"><foreach name="optAttrData.firstval" item="val"><option value="{$val.id}">{$val.name}</option></foreach></select></div></div><span id="addAttr">+ 添加一个属性</span><input name="attr_price['+i+']" type="text" class="dfinput" value="'+defaultPrice+'" placeholder="该属性下的价格" style="width:60px;" /> 元<div class="del"><i class="iconfont icon-delete"></i></div></div>';
             $('#proListOutside').append(html);
+            i++;
+        });
+    },
+
+    attrAdd :function(){
+        $('body').on('click','#addAttr',function(){
+            var that = $(this);
+            var i = that.parent().attr('data-i');
+
+            var html = '<div id="attrList"><select class="input-select proAttrName" name="attr['+i+'][]" style="width:100px"><foreach name="optAttrData.attr" item="attr"><option value="{$attr.id}">{$attr.name}</option></foreach></select><select class="input-select proAttrNameVal" name="attrval['+i+'][]" style="width:100px"><foreach name="optAttrData.firstval" item="val"><option value="{$val.id}">{$val.name}</option></foreach></select></div>';
+            that.parent().find('.attrBox').append(html);
         });
     },
 
     del : function(){
-        $('body').on('click','#attrList .del',function(){
+        $('body').on('click','.attrListOutside .del',function(){
             $(this).parent().remove();
-            if($('.proListOutside #attrList').length == 0){
+            if($('.proListOutside .attrListOutside').length == 0){
                 $('#proAttrShowOrHide').hide();
             }
         });
@@ -151,6 +148,7 @@ var productAddAction = {
 
     load : function(){
         this.add();
+        this.attrAdd();
         this.del();
         this.chgAttrVal();
         this.submit();

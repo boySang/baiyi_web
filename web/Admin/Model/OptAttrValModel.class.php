@@ -31,4 +31,16 @@ class OptAttrValModel extends Model{
 			return returnApi(201,'未查询到该属性值');
 		}
 	}
+
+	public function getName($id){
+		$d = $this->field('name')->find($id);
+		return $d['name'];
+	}
+
+	public function getPName($id){
+		$d = $this->field('attr_id')->find($id);
+		$OptAttrModel = D('OptAttr');
+		$OptAttrData = $OptAttrModel->getName($d['attr_id']);
+		return $OptAttrData;
+	}
 }

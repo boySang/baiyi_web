@@ -55,7 +55,7 @@ class GoodsModel extends Model{
 			WHERE 
 					".$where." 
 			ORDER BY 
-					a.readnum DESC 
+					a.goods_id DESC 
 			LIMIT 
 					".$page->firstRow.",".$page->listRows
 		);
@@ -67,11 +67,7 @@ class GoodsModel extends Model{
 				$goodsAttrModel = D('GoodsAttr');
 				$goodsAttrData = $goodsAttrModel->getAll($v['goods_id']);
 				if($goodsAttrData){
-					// var_dump($goodsAttrData);
-					// $attrStr = '';
-					// foreach($goodsAttrData as $k1 => $v1){
-					// 	$attrStr += . 
-					// }
+					$data[$k]['attrprice'] = $goodsAttrData;
 				}else{
 					$data[$k]['attrprice'] = '默认价格：'.($v['goods_default_price'] / 100).' 元';
 				}
@@ -96,16 +92,17 @@ class GoodsModel extends Model{
 		$data['goods_content'] = I('post.goods_content','','htmlspecialchars');
 		$data['goods_thumb'] = I('post.goods_thumb','','htmlspecialchars');
 		$data['goods_default_price'] = I('post.goods_default_price','','htmlspecialchars')*100;
-		$attr = I('post.attr');
+		//$attr = I('post.attr');
 		$attrval = I('post.attrval');
 		$attr_price = I('post.attr_price');
+		// return returnApi(200,'添加商品及属性成功',$attr_price);
 		$result = $this->add($data);
 		if($result){
-			if(count($attr) > 0){
-				foreach($attr as $k=>$v){
+			if(count($attrval) > 0){
+				foreach($attrval as $k=>$v){
 					$_attr[$k]['goods_id'] = $result;
-					$_attr[$k]['attr'] = $v;
-					$_attr[$k]['attrval'] = $attrval[$k];
+					// $_attr[$k]['attr'] = $v;
+					$_attr[$k]['attrval'] = implode(',', $v);
 					$_attr[$k]['attr_price'] = $attr_price[$k]*100;
 				}
 				$goodsAttrModel = D('GoodsAttr');
