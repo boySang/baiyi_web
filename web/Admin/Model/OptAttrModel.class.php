@@ -10,9 +10,6 @@ class OptAttrModel extends Model{
 		//每页条数
 		$pagesize = 15;
 
-        //翻页重新计数时候用的
-        $num = $pagesize * $nowpage;
-
 		//获取总条数
 		$total = $this->where($where)->count();
 
@@ -39,6 +36,17 @@ class OptAttrModel extends Model{
 			'data'=>$data,
 			'page'=>$show,
 			'total'=>$total,
+		);
+	}
+
+	public function goodsGetAll(){
+		$d = $this->select();
+		// 获取第一个属性的值
+		$OptAttrValModel = D('OptAttrVal');
+		$val = $OptAttrValModel->getAll($d[0]['id']);
+		return array(
+			'attr'		=>		$d,
+			'firstval'	=>		$val['data'],
 		);
 	}
 

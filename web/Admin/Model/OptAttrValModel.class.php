@@ -22,4 +22,13 @@ class OptAttrValModel extends Model{
 			);
 		}
 	}
+
+	public function ajaxGetAll($attr_id){
+		$d = $this->where('attr_id=%d',$attr_id)->select();
+		if($d){
+			return returnApi(200,'获取成功',$d);
+		}else{
+			return returnApi(201,'未查询到该属性值');
+		}
+	}
 }

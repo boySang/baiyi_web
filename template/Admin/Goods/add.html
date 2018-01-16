@@ -17,7 +17,8 @@
         </ul>
     </div>
     <div class="formbody">
-        <div id="usual1" class="usual">
+        <form id="add-form">
+            <input type="hidden" name="prev_url" value="<?php echo PREV_URL; ?>">
             <div id="tab1" class="tabson">
                 <ul class="forminfo">
                     <li>
@@ -32,9 +33,10 @@
                     </li>
                     <li>
                         <label>所属栏目</label>
-                        <select class="input-select">
-                            <option>UI设计师</option>
-                            <option>交互设计师</option>
+                        <select class="input-select" name="cate_id" style="width:120px;">
+                            <foreach name="cate" item="cate">
+                            <option value="{$cate.id}">{$cate.title}</option>
+                            </foreach>
                         </select>
                     </li>
                     <li>
@@ -63,7 +65,22 @@
                     </li>
                     <li id="proAttrShowOrHide" style="display: none;">
                         <label></label>
-                        <div class="proListOutside" id="proListOutside"></div>
+                        <div class="proListOutside" id="proListOutside">
+                            <div id="attrList">
+                                <select class="input-select proAttrName" name="attr[]" style="width:100px">
+                                    <foreach name="optAttrData.attr" item="attr">
+                                        <option value="{$attr.id}">{$attr.name}</option>
+                                    </foreach>
+                                </select>
+                                <select class="input-select proAttrNameVal" name="attrval[]" style="width:100px">
+                                    <foreach name="optAttrData.firstval" item="val">
+                                        <option value="{$val.id}">{$val.name}</option>
+                                    </foreach>
+                                </select>
+                                <input name="attr_price[]" type="text" class="dfinput" value="'+defaultPrice+'" placeholder="该属性下的价格" style="width:108px;" /> 元
+                                <div class="del"><i class="iconfont icon-delete"></i></div>
+                            </div>
+                        </div>
                     </li>
                     <li>
                         <label>排序</label>
@@ -71,25 +88,27 @@
                     </li>
                     <li>
                         <label>&nbsp;</label>
-                        <input name="" type="button" class="btn" value="马上发布" />
+                        <input name="" type="button" id="submit" class="btn" value="确认添加" />
                     </li>
                 </ul>
             </div>
-        </div>
+        </form>
     </div>
 </body>
 <script type="text/javascript">
 
 $(function(){
-    productAttrAction.load();
+    productAddAction.load();
 });
 
-var productAttrAction = {
+var productAddAction = {
 
     add : function(){
         $('body').on('click','#pro-attr-add',function(){
             $('#proAttrShowOrHide').show();
-            var html = '<div id="attrList"><select class="input-select proAttrName" name="attr[]" style="width:100px"><option>UI设计师</option><option>交互设计师</option></select><select class="input-select proAttrNameVal" name="attrval[]" style="width:100px"><option>UI设计师</option><option>交互设计师</option></select><input name="attr_price" type="text" class="dfinput" placeholder="该属性下的价格" style="width:108px;" /> 元<div class="del"><i class="iconfont icon-delete"></i></div></div>';
+            // 获取默认价格
+            var defaultPrice = $('input[name="goods_default_price"]').val()!=''?$('input[name="goods_default_price"]').val():'0.00';
+            var html = '<div id="attrList"><select class="input-select proAttrName" name="attr[]" style="width:100px"><foreach name="optAttrData.attr" item="attr"><option value="{$attr.id}">{$attr.name}</option></foreach></select><select class="input-select proAttrNameVal" name="attrval[]" style="width:100px"><foreach name="optAttrData.firstval" item="val"><option value="{$val.id}">{$val.name}</option></foreach></select><input name="attr_price[]" type="text" class="dfinput" value="'+defaultPrice+'" placeholder="该属性下的价格" style="width:108px;" /> 元<div class="del"><i class="iconfont icon-delete"></i></div></div>';
             $('#proListOutside').append(html);
         });
     },
@@ -103,9 +122,38 @@ var productAttrAction = {
         });
     },
 
+    chgAttrVal : function(){
+        $('body').on('change','#attrList .proAttrName',function(){
+            var that = $(this);
+            var attr_id = that.val();
+            $.get('__MODULE__/optAttrVal/ajaxGetAll/attr_id/'+attr_id,function(data){
+                var html = '';
+                if(data.state == 200){
+                    $(data.data).each(function(k,v){
+                        html += '<option value="'+v.id+'">'+v.name+'</option>';
+                    });
+                }else{
+                    $.alert(data.msg);
+                    html = '';
+                }
+                that.parent().find('.proAttrNameVal').html(html);
+            });
+        });
+    },
+
+    submit : function(){
+        $('body').on('click','#submit',function(){
+            $.post('__CONTROLLER__/ajaxAdd',$('#add-form').serialize(),function(data){
+                console.log(data);
+            });
+        });
+    },
+
     load : function(){
         this.add();
         this.del();
+        this.chgAttrVal();
+        this.submit();
     },
 }
 

@@ -50,4 +50,10 @@ class OptAttrValController extends Controller {
         ));
         $this->display();
     }
+
+    public function ajaxGetAll($attr_id){
+    	header('Content-Type:text/json');
+    	$m = D('OptAttrVal');
+    	echo $m->ajaxGetAll($attr_id);
+    }
 }
