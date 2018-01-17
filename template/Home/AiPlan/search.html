@@ -50,13 +50,96 @@
 </div>
 
 <div class="search-box">
-	<div class="tit">
+	<div class="bigtit">
 		<span>商标检索</span><span>智能方案</span>
 	</div>
-	<div class="search">
-		
+	<div class="ap-search">
+		<div class="tabTit">
+			<span class="active">商标智能方案</span>
+			<span>商标查询</span>
+		</div>
+		<div class="tabMain">
+			<div class="mainList clearfix">
+				<form id="aiplan">
+					<input type="hidden" name="type" value="">
+					<input type="hidden" name="val" value="">
+					<input type="text" class="input-text l" name="keywords" placeholder="输入商标名称" />
+					<div class="ap-type l">
+						<div class="tit">
+							<span>请选择</span>
+							<i class="iconfont icon-xiaosanjiao"></i>
+						</div>
+						<div class="list">
+							
+						</div>
+					</div>
+					<div class="ap-val l">
+						<div class="tit">
+							<span>请选择</span>
+							<i class="iconfont icon-xiaosanjiao"></i>
+						</div>
+						<div class="list">
+							
+						</div>
+					</div>
+					<div class="ap-submit r">
+						<a href="javascript:;" id="createNode">生成商标方案</a>
+					</div>
+				</form>
+			</div>
+			<div class="mainList clearfix">
+				<form id="ipsearch">
+					<input type="text" class="input-text l" name="keywords" placeholder="输入商标名称" />
+					<div class="ap-type l">
+						<div class="tit">
+							<span>近似查询</span>
+							<i class="iconfont icon-xiaosanjiao"></i>
+						</div>
+						<div class="list">
+							
+						</div>
+					</div>
+					<div class="ap-submit r">
+						<a href="javascript:;" id="createNode">商标查询</a>
+					</div>
+				</form>
+			</div>
+		</div>
 	</div>
 </div>
+<script type="text/javascript">
 
+$(function(){
+	aiplan.load();
+});
+
+var aiplan = {
+
+	_init : function(){
+		if($('.tabTit span').eq(0).hasClass('active')){
+			$('.tabMain .mainList').eq(0).addClass('active');
+		}else{
+			$('.tabMain .mainList').eq(1).addClass('active');
+		}
+	},
+
+	selectForm : function(){
+		$('body').on('click','.tabTit span',function(){
+			var that = $(this);
+			var index = that.index();
+			$('.tabMain .mainList').removeClass('active');
+			$('.tabMain .mainList').eq(index).addClass('active');
+			$('.tabTit span').removeClass('active');
+			$('.tabTit span').eq(index).addClass('active');
+		});
+	},
+
+	load : function(){
+		this._init();
+		this.selectForm();
+	}
+}	
+
+</script>
 </body>
 </html>
