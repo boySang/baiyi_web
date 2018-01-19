@@ -1,7 +1,7 @@
 <?php
 
 // 返回json数组数据
-function returnApi($state,$msg,$data = '',$url = ''){
+function returnApi($state,$msg = '',$data = '',$url = ''){
 
 	$result['state'] = $state;
 

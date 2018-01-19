@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <include file='Public/meta' />
+</head>
+
+<body class="trademarkClassification">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="javascript:void(0);">首页</a></li>
+            <li><a href="javascript:void(0);">商标细分类</a></li>
+        </ul>
+    </div>
+    <div class="rightinfo">
+        <div class="tools" id="trademark">
+            <div class="loading text-center">
+                <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="20">
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    
+$(function(){
+    trademark.load();
+});
+
+var trademark = {
+
+    getAll : function(){
+        $.get('__CONTROLLER__/ajaxGetAll',function(data){
+            console.log(data);
+            if(data.state == 200){
+                var html = '';
+                $(data.data).each(function(k,v){
+                    html += '<div class="outsideBox" data-id="'+v.id+'"><div class="oneTit">第'+v.cid+'类<span>'+v.title+'</span><small>共'+v.child.length+'个商品组</small></div><div class="oneChildBox clearfix">';
+                    $(v.child).each(function(k1,v1){
+                        html += '<div class="oneChildOutside"><div class="childTit" data-id="'+v1.id+'">'+v1.cid+'<span>'+v1.title+'</span></div><div class="childBoxMain clearfix">';
+                        $(v1.child).each(function(k2,v2){
+                            html += '<div class="childList" data-id="'+v2.id+'"><font>+</font>'+v2.cid+'<span>'+v2.title+'</span></div>';
+                        });
+                        html += '<div class="childList" id="addOne"><font>+</font><span>添加商品</span></div></div></div>';
+                    });
+                    html += '<div class="oneChildOutside"><div class="childTit addGroup"><font>+</font><span>添加商品组</span></div></div></div></div>';
+                });
+                $('#trademark').html(html);
+            }else{
+                lay.msg(data.msg);
+            }
+        });
+    },
+
+    showOrHide : function(){
+        $('body').on('click','.oneChildOutside .childTit',function(){
+            var that = $(this).parent();
+            if(that.find('.childBoxMain').is(':hidden')){
+                that.addClass('wid100');
+                that.find('.childBoxMain').show(300);
+            }else{
+                that.removeClass('wid100');
+                that.find('.childBoxMain').hide(300);
+            }
+        });
+
+        $('body').on('click','.outsideBox .oneTit',function(){
+            var that = $(this).parent().find('.oneChildBox');
+            if(that.is(':hidden')){
+                that.show(300);
+            }else{
+                that.hide(300);
+            }
+        });
+    },
+
+    load : function(){
+        this.getAll();
+        this.showOrHide();
+    }
+}
+
+</script>
+</html>
