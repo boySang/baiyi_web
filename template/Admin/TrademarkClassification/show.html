@@ -15,8 +15,13 @@
             <li><a href="javascript:void(0);">商标细分类</a></li>
         </ul>
     </div>
+    <div class="chgConnect">
+        <a class="active" href="javascript:;">分类列表</a>
+        <a href="javascript:;">行业关联</a>
+        <!-- <a href="__MODULE__/ConnectIndustry/show">行业关联</a> -->
+    </div>
     <div class="rightinfo">
-        <div class="tools" id="trademark">
+        <div class="tools clearfix" id="trademark">
             <div class="loading text-center">
                 <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="20">
             </div>
@@ -39,13 +44,13 @@ var trademark = {
                 $(data.data).each(function(k,v){
                     html += '<div class="outsideBox" data-id="'+v.id+'"><div class="oneTit">第'+v.cid+'类<span>'+v.title+'</span><small>共'+v.child.length+'个商品组</small></div><div class="oneChildBox clearfix">';
                     $(v.child).each(function(k1,v1){
-                        html += '<div class="oneChildOutside"><div class="childTit" data-id="'+v1.id+'">'+v1.cid+'<span>'+v1.title+'</span></div><div class="childBoxMain clearfix">';
+                        html += '<div class="oneChildOutside"><div class="childTit" data-id="'+v1.id+'"><div class="tit"><font>'+v1.cid+'</font><span>'+v1.title+'</span></div><div class="updateGroup"><span class="updatesGroup"><i class="iconfont icon-xiugai"></i></span><span class="delGroup"><i class="iconfont icon-delete"></i></span></div></div><div class="childBoxMain clearfix">';
                         $(v1.child).each(function(k2,v2){
                             html += '<div class="childList" data-id="'+v2.id+'"><font>+</font>'+v2.cid+'<span>'+v2.title+'</span></div>';
                         });
-                        html += '<div class="childList" id="addOne"><font>+</font><span>添加商品</span></div></div></div>';
+                        html += '<div class="childList addOne"><font>+</font><span>添加商品</span></div></div></div>';
                     });
-                    html += '<div class="oneChildOutside"><div class="childTit addGroup"><font>+</font><span>添加商品组</span></div></div></div></div>';
+                    html += '<div class="oneChildOutside"><div class="addGroup"><div class="tit"><font>+</font><span>添加商品组</span></div></div></div></div></div>';
                 });
                 $('#trademark').html(html);
             }else{
@@ -55,8 +60,9 @@ var trademark = {
     },
 
     showOrHide : function(){
-        $('body').on('click','.oneChildOutside .childTit',function(){
-            var that = $(this).parent();
+        // 商品组
+        $('body').on('click','.oneChildOutside .childTit .tit',function(){
+            var that = $(this).parent().parent();
             if(that.find('.childBoxMain').is(':hidden')){
                 that.addClass('wid100');
                 that.find('.childBoxMain').show(300);
@@ -66,6 +72,7 @@ var trademark = {
             }
         });
 
+        // 具体产品
         $('body').on('click','.outsideBox .oneTit',function(){
             var that = $(this).parent().find('.oneChildBox');
             if(that.is(':hidden')){
@@ -76,8 +83,169 @@ var trademark = {
         });
     },
 
+    add : function(){
+        // 添加商品组input
+        $('body').on('click','.oneChildOutside .addGroup',function(){
+            var that = $(this);
+            var addInput = '<div class="oneChildOutside groupAddInput"><div class="groupAddBox"><input name="groupcid" class="groupCidInput" placeholder="如：C010123"><input name="title" class="groupTitleInput" placeholder="商品组名称"><a href="javascript:;" class="addGroupSubmit"><i class="iconfont icon-xuanzhongduigou"></i></a><a href="javascript:;" class="addGroupCanle"><i class="iconfont icon-icon_unfollow"></i></a></div></div>';
+            that.parent().parent().append(addInput);
+            that.parent().parent().find('.groupAddInput .groupCidInput').focus();
+            that.parent().remove();
+        });
+
+        // 商品组点击添加input按钮后
+        $('body').on('click','.groupAddInput .addGroupSubmit',function(){
+            var that = $(this).parent();
+            var cid = that.find('.groupCidInput').val();
+            var title = that.find('.groupTitleInput').val();
+            var pid = that.parent().parent().parent().attr('data-id');
+            $.get('__CONTROLLER__/ajaxAddGroup/cid/'+cid+'/title/'+title+'/pid/'+pid,function(data){
+                console.log(data);
+                if(data.state == 200){
+                    var addHtml = '<div class="oneChildOutside"><div class="childTit" data-id="'+data.data+'"><div class="tit">'+cid+'<span>'+title+'</span></div><div class="updateGroup"><span class="updatesGroup"><i class="iconfont icon-xiugai"></i></span><span class="delGroup"><i class="iconfont icon-delete"></i></span></div></div><div class="childBoxMain clearfix"><div class="childList addOne"><font>+</font><span>添加商品</span></div></div></div><div class="oneChildOutside"><div class="addGroup"><div class="tit"><font>+</font><span>添加商品组</span></div></div></div>';
+                    that.parent().parent().append(addHtml);
+                    that.parent().remove();
+                }else{
+                    $.confirm({
+                        title: '添加失败！',
+                        content: data.msg,
+                        autoClose: 'cancel|2000',
+                        confirmButton: false,
+                        cancelButton: '我再看看',
+                    });
+                }
+            });
+        });
+    },
+
+    update : function(){
+        // 点击编辑按钮时候
+        $('body').on('click','.updateGroup .updatesGroup',function(){
+            var that = $(this).parent().parent();
+            var id = that.attr('data-id');
+            var title = that.find('.tit span').text();
+            var cid = that.find('.tit font').text();
+            // 点击编辑的时候先添加个样式，然后替换box里面的html
+            that.addClass('groupUpdateInput').removeClass('childTit');
+            var updateHtml = '<input name="groupcid" class="groupCidInput" value="'+cid+'" placeholder="如：C010123"><input name="title" class="groupTitleInput" value="'+title+'" placeholder="商品组名称"><a href="javascript:;" class="updateGroupSubmit"><i class="iconfont icon-xuanzhongduigou"></i></a><a href="javascript:;" class="updateGroupCanle"><i class="iconfont icon-icon_unfollow"></i></a>';
+            that.html(updateHtml);
+        });
+
+        // 编辑完点击提交的时候
+        $('body').on('click','.groupUpdateInput .updateGroupSubmit',function(){
+            var that = $(this).parent();
+            var id = that.attr('data-id');
+            var cid = that.find('.groupCidInput').val();
+            var title = that.find('.groupTitleInput').val();
+            $.get('__CONTROLLER__/ajaxUpdateGroup/cid/'+cid+'/title/'+title+'/id/'+id,function(data){
+                console.log(data);
+                if(data.state == 200){
+                    // 修改完成后，恢复class childTit，移除class groupCidInput，病清空html，恢复html
+                    var updateHtml = '<div class="tit"><font>'+cid+'</font><span>'+title+'</span></div><div class="updateGroup"><span class="updatesGroup"><i class="iconfont icon-xiugai"></i></span><span class="delGroup"><i class="iconfont icon-delete"></i></span></div>';
+                    that.html(updateHtml);
+                    that.addClass('childTit').removeClass('groupUpdateInput');
+                }else{
+                    $.confirm({
+                        title: '修改失败！',
+                        content: data.msg,
+                        autoClose: 'cancel|2000',
+                        confirmButton: false,
+                        cancelButton: '我再看看',
+                    });
+                }
+            });
+        });
+    },
+
+    del : function(){
+        $('body').on('click','.updateGroup .delGroup',function(){
+            var that = $(this);
+            var title = that.parent().parent().find('.tit span').text();
+            var id = that.parent().parent().attr('data-id');
+            var childLength = that.parent().parent().parent().find('.childBoxMain .childList').length-1;
+            if(childLength > 0){
+                $.confirm({
+                    title: '提示',
+                    content: '检测到该商品组下有 '+childLength+' 个商品，删除该商品组将同时删除组下所有商品，确认删除吗？',
+                    confirmButton: '确定',
+                    confirmButtonClass: 'btn-danger',
+                    icon: 'fa fa-exclamation-circle',
+                    animation: 'scale',
+                    confirm: function () {
+                        $.get('__CONTROLLER__/ajaxDel/type/2/id/'+id,function(data){
+                            if(data.state == 200){
+                                that.parent().parent().parent().remove();
+                            }else if(data.state == 203){
+                                for(var i=0; i<childLength; i++){
+                                    that.parent().parent().parent().find('.childBoxMain .childList').eq(i).remove();
+                                }
+                            }else{
+                                $.confirm({
+                                    title: '',
+                                    content: data.msg,
+                                    autoClose: 'cancel|3000',
+                                    confirmButton: false,
+                                    cancelButton: '我再看看',
+                                });
+                            }
+                        });
+                    }
+                });
+            }else{
+                // 如果下面没有关联数据的花直接删除
+                $.confirm({
+                    title: '提示',
+                    content: '确认删除 [ <b>'+title+'</b> ] 商品组吗？',
+                    confirmButton: '确定',
+                    confirmButtonClass: 'btn-danger',
+                    icon: 'fa fa-exclamation-circle',
+                    animation: 'scale',
+                    confirm: function () {
+                        $.get('__CONTROLLER__/ajaxDel/type/1/id/'+id,function(data){
+                            if(data.state == 200){
+                                that.parent().parent().parent().remove();
+                            }else{
+                                $.confirm({
+                                    title: '',
+                                    content: data.msg,
+                                    autoClose: 'cancel|3000',
+                                    confirmButton: false,
+                                    cancelButton: '我再看看',
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    },
+
+    cancel : function(){
+        // 添加的时候取消
+        $('body').on('click','.groupAddBox .addGroupCanle',function(){
+            var that = $(this);
+            var addHtml = '<div class="oneChildOutside"><div class="addGroup"><div class="tit"><font>+</font><span>添加商品组</span></div></div></div>';
+            that.parent().parent().parent().append(addHtml);
+            that.parent().parent().remove();
+        });
+
+        // 修改的时候取消
+        $('body').on('click','.groupUpdateInput .updateGroupCanle',function(){
+            var that = $(this).parent();
+            var cid = that.find('.groupCidInput').val();
+            var title = that.find('.groupTitleInput').val();
+            var updateHtml = '<div class="tit"><font>'+cid+'</font><span>'+title+'</span></div><div class="updateGroup"><span class="updatesGroup"><i class="iconfont icon-xiugai"></i></span><span class="delGroup"><i class="iconfont icon-delete"></i></span></div>';
+            that.html(updateHtml);
+            that.addClass('childTit').removeClass('groupUpdateInput');
+        });
+    },
+
     load : function(){
         this.getAll();
+        this.add();
+        this.update();
+        this.del();
+        this.cancel();
         this.showOrHide();
     }
 }

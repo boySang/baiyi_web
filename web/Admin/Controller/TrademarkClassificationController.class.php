@@ -27,4 +27,22 @@ class TrademarkClassificationController extends Controller {
 		$m = D('TrademarkClassification');
 		echo $m->ajaxGetAll();
 	}
+
+	public function ajaxAddGroup(){
+		header('Content-type:text/json');
+		$m = D('TrademarkClassification');
+		echo $m->ajaxAddGroup();
+	}
+
+	public function ajaxUpdateGroup(){
+		header('Content-type:text/json');
+		$m = D('TrademarkClassification');
+		echo $m->ajaxUpdateGroup();
+	}
+
+	public function ajaxDel($type = 1){
+		header('Content-type:text/json');
+		$m = D('TrademarkClassification');
+		echo $m->ajaxDel($type);
+	}
 }
