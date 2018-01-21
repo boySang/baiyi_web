@@ -4,18 +4,18 @@ use Think\Controller;
 class TrademarkClassificationController extends Controller {
 
 
-	public function add(){
-		if(IS_POST){
-			$m = D('TrademarkClassification');
-            if($m->create()) {
-                $m->add() ? header('Location:'.U('add')) : $this->error('添加失败');
-            }else{
-                $this->error($m->getError());
-            }
-        }
+	// public function add(){
+	// 	if(IS_POST){
+	// 		$m = D('TrademarkClassification');
+ //            if($m->create()) {
+ //                $m->add() ? header('Location:'.U('add')) : $this->error('添加失败');
+ //            }else{
+ //                $this->error($m->getError());
+ //            }
+ //        }
 
-		$this->display();
-	}
+	// 	$this->display();
+	// }
 
 	public function show(){
 
@@ -26,6 +26,12 @@ class TrademarkClassificationController extends Controller {
 		header('Content-type:text/json');
 		$m = D('TrademarkClassification');
 		echo $m->ajaxGetAll();
+	}
+
+	public function ajaxGetAllToConnect(){
+		header('Content-type:text/json');
+		$m = D('TrademarkClassification');
+		echo $m->ajaxGetAllToConnect();
 	}
 
 	public function ajaxAddGroup(){

@@ -7,7 +7,7 @@
     <include file='Public/meta' />
 </head>
 
-<body class="trademarkClassification">
+<body class="trademarkClassification connectIndustry">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
@@ -18,79 +18,61 @@
     <div class="chgConnect">
         <a href="__MODULE__/TrademarkClassification/show">分类列表</a>
         <a class="active" href="javascript:;">行业关联</a>
+        <a class="addOne" href="__CONTROLLER__/add">添加关联分类</a>
     </div>
     <div class="rightinfo">
-        <div class="tools clearfix" id="trademark">
-            <div class="loading text-center">
-                <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="20">
-            </div>
+        <div class="tools clearfix" id="connectIndustry">
+            <table class="table table-striped table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>行业</th>
+                        <th>行业分类</th>
+                        <th>所有商品项</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name="data.data" item="val">
+                    <tr>
+                        <td width="16%">{$val.title}</td>
+                        <td width="28%">{$val.child}<a href="__CONTROLLER__/add/pid/{$val.id}" class="add">添加</a></td>
+                        <!-- <td width="56%"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" /></td> -->
+                        <td width="56%" data-id="{$val.id}" id="item{$val.id}">
+                            <script type="text/javascript">$(function(){getConnectVal({$val.id})});</script>
+                            
+                            
+                        </td>
+                    </tr>
+                    </foreach>
+                </tbody>
+            </table>
         </div>
     </div>
 </body>
 <script type="text/javascript">
-    
-$(function(){
-    trademark.load();
-});
 
-var trademark = {
-
-    getAll : function(){
-        $.get('__MODULE__/TrademarkClassification/ajaxGetAll',function(data){
-            console.log(data);
-            if(data.state == 200){
-                var html = '';
-                $(data.data).each(function(k,v){
-                    html += '<div class="outsideBox" data-id="'+v.id+'"><div class="oneTit">第'+v.cid+'类<span>'+v.title+'</span><small>共'+v.child.length+'个商品组</small></div><div class="oneChildBox clearfix">';
-                    $(v.child).each(function(k1,v1){
-                        html += '<div class="oneChildOutside"><div class="childTit" data-id="'+v1.id+'">'+v1.cid+'<span>'+v1.title+'</span></div><div class="childBoxMain clearfix">';
-                        $(v1.child).each(function(k2,v2){
-                            html += '<div class="childList" data-id="'+v2.id+'"><font>+</font>'+v2.cid+'<span>'+v2.title+'</span></div>';
+function getConnectVal(id){
+    $.get('__CONTROLLER__/getConnectVal/id/'+id,function(data){
+        console.log(data);
+        if(data.state == 200){
+            var html = '';
+            $(data.data).each(function(k,v){
+                html += '<div class="industryBlock"><div class="industryName"><a class="r" href="__CONTROLLER__/update/id/'+v.id+'">编辑</a><span>'+v.title+'</span></div><div class="industryList">';
+                    if(v.connect_val != null){
+                        $(v.connect_val).each(function(k1,v1){
+                            html += '<div class="industryListInset"><div class="titBig">第'+v1.topcid.cid+'类<span>'+v1.topcid.title+'</span></div><div class="industryMain">';
+                            $(v1.childid).each(function(k2,v2){
+                                html += '<span><i>'+v2.cid+'</i><font>'+v2.title+'</font></span>';
+                            });
+                            html += '</div></div>';
                         });
-                        html += '<div class="childList addOne"><font>+</font><span>添加商品</span></div></div></div>';
-                    });
-                    html += '<div class="oneChildOutside"><div class="childTit addGroup"><font>+</font><span>添加商品组</span></div></div></div></div>';
-                });
-                $('#trademark').html(html);
-            }else{
-                lay.msg(data.msg);
-            }
-        });
-    },
+                    }
+                html += '</div></div>';
+            });
+            $('#item'+id).html(html);
+        }else{
 
-    showOrHide : function(){
-        // 商品组
-        $('body').on('click','.oneChildOutside .childTit',function(){
-            var that = $(this).parent();
-            if(that.find('.childBoxMain').is(':hidden')){
-                that.addClass('wid100');
-                that.find('.childBoxMain').show(300);
-            }else{
-                that.removeClass('wid100');
-                that.find('.childBoxMain').hide(300);
-            }
-        });
-
-        // 具体产品
-        $('body').on('click','.outsideBox .oneTit',function(){
-            var that = $(this).parent().find('.oneChildBox');
-            if(that.is(':hidden')){
-                that.show(300);
-            }else{
-                that.hide(300);
-            }
-        });
-    },
-
-    add : function(){
-
-    },
-
-    load : function(){
-        this.getAll();
-        this.add();
-        this.showOrHide();
-    }
+        }
+    });
 }
 
 </script>

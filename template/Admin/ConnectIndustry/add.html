@@ -12,26 +12,31 @@
         <span>位置：</span>
         <ul class="placeul clearfix">
             <li><a href="javascript:void(0);">首页</a></li>
-            <li><a href="javascript:void(0);">商标细分类</a></li>
+            <li><a href="javascript:void(0);">行业关联分类</a></li>
             <li><a href="javascript:void(0);">添加</a></li>
         </ul>
     </div>
     <div class="formbody">
-        <div class="formtitle"><span>分类添加</span></div>
+        <div class="formtitle"><span>添加关联行业</span></div>
         <ul class="forminfo">
             <form action="__SELF__" method="post">
                 <li>
                     <label>所属分类</label>
                     <select class="input-select" name="pid" style="width:120px;">
                         <option value="0">顶级分类</option>
+                        <foreach name="data" item="v">
+                        <?php if(I('get.pid') == $v['id']) {
+                            $slct = 'selected';
+                        }else{
+                            $slct = '';
+                        }
+                        ?>
+                        <option {$slct} value="{$v.id}">{$v.title}</option>
+                        </foreach>
                     </select>
                 </li>
                 <li>
-                    <label>类目ID</label>
-                    <input name="cid" type="text" class="dfinput" required />
-                </li>
-                <li>
-                    <label>类目名称</label>
+                    <label>分类名称</label>
                     <input name="title" type="text" class="dfinput" required />
                 </li>
                 <li>
@@ -44,7 +49,7 @@
 </body>
 
 <script type="text/javascript">
-    $('input[name="name"]').focus();
+    $('input[name="title"]').focus();
 </script>
 
 </html>

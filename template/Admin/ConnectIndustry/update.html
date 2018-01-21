@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <include file='Public/meta' />
+</head>
+
+<body class="trademarkClassification selectState">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul clearfix">
+            <li><a href="javascript:void(0);">首页</a></li>
+            <li><a href="javascript:void(0);">行业关联分类</a></li>
+            <li><a href="javascript:void(0);">修改</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>修改关联行业</span></div>
+        <ul class="forminfo">
+            <form action="__SELF__" method="post" id="update-form">
+                <input type="hidden" name="id" value="{$data.id}">
+                <input type="hidden" name="connect_val" value="{$data.connect_val}">
+                <li>
+                    <label>所属分类</label>
+                    <select class="input-select" name="pid" style="width:120px;">
+                        <option value="0">顶级分类</option>
+                        <foreach name="pidData" item="v">
+                        <?php if($data['pid'] == $v['id']) {
+                            $slct = 'selected';
+                        }else{
+                            $slct = '';
+                        }
+                        ?>
+                        <option {$slct} value="{$v.id}">{$v.title}</option>
+                        </foreach>
+                    </select>
+                </li>
+                <li>
+                    <label>分类名称</label>
+                    <input name="title" type="text" class="dfinput" value="{$data.title}" required />
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input type="submit" class="btn-self submit" value="确认保存" />
+                </li>
+            </form>
+        </ul>
+    </div>
+    <div class="rightinfo">
+        <div class="tools clearfix" id="trademark">
+            <div class="loading text-center">
+                <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="20">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+
+    
+$(function(){
+
+    $('input[name="title"]').focus();
+
+    trademark.load();
+});
+
+var trademark = {
+
+    getAll : function(){
+        $.get('__MODULE__/TrademarkClassification/ajaxGetAllToConnect',function(data){
+            console.log(data);
+            if(data.state == 200){
+                var html = '';
+                $(data.data).each(function(k,v){
+                    html += '<div class="outsideBox" data-id="'+v.id+'"><div class="oneTit">第'+v.cid+'类<span>'+v.title+'</span><small>共'+v.child.length+'个商品组</small></div><div class="oneChildBox clearfix">';
+                    $(v.child).each(function(k1,v1){
+                        html += '<div class="oneChildOutside"><div class="childTit" data-id="'+v1.id+'"><div class="tit"><font>'+v1.cid+'</font><span>'+v1.title+'</span></div></div><div class="childBoxMain clearfix">';
+                        $(v1.child).each(function(k2,v2){
+                            html += '<div class="childList" data-id="'+v2.id+'"><div class="goodsTit"><label><input type="checkbox" class="goodsCheckbox" name="goodsCheckbox" value="'+v2.id+'"><font>'+v2.cid+'</font><span>'+v2.title+'</span></label></div></div>';
+                        });
+                        html += '</div></div>';
+                    });
+                    html += '</div></div>';
+                });
+                $('#trademark').html(html);
+                trademark.loadState();
+            }else{
+                lay.msg(data.msg);
+            }
+        });
+    },
+
+    showOrHide : function(){
+        // 商品组
+        $('body').on('click','.oneChildOutside .childTit .tit',function(){
+            var that = $(this).parent().parent();
+            if(that.find('.childBoxMain').is(':hidden')){
+                that.addClass('wid100');
+                that.find('.childBoxMain').show(300);
+            }else{
+                that.removeClass('wid100');
+                that.find('.childBoxMain').hide(300);
+            }
+        });
+
+        // 具体产品
+        $('body').on('click','.outsideBox .oneTit',function(){
+            var that = $(this).parent().find('.oneChildBox');
+            if(that.is(':hidden')){
+                that.show(300);
+            }else{
+                that.hide(300);
+            }
+        });
+    },
+
+    selectGoods : function(){
+        // $('body').on('click','.childBoxMain .childList',function(e){
+            var str = '';
+            var _j = 0;
+            $('#trademark .outsideBox').each(function(k,v){
+                var _i = 0;
+                var that = $(this);
+                var topId = that.attr('data-id');
+                var checkedLength = $('#trademark .outsideBox').eq(k).find('input[type="checkbox"]:checked').length;
+                var arr = [];
+                if(checkedLength > 0){
+                    var _checkbox = $('#trademark .outsideBox').eq(k).find('.childList');
+                    var _checkboxLength = _checkbox.length;
+                    _checkbox.each(function(k1,v1){
+                        var _that = $(this);
+                        var checkbox = _that.find('input[type="checkbox"]');
+                        var val = checkbox.val();
+                        if(checkbox.is(':checked')){
+                            arr.push(val);
+                        }
+                        _i++;
+                    });
+                    if(_i == _checkboxLength){
+                        str += topId+':'+arr.join(',')+'|';
+                    }
+                }
+                _j++;
+            });
+            str = str.match(/[0-9].*[0-9]/);
+            $('input[name="connect_val"]').val(str);
+            // console.log(str);
+            if(_j == $('#trademark .outsideBox').length){
+                return true;
+            }
+        // });
+    },
+
+    beforeSubmit : function(){
+        $('body').on('click','#update-form .submit',function(){
+            var index = layer.load(2, {
+                shade: [0.1,'#fff'] //0.1透明度的白色背景
+            });
+            if(trademark.selectGoods() == true){
+                layer.close(index);
+                $('#update-form').submit();
+            }else{
+                layer.close(index);
+                $.confirm({
+                    title: '提示！',
+                    content: '关联商品项保存失败！',
+                    autoClose: 'cancel|3000',
+                    confirmButton: false,
+                    cancelButton: '我再看看',
+                });
+            }
+        });
+    },
+
+    // 页面加载完后，加载商品项的选中状态
+    loadState : function(){
+        var index = layer.msg('状态加载中...');
+        var connect_val = $('input[name="connect_val"]').val();
+        var connect_val_arr_one = connect_val.split('|');
+        var connect_val_arr_two = [];
+        $(connect_val_arr_one).each(function(k,v){
+            connect_val_arr_two[k] = v.split(':');
+        });
+        console.log(connect_val_arr_two);
+        $('#trademark .outsideBox').each(function(k,v){
+            var that = $(this);
+            var topId = that.attr('data-id');
+            $(connect_val_arr_two).each(function(k1,v1){
+                var _that = $(this);
+                if(v1[0] == topId){
+                    var __str = ','+v1[1]+',';
+                    $('#trademark .outsideBox').eq(k).find('.childBoxMain .childList').each(function(k2,v2){
+                        var ___that = $(this);
+                        var __inputId = ___that.find('input[type="checkbox"]');
+                        if(__str.indexOf(','+__inputId.val()+',') >= 0){
+                            __inputId.prop('checked',true);
+                        }
+                    });
+                }
+            });
+        });
+        setTimeout(function(){
+            layer.close(index);
+        },2000);
+    },
+
+    load : function(){
+        this.getAll();
+        this.showOrHide();
+        this.beforeSubmit();
+    }
+}
+
+
+</script>
+
+</html>

@@ -11,9 +11,21 @@ class TrademarkClassificationModel extends Model{
 		$d = $this->field('id,cid,title')->where('pid=0 AND state=1')->select();
 		foreach($d as $k=>$v){
 			$d[$k]['child'] = $this->field('id,cid,title')->where('pid='.$v['id'].' AND state=1')->select();
-			// foreach($d[$k]['child'] as $k1=>$v1){
-			// 	$d[$k]['child'][$k1]['child'] = $this->field('id,cid,title')->where('pid='.$v1['id'].' AND state=1')->select();
-			// }
+		}
+		if($d){
+			return returnApi(200,'success',$d);
+		}else{
+			return returnApi(201,'未查询到数据');
+		}
+	}
+
+	public function ajaxGetAllToConnect(){
+		$d = $this->field('id,cid,title')->where('pid=0 AND state=1')->select();
+		foreach($d as $k=>$v){
+			$d[$k]['child'] = $this->field('id,cid,title')->where('pid='.$v['id'].' AND state=1')->select();
+			foreach($d[$k]['child'] as $k1=>$v1){
+				$d[$k]['child'][$k1]['child'] = $this->field('id,cid,title')->where('pid='.$v1['id'].' AND state=1')->select();
+			}
 		}
 		if($d){
 			return returnApi(200,'success',$d);
@@ -82,6 +94,32 @@ class TrademarkClassificationModel extends Model{
 				return returnApi(201,'删除组下商品项失败！');
 			}
 		}
+	}
+
+	public function getCidAndTitle($id){
+		$d = $this->field('id,cid,title')->find($id);
+		return $d;
+	}
+
+	// 1:11921,17988|952:18268,18266
+
+	public function getArrData($str){
+		if(!$str){
+			return ;
+		}
+		$_arr = explode('|', $str);
+		$arr = array();
+		$__arr = array();
+		foreach($_arr as $k=>$v){
+			$__arr = explode(':', $v);
+			$arr[$k]['topcid'] = $this->getCidAndTitle($__arr[0]);
+			$childid = explode(',', $__arr[1]);
+			foreach($childid as $k1=>$v1){
+				$childid[$k1] = $this->getCidAndTitle($v1);
+			}
+			$arr[$k]['childid'] = $childid;
+		}
+		return $arr;
 	}
 
 
