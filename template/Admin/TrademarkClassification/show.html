@@ -312,6 +312,36 @@ var trademark = {
                 });
             }
         });
+
+        // 删除商品
+        $('body').on('click','.updateGoods .delGoods',function(){
+            var that = $(this).parent().parent();
+            var id = that.attr('data-id');
+            var title = that.find('.goodsTit span').text();
+            $.confirm({
+                title: '提示',
+                content: '确认删除 [ <b>'+title+'</b> ] 商品吗？',
+                confirmButton: '确定',
+                confirmButtonClass: 'btn-danger',
+                icon: 'fa fa-exclamation-circle',
+                animation: 'scale',
+                confirm: function () {
+                    $.get('__CONTROLLER__/ajaxDel/type/1/id/'+id,function(data){
+                        if(data.state == 200){
+                            that.remove();
+                        }else{
+                            $.confirm({
+                                title: '',
+                                content: data.msg,
+                                autoClose: 'cancel|3000',
+                                confirmButton: false,
+                                cancelButton: '我再看看',
+                            });
+                        }
+                    });
+                }
+            });
+        });
     },
 
     cancel : function(){
