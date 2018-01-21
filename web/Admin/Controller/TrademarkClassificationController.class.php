@@ -45,4 +45,10 @@ class TrademarkClassificationController extends Controller {
 		$m = D('TrademarkClassification');
 		echo $m->ajaxDel($type);
 	}
+
+	public function ajaxGetGoods(){
+		header('Content-type:text/json');
+		$m = D('TrademarkClassification');
+		echo $m->ajaxGetGoods();
+	}
 }

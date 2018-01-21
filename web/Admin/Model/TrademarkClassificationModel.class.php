@@ -11,10 +11,20 @@ class TrademarkClassificationModel extends Model{
 		$d = $this->field('id,cid,title')->where('pid=0 AND state=1')->select();
 		foreach($d as $k=>$v){
 			$d[$k]['child'] = $this->field('id,cid,title')->where('pid='.$v['id'].' AND state=1')->select();
-			foreach($d[$k]['child'] as $k1=>$v1){
-				$d[$k]['child'][$k1]['child'] = $this->field('id,cid,title')->where('pid='.$v1['id'].' AND state=1')->select();
-			}
+			// foreach($d[$k]['child'] as $k1=>$v1){
+			// 	$d[$k]['child'][$k1]['child'] = $this->field('id,cid,title')->where('pid='.$v1['id'].' AND state=1')->select();
+			// }
 		}
+		if($d){
+			return returnApi(200,'success',$d);
+		}else{
+			return returnApi(201,'未查询到数据');
+		}
+	}
+
+	public function ajaxGetGoods(){
+		$pid = I('get.pid');
+		$d = $this->field('id,cid,title')->where('state=1 AND pid=%d',$pid)->select();
 		if($d){
 			return returnApi(200,'success',$d);
 		}else{
