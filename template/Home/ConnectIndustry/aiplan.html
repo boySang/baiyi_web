@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>商标智能方案</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_0ztttgs4694fgvi.css">
+    <!-- 有字库 -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
+    <!-- 有字库 end -->
+    <!-- jquery-cookie -->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- jquery-cookie end -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+</head>
+<body class="aiplan">
+
+<div class="full">
+	<div class="header-box">
+		<div class="header clearfix">
+			<div class="logo">
+				<!-- <img src="" alt="logo"> -->
+				logo
+			</div>
+			<div class="nav">
+				<a href="/">首页</a>
+				<a class="active" href="__SELF__">商标智能方案</a>
+				<a href="__CONTROLLER__/ipsearch">商标查询</a>
+				<a href="#">在线申请</a>
+				<a href="#">知识产权管理</a>
+				<a href="#">知识产权专家库</a>
+			</div>
+			<div class="login-box">
+				<a href="__MODULE__/Member/reg" class="reg">注册</a>
+				<a href="__MODULE__/Member/login" class="login">登录</a>
+			</div>
+		</div>
+	</div>
+	<div class="topbg"></div>
+</div>
+
+<div class="search-box">
+	<div class="bigtit">
+		<span>商标智能方案</span>
+	</div>
+	<div class="ap-search">
+		<!-- <div class="tabTit">
+			<span class="active">商标智能方案</span>
+			<span>商标查询</span>
+		</div> -->
+		<div class="tabMain">
+			<div class="mainList clearfix">
+				<form id="aiplan">
+					<input type="hidden" name="type" value="">
+					<input type="hidden" name="val" value="">
+					<input type="text" class="input-text l" name="keywords" placeholder="输入商标名称" />
+					<div class="ap-type l">
+						<div class="tit">
+							<span>请选择</span>
+							<i class="iconfont icon-xiaosanjiao"></i>
+						</div>
+						<div class="list">
+							<div class="listInner">
+								<div class="listMain">
+									<i class="iconfont icon-xiangshang"></i>
+									<foreach name="type" item="v">
+									<span data-id="{$v.id}">{$v.title}</span>
+									</foreach>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ap-val l">
+						<div class="tit">
+							<span>请选择</span>
+							<i class="iconfont icon-xiaosanjiao"></i>
+						</div>
+						<div class="list">
+							<div class="listInner">
+								<div class="listMain">
+									<i class="iconfont icon-xiangshang"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="ap-submit r">
+						<a href="javascript:void(0);" id="createNode">生成商标方案</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+$(function(){
+	aiSearch.load();
+});
+
+var aiSearch = {
+
+	click : function(){
+		// 大行业选择
+		$('body').on('click','#aiplan .ap-val .tit',function(){
+			var that = $(this).parent();
+			that.find('.list').addClass('active');
+		});
+
+		// 具体行业选择
+		$('body').on('click','#aiplan .ap-type .tit',function(){
+			var that = $(this).parent();
+			that.find('.list').addClass('active');
+		});
+
+		$('#aiplan .ap-type').hover(function(){},function(){
+			$('#aiplan .list').removeClass('active');
+		});
+
+		$('#aiplan .ap-val').hover(function(){},function(){
+			$('#aiplan .list').removeClass('active');
+		});
+
+	},
+
+	getChild : function(){
+		var typeId = $('input[name="type"]').val();
+		$.get('__CONTROLLER__/ajaxGetAll/pid/'+typeId,function(data){
+			console.log(data);
+			if(data.state == 200){
+				var html = '';
+				$(data.data).each(function(k,v){
+					html += '<span data-id="'+v.id+'">'+v.title+'</span>';
+				});
+				$('.ap-val .listInner .listMain').append(html);
+			}else{
+				console.log(data.msg);
+			}
+		});
+	},
+
+	select : function(className,inputName,state){
+		state = state==null?false:true;
+		$('body').on('click',className+' .listMain span',function(){
+			var that = $(this);
+			var val = that.attr('data-id');
+			var text = that.text();
+			$('input[name="'+inputName+'"]').val(val);
+			that.parent().parent().parent().removeClass('active');
+			that.parent().parent().parent().parent().find('.tit span').text(text).addClass('color000');
+			if(state == true){
+				aiSearch.getChild();
+			}
+		});
+	},
+
+	submit : function(){
+		$('body').on('click','#createNode',function(){
+			if(($('input[name="keywords"]').val() == '') || ($('input[name="type"]').val() == '') || ($('input[name="val"]').val() == '')){
+				layer.msg('请完善搜索内容');
+				return false;
+			}else{
+				$.cookie('keywords',$('input[name="keywords"]').val());
+				$.cookie('type',$('input[name="type"]').val());
+				$.cookie('val',$('input[name="val"]').val());
+				window.location.href='__CONTROLLER__/selectgoods';
+			}
+		});
+	},
+
+	load : function(){
+		this.click();
+		this.select('.ap-type','type',true);
+		this.select('.ap-val','val');
+		this.submit();
+		// this.getChild();
+	}
+}
+
+</script>
+</body>
+</html>

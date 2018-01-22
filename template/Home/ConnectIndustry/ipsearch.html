@@ -14,14 +14,15 @@
 	<meta name="keywords" content="关键字">
 	<title>商标智能方案</title>
 	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="/dist/home/css/global.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css">
     <!-- index -->
-    <link rel="stylesheet" type="text/css" href="/dist/home/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_86bzmmbf0dl323xr.css">
     <!-- 有字库 -->
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
     <!-- 有字库 end -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
 </head>
 <body class="aiplan">
 
@@ -34,8 +35,8 @@
 			</div>
 			<div class="nav">
 				<a href="/">首页</a>
-				<a class="active" href="#">商标智能方案</a>
-				<a href="#">商标查询</a>
+				<a href="__CONTROLLER__/aiplan">商标智能方案</a>
+				<a class="active" href="__SELF__">商标查询</a>
 				<a href="#">在线申请</a>
 				<a href="#">知识产权管理</a>
 				<a href="#">知识产权专家库</a>
@@ -51,7 +52,7 @@
 
 <div class="search-box">
 	<div class="bigtit">
-		<span>商标智能方案</span>
+		<span>商标检索</span>
 	</div>
 	<div class="ap-search">
 		<!-- <div class="tabTit">
@@ -60,22 +61,11 @@
 		</div> -->
 		<div class="tabMain">
 			<div class="mainList clearfix">
-				<form id="aiplan">
-					<input type="hidden" name="type" value="">
-					<input type="hidden" name="val" value="">
+				<form id="ipsearch">
 					<input type="text" class="input-text l" name="keywords" placeholder="输入商标名称" />
 					<div class="ap-type l">
 						<div class="tit">
-							<span>请选择</span>
-							<i class="iconfont icon-xiaosanjiao"></i>
-						</div>
-						<div class="list">
-							
-						</div>
-					</div>
-					<div class="ap-val l">
-						<div class="tit">
-							<span>请选择</span>
+							<span>近似查询</span>
 							<i class="iconfont icon-xiaosanjiao"></i>
 						</div>
 						<div class="list">
@@ -83,7 +73,7 @@
 						</div>
 					</div>
 					<div class="ap-submit r">
-						<a href="javascript:;" id="createNode">生成商标方案</a>
+						<a href="javascript:;" id="createNode">商标查询</a>
 					</div>
 				</form>
 			</div>
@@ -92,15 +82,7 @@
 </div>
 <script type="text/javascript">
 
-$(function(){
-	aiSearch.load();
-});
 
-var aiSearch = {
-	load : function(){
-
-	}
-}
 
 </script>
 </body>

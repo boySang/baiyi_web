@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>商标智能方案</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_0ztttgs4694fgvi.css">
+    <!-- 有字库 -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
+    <!-- 有字库 end -->
+    <!-- jquery-cookie -->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- jquery-cookie end -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+</head>
+<body>
+
+
+<div class="full commen-header">
+	<div class="quick-nav wid1200 clearfix">
+		<div class="r app">
+			<span>移动应用</span>
+			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
+		</div>
+		<div class="r reg">
+			<span>注册</span>
+			<ul>
+				<li>个人注册</li>
+				<li>企业注册</li>
+			</ul>
+		</div>
+		<div class="r login">登录</div>
+		<div class="r phone">客服电话：40000000000</div>
+	</div>
+</div>
+
+<div class="pub-header wid1200 clearfix">
+	<div class="logo-header clearfix">
+		<div class="logo l">
+			<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+		</div>
+	</div>
+	<div class="pub-navs clearfix">
+		<div class="quick-link r">
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">申请系统</a>
+			<a href="javascript:void(0);">方案系统</a>
+			<a href="javascript:void(0);">商标在线管理</a>
+			<a href="javascript:void(0);">专家库</a>
+		</div>
+	</div>
+</div>
+
+<div class="wid1200">
+	<div class="industry">
+		<div class="search">
+			<form id="connectSearch">
+				<div class="searchInner clearfix">
+					<input type="text" name="keywords" class="input-text" />
+					<select name="type" class="input-select">
+						<foreach name="type" item="v">
+						<option value="{$v.id}">{$v.title}</option>
+						</foreach>
+					</select>
+					<select name="val" class="input-select"></select>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+$(function(){
+
+	select.load();
+	// 加入默认值
+	$('input[name="keywords"]').val($.cookie('keywords'));
+	$('select[name="type"]').find('option[value="'+$.cookie('type')+'"]').attr("selected",true); 
+});
+
+var select = {
+	getChild : function(){
+		$.get('__CONTROLLER__/ajaxGetAll/pid/'+$.cookie('type'),function(data){
+			console.log(data);
+			if(data.state == 200){
+				var html = '';
+				$(data.data).each(function(k,v){
+					html += '<option value="'+v.id+'">'+v.title+'</option>';
+				});
+				$('select[name="val"]').html(html);
+				// 加入默认值
+				$('select[name="val"]').find('option[value="'+$.cookie('val')+'"]').attr("selected",true); 
+			}else{
+				console.log(data.msg);
+			}
+		});
+	},
+	load : function(){
+		select.getChild();
+	}
+}
+
+</script>
+</body>
+</html>
