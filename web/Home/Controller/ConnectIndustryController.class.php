@@ -18,6 +18,12 @@ class ConnectIndustryController extends Controller {
 		echo $m->ajaxGetAll();
 	}
 
+	public function ajaxGetOneFromId(){
+		header('Content-type:text/json');
+		$m = D('ConnectIndustry');
+		echo $m->ajaxGetOneFromId();
+	}
+
 	public function selectgoods(){
 		$m = D('ConnectIndustry');
 		$type = $m->getAll();

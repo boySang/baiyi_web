@@ -18,7 +18,7 @@
     <!-- index -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_9dml9smc19oirudi.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_mnrppvg7864aq0k9.css">
     <!-- 有字库 -->
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
     <!-- 有字库 end -->
@@ -86,7 +86,8 @@
 		</div>
 		<div class="searchResult" id="goodsList">
 			<div class="bigtit">建议保护的类别及商品/服务项</div>
-			<div class="allList">
+			<div class="allList" id="addListBox">
+
 				<div class="listInner">
 					<div class="tit" data-topid="1">第26类<span>我是名称</span></div>
 					<div class="goodsListInner">
@@ -107,91 +108,43 @@
 						<a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a>
 					</div>
 					<div class="childGoodsList">
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
+						<div class="childGoodsListInner">
+							<div class="listType l">
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+								<span data-id="212">我是忠分类<i class="iconfont icon-xiangyou"></i></span>
+							</div>
+							<div class="listGoods l">
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+								<span><i class="iconfont icon-icon--"></i>我是商品项</span>
+							</div>
+						</div>
 					</div>
 				</div>
-				<div class="listInner">
-					<div class="tit" data-topid="1">第26类<span>我是名称</span></div>
-					<div class="goodsListInner">
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-					</div>
-					<div class="update clearfix">
-						<a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a>
-						<a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a>
-					</div>
-					<div class="childGoodsList">
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-					</div>
-				</div>
-				<div class="listInner">
-					<div class="tit" data-topid="1">第26类<span>我是名称</span></div>
-					<div class="goodsListInner">
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-						<span data-id="1"><b>22222类</b><font>浴巾</font></span>
-					</div>
-					<div class="update clearfix">
-						<a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a>
-						<a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a>
-					</div>
-					<div class="childGoodsList">
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-						<span data-id="1"><i class="iconfont icon-jia"></i><b>22222类</b><font>土特产</font></span>
-					</div>
-				</div>
+
 			</div>
 		</div>
 	</div>
@@ -225,13 +178,29 @@ var select = {
 		});
 	},
 
-	show : function(){
+	showtype : function(){
 		$('body').on('click','.update .addGoods',function(){
-			var that = $(this).parent().parent().find('.childGoodsList');
-			if(that.is(':hidden')){
-				that.show(200);
+			var that = $(this).parent().parent();
+			var id = that.find('.tit').attr('data-topid');
+			var childGoodsList = that.find('.childGoodsList');
+			if(childGoodsList.is(':hidden')){
+				childGoodsList.show(200);
 			}else{
-				that.hide(200);
+				childGoodsList.hide(200);
+			}
+			if(childGoodsList.find('.listType span').length == 0){
+				$.get('__MODULE__/TrademarkClassification/ajaxGetAllFromPid/pid/'+id,function(data){
+					console.log(data);
+					if(data.state == 200){
+						var html = '';
+						$(data.data).each(function(k,v){
+							html += '<span data-id="'+v.id+'"><font>'+v.cid+'</font>'+v.title+'<i class="iconfont icon-xiangyou"></i></span>';
+						});
+						childGoodsList.find('.listType').html(html);
+					}else{
+						console.log(data);
+					}
+				});
 			}
 		});
 	},
@@ -253,11 +222,31 @@ var select = {
 		});
 	},
 
+	loadGoods : function(){
+		$.get('__MODULE__/ConnectIndustry/ajaxGetOneFromId/id/'+$.cookie('val'),function(data){
+			console.log(data);
+			if(data.state == 200){
+				var html = '';
+				$(data.data.connect_val_arr).each(function(k,v){
+					html += '<div class="listInner"><div class="tit" data-topid="'+v.topcid.id+'">第'+v.topcid.cid+'类<span>'+v.topcid.title+'</span></div><div class="goodsListInner">';
+						$(v.childid).each(function(k1,v1){
+							html += '<span data-id="'+v1.id+'"><b>'+v1.cid+'</b><font>'+v1.title+'</font></span>';
+						});
+					html += '</div><div class="update clearfix"><a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a><a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a></div><div class="childGoodsList"><div class="childGoodsListInner"><div class="listType l"></div><div class="listGoods l"></div></div></div></div>';
+				});
+				$('#addListBox').html(html);
+			}else{
+				console.log(data);
+			}
+		});
+	},
+
 	load : function(){
 		this.add();
-		this.show();
+		this.showtype();
 		this.del();
 		this.getChild();
+		this.loadGoods();
 	}
 }
 

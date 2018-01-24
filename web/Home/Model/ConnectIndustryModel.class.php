@@ -21,4 +21,16 @@ class ConnectIndustryModel extends Model{
 		}
 	}
 
+	public function ajaxGetOneFromId(){
+		$id = I('get.id');
+		$_d = $this->field('connect_val')->where('id=%d',$id)->find();
+		if($_d){
+			$m = D('TrademarkClassification');
+			$_d['connect_val_arr'] = $m->getArrData($_d['connect_val']);
+			return returnApi(200,'success',$_d);
+		}else{
+			return returnApi(201,'获取具体行业失败');
+		}
+	}
+
 }
