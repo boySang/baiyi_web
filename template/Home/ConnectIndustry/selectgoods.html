@@ -18,7 +18,7 @@
     <!-- index -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_soh54orihjtnjyvi.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_v8h0a0rkn3rtfbt9.css">
     <!-- 有字库 -->
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
     <!-- 有字库 end -->
@@ -91,8 +91,8 @@
 				</div>
 			</form>
 		</div>
-		<div class="searchResult" id="goodsList">
-			<div class="bigtit" id="scrollResult">建议保护的类别及商品/服务项</div>
+		<div class="searchResult clearfix" id="goodsList">
+			<div class="bigtit" id="scrollResult"><a href="javascript:;" class="help r"><i class="iconfont icon-gantanhao"></i></a>建议保护的类别及商品/服务项</div>
 			<div class="allList" id="addListBox">
 				<div class="loading">
 					<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading">
@@ -102,9 +102,14 @@
 				<a href="javascript:;" class="add"><i class="iconfont icon-icon--"></i>增加类别</a>
 				<div class="typeBox clearfix" style="display: none;"></div>
 			</div>
-			<div class="sumPrice">
-				<p>官费总计：<font color="#d82b2b">1000 </font>元</p>
-				<p>代理费总计：<font color="#d82b2b">1000 </font>元</p>
+			<div class="sumPrice r" id="sumPrice">
+				<p>官费总计：<font color="#d82b2b">0 </font>元</p>
+				<p>代理费总计：<font color="#d82b2b">0 </font>元</p>
+				<p class="resultTotalPrice">应付总额：<font color="#d82b2b">0 </font>元</p>
+			</div>
+			<div class="toCreateOrder r">
+				<a href="javascript:;">一键检索</a>
+				<a href="javascript:;" class="createOrder">在线注册</a>
 			</div>
 		</div>
 	</div>
@@ -184,6 +189,8 @@ var select = {
 			var topId = that.parent().parent().find('.tit').attr('data-topid');
 			$('.typeBox span[data-id='+topId+']').removeClass('has');
 			that.parent().parent().remove();
+			// 统计价钱
+			select.totalPrice();
 		});
 	},
 
@@ -197,13 +204,15 @@ var select = {
 				if(data.state == 200){
 					var html = '';
 					$(data.data.connect_val_arr).each(function(k,v){
-						html += '<div class="listInner"><div class="tit" data-topid="'+v.topcid.id+'">第'+v.topcid.cid+'类<span>'+v.topcid.title+'</span></div><div class="goodsListInner">';
+						html += '<div class="listInner"><div class="tit clearfix" data-topid="'+v.topcid.id+'"><div class="total r">已选择<font class="length">0</font>项，官费<font class="toGongwuyuan">0</font>元，代理费<font class="toMe">0</font>元</div>第'+v.topcid.cid+'类<span>'+v.topcid.title+'</span></div><div class="goodsListInner">';
 							$(v.childid).each(function(k1,v1){
 								html += '<span data-id="'+v1.id+'"><b>'+v1.cid+'</b><font>'+v1.title+'</font><i class="iconfont icon-shanchu4"></i></span>';
 							});
 						html += '</div><div class="update clearfix"><a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a><a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a></div><div class="childGoodsList"><div class="childGoodsListInner"><div class="listType l"></div><div class="listGoods l"></div></div></div></div>';
 					});
 					$('#addListBox').html(html);
+					// 统计价钱
+					select.totalPrice();
 				}else{
 					console.log(data);
 				}
@@ -296,6 +305,7 @@ var select = {
 			}else{
 				that.parent().parent().parent().parent().find('.goodsListInner').append(html);
 			}
+			select.totalPrice();
 		});
 	},
 
@@ -306,6 +316,8 @@ var select = {
 			// console.log(id);
 			that.parent().parent().find('.childGoodsList .listGoods span[data-id='+id+']').removeClass('active');
 			that.remove();
+			// 统计价钱
+			select.totalPrice();
 		});
 	},
 
@@ -355,10 +367,56 @@ var select = {
 				tempArr.push($(this).attr('data-topid'));
 			});
 			if($.inArray(that.attr("data-id"),tempArr) < 0){
-				var html = '<div class="listInner"><div class="tit" data-topid="'+that.attr("data-id")+'">第'+that.attr("data-cid")+'类<span>'+that.attr("data-title")+'</span></div><div class="goodsListInner"></div><div class="update clearfix"><a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a><a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a></div><div class="childGoodsList"><div class="childGoodsListInner"><div class="listType l"></div><div class="listGoods l"></div></div></div></div>';
+				var html = '<div class="listInner"><div class="tit" data-topid="'+that.attr("data-id")+'"><div class="total r">已选择<font class="length">0</font>项，官费<font class="toGongwuyuan">0</font>元，代理费<font class="toMe">0</font>元</div>第'+that.attr("data-cid")+'类<span>'+that.attr("data-title")+'</span></div><div class="goodsListInner"></div><div class="update clearfix"><a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a><a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a></div><div class="childGoodsList"><div class="childGoodsListInner"><div class="listType l"></div><div class="listGoods l"></div></div></div></div>';
 				$('#addListBox').append(html);
 			}
 		});
+	},
+
+	totalPrice : function(){
+		var toGongwuyuanTotal = 0;
+		var toMetotal = 0;
+		var resultTotalPrice = 0;
+		var _i = 0;
+		$('.allList .listInner').each(function(k,v){
+			var that = $(this);
+			var selectLength = that.find('.goodsListInner span').length;
+			var totalPrice = 300;
+			var toMe = 1000;
+			var j = 0;
+			console.log(selectLength);
+			if(selectLength > 0){
+				if(selectLength > 10){
+					for(var i=1; i<=selectLength-10; i++){
+						totalPrice += 30;
+						j++;
+					}
+					if(j == (selectLength-10)){
+						that.find('.tit .total .toGongwuyuan').text(totalPrice);
+						// 所有官费相加
+						toGongwuyuanTotal += totalPrice;
+					}
+				}else{
+					that.find('.tit .total .toGongwuyuan').text(totalPrice);
+					// 所有官费相加
+					toGongwuyuanTotal += totalPrice;
+				}
+				// 所有代理费相加
+				toMetotal += toMe;
+				that.find('.tit .total .toMe').text(toMe);
+			}else{
+				that.find('.tit .total .toGongwuyuan').text(0);
+				that.find('.tit .total .toMe').text(0);
+			}
+			// 统计选择的个数
+			that.find('.tit .total .length').text(selectLength);
+			_i++;
+		});
+		if(_i == $('.allList .listInner').length){
+			$('#sumPrice p').eq(0).find('font').text(toGongwuyuanTotal);
+			$('#sumPrice p').eq(1).find('font').text(toMetotal);
+			$('#sumPrice p').eq(2).find('font').text(toMetotal+toGongwuyuanTotal);
+		}
 	},
 
 	load : function(){
