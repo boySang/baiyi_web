@@ -388,22 +388,33 @@ var select = {
 			if(selectLength > 0){
 				if(selectLength > 10){
 					for(var i=1; i<=selectLength-10; i++){
+						// 超过10个后，官费每个加30，代理费每个加70
 						totalPrice += 30;
+						// 代理费加70
+						toMe += 70;
 						j++;
 					}
 					if(j == (selectLength-10)){
 						that.find('.tit .total .toGongwuyuan').text(totalPrice);
 						// 所有官费相加
 						toGongwuyuanTotal += totalPrice;
+
+						// 代理费写入页面
+						that.find('.tit .total .toMe').text(toMe);
+						// 所有代理费相加
+						toMetotal += toMe;
 					}
 				}else{
+
 					that.find('.tit .total .toGongwuyuan').text(totalPrice);
 					// 所有官费相加
 					toGongwuyuanTotal += totalPrice;
+
+					// 所有代理费相加
+					toMetotal += toMe;
+					that.find('.tit .total .toMe').text(toMe);
+
 				}
-				// 所有代理费相加
-				toMetotal += toMe;
-				that.find('.tit .total .toMe').text(toMe);
 			}else{
 				that.find('.tit .total .toGongwuyuan').text(0);
 				that.find('.tit .total .toMe').text(0);
