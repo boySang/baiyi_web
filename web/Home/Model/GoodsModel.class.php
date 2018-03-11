@@ -8,7 +8,6 @@ class GoodsModel extends Model{
 
 	public function getGoodsOne($id){
 		$d = $this->field('goods_name,goods_id,keywords,goods_info,goods_tips,goods_content,goods_thumb,goods_default_price')->find($id);
-		var_dump($d);
 		$d['goods_thumb'] = getImgOne($d['goods_thumb']);
 		$d['goods_content'] = htmlspecialchars_decode($d['goods_content']);
 		return $d;

@@ -21,7 +21,7 @@ function returnApi($state,$msg = '',$data = '',$url = ''){
 // 给一张图片添加链接
 function getImgOne($data,$no_pic = 'goods_default_pic.jpg'){
 	if($data){
-        if(file_exists('./Uploads/'.$data)){
+        if(file_exists('./uploads/'.$data)){
             $data = UPLOADS_PATH.$data;
         }else{
             $data = DIST.'img/'.$no_pic;
@@ -35,7 +35,7 @@ function getImgOne($data,$no_pic = 'goods_default_pic.jpg'){
 function getImgList($data,$field,$no_pic = 'goods_default_pic.jpg'){
 	foreach($data as $k=>$v){
         if($v[$field]){
-            if(file_exists('./Uploads/'.$v[$field])){
+            if(file_exists('./uploads/'.$v[$field])){
                 $data[$k][$field] = UPLOADS_PATH.$v[$field];
             }else{
                 $data[$k][$field] = DIST.'img/'.$no_pic;
