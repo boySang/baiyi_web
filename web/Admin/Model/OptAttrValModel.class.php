@@ -43,4 +43,18 @@ class OptAttrValModel extends Model{
 		$OptAttrData = $OptAttrModel->getName($d['attr_id']);
 		return $OptAttrData;
 	}
+
+	public function isHas($attr_id){
+		$d = $this->field('id')->where('attr_id=%d',$attr_id)->select();
+		if($d){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function delFromAttrId($attr_id){
+		$d = $this->execute("DELETE FROM by_opt_attr_val WHERE attr_id=".$attr_id);
+	}
+
 }

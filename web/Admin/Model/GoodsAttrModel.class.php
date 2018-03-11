@@ -26,4 +26,11 @@ class GoodsAttrModel extends Model{
 			return false;
 		}
 	}
+
+	public function delFromGoodsId($goods_id){
+		$d = $this->execute("DELETE FROM by_goods_attr WHERE goods_id=".$goods_id);
+	}
+
+	
+
 }

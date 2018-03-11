@@ -36,7 +36,7 @@
             </thead>
             <tbody>
                 <foreach name="data.data" item="product">
-                <tr>
+                <tr id="item{$product.goods_id}">
                     <td class="imgtd"><img src="__PUBLIC__/admin/img/img11.png" /></td>
                     <td><a href="{$product.review_url}">{$product.goods_name}</a>
                         <p>发布时间：{$product.addtime}</p>
@@ -47,7 +47,7 @@
                     <td>{$product.hot}</td>
                     <td>
                         <a href="__CONTROLLER__/update/id/{$product.goods_id}">编辑</a>
-                        <a href="__CONTROLLER__/del/id/{$product.goods_id}">删除</a>
+                        <a href="javascript:goods.todel({$product.goods_id});">删除</a>
                     </td>
                 </tr>
                 </foreach>
@@ -62,5 +62,28 @@
         $('.imgtable tbody tr:odd').addClass('odd');
     </script>
 </body>
+<script type="text/javascript">
+    
+$(function(){
+    goods.load();
+});
 
+var goods = {
+
+    todel : function(id){
+        $.get('__CONTROLLER__/todel/id/'+id,function(data){
+            if(data.state == 200){
+                $('#item'+id).remove();
+            }else{
+                $.alert(data.msg);
+            }
+        });
+    },
+
+    load : function(){
+
+    }
+}
+
+</script>
 </html>

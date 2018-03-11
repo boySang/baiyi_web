@@ -54,4 +54,16 @@ class OptAttrModel extends Model{
 		$d = $this->field('name')->find($id);
 		return $d['name'];
 	}
+
+	protected function _before_delete(&$data, $options){
+		// 删除分类之前，检测分类属性，有的话就删除
+		$optAttrValModel = D('OptAttrVal');
+		$optAttrValData = $optAttrValModel->isHas($data['where']['id']);
+		if($optAttrValData){
+			// 删除所有的属性
+			$optAttrValModel->delFromAttrId($data['where']['id']);
+		}
+	}
+
+
 }

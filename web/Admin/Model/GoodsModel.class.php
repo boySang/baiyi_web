@@ -7,7 +7,7 @@ class GoodsModel extends Model{
 
 	public function getAll(){
 
-		$where = ' a.cate_id=b.id ';
+		$where = ' a.cate_id=b.id AND a.is_del=0 ';
 
 		//每页条数
 		$pagesize = 15;
@@ -120,8 +120,32 @@ class GoodsModel extends Model{
 		}
 	}
 
+	public function todel(){
+		$goodsId = I('get.id');
+		if($goodsId){
+			$result = $this->where('goods_id=%d',$goodsId)->setField('is_del',1);
+			if($result){
+				return returnApi(200,'success');
+			}else{
+				return returnApi(202,'修改参数失败！');
+			}
+		}else{
+			return returnApi(201,'id有误');
+		}
+	}
+
 	protected function _before_insert(&$data, $options){
 		$data['addtime'] = time();
 		$data['updatetime'] = time();
+	}
+
+	protected function _before_delete(&$data, $options){
+		// 删除商品之前，检测商品属性，有的话就删除
+		$goodsAttrModel = D('GoodsAttr');
+		$goodsAttrData = $goodsAttrModel->getAll($data['where']['goods_id']);
+		if($goodsAttrData){
+			// 删除所有的属性
+			$goodsAttrModel->delFromGoodsId($data['where']['goods_id']);
+		}
 	}
 }

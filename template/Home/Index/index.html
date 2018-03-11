@@ -131,102 +131,26 @@
 					</div>
 				</div>
 				<div class="bot-list clearfix">
+					<foreach name="data.DomesticTrademark" item="v">
 					<div class="sm list-inner text-c">
 						<div class="info-product">
-							<div class="pic"></div>
-							<h5 class="tit">商标注册</h5>
-							<span class="price">123元</span>
+							<a href="{$v.url}" title="立即申请">
+							<div class="pic"><img src="{$v.goods_thumb}" /></div>
+							<h5 class="tit">{$v.goods_name}</h5>
+							<span class="price">{$v.goods_default_price}元</span>
 							<div class="info text-c">
 								<div class="desc-short">
-									<span>描述文字</span>
+									<span>{$v.goods_tips_home}</span>
 								</div>
 								<div class="gotoaplay">
-									<a href="__MODULE__/Index/detail" title="立即申请">立即申请</a>
+									<span>立即申请</span>
 								</div>
 							</div>
+							</a>
 						</div>
 						<i class="iconfont icon-xiasanjiao"></i>
 					</div>
-					<div class="sm list-inner text-c">
-						<div class="info-product">
-							<div class="pic"></div>
-							<h5 class="tit">商标注册</h5>
-							<span class="price">123元</span>
-							<div class="info text-c">
-								<div class="desc-short">
-									<span>描述文字</span>
-								</div>
-								<div class="gotoaplay">
-									<a href="__MODULE__/Index/detail" title="立即申请">立即申请</a>
-								</div>
-							</div>
-						</div>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-					<div class="sm list-inner text-c">
-						<div class="info-product">
-							<div class="pic"></div>
-							<h5 class="tit">商标注册</h5>
-							<span class="price">123元</span>
-							<div class="info text-c">
-								<div class="desc-short">
-									<span>描述文字</span>
-								</div>
-								<div class="gotoaplay">
-									<a href="__MODULE__/Index/detail" title="立即申请">立即申请</a>
-								</div>
-							</div>
-						</div>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-					<div class="sm list-inner text-c">
-						<div class="info-product">
-							<div class="pic"></div>
-							<h5 class="tit">商标注册</h5>
-							<span class="price">123元</span>
-							<div class="info text-c">
-								<div class="desc-short">
-									<span>描述文字</span>
-								</div>
-								<div class="gotoaplay">
-									<a href="__MODULE__/Index/detail" title="立即申请">立即申请</a>
-								</div>
-							</div>
-						</div>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-					<div class="sm list-inner text-c">
-						<div class="info-product">
-							<div class="pic"></div>
-							<h5 class="tit">商标注册</h5>
-							<span class="price">123元</span>
-							<div class="info text-c">
-								<div class="desc-short">
-									<span>描述文字</span>
-								</div>
-								<div class="gotoaplay">
-									<a href="__MODULE__/Index/detail" title="立即申请">立即申请</a>
-								</div>
-							</div>
-						</div>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-					<div class="sm list-inner text-c">
-						<div class="info-product">
-							<div class="pic"></div>
-							<h5 class="tit">商标注册</h5>
-							<span class="price">123元</span>
-							<div class="info text-c">
-								<div class="desc-short">
-									<span>描述文字</span>
-								</div>
-								<div class="gotoaplay">
-									<a href="__MODULE__/Index/detail" title="立即申请">立即申请</a>
-								</div>
-							</div>
-						</div>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
+					</foreach>
 				</div>
 			</div>
 			<div class="more text-c">
@@ -236,22 +160,14 @@
 	</div>
 </div>
 
-<div class="wid1200 home-ads1">
-	<a href="javascript:void(0);">
-		<img src="./dist/home/img/bannerbg.jpg">
-	</a>
-</div>
-
-<div class="full">
-	<div class="wid1200">
-		<div class="internation trademark_online">
-			<div class="big-title text-c">
-				<h4>国内商标在线申请</h4>
-				<p>这里是我们提交注册的优势这里是我们提交注册的优势</p>
-			</div>
-		</div>
+<div class="full" style="background:#141e20;">
+	<div class="wid1200 home-ads1">
+		<a href="javascript:void(0);">
+			<img src="./dist/home/img/bannerbg.jpg">
+		</a>
 	</div>
 </div>
+
 <div class="full">
 	<div class="wid1200">
 		<div class="country_trademark text-c">
@@ -276,53 +192,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="country_buss_list clearfix text-c">
-			<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-				<div class="list-inner">
-					<h6 class="tit">单独国家注册</h6>
-					<span class="price">1000元</span>
-					<i class="iconfont icon-xiasanjiao"></i>
-				</div>
-			</a>
-			<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-				<div class="list-inner">
-					<h6 class="tit">单独国家注册</h6>
-					<span class="price">1000元</span>
-					<i class="iconfont icon-xiasanjiao"></i>
-				</div>
-			</a>
-			<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-				<div class="list-inner">
-					<h6 class="tit">单独国家注册</h6>
-					<span class="price">1000元</span>
-					<i class="iconfont icon-xiasanjiao"></i>
-				</div>
-			</a>
-			<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-				<div class="list-inner">
-					<h6 class="tit">单独国家注册</h6>
-					<span class="price">1000元</span>
-					<i class="iconfont icon-xiasanjiao"></i>
-				</div>
-			</a>
-			<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-				<div class="list-inner">
-					<h6 class="tit">单独国家注册</h6>
-					<span class="price">1000元</span>
-					<i class="iconfont icon-xiasanjiao"></i>
-				</div>
-			</a>
-			<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-				<div class="list-inner">
-					<h6 class="tit">单独国家注册</h6>
-					<span class="price">1000元</span>
-					<i class="iconfont icon-xiasanjiao"></i>
-				</div>
-			</a>
-		</div>
-		<div class="inter more text-c">
-			<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>
-		</div>
 	</div>
 </div>
 
@@ -330,52 +199,19 @@
 	<div class="wid1200">
 		<div class="patent_online text-c">
 			<div class="big-title">
-				<h4>国内商标在线申请</h4>
+				<h4>专利在线申请</h4>
 				<p>这里是我们提交注册的优势这里是我们提交注册的优势</p>
 			</div>
 			<div class="parent-list clearfix">
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
+				<foreach name="data.Patent" item="v">
+				<a href="{$v.url}" title="{$v.goods_name}" target="_blank">
 					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
+						<h6 class="tit">{$v.goods_name}</h6>
+						<span class="price">{$v.goods_default_price}元</span>
 						<i class="iconfont icon-xiasanjiao"></i>
 					</div>
 				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
+				</foreach>
 			</div>
 			<div class="more text-c">
 				<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>
@@ -388,7 +224,7 @@
 	<div class="wid1200">
 		<div class="copyright_online text-c">
 			<div class="big-title">
-				<h4>国内商标在线申请</h4>
+				<h4>版权在线申请</h4>
 				<p>这里是我们提交注册的优势这里是我们提交注册的优势</p>
 			</div>
 			<div class="parent-list clearfix">
@@ -397,27 +233,15 @@
 						<img src="./dist/home/img/eg5.jpg">
 					</div>
 				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
+				<foreach name="data.Copyright" item="v">
+				<a href="{$v.url}" title="{$v.goods_name}" target="_blank">
 					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
+						<h6 class="tit">{$v.goods_name}</h6>
+						<span class="price">{$v.goods_default_price}元</span>
 						<i class="iconfont icon-xiasanjiao"></i>
 					</div>
 				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
-				<a href="javascript:void(0);" title="单独国家注册" target="_blank">
-					<div class="list-inner">
-						<h6 class="tit">单独国家注册</h6>
-						<span class="price">1000元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
-					</div>
-				</a>
+				</foreach>
 			</div>
 			<div class="more text-c">
 				<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>

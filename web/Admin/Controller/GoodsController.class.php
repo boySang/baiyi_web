@@ -32,4 +32,15 @@ class GoodsController extends Controller {
 		$m = D('Goods');
 		echo $m->ajaxAdd();
 	}
+
+	public function del($id){
+		$m = D('Goods');
+		$m->delete($id) != false? header('Location:'.PREV_URL): $this->error('删除失败');
+	}
+
+	public function todel(){
+		header('Content-type:text/json');
+		$m = D('Goods');
+		echo $m->todel();
+	}
 }

@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="description" content="描述">
 	<meta name="keywords" content="关键字">
-	<title>百一知识产权</title>
+	<title>{$name}百一知识产权</title>
 	<!-- 公共css -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
     <!-- index -->
@@ -68,47 +68,31 @@
 		<div class="cates l">
 			<h3 class="top-tit">相关产品推荐</h3>
 			<div class="cate-list">
+				<foreach name="data.menu" item="v">
 				<div class="list-inner">
-					<div class="big-tit"><i class="iconfont"></i><span class="tit">国内商标</span></div>
+					<div class="big-tit"><a href="{$v.url}" title="{$v.title}"><i class="iconfont"></i><span class="tit">{$v.title}</span></a></div>
 					<div class="child-two">
-						<a href="#" title="">商标快速注册</a>
-						<a href="#" title="">商标快速注册</a>
+						<foreach name="v.goods" item="goods">
+							<a href="{$goods.url}" title="{$goods.goods_name}">{$goods.goods_name}</a>
+						</foreach>
 					</div>
 				</div>
-				<div class="list-inner">
-					<div class="big-tit"><i class="iconfont"></i><span class="tit">国内商标</span></div>
-					<div class="child-two">
-						<a href="#" title="">商标快速注册</a>
-						<a href="#" title="">商标快速注册</a>
-					</div>
-				</div>
-				<div class="list-inner">
-					<div class="big-tit"><i class="iconfont"></i><span class="tit">国内商标</span></div>
-					<div class="child-two">
-						<a href="#" title="">商标快速注册</a>
-						<a href="#" title="">商标快速注册</a>
-					</div>
-				</div>
-				<div class="list-inner">
-					<div class="big-tit"><i class="iconfont"></i><span class="tit">国内商标</span></div>
-					<div class="child-two">
-						<a href="#" title="">商标快速注册</a>
-						<a href="#" title="">商标快速注册</a>
-					</div>
-				</div>
+				</foreach>
 			</div>
 		</div>
 		<div class="detail-all r">
 			<div class="product-baseinfo clearfix">
 				<div class="pro-pic l">
-					<img src="__PUBLIC__/home/img/productpic.jpg">
+					<img src="{$data.goodsinfo.goods_thumb}">
 				</div>
-				<form id="buyForm" action="__MODULE__/OrderDetail/confirm" method="post">
+				<form id="buyForm" action="__MODULE__/Goods/confirm" method="post">
 					<input type="hidden" name="id" value="1">
+					<input type="hidden" name="goods_name" value="{$data.goodsinfo.goods_name}">
+					<input type="hidden" name="goods_price" value="{$data.goodsinfo.goods_default_price}">
 					<ul class="baseinfo r">
-						<li><h4 class="tit">商标注册</h4></li>
-						<li><p class="tips">连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年连续四年</p></li>
-						<li class="types clearfix text-c">
+						<li><h4 class="tit">{$data.goodsinfo.goods_name}</h4></li>
+						<li><p class="tips">{$data.goodsinfo.goods_tips}</p></li>
+						<!-- <li class="types clearfix text-c">
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
@@ -117,8 +101,8 @@
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
-						</li>
-						<li class="price">价格：<span><b>123元</b></span></li>
+						</li> -->
+						<li class="price">价格：<span><b>{$data.goodsinfo.goods_default_price} 元</b></span></li>
 						<li class="other clearfix">
 							<span class="l">数量：</span>
 							<div class="num-box l clearfix">
@@ -146,15 +130,7 @@
 					<span class="active">服务介绍</span>
 					<span>常见问题</span>
 				</div>
-				<div class="detail-main">
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-				</div>
+				<div class="detail-main">{$data.goodsinfo.goods_content}</div>
 			</div>
 		</div>
 	</div>

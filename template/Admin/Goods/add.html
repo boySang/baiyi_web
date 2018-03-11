@@ -4,7 +4,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>无标题文档</title>
-    <include file='Public/meta' />
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <!-- jqueryValidate -->
+    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.min.js"></script>
+    <!-- jqueryValidate end -->
+    <!-- jqueryConfig end -->
+    <link href="__PUBLIC__/admin/css/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_em9mrea6oedsra4i.css">
+    <!-- layer -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+    <!-- layer end -->
+    <script src="https://cdn.bootcss.com/wangEditor/10.0.13/wangEditor.min.js"></script>
 </head>
 
 <body class="productadd">
@@ -51,9 +63,9 @@
                         <label>商品简介</label>
                         <textarea name="goods_info" class="input-textarea" style="width:600px;height:100px;"></textarea>
                     </li>
-                    <li>
+                    <li class="clearfix">
                         <label>详细内容</label>
-                        <textarea name="goods_content" class="input-textarea" style="width:600px;height:250px;"></textarea>
+                        <div style="width:800px;float: left;"><div id="editor" style="width: 800px;"></div></div>
                     </li>
                     <li>
                         <label>默认价格</label>
@@ -84,6 +96,11 @@
 
 $(function(){
     productAddAction.load();
+
+    var E = window.wangEditor
+    var editor = new E('#editor')
+    // 或者 var editor = new E( document.getElementById('editor') )
+    editor.create()
 });
 
 var productAddAction = {

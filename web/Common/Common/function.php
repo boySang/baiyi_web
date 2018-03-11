@@ -32,7 +32,7 @@ function getImgOne($data,$no_pic = 'goods_default_pic.jpg'){
     return $data;
 }
 
-function getImgList($data,$field,$no_pic){
+function getImgList($data,$field,$no_pic = 'goods_default_pic.jpg'){
 	foreach($data as $k=>$v){
         if($v[$field]){
             if(file_exists('./Uploads/'.$v[$field])){
@@ -45,4 +45,17 @@ function getImgList($data,$field,$no_pic){
         }
     }
     return $data;
+}
+
+// 返回url
+function geturl($type,$val){
+	switch($type){
+		case 'goods':
+			return U('Goods/detail/id/'.$val);
+		case 'category':
+			return U('Category/index/id/'.$val);
+		default:
+			// 跳转到失败页面
+			return ;
+	}
 }

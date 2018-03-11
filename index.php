@@ -10,6 +10,9 @@ define('APP_DEBUG',true);
 //cdn地址
 define('UPLOADS_PATH', 'http://'.$_SERVER['HTTP_HOST'].'/uploads/');
 
+//dist地址
+define('DIST', 'http://'.$_SERVER['HTTP_HOST'].'/uploads/');
+
 // 缓存文件目录
 define('RUNTIME_PATH','./runtime/');
 
