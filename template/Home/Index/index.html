@@ -18,7 +18,16 @@
     <!-- index -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_86bzmmbf0dl323xr.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.css">
+    <script type="text/javascript" src="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.js"></script>
+    <style type="text/css">
+	    .icon {
+	       width: 1em; height: 1em;
+	       vertical-align: -0.15em;
+	       fill: currentColor;
+	       overflow: hidden;
+	    }
+	</style>
 </head>
 <body>
 
@@ -135,7 +144,11 @@
 					<div class="sm list-inner text-c">
 						<div class="info-product">
 							<a href="{$v.url}" title="立即申请">
-							<div class="pic"><img src="{$v.goods_thumb}" /></div>
+							<div class="pic"><!-- <img src="{$v.goods_thumb}" /> -->
+								<svg class="icon" aria-hidden="true">
+								    <use xlink:href="#{$v.iconfont}"></use>
+								</svg>
+							</div>
 							<h5 class="tit">{$v.goods_name}</h5>
 							<span class="price">{$v.goods_default_price}元</span>
 							<div class="info text-c">

@@ -14,7 +14,7 @@ class GoodsModel extends Model{
 	}
 
 	public function getGoodsToHome($cate_id){
-		$d = $this->field('goods_id,goods_name,goods_tips_home,goods_thumb,goods_default_price')->where('cate_id=%d AND is_on_sale=1',$cate_id)->order('home_order DESC')->limit(6)->select();
+		$d = $this->field('goods_id,goods_name,goods_tips_home,goods_thumb,iconfont,goods_default_price')->where('cate_id=%d AND is_on_sale=1',$cate_id)->order('home_order DESC')->limit(6)->select();
 		if($d){
 			foreach($d as $k=>$v){
 				$d[$k]['goods_thumb'] = getImgOne($v['goods_thumb']);
