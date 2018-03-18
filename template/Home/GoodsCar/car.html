@@ -83,57 +83,59 @@
     </div>
     <div class="shop-cart">
         <div class="cart-box">
-            <table class="table car-table text-c">
-                <caption>购物车小计</caption>
-                <thead>
-                    <tr>
-                        <th class="text-l">
-                            <label for="chkall"><input type="checkbox" name="chkall"> 全选</label>
-                        </th>
-                        <th>服务类型</th>
-                        <th>单价（元）</th>
-                        <th>数量</th>
-                        <th>小计</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr data-id="1">
-                        <th align="left"><input type="checkbox" name="chkone"></th>
-                        <td>我是服务类型</td>
-                        <td>123元</td>
-                        <td>
-                        	<div class="num-box clearfix">
-                        		<span class="reduce l">-</span>
-	                        	<input type="text" name="goods_num" value="3" class="goods_num l" id="goods_num">
-	                        	<span class="add l">+</span>
-                        	</div>
-                        </td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                    </tr>
-                    <tr data-id="2">
-                        <th align="left"><input type="checkbox" name="chkone"></th>
-                        <td>我是服务类型</td>
-                        <td>123元</td>
-                        <td>@mdo</td>
-                        <td>@mdo</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                    	<td colspan="6">
-                    		<br>
-                    	</td>
-                    </tr>
-                    <tr>
-                    	<td colspan="6">
-                    		<span class="res to_pay r"><a href="javascript:;">去结算</a></span>
-                    		<span class="res total_money r">总价：<font color="red"><b>$123</b></font></span>
-                    		<span class="res totel_num r">已选<font color="red">2</font>件商品</span>
-                    	</td>
-                    </tr>
-                </tbody>
-            </table>
+            <form id="toCar" method="post">
+                <table class="table car-table text-c">
+                    <caption>购物车小计</caption>
+                    <thead>
+                        <tr>
+                            <th class="text-l">
+                                <label for="chkall"><input type="checkbox" name="chkall"> 全选</label>
+                            </th>
+                            <th>服务类型</th>
+                            <th>单价（元）</th>
+                            <th>数量</th>
+                            <th>小计</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <foreach name="data" item="v">
+                            <tr data-id="{$v.goods_name}">
+                                <th align="left"><input type="checkbox" name="chkone"></th>
+                                <td>
+                                    {$v.goods_name}
+                                    <input type="hidden" name="goods_name[]" value="{$v.goods_name}">
+                                    <input type="hidden" name="id[]" value="{$v.goods_id}">
+                                    <input type="hidden" name="goods_price[]" value="{$v.goods_default_price}">
+                                </td>
+                                <td>{$v.goods_default_price}元</td>
+                                <td>
+                                    <div class="num-box clearfix">
+                                        <span class="reduce l">-</span>
+                                        <input type="text" name="good_nums[]" value="{$v.nums}" class="goods_num l" id="goods_num">
+                                        <span class="add l">+</span>
+                                    </div>
+                                </td>
+                                <td>{$v.total_price}</td>
+                                <td><a href="javascript:void(0);" id="del">删除</a></td>
+                            </tr>
+                        </foreach>
+                        <tr>
+                            <td colspan="6">
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6">
+                                <input type="hidden" name="send" value="ok">
+                                <span class="res to_pay r"><a href="javascript:car.chk();">去结算</a></span>
+                                <span class="res total_money r">总价：<font color="red"><b><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="14" /></b>元</font></span>
+                                <span class="res totel_num r">已选<font color="red">2</font>件商品</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
     <div class="full">
@@ -157,6 +159,24 @@
             </div>
         </div>
     </div>
+<script type="text/javascript">
+    
+var car = {
+    chk : function(){
+        $.post('__MODULE__/OrderDetail/creat_order',$('#toCar').serialize(),function(data){
+            // console.log(data);
+            if(data.state == 200){
+                window.location.href=data.url;
+            }else{
+                alert(data.msg);
+            }
+        });
+    },
+    load : function(){}
+}
+
+</script>
+
 </body>
 
 </html>

@@ -40,4 +40,9 @@ class GoodsModel extends Model{
 		}
 	}
 
+	public function getGoodsInfoToCar($goods_id){
+		$d = $this->field('goods_name,goods_default_price')->find($goods_id);
+		return $d;
+	}
+
 }

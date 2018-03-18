@@ -12,16 +12,107 @@ class OrderDetailController extends Controller {
 		echo $m->addToOrder();		
 	}
 
-	// 这里是购买确认页面，显示一遍购买内容的信息
-	public function confirm(){
-		if(IS_POST){
+	// ajax创建订单
+	public function creat_order(){
+		if(I('post.send') == 'ok'){
+	    	header('Content-type:text/json');
 			$m = D('OrderDetail');
-			// $this->assign();
-			$this->display();
+			$temp['goods_id'] = I('post.id');
+	    	$temp['goods_name'] = I('post.goods_name');
+	    	$temp['goods_num'] = I('post.good_nums');
+	    	$temp['goods_price'] = I('post.goods_price');
+			$temp['uniquenum'] = 'BY'.date('YmdHis',time()).rand(100,999);
+			$temp['contract_number'] = 'CN'.date('YmdHis',time()).rand(100,999);
+			$temp['addtime'] = date('Y-m-d',time());
+			// echo returnApi(200,$temp);
+			// return false;
+			// 单买的时候
+			if(count(I('post.id')) <= 1){
+    			$orderDetail['uniquenum'] = $temp['uniquenum'];
+	    		$orderDetail['goods_id'] = $temp['goods_id'];
+	    		$orderDetail['goods_name'] = $temp['goods_name'];
+	    		$orderDetail['goods_num'] = $temp['goods_num'];
+	    		$orderDetail['goods_price'] = $temp['goods_price']*100;
+	    		$orderDetail['total_price'] = $temp['goods_num']*$temp['goods_price']*100;
+	    		$orderDetail['contract_number'] = $temp['contract_number'];
+	    		$result = $m->add($orderDetail);
+	    		if($result){
+	    			$orderGoodsDetailModel = D('OrderGoodsDetail');
+	    			$detail['order_id'] = $orderDetail['uniquenum'];
+	    			$detail['goods_name'] = $temp['goods_name'];
+	    			$detail['goods_num'] = $temp['goods_num'];
+	    			$detail['goods_price'] = $temp['goods_price']*100;
+	    			$detail['goods_total_price'] = $temp['goods_num']*$temp['goods_price']*100;
+	    			$detail['goods_attr'] = I('post.attr','');
+	    			$detail['goods_id'] = $temp['goods_id'];
+	    			$r = $orderGoodsDetailModel->add($detail);
+	    			// 日志操作记录
+	    			if($r){
+	    				echo returnApi(200,'','',U('OrderDetail/confirm'));
+	    			}else{
+	    				echo returnApi(201,'订单创建成功，但是商品项插入失败！');
+	    			}
+	    		}else{
+	    			echo returnApi(201,'订单创建失败！');
+	    		}
+	    	}else{
+	    		// 这里处理购物车中的物品
+	    		$orderDetail = array();
+	    		foreach($temp['goods_id'] as $k=>$v){
+	    			$orderDetail['goods_name'] .= $temp['goods_name'][$k].'&nbsp;&nbsp;';
+	    			$orderDetail['total_price'] += ($temp['goods_num'][$k] * $temp['goods_price'][$k])*100;
+	    		}
+    			$orderDetail['uniquenum'] = $temp['uniquenum'];
+    			$orderDetail['contract_number'] = $temp['contract_number'];
+	    		$result = $m->add($orderDetail);
+	    		if($result){
+	    			$orderGoodsDetailModel = D('OrderGoodsDetail');
+	    			$orderGoodsDetail = array();
+	    			foreach($temp['goods_id'] as $k=>$v){
+	    				$orderGoodsDetail[$k]['goods_id'] = $temp['goods_id'][$k];
+	    				$orderGoodsDetail[$k]['order_id'] = $orderDetail['uniquenum'];
+	    				$orderGoodsDetail[$k]['goods_name'] = $temp['goods_name'][$k];
+	    				$orderGoodsDetail[$k]['goods_num'] = $temp['goods_num'][$k];
+	    				$orderGoodsDetail[$k]['goods_price'] = $temp['goods_price'][$k]*100;
+	    				$orderGoodsDetail[$k]['goods_total_price'] = ($temp['goods_price'][$k]*$temp['goods_num'][$k])*100;
+	    			}
+	    			$r = $orderGoodsDetailModel->addAll($orderGoodsDetail);
+	    			// 日志操作记录
+	    			if($r){
+	    				echo returnApi(200,'','',U('OrderDetail/confirm'));
+	    			}else{
+	    				echo returnApi(201,'购物车内订单创建成功，但是商品项插入失败！');
+	    			}
+	    		}else{
+	    			echo returnApi(201,'购物车订单创建失败！');
+	    		}
+	    	}
+	    	// 订单号
+	    	session('temp_creat_order_number',$temp['uniquenum']);
+	    	unset($temp);
+	    	unset($orderDetail);
+	    	unset($detail);
 		}else{
-			$this->error('订单错误');
+			echo returnApi(202,'数据错误！');
 		}
 	}
+
+	// 这里是购买确认页面，显示一遍购买内容的信息
+    public function confirm(){
+    	$temp_creat_order_number = session('temp_creat_order_number');
+    	// 清除购物车
+		session('temp_goodscar',null);
+    	if($temp_creat_order_number){
+    		$orderDetailModel = D('OrderDetail');
+    		$data = $orderDetailModel->getOneFromUniquenum($temp_creat_order_number);
+    		$this->assign('data',$data);
+	    	$this->display();
+    	}else{
+    		// 错误页面
+    		$this->error('参数错误');
+    	}
+    }
+
 
 	public function pay(){
 		// 具体支付信息，及支付方式

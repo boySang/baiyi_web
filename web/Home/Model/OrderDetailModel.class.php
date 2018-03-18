@@ -14,4 +14,15 @@ class OrderDetailModel extends Model{
 			return returnApi(200,'订单创建成功','',U('OrderDetail/pay/id/'.$id));
 		}
 	}
+
+	public function getOneFromUniquenum($uniquenum){
+		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number')->where('uniquenum="%s"',$uniquenum)->find();
+		$d['total_price'] = $d['total_price']/100;
+		return $d;
+	}
+
+
+	protected function _before_insert(&$data, $options){
+		$orderDetail['addtime'] = time();
+	}
 }

@@ -85,10 +85,11 @@
 				<div class="pro-pic l">
 					<img src="{$data.goodsinfo.goods_thumb}">
 				</div>
-				<form id="buyForm" action="__MODULE__/Goods/confirm" method="post">
-					<input type="hidden" name="id" value="1">
+				<form id="buyForm" action="" method="post">
+					<input type="hidden" name="id" value="{$data.goodsinfo.goods_id}">
 					<input type="hidden" name="goods_name" value="{$data.goodsinfo.goods_name}">
 					<input type="hidden" name="goods_price" value="{$data.goodsinfo.goods_default_price}">
+					<input type="hidden" name="send" value="ok">
 					<ul class="baseinfo r">
 						<li><h4 class="tit">{$data.goodsinfo.goods_name}</h4></li>
 						<li><p class="tips">{$data.goodsinfo.goods_tips}</p></li>
@@ -112,7 +113,7 @@
 							</div>
 							<div class="btns r">
 								<a href="javascript:detailIndex.chk();" class="buy_now">立即购买</a>
-								<a href="__MODULE__/GoodsCar/car" class="add_to_car">加入购物车</a>
+								<a href="javascript:detailIndex.add_to_car();" id="add_to_car" class="add_to_car">加入购物车</a>
 								<a href="#" class="need_help">详情咨询</a>
 							</div>
 						</li>
@@ -154,8 +155,26 @@ var detailIndex = {
 
 	chk : function(){
 		if(true){
-			$('#buyForm').submit();
+			$.post('__MODULE__/OrderDetail/creat_order',$('#buyForm').serialize(),function(data){
+				if(data.state == 200){
+					window.location.href = data.url;
+				}else{
+
+				}
+			});
 		}
+	},
+
+	add_to_car : function(){
+		$.post('__MODULE__/GoodsCar/add_to_car',$('#buyForm').serialize(),function(data){
+			if(data.state == 200){
+				// 添加成功
+				alert('成功');
+				window.location.href="__MODULE__/GoodsCar/car";
+			}else{
+				alert('添加失败');
+			}
+		});
 	},
 
 	load : function(){

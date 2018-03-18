@@ -109,7 +109,7 @@
 			</div>
 			<div class="toCreateOrder r">
 				<a href="javascript:;">一键检索</a>
-				<a href="javascript:;" class="createOrder">在线注册</a>
+				<a href="javascript:select.chk();" class="createOrder">在线注册</a>
 			</div>
 		</div>
 	</div>
@@ -427,6 +427,12 @@ var select = {
 			$('#sumPrice p').eq(0).find('font').text(toGongwuyuanTotal);
 			$('#sumPrice p').eq(1).find('font').text(toMetotal);
 			$('#sumPrice p').eq(2).find('font').text(toMetotal+toGongwuyuanTotal);
+		}
+	},
+
+	chk : function(){
+		if(true){
+			window.location.href="__MODULE__/ConnectIndustry/confirm";
 		}
 	},
 

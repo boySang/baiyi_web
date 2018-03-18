@@ -18,14 +18,5 @@ class GoodsController extends Controller {
     	));
 		$this->display();
     }
-
-    public function confirm(){
-    	$temp['goods_id'] = I('post.id');
-    	$temp['goods_name'] = I('post.goods_name');
-    	$temp['goods_num'] = I('post.good_nums');
-    	$temp['goods_price'] = I('post.goods_price');
-    	$temp['total_price'] = $temp['goods_num']*$temp['goods_price'];
-    	$this->assign('data',$temp);
-    	$this->display();
-    }
+    
 }

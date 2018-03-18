@@ -64,54 +64,55 @@
 </div>
 
 <div class="pay-page wid1200">
-	<div class="orderConfirm">
-		<span>订单确认</span>
+	<div class="pay-header text-r">
+		<span>合同号：123123123</span>
+		<span>下单时间：2017-12-12</span>
 	</div>
-	<form id="addOrder">
-		<input type="hidden" name="">
-		<div class="pay-info">
-	        <table class="table pay-table text-c" cellspacing="0">
-	            <tbody>
-	            	<tr>
-		            	<td>
-		            		<div class="info-inner clearfix">
-		            			<div class="img l">
-		            				<img src="" title="标样">
-		            			</div>
-		            			<div class="info-mail l">
-		            				<div class="main clearfix">
-			            				<span class="tit">商标名称</span>
-			            				<span class="main-text">这里是只购买了具体某个业务，如：购买一个“商标转让”商品</span>
-			            				<span class="tit">申请人</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix mid">
-			            				<span class="tit">申请人地址</span>
-			            				<span class="main-text">稍后填写，也可以设置成现在填写</span>
-			            				<span class="tit">注册类别</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix">
-			            				<span class="tit">商品/服务项</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">联系电话</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-		            			</div>
-		            		</div>
-		            	</td>
-	            	</tr>
-	            </tbody>
-	        </table>
+	<div class="pay-infos clearfix">
+		<div class="pay-success">
+			<p class="tit">您的订单提交成功</p>
+			<p class="number">订单号：1231231231</p>
 		</div>
-		<div class="total text-r">
-			<p>{$data['goods_name']}：{$data['goods_price']}元 x {$data['goods_num']}件</p>
-			<p><b><font color="red">¥ {$data['total_price']}</font></b></p>
+		<div class="pay-goodsinfo">
+			<p class="tit">服务名称：{$data['goods_name']}</p>
+			<p class="price"><font>{$data['total_price']}</font>元</p>
 		</div>
-		<div class="confirmBtn clearfix">
-			<a href="javascript:orderDetail.addToOrder();"><div class="tit r">确认订单</div></a>
+	</div>
+	<div class="pay-info">
+		
+	<div class="pay-type">
+		<div class="tit">支付方式</div>
+		<div class="type">
+			<div class="payMoney">
+				应支付金额：<b><font color="red">{$data['total_price']}</font></b>元
+			</div>
+			<div class="type-list">
+				<div class="radio-type">
+					<label for="alipay">
+						<input type="radio" name="paytype" value="alipay"> 支付宝
+					</label>
+				</div>
+				<div class="radio-type">
+					<label for="alipay">
+						<input type="radio" name="paytype" value="wxpay"> 微信
+					</label>
+				</div>
+				<div class="radio-type">
+					<label for="card">
+						<input type="radio" name="paytype" value="card"> 银行卡
+					</label>
+				</div>
+			</div>
+			<div class="topay alipay">
+				<div class="logo">
+					<img src="__PUBLIC__/home/img/alipay-logo.jpg" title="alipay" height="80">
+				</div>
+				<div class="pay-botton text-r">
+					<a href="javascript:payIndex.payNow();" id="pay-botton">立即支付</a>
+				</div>	
+			</div>
 		</div>
-	</form>
+	</div>
 </div>
 
 <div class="full">
@@ -136,19 +137,13 @@
     </div>
 </div>
 
+
 <script>
 
-var orderDetail = {
+var payIndex = {
 
-	addToOrder : function(){
-		$.post('__CONTROLLER__/addToOrder',$('#addOrder').serialize(),function(data){
-			console.log(data);
-			if(data.state == 200){
-				window.location.href=data.url;
-			}else{
-				console.log(data);
-			}
-		});
+	payNow : function(){
+		window.location.href='__MODULE__/Member/index';
 	},
 
 	load : function(){},

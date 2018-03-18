@@ -36,4 +36,10 @@ class ConnectIndustryController extends Controller {
 	public function ipsearch(){
 		$this->display();
 	}
+
+	
+    // 用户自助选择商品项后，确认的页面
+    public function zizhu_confirm(){
+    	$this->display();
+    }
 }
