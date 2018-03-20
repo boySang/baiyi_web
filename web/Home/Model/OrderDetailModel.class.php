@@ -16,7 +16,7 @@ class OrderDetailModel extends Model{
 	}
 
 	public function getOneFromUniquenum($uniquenum){
-		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number')->where('uniquenum="%s"',$uniquenum)->find();
+		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number,state,goods_attr')->where('uniquenum="%s"',$uniquenum)->find();
 		$d['total_price'] = $d['total_price']/100;
 		return $d;
 	}

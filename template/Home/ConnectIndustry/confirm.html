@@ -65,144 +65,54 @@
 
 <div class="pay-page wid1200">
 	<div class="orderConfirm">
-		<span>订单确认</span>
+		<span>生成订单</span>
 	</div>
 	<form id="addOrder">
 		<input type="hidden" name="">
 		<div class="pay-info">
 			<table class="table pay-table text-c" cellspacing="0">
 	            <tbody>
-	            	<tr>
-		            	<td>
-		            		<div class="info-inner clearfix">
-		            			<div class="img l">
-		            				<img src="" title="标样">
-		            			</div>
-		            			<div class="info-mail l">
-		            				<div class="main clearfix">
-			            				<span class="tit">商标名称</span>
-			            				<span class="main-text">这里是购买具体商标名称的列表</span>
-			            				<span class="tit">申请人</span>
-			            				<span class="main-text"><br></span>
+	            	<foreach name="data.goods_attr" item="v">
+		            	<tr>
+			            	<td>
+			            		<div class="info-inner clearfix">
+			            			<div class="img l">
+			            				<img src="" title="标样">
 			            			</div>
-			            			<div class="main clearfix mid">
-			            				<span class="tit">申请人地址</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">注册类别</span>
-			            				<span class="main-text"><br></span>
+			            			<div class="info-mail l">
+			            				<div class="main clearfix">
+				            				<span class="tit">商标名称</span>
+				            				<span class="main-text">{$data.goods_name}</span>
+				            				<span class="tit">申请人</span>
+				            				<span class="main-text"><br></span>
+				            			</div>
+				            			<div class="main clearfix mid">
+				            				<span class="tit">申请人地址</span>
+				            				<span class="main-text"><br></span>
+				            				<span class="tit">注册类别</span>
+				            				<span class="main-text">{$v.type}</span>
+				            			</div>
+				            			<div class="main clearfix">
+				            				<span class="tit">商品/服务项</span>
+				            				<span class="main-text">{$v.val}</span>
+				            				<span class="tit">联系电话</span>
+				            				<span class="main-text"><br></span>
+				            			</div>
 			            			</div>
-			            			<div class="main clearfix">
-			            				<span class="tit">商品/服务项</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">联系电话</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-		            			</div>
-		            		</div>
-		            	</td>
-	            	</tr>
-	            	<tr>
-		            	<td>
-		            		<div class="info-inner clearfix">
-		            			<div class="img l">
-		            				<img src="" title="标样">
-		            			</div>
-		            			<div class="info-mail l">
-		            				<div class="main clearfix">
-			            				<span class="tit">商标名称</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">申请人</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix mid">
-			            				<span class="tit">申请人地址</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">注册类别</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix">
-			            				<span class="tit">商品/服务项</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">联系电话</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-		            			</div>
-		            		</div>
-		            	</td>
-	            	</tr>
-	            	<tr>
-		            	<td>
-		            		<div class="info-inner clearfix">
-		            			<div class="img l">
-		            				<img src="" title="标样">
-		            			</div>
-		            			<div class="info-mail l">
-		            				<div class="main clearfix">
-			            				<span class="tit">商标名称</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">申请人</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix mid">
-			            				<span class="tit">申请人地址</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">注册类别</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix">
-			            				<span class="tit">商品/服务项</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">联系电话</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-		            			</div>
-		            		</div>
-		            	</td>
-	            	</tr>
+			            		</div>
+			            	</td>
+		            	</tr>
+	            	</foreach>
 	            </tbody>
 	        </table>
 
-	        <table class="table pay-table text-c" cellspacing="0">
-	            <tbody>
-	            	<tr>
-		            	<td>
-		            		<div class="info-inner clearfix">
-		            			<div class="img l">
-		            				<img src="" title="标样">
-		            			</div>
-		            			<div class="info-mail l">
-		            				<div class="main clearfix">
-			            				<span class="tit">商标名称</span>
-			            				<span class="main-text">这里是只购买了具体某个业务，如：购买一个“商标转让”商品</span>
-			            				<span class="tit">申请人</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix mid">
-			            				<span class="tit">申请人地址</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">注册类别</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-			            			<div class="main clearfix">
-			            				<span class="tit">商品/服务项</span>
-			            				<span class="main-text"><br></span>
-			            				<span class="tit">联系电话</span>
-			            				<span class="main-text"><br></span>
-			            			</div>
-		            			</div>
-		            		</div>
-		            	</td>
-	            	</tr>
-	            </tbody>
-	        </table>
 		</div>
 		<div class="total text-r">
-			<p>商标注册：300元 x 5件</p>
-			<p><b><font color="red">¥ 500</font></b></p>
+			<!-- <p>商标注册：300元 x 5件</p> -->
+			<p><b><font color="red">¥ {$data.total_price}</font></b></p>
 		</div>
 		<div class="confirmBtn clearfix">
-			<a href="javascript:alert('这里的生成订单正在完善...')"><div class="tit r">确认订单</div></a>
-			<!-- <a href="javascript:orderDetail.addToOrder();"><div class="tit r">确认订单</div></a> -->
+			<a href="javascript:confirm.toPay();"><div class="tit r">去付款</div></a>
 		</div>
 	</form>
 </div>
@@ -231,17 +141,10 @@
 
 <script>
 
-var orderDetail = {
+var confirm = {
 
-	addToOrder : function(){
-		$.post('__CONTROLLER__/addToOrder',$('#addOrder').serialize(),function(data){
-			console.log(data);
-			if(data.state == 200){
-				window.location.href=data.url;
-			}else{
-				console.log(data);
-			}
-		});
+	toPay : function(){
+		window.location.href='__CONTROLLER__/confirm_ok/id/<?php echo I("get.id"); ?>';
 	},
 
 	load : function(){},

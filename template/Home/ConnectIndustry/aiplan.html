@@ -141,11 +141,11 @@ var aiSearch = {
 		$.get('__CONTROLLER__/ajaxGetAll/pid/'+typeId,function(data){
 			console.log(data);
 			if(data.state == 200){
-				var html = '';
+				var html = '<i class="iconfont icon-xiangshang"></i>';
 				$(data.data).each(function(k,v){
 					html += '<span data-id="'+v.id+'">'+v.title+'</span>';
 				});
-				$('.ap-val .listInner .listMain').append(html);
+				$('.ap-val .listInner .listMain').html(html);
 			}else{
 				console.log(data.msg);
 			}

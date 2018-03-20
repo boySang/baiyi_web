@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>商标智能方案</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_v8h0a0rkn3rtfbt9.css">
+    <!-- 有字库 -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
+    <!-- 有字库 end -->
+    <!-- jquery-cookie -->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- jquery-cookie end -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap end -->
+    <!-- jquery-confirm -->
+    <link href="https://cdn.bootcss.com/jquery-confirm/1.7.3/jquery-confirm.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery-confirm/1.7.3/jquery-confirm.min.js"></script>
+    <!-- jquery-confirm end -->
+</head>
+<body>
+
+
+<div class="full commen-header">
+	<div class="quick-nav wid1200 clearfix">
+		<div class="r app">
+			<span>移动应用</span>
+			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
+		</div>
+		<div class="r reg">
+			<span>注册</span>
+			<ul>
+				<li>个人注册</li>
+				<li>企业注册</li>
+			</ul>
+		</div>
+		<div class="r login">登录</div>
+		<div class="r phone">客服电话：40000000000</div>
+	</div>
+</div>
+
+<div class="pub-header wid1200 clearfix">
+	<div class="logo-header clearfix">
+		<div class="logo l">
+			<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+		</div>
+	</div>
+	<div class="pub-navs clearfix">
+		<div class="quick-link r">
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">申请系统</a>
+			<a href="javascript:void(0);">方案系统</a>
+			<a href="javascript:void(0);">商标在线管理</a>
+			<a href="javascript:void(0);">专家库</a>
+		</div>
+	</div>
+</div>
+
+<div class="wid1200">
+	<div class="industry">
+		<div class="search">
+			<form class="onekeysearch" id="connectSearch">
+				<div class="searchInner clearfix">
+					<input type="hidden" name="goodsattr" value="">
+					<input type="text" name="keywords" class="input-text" />
+					<select name="type" class="input-select">
+						<foreach name="type" item="v">
+						<option value="{$v.id}">{$v.title}</option>
+						</foreach>
+					</select>
+					<select name="val" class="input-select"></select>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="wid1200 onekeybox">
+	<div class="total">检索到近似商标（<font color="red">40</font>）件</div>
+	<div class="boxs clearfix">
+		<div class="list-box">
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+			<div class="list clearfix">
+				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
+				<div class="info r clearfix">
+					<p>商标名称：123</p>
+					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
+					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
+					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
+				</div>
+			</div>
+		</div>
+		<div class="page"></div>
+		<div class="href r">
+			<a href="">商标方案下载</a><a href="">在线注册</a>
+		</div>
+	</div>
+</div>
+
+<div class="full">
+	<div class="wid1200 bor_top_1px">
+		<div class="footer text-c">
+			<p>备案信息</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+// $.cookie('val',null);
+
+$(function(){
+
+	select.load();
+	// 加入默认值
+	$('input[name="keywords"]').val($.cookie('keywords'));
+	$('select[name="type"]').find('option[value="'+$.cookie('type')+'"]').attr("selected",true); 
+	select.getChild($.cookie('type'),true);
+});
+
+var select = {
+	// 选项框中行业变化的时候
+	hangueChg : function(){
+		$('body').on('change','select[name="type"]',function(){
+			var that = $(this);
+			select.getChild(that.val(),false);
+		});
+	},
+	getChild : function(typeid,isselect){
+		$.get('__CONTROLLER__/ajaxGetAll/pid/'+typeid,function(data){
+			console.log(data);
+			var isselect = isselect == true?true:false;
+			if(data.state == 200){
+				var html = '';
+				$(data.data).each(function(k,v){
+					html += '<option value="'+v.id+'">'+v.title+'</option>';
+				});
+				$('select[name="val"]').html(html);
+				if(isselect == true){
+					// 加入默认值
+					$('select[name="val"]').find('option[value="'+$.cookie('val')+'"]').attr("selected",true); 
+				}
+			}else{
+				console.log(data.msg);
+			}
+		});
+	},
+
+	getGoodsAttr : function(){
+		var temp_arr = '';
+		if($('#addListBox .listInner').length > 0){
+			$('#addListBox .listInner').each(function(k,v){
+				var that = $(this);
+				var topid = that.find('.tit').attr('data-topid');
+				if(that.find('.goodsListInner span').length > 0){
+					temp_arr += topid+'-';
+					that.find('.goodsListInner span').each(function(k1,v1){
+						var thats = $(this);
+						var dataid = thats.attr('data-id');
+						temp_arr += dataid+'.';
+					});
+					temp_arr += ',';
+				}
+			});
+		}
+		temp_arr = temp_arr.replace(/.,/g,'|');
+		temp_arr = temp_arr.replace(/\|$/,'');
+		$('input[name="goodsattr"]').val(temp_arr);
+	},
+
+	onlinereg : function(){
+		if($('input[name="keywords"]').val() == ''){
+			layer.msg('请输入关键字');
+			return false;
+		}
+		if($('select[name="type"]').val() == ''){
+			layer.msg('请选择行业类别');
+			return false;
+		}
+		if($('select[name="val"]').val() == ''){
+			layer.msg('请选择具体行业');
+			return false;
+		}
+		if($('input[name="goodsattr"]').val() == ''){
+			layer.msg('请勾选分类或商品项');
+			return false;
+		}
+		$.post('__MODULE__/OrderDetail/order_create_zizhu',$('#connectSearch').serialize(),function(data){
+			if(data.state == 200){
+				window.location.href=data.url;
+			}else{
+				$.alert(data.msg);
+			}
+		});
+		return false;
+	},
+
+	load : function(){
+		// 行业变动的时候，二级联动
+		this.hangueChg();
+	}
+}
+
+</script>
+</body>
+</html>

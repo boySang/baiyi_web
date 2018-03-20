@@ -113,6 +113,70 @@ class OrderDetailController extends Controller {
     	}
     }
 
+    // 自助选择商品类及商品项，创建订单
+    public function order_create_zizhu(){
+    	header('Content-type:text/json');
+    	$keywords = I('post.keywords','','htmlspecialchars');
+    	$type = I('post.type','','htmlspecialchars');
+    	$val = I('post.val','','htmlspecialchars');
+    	$goodsattr = I('post.goodsattr','','htmlspecialchars');
+    	if($keywords == '' || $type == '' || $val == '' || $goodsattr == ''){
+    		echo returnApi(201,'参数不能为空');
+    		return false;
+    	}
+		$orderDetailModel = D('OrderDetail');
+		$trademarkClassificationModel = D('TrademarkClassification');
+		// 先简单储存一下
+		$data['goods_name'] = $keywords;
+		// 价格再循环
+		$total_price = 0;
+		$_arr = explode('|', $goodsattr);
+		// 基础官费300，基础代理费1000
+		$guanfei = 0;
+		$daili = 0;
+		$tips = '';
+		foreach($_arr as $k=>$v){
+			// 代理费叠加1000
+			$daili += 1000;
+			$guanfei += 300;
+			$__arr = explode('-', $v);
+
+			// 顺便记录名称
+			$topname = $trademarkClassificationModel->getName($__arr[0]);
+			$tips .= $topname.'：';
+
+			// 其中$__arr[0]是分类，$__arr[1]是商品项
+			$goodsarr = explode('.', $__arr[1]);
+
+			foreach($goodsarr as $k1=>$v1){
+				if($k1 >= 10){
+					$guanfei += 30;
+					$daili += 70;
+				}
+				// 顺便记录名称
+				$goodsname = $trademarkClassificationModel->getName($v1);
+				$tips .= $goodsname.'，';
+			}
+			$tips .= '<br />';
+		}
+		$data['total_price'] = ($daili+$guanfei)*100;
+		$data['tips'] = htmlspecialchars($tips);
+		$data['uniquenum'] = 'BY'.date('YmdHis',time()).rand(100,999);
+		$data['contract_number'] = 'CN'.date('YmdHis',time()).rand(100,999);
+		$data['order_type'] = 1;
+		$data['addtime'] = time();
+		$data['goods_attr'] = $goodsattr;
+		$result = $orderDetailModel->add($data);
+		if($result){
+			echo returnApi(200,'','',U('ConnectIndustry/confirm/id/'.$data['uniquenum']));
+			unset($data);
+			return false;
+		}else{
+			echo returnApi(201,'订单生成失败！');
+			return false;
+		}
+    }
+
 
 	public function pay(){
 		// 具体支付信息，及支付方式

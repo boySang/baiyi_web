@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+use Org\Util\Baitu;
 class GoodsController extends Controller {
 
 
@@ -18,5 +19,15 @@ class GoodsController extends Controller {
     	));
 		$this->display();
     }
-    
-}
+
+    public function get(){
+    	$m = new Baitu();
+    	$r = $m->getTrademarkInquiries(APIKEY,APIKEYID,'张','01,02',2,10,1);
+    	echo $_r;
+    }
+
+    public function text(){
+    	$this->display();
+    }
+
+} 

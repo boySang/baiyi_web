@@ -28,5 +28,11 @@ define('APP_PATH','./web/');
 //定义默认模块
 define('BIND_MODULE','Home');
 
+
+// 白兔接口
+define('APIKEY','agentbaiyi');
+define('APIKEYID','e10adc3949ba59abbe56e057f20f883e');
+
+
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';

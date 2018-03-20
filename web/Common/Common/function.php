@@ -59,3 +59,4 @@ function geturl($type,$val){
 			return ;
 	}
 }
+
