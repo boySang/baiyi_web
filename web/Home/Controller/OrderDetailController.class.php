@@ -117,10 +117,10 @@ class OrderDetailController extends Controller {
     public function order_create_zizhu(){
     	header('Content-type:text/json');
     	$keywords = I('post.keywords','','htmlspecialchars');
-    	$type = I('post.type','','htmlspecialchars');
-    	$val = I('post.val','','htmlspecialchars');
+    	// $type = I('post.type','','htmlspecialchars');
+    	// $val = I('post.val','','htmlspecialchars');
     	$goodsattr = I('post.goodsattr','','htmlspecialchars');
-    	if($keywords == '' || $type == '' || $val == '' || $goodsattr == ''){
+    	if($keywords == '' || $goodsattr == ''){
     		echo returnApi(201,'参数不能为空');
     		return false;
     	}

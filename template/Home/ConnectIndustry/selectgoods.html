@@ -78,6 +78,7 @@
 			<form id="connectSearch">
 				<div class="searchInner clearfix">
 					<input type="hidden" name="goodsattr" value="">
+					<input type="hidden" name="cxcls">
 					<input type="text" name="keywords" class="input-text" />
 					<select name="type" class="input-select">
 						<foreach name="type" item="v">
@@ -227,7 +228,7 @@ var select = {
 			if(data.state == 200){
 				var html = '';
 				$(data.data.connect_val_arr).each(function(k,v){
-					html += '<div class="listInner"><div class="tit clearfix" data-topid="'+v.topcid.id+'"><div class="total r">已选择<font class="length">0</font>项，官费<font class="toGongwuyuan">0</font>元，代理费<font class="toMe">0</font>元</div>第'+v.topcid.cid+'类<span>'+v.topcid.title+'</span></div><div class="goodsListInner">';
+					html += '<div class="listInner"><div class="tit clearfix" data-topid="'+v.topcid.id+'" data-cid="'+v.topcid.cid+'"><div class="total r">已选择<font class="length">0</font>项，官费<font class="toGongwuyuan">0</font>元，代理费<font class="toMe">0</font>元</div>第'+v.topcid.cid+'类<span>'+v.topcid.title+'</span></div><div class="goodsListInner">';
 						$(v.childid).each(function(k1,v1){
 							html += '<span data-id="'+v1.id+'"><b>'+v1.cid+'</b><font>'+v1.title+'</font><i class="iconfont icon-shanchu4"></i></span>';
 						});
@@ -406,7 +407,7 @@ var select = {
 				tempArr.push($(this).attr('data-topid'));
 			});
 			if($.inArray(that.attr("data-id"),tempArr) < 0){
-				var html = '<div class="listInner"><div class="tit" data-topid="'+that.attr("data-id")+'"><div class="total r">已选择<font class="length">0</font>项，官费<font class="toGongwuyuan">0</font>元，代理费<font class="toMe">0</font>元</div>第'+that.attr("data-cid")+'类<span>'+that.attr("data-title")+'</span></div><div class="goodsListInner"></div><div class="update clearfix"><a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a><a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a></div><div class="childGoodsList"><div class="childGoodsListInner"><div class="listType l"></div><div class="listGoods l"></div></div></div></div>';
+				var html = '<div class="listInner"><div class="tit" data-topid="'+that.attr("data-id")+'" data-cid="'+that.attr("data-cid")+'"><div class="total r">已选择<font class="length">0</font>项，官费<font class="toGongwuyuan">0</font>元，代理费<font class="toMe">0</font>元</div>第'+that.attr("data-cid")+'类<span>'+that.attr("data-title")+'</span></div><div class="goodsListInner"></div><div class="update clearfix"><a href="javascript:;" class="addGoods"><i class="iconfont icon-icon--"></i>增加商品</a><a href="javascript:;" class="delGoods"><i class="iconfont icon-delete"></i></a></div><div class="childGoodsList"><div class="childGoodsListInner"><div class="listType l"></div><div class="listGoods l"></div></div></div></div>';
 				$('#addListBox').append(html);
 			}
 		});
@@ -470,12 +471,17 @@ var select = {
 	},
 
 	getGoodsAttr : function(){
+		// 保存商品分类及商品项的id
 		var temp_arr = '';
+		// 商品分类cid
+		var tempcxcls = [];
 		if($('#addListBox .listInner').length > 0){
 			$('#addListBox .listInner').each(function(k,v){
 				var that = $(this);
 				var topid = that.find('.tit').attr('data-topid');
+				var cid = that.find('.tit').attr('data-cid');
 				if(that.find('.goodsListInner span').length > 0){
+					tempcxcls.push(cid);
 					temp_arr += topid+'-';
 					that.find('.goodsListInner span').each(function(k1,v1){
 						var thats = $(this);
@@ -488,7 +494,13 @@ var select = {
 		}
 		temp_arr = temp_arr.replace(/.,/g,'|');
 		temp_arr = temp_arr.replace(/\|$/,'');
+		// 存入cookie
+		$.cookie('temp_arr',temp_arr);
 		$('input[name="goodsattr"]').val(temp_arr);
+
+		// 保存商品分类及商品项的cid
+		$('input[name="cxcls"]').val(tempcxcls);
+		$.cookie('tempcxcls',$('input[name="cxcls"]').val());
 	},
 
 	onlinereg : function(){

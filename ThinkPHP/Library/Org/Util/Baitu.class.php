@@ -20,12 +20,12 @@ class Baitu {
 	 *
 	 *	@return json
 	 */ 
-	public function getTrademarkInquiries($apikey,$apipass,$cxkey,$cxcls,$cxtype,$pagesize,$pageno,$ispost = false){
+	public function getTrademarkInquiries($cxkey,$cxcls,$cxtype,$pagesize,$pageno,$ispost = false){
 
 		$url = 'http://api.cha-tm.net/chatmbs/tmapi/apikh/default.do?method=query';
 		$params = array(
-			'apikey'		=>		$apikey,	
-			'apipass'		=>		$apipass,	
+			'apikey'		=>		APIKEY,	
+			'apipass'		=>		APIKEYID,	
 			'cxkey'			=>		$cxkey,			//	查询关键字
 			'cxcls'			=>		$cxcls,			//	查询类别，全类：空；单类：01；多类：01,03,05
 			'cxtype'		=>		$cxtype,		//	查询类型，1-注册号；2-商标名称；3-申请人；

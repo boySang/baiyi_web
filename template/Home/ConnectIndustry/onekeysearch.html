@@ -78,6 +78,7 @@
 			<form class="onekeysearch" id="connectSearch">
 				<div class="searchInner clearfix">
 					<input type="hidden" name="goodsattr" value="">
+					<input type="hidden" name="cxcls">
 					<input type="text" name="keywords" class="input-text" />
 					<select name="type" class="input-select">
 						<foreach name="type" item="v">
@@ -94,74 +95,14 @@
 <div class="wid1200 onekeybox">
 	<div class="total">检索到近似商标（<font color="red">40</font>）件</div>
 	<div class="boxs clearfix">
-		<div class="list-box">
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
-			</div>
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
-			</div>
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
-			</div>
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
-			</div>
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
-			</div>
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
-			</div>
-			<div class="list clearfix">
-				<div class="imgs l"><img src="__PUBLIC__/home/img/grouppic.jpg" /></div>
-				<div class="info r clearfix">
-					<p>商标名称：123</p>
-					<p><span>注册号：1231231</span><span>申请人：百一知识产权公司</span><span>类别：45类</span><span>群组：1224；1122；1111</span></p>
-					<p><span>申请时间：2012-12-13</span><span>注册时间：2011-11-11</span><span>最新状态：商标已注销</span></p>
-					<p class="r"><a href="">详细信息</a><a href="">添加管理</a></p>
-				</div>
+		<div class="list-box" id="getResults">
+			<div class="loading">
+				<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading">
 			</div>
 		</div>
 		<div class="page"></div>
 		<div class="href r">
-			<a href="">商标方案下载</a><a href="">在线注册</a>
+			<a href="">商标方案下载</a><a href="javascript:select.onlinereg();">在线注册</a>
 		</div>
 	</div>
 </div>
@@ -253,7 +194,12 @@ var select = {
 			layer.msg('请勾选分类或商品项');
 			return false;
 		}
-		$.post('__MODULE__/OrderDetail/order_create_zizhu',$('#connectSearch').serialize(),function(data){
+		$.post('__MODULE__/OrderDetail/order_create_zizhu',{
+			// 'goodsattr':,
+			// 'cxcls':,
+			// 'keywords':,
+			
+		},function(data){
 			if(data.state == 200){
 				window.location.href=data.url;
 			}else{
@@ -263,7 +209,38 @@ var select = {
 		return false;
 	},
 
+	init : function(){
+		$.post('__CONTROLLER__/getTrademarkInquiries',{
+			'cxkey':$.cookie('keywords'),
+			'cxcls':$.cookie('tempcxcls'),
+			'cxtype':2,
+			'pagesize':15,
+			'pageno':1
+		},function(data){
+			// console.log(data);
+			data = data.match(/{.*}/g);
+			// console.log(_res1);
+			data = JSON.parse(data);
+			// console.log(d);
+			var html = '';
+			if(data.jgcode == 0){
+				$(data.jgdata).each(function(k,v){
+					html += '<div class="list clearfix"><div class="imgs l"><a href="javascript:;"><img src="'+v.tmimage+'" /></a></div><div class="info r clearfix"><p>商标名称：'+v.tmname+'</p><p><span>注册号：'+v.tmcode+'</span><span>申请人：'+v.appname+'</span><span>类别：'+v.intcls+'类</span><span>注册号：'+v.regno+'</span></p><p><span>申请时间：'+v.appdate+'</span><span>注册时间：'+v.zcdate+'</span><span>最新状态：'+v.tmlaw+'</span></p><p class="r"><a href="javascript:;" target="_blank">详细信息</a><a href="javascript:;">添加管理</a></p></div></div>';
+				});
+			}else{
+				html = '<div class="nulls"><small>'+data.jgmemo+'</small></div>';
+			}
+			$('#getResults').html(html);
+		});
+	},
+
+	search : function(){
+
+	},
+
 	load : function(){
+		// 加载页面的时候查询接口
+		this.init();
 		// 行业变动的时候，二级联动
 		this.hangueChg();
 	}

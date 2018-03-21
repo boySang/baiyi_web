@@ -1,6 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+use Org\Util\Baitu;
 class ConnectIndustryController extends Controller {
 
 	public function aiplan(){
@@ -51,7 +52,7 @@ class ConnectIndustryController extends Controller {
     	$_arr = explode('|', $orderDetailData['goods_attr']);
     	foreach($_arr as $k=>$v){
     		$__arr = explode('-', $v);
-    		$arr[$k]['type'] = $TrademarkClassificationModel->getCid($__arr[0]).'&nbsp;'.$TrademarkClassificationModel->getName($__arr[0]);
+    		$arr[$k]['type'] = '第'.$TrademarkClassificationModel->getCid($__arr[0]).'类&nbsp;';
     		$___arr = explode('.', $__arr[1]);
     		$temparr = array();
     		foreach($___arr as $k1=>$v1){
@@ -84,6 +85,21 @@ class ConnectIndustryController extends Controller {
 			'type'		=>		$type,
 		));
     	$this->display();
+    }
+
+    public function getTrademarkInquiries(){
+    	$cxkey = I('post.cxkey');
+    	$cxcls = I('post.cxcls','');
+    	$cxtype = I('post.cxtype')?I('post.cxtype'):2;
+    	$pagesize = I('post.pagesize')?I('post.pagesize'):15;
+    	$pageno = I('post.pageno')?I('post.pageno'):1;
+    	if($cxkey == '' || $cxcls == '' || $cxtype == '' || $pagesize == ''){
+    		echo returnApi(201,'参数错误');
+    		return false;
+    	}
+    	$m = new Baitu();
+    	$r = $m->getTrademarkInquiries($cxkey,$cxcls,$cxtype,$pagesize,$pageno);
+    	echo $_r;
     }
 
 

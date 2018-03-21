@@ -22,7 +22,7 @@ class GoodsController extends Controller {
 
     public function get(){
     	$m = new Baitu();
-    	$r = $m->getTrademarkInquiries(APIKEY,APIKEYID,'张','01,02',2,10,1);
+    	$r = $m->getTrademarkInquiries('张','01,02',2,10,1);
     	echo $_r;
     }
 
