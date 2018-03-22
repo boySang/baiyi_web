@@ -4,6 +4,12 @@ use Think\Controller;
 
 class OrderDetailController extends Controller {
 
+	public function getOrderList(){
+		header('Content-type:text/json');
+		$m = D('OrderDetail');
+		echo $m->getOrderList();	
+	}
+
 
 	// 添加订单数据到数据库，在这里创建订单号，合同号，state=0
 	public function addToOrder(){

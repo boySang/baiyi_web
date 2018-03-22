@@ -54,9 +54,10 @@
         	</form>
         </div>
 	</div>
-	<div class="main-inner clearfix">
+	<div class="main-inner clearfix" id="orderList">
 		<include file='Public/memLeftMenu' />
 		<div class="main r">
+
 			<div class="main-list">
 				<div class="tit big clearfix">
 					<span class="l left">公司主体</span>
@@ -68,12 +69,21 @@
 					<span class="l mid">我是姓名联系人</span>
 					<span class="l mid"><i class="iconfont icon-kefu-copy"></i>我是专属顾问</span>
 				</div>
+				<div class="orderType clearfix">
+					<a href="javascript:;" class="cur" data-state="0">全部订单</a>
+					<a href="javascript:;" class="" data-state="201">待付款</a>
+					<a href="javascript:;" class="" data-state="300">待处理</a>
+					<a href="javascript:;" class="" data-state="104">已完成</a>
+				</div>
 				<div class="tit clearfix">
 					<span class="l left">订单详情</span>
 					<span class="l mid">合同号</span>
 				</div>
 				<div class="order-box">
-					<div class="order-list-main clearfix">
+					<div class="loading">
+						<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading">
+					</div>
+					<!-- <div class="order-list-main clearfix">
 						<div class="list-inners l left">
 							<p>商标保障申请</p>
 							<span>订单编号：123123123</span>
@@ -147,102 +157,13 @@
 							<a href="javascript:void(0);" id="del-order">删除订单</a>
 							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
 						</div>
-					</div>
+					</div> -->
+				</div>
+				<div class="loadmore">
+					<span data-page="2">获取更多</span>
 				</div>
 			</div>
-			<div class="main-list">
-				<div class="tit clearfix">
-					<span class="l left">公司主体</span>
-					<span class="l mid">联系人</span>
-					<span class="l mid">专属顾问</span>
-				</div>
-				<div class="cpn-info">
-					<span class="l left">我是测试公司名称</span>
-					<span class="l mid">我是姓名联系人</span>
-					<span class="l mid"><i class="iconfont icon-kefu-copy"></i>我是专属顾问</span>
-				</div>
-				<div class="tit clearfix">
-					<span class="l left">订单详情</span>
-					<span class="l mid">合同号</span>
-				</div>
-				<div class="order-box">
-					<div class="order-list-main clearfix">
-						<div class="list-inners l left">
-							<p>商标保障申请</p>
-							<span>订单编号：123123123</span>
-							<span>合同编号：BY201712120325</span>
-							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="pay-moneys text-c l no mid">
-							<span>1900.00</span>
-							<span class="status">未付款</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>合同确认</span>
-						</div>
-						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="del-order">删除订单</a>
-							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
-						</div>
-					</div>
-					<div class="order-list-main clearfix">
-						<div class="list-inners l left">
-							<p>商标保障申请</p>
-							<span>订单编号：123123123</span>
-							<span>合同编号：BY201712120325</span>
-							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="pay-moneys text-c l no mid">
-							<span>1900.00</span>
-							<span class="status">未付款</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>合同确认</span>
-						</div>
-						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="del-order">删除订单</a>
-							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
-						</div>
-					</div>
-					<div class="order-list-main clearfix">
-						<div class="list-inners l left">
-							<p>商标保障申请</p>
-							<span>订单编号：123123123</span>
-							<span>合同编号：BY201712120325</span>
-							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="pay-moneys text-c l mid">
-							<span>1900.00</span>
-							<span class="status">已付款</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>合同确认</span>
-						</div>
-						<div class="editor text-c l last">
-							<a href="javascript:void(0);" id="viewarticle" class="viewarticle">《查看官文》</a>
-						</div>
-					</div>
-					<div class="order-list-main clearfix">
-						<div class="list-inners l left">
-							<p>商标保障申请</p>
-							<span>订单编号：123123123</span>
-							<span>合同编号：BY201712120325</span>
-							<span>下单时间：2012-12-12</span>
-						</div>
-						<div class="pay-moneys text-c l no mid">
-							<span>1900.00</span>
-							<span class="status">未付款</span>
-						</div>
-						<div class="order-num text-c l mid">
-							<span>合同确认</span>
-						</div>
-						<div class="editor text-c l no last">
-							<a href="javascript:void(0);" id="del-order">删除订单</a>
-							<a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a>
-						</div>
-					</div>
-				</div>
-			</div>
+			
 		</div>
 	</div>
 </div>
@@ -268,6 +189,71 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+
+$(function(){
+	index.load();
+});
+	
+var index = {
+
+	getOrderList : function(page,state){
+		$.get('__MODULE__/OrderDetail/getOrderList/page/'+page+'/state/'+state,function(data){
+			console.log(data);
+			if(data.state == 200){
+				var html = '';
+				$(data.data).each(function(k,v){
+					html += '<div class="order-list-main clearfix"><div class="list-inners l left"><p>'+v.goods_name+'</p><span>订单编号：'+v.uniquenum+'</span><span>合同编号：'+v.contract_number+'</span><span>下单时间：'+v.addtime+'</span></div><div class="pay-moneys text-c l no mid"><span>'+v.total_price+'元</span><span class="status">未付款</span></div><div class="order-num text-c l mid"><span>合同确认</span></div><div class="editor text-c l no last"><a href="javascript:void(0);" id="del-order">删除订单</a><a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a></div></div>';
+				});
+				$('#orderList .order-box .loading').remove();
+				if(page != 1){
+					$('#orderList .order-box').append(html);
+				}else{
+					$('#orderList .order-box').html(html);
+				}
+				// 设置下一页
+				page++;
+				$('#orderList .loadmore').html('<span data-page="'+page+'">获取更多</span>');
+			}else{
+				if(page == 1){
+					$('#orderList .order-box').html('<div style="text-align:center;line-height:100px"><small>没查询到数据...</small></div>');
+					$('#orderList .loadmore').html('');
+				}else{
+					$('#orderList .loadmore').html('<small>没数据了...</small>');
+				}
+			}
+		});
+	},
+
+	getmore : function(){
+		$('body').on('click','.loadmore span',function(){
+			var that = $(this);
+			that.parent().html('<div class="loading"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading"></div>');
+			index.getOrderList(that.attr('data-page'),that.attr('data-state'));
+			var _page = that.attr('data-page')+1;
+			that.parent().html('<span data-page="'+_page+'">获取更多</span>');
+		});
+	},
+
+	showForState : function(){
+		$('body').on('click','.orderType a',function(){
+			var that = $(this);
+			index.getOrderList(1,that.attr('data-state'));
+		});
+	},
+
+	load : function(){
+		this.getOrderList(1,0);
+		// 更多
+		this.getmore();
+
+		// 根据分类选择
+		this.showForState();
+	}
+}
+
+</script>
 
 </body>
 </html>
