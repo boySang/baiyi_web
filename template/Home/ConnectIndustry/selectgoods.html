@@ -524,7 +524,7 @@ var select = {
 			if(data.state == 200){
 				window.location.href=data.url;
 			}else{
-				$.alert(data.msg);
+				layer.msg(data.msg);
 			}
 		});
 		return false;

@@ -30,13 +30,14 @@ class Baitu {
 			'cxcls'			=>		$cxcls,			//	查询类别，全类：空；单类：01；多类：01,03,05
 			'cxtype'		=>		$cxtype,		//	查询类型，1-注册号；2-商标名称；3-申请人；
 			'pagesize'		=>		$pagesize,		//	页面大小，范围1-30
-			'pageno'		=>		$pageno,		//	当前页码
+			'pageno'		=>		$pageno			//	当前页码
 		);
 		// 拼接url
 		$paramstring = http_build_query($params);
-		$result = $this->baitucurl($url,$paramstring,$ispost);
-		if($result){
-			var_dump($result);
+		$content = $this->baitucurl($url,$paramstring,$ispost);
+		// $result = json_decode($content);
+		if($content){
+			echo $content;
 		}else{
 			echo '请求失败';
 		}
@@ -48,21 +49,21 @@ class Baitu {
 	 *
 	 *	@return json
 	 */ 
-	public function getTrademarkInfo($params = array(), $ispost = false){
+	public function getTrademarkInfo($cxkey,$cxcls, $ispost = false){
 
 		$url = 'http://api.cha-tm.net/chatmbs/tmapi/apikh/default.do?method=queryInfo';
 		$params = array(
-			'apikey'		=>		$this->apikey,	
-			'apipass'		=>		$this->apipass,	
-			'cxkey'			=>		$this->cxkey,		//	查询关键字
-			'cxcls'			=>		$this->cxcls,		//	查询类别，全类：空；单类：01；多类：01,03,05
+			'apikey'		=>		APIKEY,	
+			'apipass'		=>		APIKEYID,
+			'cxkey'			=>		$cxkey,		//	查询关键字
+			'cxcls'			=>		$cxcls		//	查询类别，全类：空；单类：01；多类：01,03,05
 		);
 		// 拼接url
 		$paramstring = http_build_query($params);
 		$content = $this->baitucurl($url,$paramstring,$ispost);
-		$result = json_decode($content);
-		if($result){
-			return $result;
+		// $result = json_decode($content);
+		if($content){
+			echo $content;
 		}else{
 			echo '请求失败';
 		}
@@ -74,20 +75,20 @@ class Baitu {
 	 *
 	 *	@return json
 	 */ 
-	public function getTrademarkProcess($params = array(), $ispost = false){
+	public function getTrademarkProcess($cxkey,$cxcls, $ispost = false){
 		$url = 'http://api.cha-tm.net/chatmbs/tmapi/apikh/default.do?method=queryFlow';
 		$params = array(
-			'apikey'		=>		$this->apikey,	
-			'apipass'		=>		$this->apipass,	
-			'cxkey'			=>		$this->cxkey,		//	查询关键字
-			'cxcls'			=>		$this->cxcls,		//	查询类别，全类：空；单类：01；多类：01,03,05
+			'apikey'		=>		APIKEY,	
+			'apipass'		=>		APIKEYID,
+			'cxkey'			=>		$cxkey,		//	查询关键字
+			'cxcls'			=>		$cxcls,		//	查询类别，全类：空；单类：01；多类：01,03,05
 		);
 		// 拼接url
 		$paramstring = http_build_query($params);
 		$content = $this->baitucurl($url,$paramstring,$ispost);
-		$result = json_decode($content,true);
-		if($result){
-			return $result;
+		// $result = json_decode($content,true);
+		if($content){
+			echo $content;
 		}else{
 			echo '请求失败';
 		}
