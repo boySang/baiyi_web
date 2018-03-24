@@ -5,6 +5,10 @@ class ExpertsWendaController extends Controller {
 
 
 
+	public function index(){
+		$this->display();
+	}
+
 	public function show(){
 		$this->display();
 	}
