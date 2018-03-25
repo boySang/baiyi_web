@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class PayController extends Controller {
+use Home\Controller\LayoutController;
+class PayController extends LayoutController {
 
 
 

@@ -12,7 +12,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<meta name="description" content="描述">
 	<meta name="keywords" content="关键字">
-	<title>百一知识产权</title>
+	<title>{$web_name}</title>
 	<!-- 公共css -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
     <!-- index -->
@@ -58,7 +58,35 @@
 	<div class="pub-navs clearfix">
 		<div class="navs-list l text-c">
 			<h4>全部服务分类</h4>
-			<div class="nav-box hide"></div>
+			<div class="nav-box">
+				<foreach name="layoutdata.menu" key="k" item="v">
+					<div class="out">
+						<div class="tit"><a href="{$v.url}">{$v.title}</a></div>
+						<div class="sometit clearfix">
+							<foreach name="v.goods_limit" item="v1">
+								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+							</foreach>
+						</div>
+						<?php if($k == 0){
+							$top = '-1px';
+						} elseif($k == 1){
+							$top = '-86px';
+						} elseif($k == 2){
+							$top = '-171px';
+						} elseif($k == 3){
+							$top = '-238px';
+						} elseif($k == 4){
+							$top = '-341px';
+						}
+						?>
+						<div class="hidecate clearfix" style="top:{$top};">
+							<foreach name="v.goods" item="v1">
+								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+							</foreach>
+						</div>
+					</div>
+				</foreach>
+			</div>
 		</div>
 		<div class="quick-link r">
 			<a href="javascript:void(0);">首页</a>
@@ -110,18 +138,16 @@
 			</div>
 			<div class="search-box">
 				<div class="search-inner clearfix">
-					<form id="search-box" for="">
-						<input type="hidden" name="type" value="">
-						<input type="text" name="keywords" class="search-input l" placeholder="输入商标名称" />
+					<form id="search-box" for="" action="__MODULE__/ConnectIndustry/ipresult" method="get">
+						<input type="text" name="cxkey" class="search-input l" placeholder="输入商标名称" />
 						<div class="search-select l">
-							<div class="tit">模糊搜索</div>
-							<div class="list">
-								<span class="active" data-value="1">模糊搜索</span>
-								<span data-value="2">精准搜索</span>
-							</div>
+							<select name="cxtype">
+								<option value="2">商标名称</option>
+								<option value="1">注册号</option>
+								<option value="3">申请人</option>
+							</select>
 						</div>
-						<a href="javascript:void(0);" onclick="window.location.href='__MODULE__/ConnectIndustry/ipsearch'" class="search-submit">商标查询</a>
-						<i class="iconfont icon-xiaosanjiao"></i>
+						<a href="javascript:$('#search-box').submit();" class="search-submit l">商标查询</a>
 					</form>
 				</div>
 			</div>
@@ -184,6 +210,10 @@
 <div class="full">
 	<div class="wid1200">
 		<div class="country_trademark text-c">
+			<div class="big-title text-c">
+				<h4>国际商标注册</h4>
+				<p>这里是我们提交注册的优势这里是我们提交注册的优势</p>
+			</div>
 			<div class="country_inner clearfix">
 				<div class="list">
 					<a href="javascript:void(0);" title="美国注册">

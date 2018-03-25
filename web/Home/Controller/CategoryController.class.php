@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class CategoryController extends Controller {
+use Home\Controller\LayoutController;
+class CategoryController extends LayoutController {
 
 
 

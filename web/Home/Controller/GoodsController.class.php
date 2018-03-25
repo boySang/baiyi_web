@@ -1,8 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
+use Home\Controller\LayoutController;
 use Org\Util\Baitu;
-class GoodsController extends Controller {
+class GoodsController extends LayoutController {
 
 
     public function detail($id){

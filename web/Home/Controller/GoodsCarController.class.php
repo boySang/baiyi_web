@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class GoodsCarController extends Controller {
+use Home\Controller\LayoutController;
+class GoodsCarController extends LayoutController {
 
 
 	public function add_to_car(){

@@ -148,7 +148,7 @@ var select = {
 	},
 	getChild : function(typeid,isselect){
 		$.get('__CONTROLLER__/ajaxGetAll/pid/'+typeid,function(data){
-			console.log(data);
+			// console.log(data);
 			var isselect = isselect == true?true:false;
 			if(data.state == 200){
 				var html = '';
@@ -156,10 +156,10 @@ var select = {
 					html += '<option value="'+v.id+'">'+v.title+'</option>';
 				});
 				$('select[name="val"]').html(html);
-				if(isselect == true){
+				// if(isselect == true){
 					// 加入默认值
 					$('select[name="val"]').find('option[value="'+$.cookie('val')+'"]').attr("selected",true); 
-				}
+				// }
 			}else{
 				console.log(data.msg);
 			}
@@ -282,6 +282,13 @@ var select = {
 					that.parent().parent().find('.listGoods').html(html);
 				}
 			});
+		});
+	},
+
+	//行业变动的视时候自送搜索
+	autoSearch : function(){
+		$('body').on('change','select[name="val"]',function(){
+			$('#aiHelp').click();
 		});
 	},
 
@@ -548,6 +555,8 @@ var select = {
 		this.hangueChg();
 		// 自主选择
 		this.toSelf();
+		// 自动搜索
+		this.autoSearch();
 	}
 }
 

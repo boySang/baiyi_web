@@ -61,19 +61,19 @@
 		</div> -->
 		<div class="tabMain">
 			<div class="mainList clearfix">
-				<form id="ipsearch">
-					<input type="text" class="input-text l" name="keywords" placeholder="输入商标名称" />
+				<form id="ipsearch" method="get" action="__CONTROLLER__/ipresult">
+					<input type="text" class="input-text l" name="cxkey" placeholder="输入搜索关键字" />
 					<div class="ap-type l">
 						<div class="tit">
-							<span>近似查询</span>
-							<i class="iconfont icon-xiaosanjiao"></i>
-						</div>
-						<div class="list">
-							
+							<select name="cxtype">
+								<option value="2">商标名称</option>
+								<option value="1">注册号</option>
+								<option value="3">申请人</option>
+							</select>
 						</div>
 					</div>
 					<div class="ap-submit r">
-						<a href="javascript:;" id="createNode">商标查询</a>
+						<a href="javascript:$('#ipsearch').submit();" id="createNode">商标查询</a>
 					</div>
 				</form>
 			</div>
@@ -81,8 +81,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-
-
 
 </script>
 </body>

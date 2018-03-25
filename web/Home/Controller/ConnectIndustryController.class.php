@@ -1,8 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
+use Home\Controller\LayoutController;
 use Org\Util\Baitu;
-class ConnectIndustryController extends Controller {
+class ConnectIndustryController extends LayoutController {
 
 	public function aiplan(){
 		$m = D('ConnectIndustry');
@@ -38,6 +38,10 @@ class ConnectIndustryController extends Controller {
 		$this->display();
 	}
 
+	// 接受post数据并处理
+	public function ipresult(){
+		$this->display();
+	}
 
     // 用户自助选择商品项后，确认的页面
     public function zizhu_confirm(){
@@ -93,10 +97,10 @@ class ConnectIndustryController extends Controller {
     	$cxtype = I('post.cxtype')?I('post.cxtype'):2;
     	$pagesize = I('post.pagesize')?I('post.pagesize'):15;
     	$pageno = I('post.pageno')?I('post.pageno'):1;
-    	if($cxkey == '' || $cxcls == '' || $cxtype == '' || $pagesize == ''){
-    		echo returnApi(201,'参数错误');
-    		return false;
-    	}
+    	// if($cxkey == '' || $cxtype == '' || $pagesize == ''){
+    	// 	echo returnApi(201,'参数错误');
+    	// 	return false;
+    	// }
     	$m = new Baitu();
     	$r = $m->getTrademarkInquiries($cxkey,$cxcls,$cxtype,$pagesize,$pageno);
     	echo $_r;

@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class ExpertsWendaController extends Controller {
+use Home\Controller\LayoutController;
+class ExpertsWendaController extends LayoutController {
 
 
 

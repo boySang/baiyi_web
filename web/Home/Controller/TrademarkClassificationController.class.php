@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
-class TrademarkClassificationController extends Controller {
+use Home\Controller\LayoutController;
+class TrademarkClassificationController extends LayoutController {
 
 
 

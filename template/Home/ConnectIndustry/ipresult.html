@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="kaywords" content="关键字">
+	<title>商标智能方案</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_v8h0a0rkn3rtfbt9.css">
+    <!-- 有字库 -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
+    <!-- 有字库 end -->
+    <!-- jquery-cookie -->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- jquery-cookie end -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <!-- bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap end -->
+    <!-- jquery-confirm -->
+    <link href="https://cdn.bootcss.com/jquery-confirm/1.7.3/jquery-confirm.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery-confirm/1.7.3/jquery-confirm.min.js"></script>
+    <!-- jquery-confirm end -->
+</head>
+<body class="aiplan">
+
+
+<div class="full commen-header">
+	<div class="quick-nav wid1200 clearfix">
+		<div class="r app">
+			<span>移动应用</span>
+			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
+		</div>
+		<div class="r reg">
+			<span>注册</span>
+			<ul>
+				<li>个人注册</li>
+				<li>企业注册</li>
+			</ul>
+		</div>
+		<div class="r login">登录</div>
+		<div class="r phone">客服电话：40000000000</div>
+	</div>
+</div>
+
+<div class="pub-header wid1200 clearfix">
+	<div class="logo-header clearfix">
+		<div class="logo l">
+			<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+		</div>
+	</div>
+	<div class="pub-navs clearfix">
+		<div class="quick-link r">
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">申请系统</a>
+			<a href="javascript:void(0);">方案系统</a>
+			<a href="javascript:void(0);">商标在线管理</a>
+			<a href="javascript:void(0);">专家库</a>
+		</div>
+	</div>
+</div>
+
+<div class="search-box">
+	<div class="bigtit">
+		<span>商标检索</span>
+	</div>
+	<div class="ap-search">
+		<div class="tabMain">
+			<div class="mainList clearfix">
+				<form id="ipsearch">
+					<input type="text" class="input-text l" name="cxkey" placeholder="输入搜索关键字" value="<?php echo I('get.cxkey'); ?>" />
+					<div class="ap-type l">
+						<div class="tit">
+							<select name="cxtype">
+								<option value="2" <?php if(I('get.cxtype') == 2) echo 'selected'; ?> >商标名称</option>
+								<option value="1" <?php if(I('get.cxtype') == 1) echo 'selected'; ?> >注册号</option>
+								<option value="3" <?php if(I('get.cxtype') == 3) echo 'selected'; ?> >申请人</option>
+							</select>
+						</div>
+					</div>
+					<div class="ap-submit r" onclick="select.init(1);">
+						<a href="javascript:;" id="createNode">商标查询</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="wid1200 onekeybox">
+	<div class="total">检索到近似商标（<font color="red" id="jgnumber">40</font>）件</div>
+	<div class="boxs clearfix">
+		<div class="list-box" id="getResults"></div>
+		<div class="page"></div>
+		<br />
+		<br />
+		<br />
+	</div>
+</div>
+
+<div class="full">
+	<div class="wid1200 bor_top_1px">
+		<div class="footer text-c">
+			<p>备案信息</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+
+// $.cookie('val',null);
+
+$(function(){
+
+	select.load();
+
+});
+
+var select = {
+
+	init : function(pageno = 1){
+		$('#getResults').html('<div class="loading"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading"></div>');
+		$.post('__CONTROLLER__/getTrademarkInquiries',{
+			'cxkey':$('input[name="cxkey"]').val(),
+			'cxtype':$('select[name="cxtype"]').val(),
+			'pagesize':15,
+			'pageno':pageno
+		},function(data){
+			// console.log(data);
+			data = JSON.parse(data);
+			console.log(data);
+			var html = '';
+			if(data.jgcode == 0){
+				$(data.jgdata).each(function(k,v){
+					html += '<div class="list clearfix"><div class="imgs l"><a href="javascript:;"><img src="'+v.tmimage+'" /></a></div><div class="info r clearfix"><p>商标名称：'+v.tmname+'</p><p><span>注册号：'+v.tmcode+'</span><span>申请人：'+v.appname+'</span><span>类别：'+v.intcls+'类</span></p><p><span>申请时间：'+v.appdate+'</span><span>注册时间：'+v.zcdate+'</span><span>最新状态：'+v.tmlaw+'</span></p><p class="r"><a href="javascript:void(0);" data-regno="'+v.regno+'" data-tmname="'+v.tmname+'" data-intcls="'+v.intcls+'" target="_blank" class="readmore">详细信息</a><a href="javascript:;">添加管理</a></p></div></div>';
+				});
+				$('#jgnumber').text(data.jgnumber);
+			}else{
+				html = '<div class="nulls"><small>'+data.jgmemo+'</small></div>';
+			}
+			$('#getResults').html(html);
+			// 分页
+			var prev = (pageno-1) <= 0?1:(pageno-1);
+			var next = pageno+1;
+			var lastpage = Math.ceil(data.jgnumber/15);
+			if((data.jgnumber-pageno*15) >0){
+				var html2 = '<a href="javascript:select.init(1);">首页</a><a href="javascript:select.init('+prev+');">上一页</a><a href="javascript:select.init('+next+');">下一页</a><a href="javascript:select.init('+lastpage+');">尾页</a>';
+				$('.boxs .page').html(html2);
+			}else{
+
+			}
+		});
+	},
+
+	// 阅读某个商标的详细信息
+	readmore : function(){
+		$('body').on('click','.list .readmore',function(){
+			var that = $(this);
+			layer.open({
+				type: 2,
+				title: '【'+that.attr('data-tmname')+'】_商标详情',
+				shadeClose: true,
+				shade: 0.8,
+				area: ['850px', '90%'],
+				content: '__CONTROLLER__/readmore/regno/'+that.attr('data-regno')+'/intcls/'+that.attr('data-intcls') //iframe的url
+			}); 
+		});
+	},
+
+	load : function(){
+		// 加载页面的时候查询接口
+		this.init();
+		// 阅读某个商标的详细信息
+		this.readmore();
+	}
+}
+
+</script>
+</body>
+</html>

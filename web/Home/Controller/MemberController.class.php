@@ -1,8 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
+use Home\Controller\LayoutController;
 
-class MemberController extends Controller {
+class MemberController extends LayoutController {
 
 	public function index(){
 		$this->display();

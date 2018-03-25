@@ -1,8 +1,8 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
+use Home\Controller\LayoutController;
 
-class OrderDetailController extends Controller {
+class OrderDetailController extends LayoutController {
 
 	public function getOrderList(){
 		header('Content-type:text/json');
