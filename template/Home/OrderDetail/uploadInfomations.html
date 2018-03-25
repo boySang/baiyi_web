@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>{$web_name}</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.css">
+    <script type="text/javascript" src="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.js"></script>
+    <style type="text/css">
+	    .icon {
+	       width: 1em; height: 1em;
+	       vertical-align: -0.15em;
+	       fill: currentColor;
+	       overflow: hidden;
+	    }
+	</style>
+</head>
+<body>
+
+<div class="full commen-header">
+	<div class="quick-nav wid1200 clearfix">
+		<div class="r app">
+			<span>移动应用</span>
+			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
+		</div>
+		<div class="r reg">
+			<span onclick="window.location.href='__MODULE__/Member/reg'">注册</span>
+			<!-- <ul>
+				<li>个人注册</li>
+				<li>企业注册</li>
+			</ul> -->
+		</div>
+		<div onclick="window.location.href='__MODULE__/Member/login'" class="r login">登录</div>
+		<div class="r phone">客服电话：40000000000</div>
+	</div>
+</div>
+
+<div class="pub-header wid1200 clearfix">
+	<div class="logo-header clearfix">
+		<div class="logo l">
+			<a href="javascript:void(0);"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+		</div>
+	</div>
+	<div class="pub-navs clearfix">
+		<div class="navs-list l text-c">
+			<h4>全部服务分类</h4>
+			<div class="nav-box hide">
+				<foreach name="layoutdata.menu" key="k" item="v">
+					<div class="out">
+						<div class="tit"><a href="{$v.url}">{$v.title}</a></div>
+						<div class="sometit clearfix">
+							<foreach name="v.goods_limit" item="v1">
+								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+							</foreach>
+						</div>
+						<?php if($k == 0){
+							$top = '-1px';
+						} elseif($k == 1){
+							$top = '-86px';
+						} elseif($k == 2){
+							$top = '-171px';
+						} elseif($k == 3){
+							$top = '-238px';
+						} elseif($k == 4){
+							$top = '-341px';
+						}
+						?>
+						<div class="hidecate clearfix" style="top:{$top};">
+							<foreach name="v.goods" item="v1">
+								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+							</foreach>
+						</div>
+					</div>
+				</foreach>
+			</div>
+		</div>
+		<div class="quick-link r">
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">申请系统</a>
+			<a href="javascript:void(0);">方案系统</a>
+			<a href="javascript:void(0);">商标在线管理</a>
+			<a href="__MODULE__/ExpertsWenda/index" target="_blank">专家库</a>
+		</div>
+	</div>
+</div>
+
+<div class="uploinfo">
+	<div class="bg1"><img src="__PUBLIC__/home/img/infobg1.jpg"></div>
+	<div class="infoTop">
+		<div class="list clearfix">
+			<div class="tit l">商标名称：</div>
+			<div class="vals l"><input type="text" name="" placeholder="商标名称"></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">商标类型：</div>
+			<div class="vals l">
+				<label for="thetext">
+					<input type="radio" name="type" id="thetext">文字
+				</label>
+				<label for="thepic">
+					<input type="radio" name="type" id="thepic">图形
+				</label>
+				<label for="thetextpic">
+					<input type="radio" name="type" id="thetextpic">文字图形组合
+				</label>
+			</div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">商标图样：</div>
+			<div class="vals l">
+				<label for="kehu">
+					<input type="radio" name="upload_by" id="kehu">本地上传
+				</label>
+				<label for="program">
+					<input type="radio" name="upload_by" id="program">自动生成
+				</label>
+			</div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">商标颜色：</div>
+			<div class="vals l">
+				<label for="kehu">
+					<input type="radio" name="upload_by" id="kehu">指定颜色（彩色申请）
+				</label>
+				<label for="program">
+					<input type="radio" name="upload_by" id="program">不指定颜色（黑白色申请）
+				</label>
+			</div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l"><br /></div>
+			<div class="vals l clearfix">
+				<div class="color yes l mar_r_20">
+					<i class="iconfont icon-icon--"></i>
+					<input type="file" name="img">
+					<p><small>彩色图样</small></p>
+					<p><small>100K--200k</small></p>	
+				</div>
+				<div class="color no l">
+					<i class="iconfont icon-icon--"></i>
+					<input type="file" name="img">
+					<p><small>彩色图样</small></p>
+					<p><small>100K--200k</small></p>	
+				</div>
+				<p class="l tips"><small>这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字</small></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="wid1200" style="border-top:1px solid #ddd;"></div>
+
+<div class="uploinfo">
+	<div class="bg1"><img src="__PUBLIC__/home/img/infobg2.jpg"></div>
+	<div class="infoTop">
+		<div class="list clearfix">
+			<div class="tit l">申请人类型：</div>
+			<div class="vals l">
+				<span data-type="1">企业</span>
+				<span data-type="2">个人</span>
+			</div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">个人姓名：</div>
+			<div class="vals l"><input type="text" name="" placeholder=""></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">个体执照地址：</div>
+			<div class="vals l"><input type="text" name="" placeholder=""></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">邮政编码：</div>
+			<div class="vals l"><input type="text" name="" placeholder=""></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">申请联系人：</div>
+			<div class="vals l"><input type="text" name="" placeholder=""></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">联系电话：</div>
+			<div class="vals l"><input type="text" name="" placeholder=""></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">电子邮箱：</div>
+			<div class="vals l"><input type="text" name="" placeholder=""></div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l">上传申请材料：</div>
+			<div class="vals l clearfix">
+				<div class="outbox l mar_r_20">
+					<div class="color yes l">
+						<i class="iconfont icon-icon--"></i>
+						<input type="file" name="img">
+						<p><small>身份证正反面复印件</small></p>
+						<p><small>（需签字）</small></p>	
+					</div>
+					<a class="readex" href="">查看范本</a>
+				</div>
+				<div class="outbox l">
+					<div class="color no l">
+						<i class="iconfont icon-icon--"></i>
+						<input type="file" name="img">
+						<p><small>个体工商户执照复印件</small></p>
+						<p><small>（需签字）</small></p>	
+					</div>
+					<a class="readex" href="">查看范本</a>
+				</div>
+			</div>
+		</div>
+		<div class="list clearfix">
+			<div class="tit l"><br /></div>
+			<div class="vals l clearfix">
+				<div class="outbox l mar_r_20">
+					<div class="color yes l">
+						<i class="iconfont icon-icon--"></i>
+						<input type="file" name="img">
+						<p><small>商标代理委托书</small></p>
+						<p><small>（需签字）</small></p>	
+					</div>
+					<a class="readex" href="">查看范本</a>
+				</div>
+				<div class="outbox l">
+					<div class="color no l">
+						<i class="iconfont icon-icon--"></i>
+						<input type="file" name="img">
+						<p><small>其他文件</small></p>
+						<p><small>（如需）</small></p>	
+					</div>
+					<a class="readex" href="">查看范本</a>
+				</div>
+				<div class="href l">
+					<a href="">查看范本</a>
+					<a href="">下载委托书模板</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="next">
+		<a href="">上一步</a>
+		<a href="__MODULE__/Member/index">下一步</a>
+	</div>	
+</div>
+
+<div class="full">
+	<div class="wid1200 bor_top_1px">
+		<div class="footer text-c">
+			<p>备案信息</p>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
