@@ -19,7 +19,7 @@
     <div class="rightinfo">
         <div class="tools">
             <ul class="toolbar">
-                <li class="click"><a href="__CONTROLLER__/add"><span><img src="__PUBLIC__/admin/img/t01.png" /></span>添加属性</a></li>
+                <li class="click" onclick="window.location.href='__CONTROLLER__/add'"><a href="javascript:;"><span><img src="__PUBLIC__/admin/img/t01.png" /></span>添加国家</a></li>
                 <!-- <li class="click"><span><img src="__PUBLIC__/admin/img/t02.png" /></span>修改</li>
                 <li><span><img src="__PUBLIC__/admin/img/t03.png" /></span>删除</li> -->
                 <!-- <li><span><img src="__PUBLIC__/admin/img/t04.png" /></span>统计</li> -->
@@ -40,14 +40,17 @@
                 </tr>
             </thead>
             <tbody>
-                <foreach name="data.data" item="attr">
+                <foreach name="data.data" item="v">
                 <tr>
-                    <td>{$attr.name}</td>
-                    <td>{$attr.val}<a href="__MODULE__/OptAttrVal/add/attr_id/{$attr.id}" class="btn-s-primary">+ 继续添加</a></td>
+                    <td>{$v.title}</td>
+                    <td>{$v.continent}</td>
+                    <td class="madeli" data-is_madeli="{$v.is_madeli}"></td>
+                    <td class="danduguojia" data-is_danduguojia="{$v.is_danduguojia}"></td>
+                    <td class="oumeng" data-is_oumeng="{$v.is_oumeng}"></td>
                     <td>
-                        <a href="__MODULE__/OptAttrVal/show/attr_id/{$attr.id}" class="btn-s-primary">修改属性值</a>
-                        <a href="__CONTROLLER__/update/id/{$attr.id}" class="tablelink">修改</a>
-                        <a href="__CONTROLLER__/del/id/{$attr.id}" class="tablelink"> 删除</a></td>
+                        <a href="">{$v.state}</a>
+                        <a href="__CONTROLLER__/update/id/{$v.id}" class="tablelink">修改</a>
+                        <a href="__CONTROLLER__/del/id/{$v.id}" class="tablelink"> 删除</a></td>
                 </tr>
                 </foreach>
             </tbody>

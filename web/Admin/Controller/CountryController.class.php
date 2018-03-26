@@ -18,7 +18,11 @@ class CountryController extends Controller {
 
 
 	public function show(){
-
+		$m = D('Country');
+		$d = $m->getAll();
+		$this->assign(array(
+			'data'		=>		$d,
+		));
 		$this->display(); 
 	}
 }
