@@ -18,7 +18,7 @@
     <!-- index -->
     <link rel="stylesheet" type="text/css" href="/dist/home/css/index.css">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_o6lwqkqmskp22o6r.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_lws9ecwsdsll3di.css">
     <!-- 有字库 -->
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
     <!-- 有字库 end -->
@@ -63,6 +63,65 @@
 			<a href=""><i class="iconfont icon-sousuo"></i></a>
 		</div>
 	</div>
+	<div class="countryBox clearfix">
+		<div class="result l">
+			<div class="tit"><span>选择列表</span></div>
+			<div class="totalnum">
+				<p class="countryNums">已选国家（<font color="#ff6812">6</font>）个</p>
+				<p class="goodsTypeNums">已选类别（<font color="#ff6812">6</font>）个</p>
+			</div>
+			<div class="selectCountry clearfix">
+				<span class="list l">中国<i class="iconfont icon-shanchu4"></i></span>
+				<span class="list l">中国<i class="iconfont icon-shanchu4"></i></span>
+				<span class="list l">中国<i class="iconfont icon-shanchu4"></i></span>
+				<span class="list l">中国<i class="iconfont icon-shanchu4"></i></span>
+				<span class="list l">中国<i class="iconfont icon-shanchu4"></i></span>
+				<span class="list l">中国<i class="iconfont icon-shanchu4"></i></span>
+			</div>
+			<div class="selectType" id="selectType"><span>选择类别</span></div>
+			<div class="typeList" id="typeList">
+				<div class="typeListInner">
+					<font color="#ff6812">已选：</font>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+					<span data-cid="" data-name="" data-id="">01 石油<i class="iconfont icon-shanchu4"></i></span>
+				</div>
+			</div>
+			<div class="applyType">
+				<div class="type" data-id="1">彩色申请<i class="iconfont icon-circle"></i></div>
+				<div class="type cur" data-id="2">黑白申请<i class="iconfont icon-circle"></i></div>
+			</div>
+		</div>
+		<div class="countryList r">
+
+			<div class="list">
+				<div class="continent">亚洲</div>
+				<div class="az" id="az">
+					<span data-az="a">A</span>
+					<span data-az="b">B</span>
+					<span data-az="c">C</span>
+					<span data-az="d">D</span>
+				</div>
+				<div class="countryList">
+					<div class="listInner clearfix">
+						<div class="labelbox"><label><input type="checkbox" name="country" data-id="1" data-firstletter="a"> 阿萨克斯坦</label></div>
+						<div class="labelbox"><label><input type="checkbox" name="country" data-id="2" data-firstletter="b"> 阿萨克斯坦</label></div>
+						<div class="labelbox"><label><input type="checkbox" name="country" data-id="3" data-firstletter="c"> 阿萨克斯坦</label></div>
+						<div class="labelbox"><label><input type="checkbox" name="country" data-id="4" data-firstletter="d"> 阿萨克斯坦</label></div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
 </div>
 
 
@@ -71,6 +130,36 @@
 
 <script type="text/javascript">
 
+$(function(){
+	index.load();
+});
+
+var index = {
+
+	focusCountry : function(){
+		$('body').on('mouseover','#az span',function(){
+			var that = $(this);
+			$('#az span').removeClass('cur');
+			that.addClass('cur');
+			var az = that.attr('data-az');
+			var countryList = that.parent().parent().find('.countryList .listInner .labelbox');
+			countryList.removeClass('bgff6812');
+			countryList.each(function(k,v){
+				var thats = $(this);
+				if(thats.find('input').attr('data-firstletter') == az){
+					thats.addClass('bgff6812');
+				}
+			});
+		});
+	},
+
+	load : function(){
+
+		// 选中大写字母后给对应开头为该字母的国家标色
+		this.focusCountry();
+
+	}
+}
 
 </script>
 </body>
