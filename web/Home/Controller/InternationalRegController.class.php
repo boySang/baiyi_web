@@ -5,7 +5,7 @@ class InternationalRegController extends LayoutController {
 
 
 
-	public function danduguojia(){
+	public function madeli(){
 		$this->display();
 	}
 
