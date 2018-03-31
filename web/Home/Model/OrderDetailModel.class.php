@@ -21,6 +21,11 @@ class OrderDetailModel extends Model{
 		return $d;
 	}
 
+	public function getGoodsName($uniquenum){
+		$d = $this->field('goods_name')->where('uniquenum="%s"',$uniquenum)->find();
+		return $d['goods_name'];
+	}
+
 	public function getOrderList(){
 		$state = I('get.state','','htmlspecialchars');
 		$page = I('get.page')>0?(I('get.page')-1)*10:0;

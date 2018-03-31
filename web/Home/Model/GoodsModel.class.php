@@ -13,8 +13,8 @@ class GoodsModel extends Model{
 		return $d;
 	}
 
-	public function getGoodsToHome($cate_id){
-		$d = $this->field('goods_id,goods_name,goods_tips_home,goods_thumb,iconfont,goods_default_price')->where('cate_id=%d AND is_on_sale=1',$cate_id)->order('home_order DESC')->limit(6)->select();
+	public function getGoodsToHome($cate_id,$limit=6){
+		$d = $this->field('goods_id,goods_name,goods_tips_home,goods_thumb,iconfont,goods_default_price')->where('cate_id=%d AND is_on_sale=1',$cate_id)->order('home_order DESC')->limit($limit)->select();
 		if($d){
 			foreach($d as $k=>$v){
 				$d[$k]['goods_thumb'] = getImgOne($v['goods_thumb']);
@@ -31,7 +31,7 @@ class GoodsModel extends Model{
 		}elseif($toplace == 'cateIndex'){
 			$field = 'goods_id,goods_name,goods_default_price,goods_tips_home';
 		}
-		$d = $this->field($field)->where('cate_id=%d',$cate_id)->select();
+		$d = $this->field($field)->where('cate_id=%d',$cate_id)->order('goods_id ASC')->select();
 		if($d){
 			foreach($d as $k=>$v){
 				$d[$k]['url'] = geturl('goods',$v['goods_id']);

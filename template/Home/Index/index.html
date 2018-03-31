@@ -18,8 +18,10 @@
     <!-- index -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.css">
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_kcnsadcr8qhkhuxr.css">
     <script type="text/javascript" src="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.js"></script>
+    <!-- css字体 -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/19382/5abf8184f629d90fa8a8ebe3.css' rel='stylesheet' type='text/css' />
     <style type="text/css">
 	    .icon {
 	       width: 1em; height: 1em;
@@ -76,7 +78,7 @@
 						} elseif($k == 3){
 							$top = '-238px';
 						} elseif($k == 4){
-							$top = '-341px';
+							$top = '-323px';
 						}
 						?>
 						<div class="hidecate clearfix" style="top:{$top};">
@@ -100,9 +102,14 @@
 
 <div class="banner text-c">
 	<ul>
-		<a href="javascript:void(0);" title=""><li style="background:url('__PUBLIC__/home/img/banner1.jpg') center center no-repeat;">1</li></a>
-		<a href="javascript:void(0);" title=""><li style="background:url('__PUBLIC__/home/img/banner1.jpg') center center no-repeat;">1</li></a>
-		<a href="javascript:void(0);" title=""><li style="background:url('__PUBLIC__/home/img/banner1.jpg') center center no-repeat;">1</li></a>
+		<li style="background:url('__PUBLIC__/home/img/banner1.png') center 106px no-repeat;">
+			<div class="quick-links">
+				<span>知识产权<br /><small>在线申请</small></span>
+				<a href="#shangbiao" class="shangbiao">商标</a>
+				<a href="#zhuanli" class="zhuanli">专利</a>
+				<a href="#banquan" class="banquan">版权</a>
+			</div>
+		</li>
 	</ul>
 </div>
 
@@ -129,7 +136,7 @@
 	</div>
 </div>
 
-<div class="full bgcolor_dee9ed">
+<div class="full" id="shangbiao">
 	<div class="wid1200">
 		<div class="china trademark_online">
 			<div class="big-title text-c">
@@ -162,7 +169,7 @@
 						<div class="img-out-box"><img src="__PUBLIC__/home/img/eg4.jpg"></div>
 					</div>
 					<div class="list-inner mid">
-						<div class="img-out-box"><img src="__PUBLIC__/home/img/eg4.jpg"></div>
+						<div class="img-out-box"><img src="__PUBLIC__/home/img/eg42.jpg"></div>
 					</div>
 				</div>
 				<div class="bot-list clearfix">
@@ -171,9 +178,7 @@
 						<div class="info-product">
 							<a href="{$v.url}" title="立即申请">
 							<div class="pic"><!-- <img src="{$v.goods_thumb}" /> -->
-								<svg class="icon" aria-hidden="true">
-								    <use xlink:href="#{$v.iconfont}"></use>
-								</svg>
+								<i class="iconfont {$v.iconfont}"></i>
 							</div>
 							<h5 class="tit">{$v.goods_name}</h5>
 							<span class="price">{$v.goods_default_price}元</span>
@@ -200,9 +205,10 @@
 </div>
 
 <div class="full" style="background:#141e20;">
-	<div class="wid1200 home-ads1">
+	<div class="wid1200 home-ads1" style="background:url('__PUBLIC__/home/img/bannerbg.jpg') center center no-repeat;">
 		<a href="javascript:void(0);">
-			<img src="./dist/home/img/bannerbg.jpg">
+			<h3 class="css11213b372a1734b">国际商标在线申请</h3>
+			<span>选择国家</span>	<span>快速预算</span>	
 		</a>
 	</div>
 </div>
@@ -228,9 +234,9 @@
 					</a>
 				</div>
 				<div class="list">
-					<a href="javascript:void(0);" title="美国注册">
-						<img src="__PUBLIC__/home/img/eg3.jpg">
-						<span class="tit">美国注册</span>
+					<a href="javascript:void(0);" title="欧盟注册">
+						<img src="__PUBLIC__/home/img/oumeng_home.png">
+						<span class="tit">欧盟注册</span>
 					</a>
 				</div>
 			</div>
@@ -238,7 +244,7 @@
 	</div>
 </div>
 
-<div class="full bgcolor_3baaf2">
+<div class="full bgcolor_3baaf2" id="zhuanli">
 	<div class="wid1200">
 		<div class="patent_online text-c">
 			<div class="big-title">
@@ -247,6 +253,30 @@
 			</div>
 			<div class="parent-list clearfix">
 				<foreach name="data.Patent" item="v">
+					<div class="sm list-inner text-c">
+						<div class="info-product">
+							<a href="{$v.url}" title="{$v.goods_name}">
+								<div class="pic">
+									<i class="iconfont {$v.iconfont}"></i>
+								</div>
+								<h5 class="tit">{$v.goods_name}</h5>
+								<span class="price">{$v.goods_default_price}元</span>
+							</a>
+						</div>
+					</div>
+				</foreach>
+				<div class="sm list-inner text-c">
+					<div class="info-product">
+						<a href="/Goods/detail/id/41.html" title="专利转让">
+							<div class="pic">
+								<i class="iconfont icon-zhuanlizhuanrang"></i>
+							</div>
+							<h5 class="tit">专利国际申请</h5>
+							<span class="price">0.00元</span>
+						</a>
+					</div>
+				</div>
+				<!-- <foreach name="data.Patent" item="v">
 				<a href="{$v.url}" title="{$v.goods_name}" target="_blank">
 					<div class="list-inner">
 						<h6 class="tit">{$v.goods_name}</h6>
@@ -254,7 +284,7 @@
 						<i class="iconfont icon-xiasanjiao"></i>
 					</div>
 				</a>
-				</foreach>
+				</foreach> -->
 			</div>
 			<div class="more text-c">
 				<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>
@@ -263,7 +293,7 @@
 	</div>
 </div>
 
-<div class="full">
+<div class="full" id="banquan">
 	<div class="wid1200">
 		<div class="copyright_online text-c">
 			<div class="big-title">
@@ -293,12 +323,30 @@
 	</div>
 </div>
 
-<div class="full">
-	<div class="wid1200 bor_top_1px">
+<div class="full bgcolor_687485">
+	<div class="wid1200">
 		<div class="footer text-c">
-			<p>备案信息</p>
+			<div class="inner clearfix">
+				<div class="l info">
+					<p>地址：上海市徐汇区桂平路410号漕河泾国际孵化中心一楼</p>
+					<p>电话：021-64878081</p>
+					<p>传真：021-64878023</p>
+					<p>邮箱：foridom@foridom.com</p>
+				</div>
+				<div class="r email">
+					<p>订阅我们的资讯</p>
+					<div class="emailbox">
+						<input type="text" name="footermail" placeholder="Enter your email" class="entermail">
+						<i class="iconfont icon-youxiang"></i>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+</div>
+
+<div class="bgcolor_454d59 full">
+	<span class="footerbottom">版权所有 2016百一知识产权 All Rights Reserved 沪ICP备06010536号</span>
 </div>
 
 <style type="text/css">

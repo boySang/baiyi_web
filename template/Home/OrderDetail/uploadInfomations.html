@@ -20,6 +20,7 @@
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.css">
     <script type="text/javascript" src="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
     <style type="text/css">
 	    .icon {
 	       width: 1em; height: 1em;
@@ -103,19 +104,19 @@
 	<div class="infoTop">
 		<div class="list clearfix">
 			<div class="tit l">商标名称：</div>
-			<div class="vals l"><input type="text" name="" placeholder="商标名称"></div>
+			<div class="vals l"><input type="text" name="goods_name" value="{$goods_name}" placeholder="商标名称"></div>
 		</div>
 		<div class="list clearfix">
 			<div class="tit l">商标类型：</div>
 			<div class="vals l">
 				<label for="thetext">
-					<input type="radio" name="type" id="thetext">文字
+					<input type="radio" name="trademark_type" id="thetext">文字
 				</label>
 				<label for="thepic">
-					<input type="radio" name="type" id="thepic">图形
+					<input type="radio" name="trademark_type" id="thepic">图形
 				</label>
 				<label for="thetextpic">
-					<input type="radio" name="type" id="thetextpic">文字图形组合
+					<input type="radio" name="trademark_type" id="thetextpic">文字图形组合
 				</label>
 			</div>
 		</div>
@@ -134,10 +135,10 @@
 			<div class="tit l">商标颜色：</div>
 			<div class="vals l">
 				<label for="kehu">
-					<input type="radio" name="upload_by" id="kehu">指定颜色（彩色申请）
+					<input type="radio" name="trademark_color" id="kehu">指定颜色（彩色申请）
 				</label>
 				<label for="program">
-					<input type="radio" name="upload_by" id="program">不指定颜色（黑白色申请）
+					<input type="radio" name="trademark_color" id="program">不指定颜色（黑白色申请）
 				</label>
 			</div>
 		</div>
@@ -262,6 +263,13 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	
+$(function(){
+});
+
+</script>
 
 </body>
 </html>
