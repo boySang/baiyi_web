@@ -68,35 +68,7 @@
         <div class="pub-navs clearfix">
             <div class="navs-list l text-c">
                 <h4>全部服务分类</h4>
-                <div class="nav-box hide">
-                <foreach name="layoutdata.menu" key="k" item="v">
-                    <div class="out">
-                        <div class="tit"><a href="{$v.url}">{$v.title}</a></div>
-                        <div class="sometit clearfix">
-                            <foreach name="v.goods_limit" item="v1">
-                                <a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
-                            </foreach>
-                        </div>
-                        <?php if($k == 0){
-                            $top = '-1px';
-                        } elseif($k == 1){
-                            $top = '-86px';
-                        } elseif($k == 2){
-                            $top = '-171px';
-                        } elseif($k == 3){
-                            $top = '-238px';
-                        } elseif($k == 4){
-                            $top = '-323px';
-                        }
-                        ?>
-                        <div class="hidecate clearfix" style="top:{$top};">
-                            <foreach name="v.goods" item="v1">
-                                <a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
-                            </foreach>
-                        </div>
-                    </div>
-                </foreach>
-            </div>
+                <div class="nav-box hide"></div>
             </div>
             <div class="quick-link r">
                 <a href="#">首页</a>
@@ -192,7 +164,7 @@
 var car = {
     chk : function(){
         $.post('__MODULE__/OrderDetail/creat_order',$('#toCar').serialize(),function(data){
-            // console.log(data);
+            console.log(data);
             if(data.state == 200){
                 window.location.href=data.url;
             }else{

@@ -31,6 +31,7 @@
     <div class="formbody">
         <form id="add-form">
             <input type="hidden" name="prev_url" value="<?php echo PREV_URL; ?>">
+            <input type="hidden" name="goods_content">
             <div id="tab1" class="tabson">
                 <ul class="forminfo">
                     <li>
@@ -94,13 +95,15 @@
 </body>
 <script type="text/javascript">
 
+var E = window.wangEditor
+var editor = new E('#editor')
+// 或者 var editor = new E( document.getElementById('editor') )
+editor.customConfig.uploadImgShowBase64 = true   // 使用 base64 保存图片
+editor.create()
+
 $(function(){
     productAddAction.load();
-
-    var E = window.wangEditor
-    var editor = new E('#editor')
-    // 或者 var editor = new E( document.getElementById('editor') )
-    editor.create()
+    
 });
 
 var productAddAction = {
@@ -157,6 +160,7 @@ var productAddAction = {
 
     submit : function(){
         $('body').on('click','#submit',function(){
+            $('input[name="goods_content"]').val(editor.txt.html());
             $.post('__CONTROLLER__/ajaxAdd',$('#add-form').serialize(),function(data){
                 console.log(data);
             });

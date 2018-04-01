@@ -27,7 +27,7 @@ class MemberModel extends Model{
 	}
 
 	public function ajaxLogin(){
-		$d = $this->field('uniqid,nickname,face,state')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
+		$d = $this->field('uniqid,face,state,phone')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
 		if(!$d['uniqid']){
 			return returnApi(202,'账号或密码不正确!');
 		}
@@ -35,13 +35,34 @@ class MemberModel extends Model{
 			return returnApi(202,'该用户禁止登陆系统，请联系客服!');
 		}
 		setcookie("uniqid",$d['uniqid'], time()+2592000,'/');
-		setcookie("nickname",$d['nickname'], time()+2592000,'/');
-		setcookie("face",$d['face'], time()+2592000,'/');
+		setcookie("phone",$d['phone'], time()+2592000,'/');
         session('uniqid',$d['uniqid']);
-        session('nickname',$d['nickname']);
-        session('face',$d['face']);
+        session('phone',$d['phone']);
         return returnApi(200,'登陆成功！','',U('Member/index'));
 	}
+
+
+    // 仅cookie存在
+    public function onlylogin(){
+    	if(cookie('uniqid') && cookie('phone')){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
+
+    // cookie存在,session存在
+    public function truelogin(){
+    	if(cookie('uniqid') && cookie('phone') && session('uniqid') && session('phone')){
+    		if((cookie('uniqid') === session('uniqid')) && (cookie('phone') === session('phone'))){
+    			return true;
+    		}else{
+    			return false;
+    		}
+    	}else{
+    		return false;
+    	}
+    }
 
 	public function chkPhone(){
 		$d = $this->where('phone="%s"',I('post.phone'))->find();

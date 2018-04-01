@@ -49,6 +49,10 @@ class ConnectIndustryController extends LayoutController {
     }
 
     public function confirm($id){
+    	$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			header('Location:'.U('Member/login'));
+		}
     	$orderDetailModel = D('OrderDetail');
     	$TrademarkClassificationModel = D('TrademarkClassification');
     	$orderDetailData = $orderDetailModel->getOneFromUniquenum($id);
@@ -75,6 +79,10 @@ class ConnectIndustryController extends LayoutController {
 
     // 选择付款方式
     public function confirm_ok($id){
+    	$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			header('Location:'.U('Member/login'));
+		}
     	$orderDetailModel = D('OrderDetail');
     	$data = $orderDetailModel->getOneFromUniquenum($id);
     	$data['addtime'] = date('Y-m-d',$data['addtime']);

@@ -23,7 +23,11 @@ class CategoryModel extends Model{
 					}
 				}
 			}
-			$d[$k]['url'] = geturl('category',$v['id']);
+			if($v['id'] == 5){
+				$d[$k]['url'] = 'javascript:;';
+			}else{
+				$d[$k]['url'] = geturl('category',$v['id']);
+			}
 		}
 		return $d;
 	}

@@ -33,7 +33,7 @@ class OrderDetailController extends LayoutController {
 			// echo returnApi(200,$temp);
 			// return false;
 			// 单买的时候
-			if(count(I('post.id')) <= 1){
+			if((count(I('post.id')) <= 1) && !is_array(I('post.id'))){
     			$orderDetail['uniquenum'] = $temp['uniquenum'];
 	    		$orderDetail['goods_id'] = $temp['goods_id'];
 	    		$orderDetail['goods_name'] = $temp['goods_name'];
@@ -64,6 +64,7 @@ class OrderDetailController extends LayoutController {
 	    	}else{
 	    		// 这里处理购物车中的物品
 	    		$orderDetail = array();
+	    		$orderDetail['total_price'] = 0;
 	    		foreach($temp['goods_id'] as $k=>$v){
 	    			$orderDetail['goods_name'] .= $temp['goods_name'][$k].'&nbsp;&nbsp;';
 	    			$orderDetail['total_price'] += ($temp['goods_num'][$k] * $temp['goods_price'][$k])*100;
@@ -122,6 +123,11 @@ class OrderDetailController extends LayoutController {
     // 自助选择商品类及商品项，创建订单
     public function order_create_zizhu(){
     	header('Content-type:text/json');
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			echo returnApi(222,'请先登录',U('Member/login'));
+			return false;
+		}
     	$keywords = I('post.keywords','','htmlspecialchars');
     	// $type = I('post.type','','htmlspecialchars');
     	// $val = I('post.val','','htmlspecialchars');
@@ -191,18 +197,22 @@ class OrderDetailController extends LayoutController {
 	}
 
 	public function uploadInfomations($id){
-		// $m = D('OrderDetail');
-		// $goods_name = $m->getGoodsName($id);
-		// $this->assign('goods_name',$goods_name);
-		// $this->display();
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			header('Location:'.U('Member/login'));
+		}
+		$m = D('OrderDetail');
+		$goods_name = $m->getGoodsName($id);
+		$this->assign('goods_name',$goods_name);
+		$this->display();
 
-		$Phone = 18907975647; #手机号码，具体从数据库怎么读出来，你自己写代码
-		$im    = imagecreate( 300, 30 );#建立一个宽 300， 高 30像素的图片对象
-		imagecolorallocate( $im, 255, 255, 255 );#将图片背景填充为白色
-		$Color = imagecolorallocate( $im, 0, 0, 0 ); #在生成一黑色色颜色，以便写入字符串
-		imagestring($im,16, 0, 0, $Phone, $Color);#将字符串写到图片上
-		header('content-type:image/*');//设置文件头为图片格式
-		imagepng( $im ); //输出一个png格式的图片
-		imagedestroy($im);//销毁图片对象
+		// $Phone = 18907975647; #手机号码，具体从数据库怎么读出来，你自己写代码
+		// $im    = imagecreate( 300, 30 );#建立一个宽 300， 高 30像素的图片对象
+		// imagecolorallocate( $im, 255, 255, 255 );#将图片背景填充为白色
+		// $Color = imagecolorallocate( $im, 0, 0, 0 ); #在生成一黑色色颜色，以便写入字符串
+		// imagestring($im,16, 0, 0, $Phone, $Color);#将字符串写到图片上
+		// header('content-type:image/*');//设置文件头为图片格式
+		// imagepng( $im ); //输出一个png格式的图片
+		// imagedestroy($im);//销毁图片对象
 	}
 }

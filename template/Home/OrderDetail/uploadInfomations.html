@@ -13,22 +13,8 @@
 	<meta name="description" content="描述">
 	<meta name="keywords" content="关键字">
 	<title>{$web_name}</title>
-	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
-    <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.css">
-    <script type="text/javascript" src="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.js"></script>
+    <include file='Public/meta' />
     <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-    <style type="text/css">
-	    .icon {
-	       width: 1em; height: 1em;
-	       vertical-align: -0.15em;
-	       fill: currentColor;
-	       overflow: hidden;
-	    }
-	</style>
 </head>
 <body>
 
@@ -256,13 +242,7 @@
 	</div>	
 </div>
 
-<div class="full">
-	<div class="wid1200 bor_top_1px">
-		<div class="footer text-c">
-			<p>备案信息</p>
-		</div>
-	</div>
-</div>
+<include file='Public:footer' />
 
 <script type="text/javascript">
 	

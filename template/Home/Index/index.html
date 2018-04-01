@@ -13,92 +13,13 @@
 	<meta name="description" content="描述">
 	<meta name="keywords" content="关键字">
 	<title>{$web_name}</title>
-	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
-    <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_kcnsadcr8qhkhuxr.css">
-    <script type="text/javascript" src="//at.alicdn.com/t/font_486719_l4a2o3612a35l8fr.js"></script>
-    <!-- css字体 -->
-    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/19382/5abf8184f629d90fa8a8ebe3.css' rel='stylesheet' type='text/css' />
-    <style type="text/css">
-	    .icon {
-	       width: 1em; height: 1em;
-	       vertical-align: -0.15em;
-	       fill: currentColor;
-	       overflow: hidden;
-	    }
-	</style>
+	<include file="Public:meta" />
+    <!-- css字体  -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/19382/5abfa052f629d90fa8a8ebee.css' rel='stylesheet' type='text/css' />
 </head>
 <body>
 
-<div class="full commen-header">
-	<div class="quick-nav wid1200 clearfix">
-		<div class="r app">
-			<span>移动应用</span>
-			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
-		</div>
-		<div class="r reg">
-			<span onclick="window.location.href='__MODULE__/Member/reg'">注册</span>
-			<!-- <ul>
-				<li>个人注册</li>
-				<li>企业注册</li>
-			</ul> -->
-		</div>
-		<div onclick="window.location.href='__MODULE__/Member/login'" class="r login">登录</div>
-		<div class="r phone">客服电话：40000000000</div>
-	</div>
-</div>
-
-<div class="pub-header wid1200 clearfix">
-	<div class="logo-header clearfix">
-		<div class="logo l">
-			<a href="javascript:void(0);"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
-		</div>
-	</div>
-	<div class="pub-navs clearfix">
-		<div class="navs-list l text-c">
-			<h4>全部服务分类</h4>
-			<div class="nav-box hide">
-				<foreach name="layoutdata.menu" key="k" item="v">
-					<div class="out">
-						<div class="tit"><a href="{$v.url}">{$v.title}</a></div>
-						<div class="sometit clearfix">
-							<foreach name="v.goods_limit" item="v1">
-								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
-							</foreach>
-						</div>
-						<?php if($k == 0){
-							$top = '-1px';
-						} elseif($k == 1){
-							$top = '-86px';
-						} elseif($k == 2){
-							$top = '-171px';
-						} elseif($k == 3){
-							$top = '-238px';
-						} elseif($k == 4){
-							$top = '-323px';
-						}
-						?>
-						<div class="hidecate clearfix" style="top:{$top};">
-							<foreach name="v.goods" item="v1">
-								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
-							</foreach>
-						</div>
-					</div>
-				</foreach>
-			</div>
-		</div>
-		<div class="quick-link r">
-			<a href="javascript:void(0);">首页</a>
-			<a href="javascript:void(0);">申请系统</a>
-			<a href="javascript:void(0);">方案系统</a>
-			<a href="javascript:void(0);">商标在线管理</a>
-			<a href="__MODULE__/ExpertsWenda/index" target="_blank">专家库</a>
-		</div>
-	</div>
-</div>
+<include file='Public:home_layout' />
 
 <div class="banner text-c">
 	<ul>
@@ -160,7 +81,7 @@
 			</div>
 			<div class="product_list clearfix mar_top_50">
 				<div class="top-list clearfix">
-					<a href="javascript:void(0);" title="">
+					<a href="/ConnectIndustry/aiplan" title="">
 						<div class="list-inner">
 							<div class="img-out-box"><img src="__PUBLIC__/home/img/eg1.jpg"></div>
 						</div>
@@ -198,7 +119,7 @@
 				</div>
 			</div>
 			<div class="more text-c">
-				<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>
+				<a href="/Category/index/id/1.html"><i class="iconfont icon-combinedshape"></i></a>
 			</div>
 		</div>
 	</div>
@@ -207,7 +128,7 @@
 <div class="full" style="background:#141e20;">
 	<div class="wid1200 home-ads1" style="background:url('__PUBLIC__/home/img/bannerbg.jpg') center center no-repeat;">
 		<a href="javascript:void(0);">
-			<h3 class="css11213b372a1734b">国际商标在线申请</h3>
+			<h3 class="css1121b38a631734b">国际商标注册预算</h3>
 			<span>选择国家</span>	<span>快速预算</span>	
 		</a>
 	</div>
@@ -269,7 +190,7 @@
 					<div class="info-product">
 						<a href="/Goods/detail/id/41.html" title="专利转让">
 							<div class="pic">
-								<i class="iconfont icon-zhuanlizhuanrang"></i>
+								<i class="iconfont icon-guojizhuanli"></i>
 							</div>
 							<h5 class="tit">专利国际申请</h5>
 							<span class="price">0.00元</span>
@@ -287,7 +208,7 @@
 				</foreach> -->
 			</div>
 			<div class="more text-c">
-				<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>
+				<a href="/Category/index/id/4.html"><i class="iconfont icon-combinedshape"></i></a>
 			</div>
 		</div>
 	</div>
@@ -309,52 +230,23 @@
 				<foreach name="data.Copyright" item="v">
 				<a href="{$v.url}" title="{$v.goods_name}" target="_blank">
 					<div class="list-inner">
+						<div class="pic">
+							<i class="iconfont {$v.iconfont}"></i>
+						</div>
 						<h6 class="tit">{$v.goods_name}</h6>
 						<span class="price">{$v.goods_default_price}元</span>
-						<i class="iconfont icon-xiasanjiao"></i>
 					</div>
 				</a>
 				</foreach>
 			</div>
 			<div class="more text-c">
-				<a href="javascript:void(0);"><i class="iconfont icon-combinedshape"></i></a>
+				<a href="/Category/index/id/3.html"><i class="iconfont icon-combinedshape"></i></a>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="full bgcolor_687485">
-	<div class="wid1200">
-		<div class="footer text-c">
-			<div class="inner clearfix">
-				<div class="l info">
-					<p>地址：上海市徐汇区桂平路410号漕河泾国际孵化中心一楼</p>
-					<p>电话：021-64878081</p>
-					<p>传真：021-64878023</p>
-					<p>邮箱：foridom@foridom.com</p>
-				</div>
-				<div class="r email">
-					<p>订阅我们的资讯</p>
-					<div class="emailbox">
-						<input type="text" name="footermail" placeholder="Enter your email" class="entermail">
-						<i class="iconfont icon-youxiang"></i>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+<include file='Public:footer' />
 
-<div class="bgcolor_454d59 full">
-	<span class="footerbottom">版权所有 2016百一知识产权 All Rights Reserved 沪ICP备06010536号</span>
-</div>
-
-<style type="text/css">
-
-
-
-
-
-</style>
 </body>
 </html>

@@ -98,7 +98,7 @@ class GoodsModel extends Model{
 		// return returnApi(200,'添加商品及属性成功',$attr_price);
 		$result = $this->add($data);
 		if($result){
-			if(count($attrval) > 0){
+			if($attrval){
 				foreach($attrval as $k=>$v){
 					$_attr[$k]['goods_id'] = $result;
 					// $_attr[$k]['attr'] = $v;
@@ -118,6 +118,28 @@ class GoodsModel extends Model{
 		}else{
 			return returnApi(201,'添加商品失败');
 		}
+	}
+
+	public function save_new($goods_id){
+		$goods_name = I('post.goods_name');
+		$goods_content = I('post.goods_content','','htmlspecialchars');
+		$goods_default_price = I('post.goods_default_price');
+		$r = $this->where('goods_id=%d',$goods_id)->setField(array(
+			'goods_name'				=>		$goods_name,
+			'goods_content'				=>		$goods_content,
+			'goods_default_price'		=>		$goods_default_price,
+		));
+		if($r !== false){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function getGoodsOne($goods_id){
+		$d = $this->field('goods_id,goods_name,goods_content,goods_default_price')->where('goods_Id=%d',$goods_id)->find();
+		$d['goods_content'] = htmlspecialchars_decode($d['goods_content']);
+		return $d;
 	}
 
 	public function todel(){

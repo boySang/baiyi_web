@@ -13,12 +13,7 @@
 	<meta name="description" content="描述">
 	<meta name="kaywords" content="关键字">
 	<title>商标智能方案</title>
-	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
-    <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_v8h0a0rkn3rtfbt9.css">
+	<include file="Public/meta" />
     <!-- 有字库 -->
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
     <!-- 有字库 end -->
@@ -110,13 +105,8 @@
 	</div>
 </div>
 
-<div class="full">
-	<div class="wid1200 bor_top_1px">
-		<div class="footer text-c">
-			<p>备案信息</p>
-		</div>
-	</div>
-</div>
+<include file='Public:footer' />
+
 <script type="text/javascript">
 
 // $.cookie('val',null);

@@ -13,55 +13,12 @@
 	<meta name="description" content="描述">
 	<meta name="keywords" content="关键字">
 	<title>百一知识产权</title>
-	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
-    <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
-    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_jrxuv59w769lik9.css">
+    <include file='Public/meta' />
+	
 </head>
 <body>
 
-<div class="full commen-header">
-	<div class="quick-nav wid1200 clearfix">
-		<div class="r app">
-			<span>移动应用</span>
-			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
-		</div>
-		<div class="r reg">
-			<span>注册</span>
-			<ul>
-				<li>个人注册</li>
-				<li>企业注册</li>
-			</ul>
-		</div>
-		<div class="r login">登录</div>
-		<div class="r phone">客服电话：40000000000</div>
-	</div>
-</div>
-
-<div class="pub-header wid1200 clearfix">
-	<div class="logo-header clearfix">
-		<div class="logo l">
-			<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
-		</div>
-	</div>
-	<div class="pub-navs clearfix">
-		<div class="navs-list l text-c">
-			<h4>全部服务分类</h4>
-			<div class="nav-box hide"></div>
-		</div>
-		<div class="quick-link r">
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">首页</a>
-			<a href="#">知识产权专家顾问</a>
-		</div>
-	</div>
-</div>
+<include file='Public:common_layout' />
 
 <div class="pay-page wid1200">
 	<div class="pay-header text-r">
@@ -78,8 +35,6 @@
 			<p class="price"><font>{$data['total_price']}</font>元</p>
 		</div>
 	</div>
-	<div class="pay-info">
-		
 	<div class="pay-type">
 		<div class="tit">支付方式</div>
 		<form action="__MODULE__/Pay/alipay" method="post" id="toPays">
@@ -139,12 +94,10 @@
     			<span>明码标价支付及信息安全</span>
     		</div>
     	</div>
-        <div class="footer text-c">
-            <p>备案信息</p>
-        </div>
     </div>
 </div>
 
+<include file='Public:footer' />
 
 <script>
 
