@@ -203,16 +203,20 @@ class OrderDetailController extends LayoutController {
 		}
 		$m = D('OrderDetail');
 		$goods_name = $m->getGoodsName($id);
-		$this->assign('goods_name',$goods_name);
+		$this->assign(array(
+			'goods_name'		=>		$goods_name,
+		));
 		$this->display();
+	}
 
-		// $Phone = 18907975647; #手机号码，具体从数据库怎么读出来，你自己写代码
-		// $im    = imagecreate( 300, 30 );#建立一个宽 300， 高 30像素的图片对象
-		// imagecolorallocate( $im, 255, 255, 255 );#将图片背景填充为白色
-		// $Color = imagecolorallocate( $im, 0, 0, 0 ); #在生成一黑色色颜色，以便写入字符串
-		// imagestring($im,16, 0, 0, $Phone, $Color);#将字符串写到图片上
-		// header('content-type:image/*');//设置文件头为图片格式
-		// imagepng( $im ); //输出一个png格式的图片
-		// imagedestroy($im);//销毁图片对象
+	// 根据字符串输出图片
+	public function tubeimg($str){
+		$im    = imagecreate( 150, 100 );#建立一个图片对象
+		imagecolorallocate( $im, 255, 255, 255 );#将图片背景填充为白色
+		$Color = imagecolorallocate( $im, 0, 0, 0 ); #在生成一黑色色颜色，以便写入字符串
+		imagestring($im,16, 15, 36, $str, $Color);#将字符串写到图片上
+		header('content-type:image/*');//设置文件头为图片格式
+		imagejpeg( $im ); //输出一个png格式的图片
+		imagedestroy($im);//销毁图片对象
 	}
 }

@@ -93,57 +93,13 @@
 			<div class="vals l"><input type="text" name="goods_name" value="{$goods_name}" placeholder="商标名称"></div>
 		</div>
 		<div class="list clearfix">
-			<div class="tit l">商标类型：</div>
-			<div class="vals l">
-				<label for="thetext">
-					<input type="radio" name="trademark_type" id="thetext">文字
-				</label>
-				<label for="thepic">
-					<input type="radio" name="trademark_type" id="thepic">图形
-				</label>
-				<label for="thetextpic">
-					<input type="radio" name="trademark_type" id="thetextpic">文字图形组合
-				</label>
-			</div>
-		</div>
-		<div class="list clearfix">
 			<div class="tit l">商标图样：</div>
-			<div class="vals l">
-				<label for="kehu">
-					<input type="radio" name="upload_by" id="kehu">本地上传
-				</label>
-				<label for="program">
-					<input type="radio" name="upload_by" id="program">自动生成
-				</label>
-			</div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">商标颜色：</div>
-			<div class="vals l">
-				<label for="kehu">
-					<input type="radio" name="trademark_color" id="kehu">指定颜色（彩色申请）
-				</label>
-				<label for="program">
-					<input type="radio" name="trademark_color" id="program">不指定颜色（黑白色申请）
-				</label>
-			</div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l"><br /></div>
 			<div class="vals l clearfix">
 				<div class="color yes l mar_r_20">
-					<i class="iconfont icon-icon--"></i>
-					<input type="file" name="img">
-					<p><small>彩色图样</small></p>
+					<img src="__CONTROLLER__/tubeimg/str/{$goods_name}" id="reviewimg" height="100" />
+					<p class="replace"><small><i class="iconfont icon-icon--"></i>替换图样</small><input type="file" name="uploadself"></p>
 					<p><small>100K--200k</small></p>	
 				</div>
-				<div class="color no l">
-					<i class="iconfont icon-icon--"></i>
-					<input type="file" name="img">
-					<p><small>彩色图样</small></p>
-					<p><small>100K--200k</small></p>	
-				</div>
-				<p class="l tips"><small>这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字这里有一对文字</small></p>
 			</div>
 		</div>
 	</div>
@@ -157,97 +113,183 @@
 		<div class="list clearfix">
 			<div class="tit l">申请人类型：</div>
 			<div class="vals l">
-				<span data-type="1">企业</span>
-				<span data-type="2">个人</span>
+				<span class="selectType cur" data-type="1">企业<i class="iconfont icon-duigou"></i></span>
+				<span class="selectType" data-type="2">个人<i class="iconfont icon-duigou"></i></span>
 			</div>
 		</div>
-		<div class="list clearfix">
-			<div class="tit l">个人姓名：</div>
-			<div class="vals l"><input type="text" name="" placeholder=""></div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">个体执照地址：</div>
-			<div class="vals l"><input type="text" name="" placeholder=""></div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">邮政编码：</div>
-			<div class="vals l"><input type="text" name="" placeholder=""></div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">申请联系人：</div>
-			<div class="vals l"><input type="text" name="" placeholder=""></div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">联系电话：</div>
-			<div class="vals l"><input type="text" name="" placeholder=""></div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">电子邮箱：</div>
-			<div class="vals l"><input type="text" name="" placeholder=""></div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l">上传申请材料：</div>
-			<div class="vals l clearfix">
-				<div class="outbox l mar_r_20">
-					<div class="color yes l">
-						<i class="iconfont icon-icon--"></i>
-						<input type="file" name="img">
-						<p><small>身份证正反面复印件</small></p>
-						<p><small>（需签字）</small></p>	
-					</div>
-					<a class="readex" href="">查看范本</a>
+		<div class="persontype">
+			<div class="cpn typelist">
+				<div class="list clearfix">
+					<div class="tit l">公司名称：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
 				</div>
-				<div class="outbox l">
-					<div class="color no l">
-						<i class="iconfont icon-icon--"></i>
-						<input type="file" name="img">
-						<p><small>个体工商户执照复印件</small></p>
-						<p><small>（需签字）</small></p>	
+				<div class="list clearfix">
+					<div class="tit l">公司地址：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">申请联系人：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">联系电话：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">电子邮箱：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">上传申请材料：</div>
+					<div class="vals l clearfix">
+						<div class="outbox l">
+							<div class="color no l">
+								<i class="iconfont iconfont2 icon-icon--"></i>
+								<input type="file" name="zhizhao">
+								<p><small>营业执照副本复印件</small></p>
+								<p><small>（需签字）</small></p>	
+								<img class="botreview" src="" id="zhizhaoimg">
+							</div>
+							<a class="readex" href="">查看范本</a>
+						</div>
+						<div class="outbox l mar_r_20">
+							<div class="color yes l">
+								<i class="iconfont iconfont2 icon-icon--"></i>
+								<input type="file" name="dailishu1">
+								<p><small>商标代理委托书</small></p>
+								<p><small>（需签字）</small></p>	
+								<img class="botreview" src="" id="dailishu1img">
+							</div>
+							<a class="readex" href="">查看范本</a>
+						</div>
 					</div>
-					<a class="readex" href="">查看范本</a>
 				</div>
 			</div>
-		</div>
-		<div class="list clearfix">
-			<div class="tit l"><br /></div>
-			<div class="vals l clearfix">
-				<div class="outbox l mar_r_20">
-					<div class="color yes l">
-						<i class="iconfont icon-icon--"></i>
-						<input type="file" name="img">
-						<p><small>商标代理委托书</small></p>
-						<p><small>（需签字）</small></p>	
-					</div>
-					<a class="readex" href="">查看范本</a>
+			<div class="person typelist" style="display: none">
+				<div class="list clearfix">
+					<div class="tit l">个人姓名：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
 				</div>
-				<div class="outbox l">
-					<div class="color no l">
-						<i class="iconfont icon-icon--"></i>
-						<input type="file" name="img">
-						<p><small>其他文件</small></p>
-						<p><small>（如需）</small></p>	
-					</div>
-					<a class="readex" href="">查看范本</a>
+				<div class="list clearfix">
+					<div class="tit l">个体执照地址：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
 				</div>
-				<div class="href l">
-					<a href="">查看范本</a>
-					<a href="">下载委托书模板</a>
+				<div class="list clearfix">
+					<div class="tit l">申请联系人：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">联系电话：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">电子邮箱：</div>
+					<div class="vals l"><input type="text" name="" placeholder=""></div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l">上传申请材料：</div>
+					<div class="vals l clearfix">
+						<div class="outbox l">
+							<div class="color no l">
+								<i class="iconfont iconfont2 icon-icon--"></i>
+								<input type="file" name="idcard">
+								<p><small>身份证正反面复印件</small></p>
+								<p><small>（需签字）</small></p>	
+								<img class="botreview" src="" id="idcardimg">
+							</div>
+							<a class="readex" href="">查看范本</a>
+						</div>
+						<div class="outbox l mar_r_20">
+							<div class="color no l">
+								<i class="iconfont iconfont2 icon-icon--"></i>
+								<input type="file" name="getihu">
+								<p><small>个体工商户执照复印件</small></p>
+								<p><small>（需签字）</small></p>	
+								<img class="botreview" src="" id="getihuimg">
+							</div>
+							<a class="readex" href="">查看范本</a>
+						</div>
+					</div>
+				</div>
+				<div class="list clearfix">
+					<div class="tit l"><br /></div>
+					<div class="vals l clearfix">
+						<div class="outbox l mar_r_20">
+							<div class="color yes l">
+								<i class="iconfont iconfont2 icon-icon--"></i>
+								<input type="file" name="dailishu2">
+								<p><small>商标代理委托书</small></p>
+								<p><small>（需签字）</small></p>	
+								<img class="botreview" src="" id="dailishu2img">
+							</div>
+							<a class="readex" href="">查看范本</a>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<div class="next">
 		<a href="">上一步</a>
-		<a href="__MODULE__/Member/index">下一步</a>
+		<a href="__MODULE__/ConnectIndustry/uploadinfosucc">下一步</a>
 	</div>	
 </div>
 
 <include file='Public:footer' />
 
 <script type="text/javascript">
-	
+
 $(function(){
+	index.load();
 });
+
+var index = {
+	click : function(){
+		$('body').on('click','.vals .selectType',function(){
+			var that = $(this);
+			$('.vals .selectType').removeClass('cur');
+			that.addClass('cur');
+			$('.persontype .typelist').hide();
+			$('.persontype .typelist').eq(that.index()).show();
+		});
+	},
+	load : function(){
+		this.click();
+	}
+}
+
+$('input[name="uploadself"]').on('change',function(){
+    var objUrl = '';
+    objUrl = getObjectURL(this.files[0]);
+    $('#reviewimg').attr("src",objUrl);
+});
+
+reviewimg('zhizhao');
+reviewimg('dailishu1');
+reviewimg('getihu');
+reviewimg('idcard');
+reviewimg('dailishu2');
+
+function reviewimg(inputname){
+	$('input[name="'+inputname+'"]').on('change',function(){
+	    var objUrl = '';
+	    objUrl = getObjectURL(this.files[0]);
+	    $('#'+inputname+'img').attr("src",objUrl).show();
+	});
+}
+
+//建立一個可存取到該file的url
+function getObjectURL(file) {
+    var url = null; 
+    if (window.createObjectURL!=undefined) { // basic
+        url = window.createObjectURL(file);
+    } else if (window.URL!=undefined) { // mozilla(firefox)
+        url = window.URL.createObjectURL(file);
+    } else if (window.webkitURL!=undefined) { // webkit or chrome
+        url = window.webkitURL.createObjectURL(file);
+    }
+    return url;
+}
 
 </script>
 

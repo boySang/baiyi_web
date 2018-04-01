@@ -1,3 +1,23 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>{$web_name}</title>
+    <include file='Public/meta' />
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+</head>
+<body>
+
 <div class="full commen-header">
 	<div class="quick-nav wid1200 clearfix">
 		<div class="r app">
@@ -43,7 +63,7 @@
 						} elseif($k == 3){
 							$top = '-238px';
 						} elseif($k == 4){
-							$top = '-323px';
+							$top = '-341px';
 						}
 						?>
 						<div class="hidecate clearfix" style="top:{$top};">
@@ -56,10 +76,22 @@
 			</div>
 		</div>
 		<div class="quick-link r">
-			<a href="/Goods/detail/id/1.html" target="_blank">知识产权在线申请</a>
-			<a href="javascript:void(0);">国际商标预算</a>
-			<a href="javascript:void(0);">知识产权在线管理</a>
-			<a href="__MODULE__/ExpertsWenda/index" target="_blank">知识产权专家顾问</a>
+			<a href="javascript:void(0);">首页</a>
+			<a href="javascript:void(0);">申请系统</a>
+			<a href="javascript:void(0);">方案系统</a>
+			<a href="javascript:void(0);">商标在线管理</a>
+			<a href="__MODULE__/ExpertsWenda/index" target="_blank">专家库</a>
 		</div>
 	</div>
 </div>
+
+<div class="uploadsucc">
+	<a href=""><img src="__PUBLIC__/home/img/aiplansucc.jpg"></a>
+</div>
+
+
+<include file='Public:footer' />
+
+
+</body>
+</html>
