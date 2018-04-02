@@ -1,4 +1,50 @@
+<div class="full commen-header">
+	<div class="quick-nav wid1200 clearfix">
+		<div class="r app">
+			<span>移动应用</span>
+			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
+		</div>
+		<div class="r phone"><a href="__MODULE__/Member/index">个人中心</a></div>
+		<div class="r reg">
+			<span onclick="window.location.href='__MODULE__/Member/reg'">注册</span>
+			<!-- <ul>
+				<li>个人注册</li>
+				<li>企业注册</li>
+			</ul> -->
+		</div>
+		<div onclick="window.location.href='__MODULE__/Member/login'" class="r login">登录</div>
+		<div class="r phone">客服电话：40000000000</div>
+	</div>
+</div>
 
+<div class="pub-header wid1200 clearfix">
+	<div class="logo-header clearfix">
+		<div class="logo l">
+			<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
+		</div>
+	</div>
+	<div class="pub-navs clearfix">
+		<div class="navs-list l text-c">
+			<h4>全部服务分类</h4>
+			<div class="nav-box hide">
+				<foreach name="layoutdata.menu" key="k" item="v">
+					<div class="out">
+						<div class="tit"><a href="{$v.url}">{$v.title}</a></div>
+						<div class="sometit clearfix">
+							<foreach name="v.goods_limit" item="v1">
+								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+							</foreach>
+						</div>
+						<?php if($k == 0){
+							$top = '-1px';
+						} elseif($k == 1){
+							$top = '-86px';
+						} elseif($k == 2){
+							$top = '-171px';
+						} elseif($k == 3){
+							$top = '-238px';
+						} elseif($k == 4){
+							$top = '-323px';
 						}
 						?>
 						<div class="hidecate clearfix" style="top:{$top};">
