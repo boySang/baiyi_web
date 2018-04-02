@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <!-- jqueryValidate -->
+    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-validate/1.17.0/localization/messages_zh.min.js"></script>
+    <!-- jqueryValidate end -->
+    <!-- jqueryConfig end -->
+    <link href="__PUBLIC__/admin/css/style.css?<?php echo time(); ?>" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_em9mrea6oedsra4i.css">
+    <!-- layer -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+    <!-- layer end -->
+    <script type="text/javascript" src="__PUBLIC__/admin/js/ueditor.config.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/admin/js/ueditor.all.min.js"></script>
+</head>
+
+<body class="productadd">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">首页</a></li>
+            <li><a href="#">模块</a></li>
+            <li><a href="#">添加产品</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <form id="add-form">
+            <input type="hidden" name="prev_url" value="<?php echo PREV_URL; ?>">
+            <input type="hidden" name="goods_content">
+            <div id="tab1" class="tabson">
+                <ul class="forminfo">
+                    <li>
+                        <label>缩略图</label>
+                        <input type="hidden" name="goods_thumb">
+                        <input type="hidden" name="goods_sm_img">
+                        <input type="file" name="goods_img">
+                    </li>
+                    <li>
+                        <label>商品名称</label>
+                        <input name="goods_name" type="text" class="dfinput" placeholder="商品名称" style="width:600px;" />
+                    </li>
+                    <li>
+                        <label>所属栏目</label>
+                        <select class="input-select" name="cate_id" style="width:120px;">
+                            <foreach name="cate" item="cate">
+                            <option value="{$cate.id}">{$cate.title}</option>
+                            </foreach>
+                        </select>
+                    </li>
+                    <li>
+                        <label>商品提示</label>
+                        <textarea name="goods_tips" class="input-textarea" style="width:600px;height:50px;"></textarea>
+                    </li>
+                    <li>
+                        <label>关键词</label>
+                        <input name="keywords" type="text" class="dfinput" placeholder="关键词之间用','隔开" style="width:600px;" />
+                    </li>
+                    <li>
+                        <label>商品简介</label>
+                        <textarea name="goods_info" class="input-textarea" style="width:600px;height:100px;"></textarea>
+                    </li>
+                    <li class="clearfix">
+                        <label>详细内容</label>
+                        <div style="width:800px;float: left;"><div id="editor" style="width: 800px;"></div></div>
+                    </li>
+                    <li>
+                        <label>默认价格</label>
+                        <input name="goods_default_price" type="text" class="dfinput" placeholder="默认价格" style="width:600px;" />
+                    </li>
+                    <li>
+                        <label>属性及价格</label>
+                        <a href="javascript:;" id="pro-attr-price-add" class="btn-s-private-big"> 添加属性 </a>
+                    </li>
+                    <li id="proAttrShowOrHide" style="display: none;">
+                        <label></label>
+                        <div class="proListOutside" id="proListOutside"></div>
+                    </li>
+                    <li>
+                        <label>排序</label>
+                        <input name="sort_order" type="text" class="dfinput" value="255" style="width:600px;" />
+                    </li>
+                    <li>
+                        <label>&nbsp;</label>
+                        <input name="" type="button" id="submit" class="btn-self" value="确认添加" />
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</body>
+<script type="text/javascript">
+
+var ue = UE.getEditor('container');
+
+</script>
+</html>
