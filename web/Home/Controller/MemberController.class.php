@@ -39,10 +39,10 @@ class MemberController extends LayoutController {
     }
 
     public function login(){
-    	var_dump(session('uniqid'));
-    	var_dump(session('phone'));
-    	var_dump(cookie('uniqid'));
-    	var_dump(cookie('phone'));
+    	// var_dump(session('uniqid'));
+    	// var_dump(session('phone'));
+    	// var_dump(cookie('uniqid'));
+    	// var_dump(cookie('phone'));
     	$m = D('Member');
 		if($m->truelogin()){
 			header('Location:'.U('Member/index'));
@@ -54,6 +54,15 @@ class MemberController extends LayoutController {
 		header('Content-type:text/json');
     	$m = D('Member');
 		echo $m->ajaxLogin();
+    }
+
+    public function logout(){
+    	$m = D('Member');
+    	if($m->logout()){
+    		header('Location:'.U('Member/login'));
+    	}else{
+    		$this->error('退出失败！');
+    	}
     }
 
     // 官文页面

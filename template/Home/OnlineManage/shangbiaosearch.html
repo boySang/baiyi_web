@@ -21,6 +21,8 @@
 <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_v7l7dcv6hudte29.css">
     <!-- css字体  -->
     <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/19382/5abfa052f629d90fa8a8ebee.css' rel='stylesheet' type='text/css' />
+    <script src="https://cdn.bootcss.com/layer/3.0.2/layer.min.js"></script>
+    <link href="https://cdn.bootcss.com/layer/3.0.2/mobile/need/layer.min.css" rel="stylesheet">
 </head>
 <body class="onlinemanage">
 
@@ -47,7 +49,7 @@
 
 <div class="bignavs">
 	<a href="/OnlineManage/ing" title="我的代办">
-		<div class="list act">
+		<div class="list">
 			<div class="img">
 				<img src="__PUBLIC__/home/img/daiban.png" />
 				<img src="__PUBLIC__/home/img/daibancur.png" class="cur" />
@@ -56,7 +58,7 @@
 		</div>
 	</a>
 	<a href="/OnlineManage/shangbiaoadd" title="商标管理">
-		<div class="list">
+		<div class="list act">
 			<div class="img">
 				<img src="__PUBLIC__/home/img/shangbiao.png" />
 				<img src="__PUBLIC__/home/img/shangbiaocur.png" class="cur" />
@@ -95,7 +97,7 @@
 
 <div class="wid1200 main">
 	<div class="titbg" style="background:url('__PUBLIC__/home/img/titbg.jpg');">
-		<h4>我的待办</h4>
+		<h4>商标管理</h4>
 	</div>
 	<div class="sminfo clearfix">
 		<div class="manage r clearfix">
@@ -109,51 +111,98 @@
 		<span>客户名称：太原新泰基网络科技有限公司</span>
 	</div>
 	<div class="tit">
-		<span>待办事项</span>
+		<span class="ed">已管理</span>
 		<span><i class="iconfont icon-kefu-copy"></i>联系客服</span>
 	</div>
-	<div class="thingbox">
-		<div class="list clearfix">
-			<span class="r">年费缴纳</span>
-			<a href="javascript:;">滑翔机发明专利实质审查，<期限截止日> 2018-12-12</a>
+	<div class="selectData">
+		<p>任意条件搜索</p>
+		<div class="box clearfix">
+			<div class="tit l">商标搜索：</div>
+			<div class="inputbox l"><input style="width: 400px;" type="text" placeholder="请输入商标名称" name=""></div>
 		</div>
-		<div class="list clearfix">
-			<span class="r">年费缴纳</span>
-			<a href="javascript:;">滑翔机发明专利实质审查，<期限截止日> 2018-12-12</a>
+		<div class="box clearfix">
+			<div class="tit l">商标类型：</div>
+			<div class="inputbox l">
+				<label><input type="radio" name="types">国内商标</label>
+				<label><input type="radio" name="types">国际商标</label>
+			</div>
 		</div>
-		<div class="list clearfix">
-			<span class="r">年费缴纳</span>
-			<a href="javascript:;">滑翔机发明专利实质审查，<期限截止日> 2018-12-12</a>
+		<div class="box clearfix date">
+			<div class="tit l">申请日期：</div>
+			<div class="inputbox l">
+				<input type="text" name=""> -- <input type="text" name="">
+			</div>
 		</div>
-		<div class="list clearfix">
-			<span class="r">年费缴纳</span>
-			<a href="javascript:;">滑翔机发明专利实质审查，<期限截止日> 2018-12-12</a>
+		<div class="box clearfix date">
+			<div class="tit l">初审日期：</div>
+			<div class="inputbox l">
+				<input type="text" name=""> -- <input type="text" name="">
+			</div>
 		</div>
-		<div class="list clearfix">
-			<span class="r">年费缴纳</span>
-			<a href="javascript:;">滑翔机发明专利实质审查，<期限截止日> 2018-12-12</a>
+		<div class="box clearfix date">
+			<div class="tit l">注册日期：</div>
+			<div class="inputbox l">
+				<input type="text" name=""> -- <input type="text" name="">
+			</div>
 		</div>
-		<div class="list clearfix">
-			<span class="r">年费缴纳</span>
-			<a href="javascript:;">滑翔机发明专利实质审查，<期限截止日> 2018-12-12</a>
-		</div>
-	</div>	
-	<br />
-	<br />
-	<div class="tit">
-		<span>流程进度</span>
+		<a href="javascript:;" class="submit" id="search_submit">查询</a>
 	</div>
-	<div class="thingbox">
-		<div class="list clearfix">
-			<a href="javascript:;">第32219384号商标“梦迷”已递交商标续展申请<操作日期> 2017-12-12</a>
-		</div>
-		<div class="list clearfix">
-			<a href="javascript:;">第22102933号外观专利已缴费，<操作日期> 2017-8-12</a>
-		</div>
-	</div>	
+	<div id="result"></div>
 </div>
 
 <include file='Public:footer' />
+<script type="text/javascript">
 
+$(function(){
+	index.load();
+});
+	
+var index = {
+	chg : function(){
+		$('.inputbox .searchtype').on('change',function(){
+			var that = $(this);
+			if(that.val() == 1){
+				that.parent().find('.goodstype').show();
+			}else{
+				that.parent().find('.goodstype').hide();
+			}
+		});
+	},
+	click : function(){
+
+		// 删除一行
+		$('body').on('click','.smbox .iconfont',function(){
+			$(this).parent().parent().remove();
+		});
+
+		// 添加管理的时候
+		$('body').on('click','input[type="checkbox"]',function(){
+			if($(this).is(':checked')){
+				layer.msg('添加成功');
+			}else{
+				layer.msg('取消成功');
+			}
+		});
+
+		// 搜索的时候，假数据
+		$('body').on('click','.search .submit',function(){
+			var html =  '';
+			$('#result').html(html);
+		});
+
+		// 
+		$('body').on('click','.selectData .submit',function(){
+			var html = '<table class="smbox" cellspacing="0" cellpadding="0"><thead><tr style="background: #eef4f6"><th>注册号/申请号</th><th>商标名称</th><th>国际分类</th><th>注册日期</th><th>截止日期</th><th>最新流程</th><th>状态</th><th>详细信息</th><th>商标设置</th></tr></thead><tbody><tr><td>99999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td>设置</td></tr><tr style="background: #eef4f6"><td>99999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td>设置</td></tr><tr><td>99999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td>设置</td></tr><tr style="background: #eef4f6"><td>99999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td><font color="red">商标续展</font></td><td>查看</td><td>设置</td></tr></tbody></table>';
+			$('#result').html(html);
+		});
+	},
+	load : function(){
+		this.chg();
+
+		this.click();
+	}
+}
+
+</script>
 </body>
 </html>

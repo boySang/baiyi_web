@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>{$web_name}</title>
+	<!-- 公共css -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
+<!-- index -->
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_v7l7dcv6hudte29.css">
+    <!-- css字体  -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/19382/5abfa052f629d90fa8a8ebee.css' rel='stylesheet' type='text/css' />
+    <script src="https://cdn.bootcss.com/layer/3.0.2/layer.min.js"></script>
+    <link href="https://cdn.bootcss.com/layer/3.0.2/mobile/need/layer.min.css" rel="stylesheet">
+</head>
+<body class="onlinemanage">
+
+<div class="full headerbox">
+	<div class="wid1200 header clearfix">
+		<div class="logo l">
+			<a href="/" title="{$web_name}"><img src="__PUBLIC__/home/img/logo.png" /></a>
+		</div>
+		<div class="navs">
+			<a href="/Goods/detail/id/1.html" target="_blank">知识产权在线申请</a>
+			<a href="javascript:void(0);">国际商标预算</a>
+			<a href="javascript:void(0);">知识产权在线管理</a>
+			<a href="__MODULE__/ExpertsWenda/index" target="_blank">知识产权专家顾问</a>
+		</div>
+		<div class="phone r">
+			<i class="iconfont icon-dianhua"></i>
+			<div class="phones">
+				<p>客服热线</p>
+				<p>400-0000-000</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="bignavs">
+	<a href="/OnlineManage/ing" title="我的代办">
+		<div class="list">
+			<div class="img">
+				<img src="__PUBLIC__/home/img/daiban.png" />
+				<img src="__PUBLIC__/home/img/daibancur.png" class="cur" />
+			</div>
+			<span>我的待办</span>
+		</div>
+	</a>
+	<a href="/OnlineManage/shangbiaoadd" title="商标管理">
+		<div class="list act">
+			<div class="img">
+				<img src="__PUBLIC__/home/img/shangbiao.png" />
+				<img src="__PUBLIC__/home/img/shangbiaocur.png" class="cur" />
+			</div>
+			<span>商标管理</span>
+		</div>
+	</a>
+	<a href="" title="专利管理">
+		<div class="list">
+			<div class="img">
+				<img src="__PUBLIC__/home/img/zhuanli.png" />
+				<!-- <img src="__PUBLIC__/home/img/zhuanlicur.png" class="cur" /> -->
+			</div>
+			<span>专利管理</span>
+		</div>
+	</a>
+	<a href="" title="版权管理">
+		<div class="list">
+			<div class="img">
+				<img src="__PUBLIC__/home/img/banquan.png" />
+				<!-- <img src="__PUBLIC__/home/img/banquancur.png" class="cur" /> -->
+			</div>
+			<span>版权管理</span>
+		</div>
+	</a>
+	<a href="" title="其他业务">
+		<div class="list">
+			<div class="img">
+				<img src="__PUBLIC__/home/img/qita.png" />
+				<!-- <img src="__PUBLIC__/home/img/qitacur.png" class="cur" /> -->
+			</div>
+			<span>其他业务</span>
+		</div>
+	</a>
+</div>
+
+<div class="wid1200 main">
+	<div class="titbg" style="background:url('__PUBLIC__/home/img/titbg.jpg');">
+		<h4>商标管理</h4>
+	</div>
+	<div class="sminfo clearfix">
+		<div class="manage r clearfix">
+			<a href="javascript:;" class="del" id="del"></a>
+			<a href="javascript:;" class="outload" id="outload"></a>
+			<a href="javascript:;" class="load" id="load"></a>
+			<a href="/OnlineManage/shangbiaosearch" class="select" id="select"></a>
+			<a href="/OnlineManage/shangbiaoadd" class="add" id="add"></a>
+		</div>
+		<span>客户号：FT981-002</span>
+		<span>客户名称：太原新泰基网络科技有限公司</span>
+	</div>
+	<div class="tit">
+		<span class="ed">已管理</span>
+		<span><i class="iconfont icon-kefu-copy"></i>联系客服</span>
+	</div>
+	<div class="search clearfix">
+		<form>
+			<div class="inputbox l">
+				<select class="searchtype">
+					<option value="1">商标名称</option>
+					<option value="2">搜索人名称</option>
+					<option value="3">商标注册号</option>
+				</select>
+				<input type="text" name="keywords" placeholder="请输入商标注册/申请号">
+				<span class="goodstype">类别</span>
+			</div>
+			<a href="javascript:;" class="l submit"><i class="iconfont icon-sousuo"></i></a>
+		</form>
+	</div>
+	<table class="smbox" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr style="background: #eef4f6">
+				<th>注册号/申请号</th>
+				<th>商标名称</th>
+				<th>国际分类</th>
+				<th>注册日期</th>
+				<th>截止日期</th>
+				<th>最新流程</th>
+				<th>状态</th>
+				<th>详细信息</th>
+				<th>商标设置</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><i class="iconfont icon-shanchu4"></i>999999</td>
+				<td>XXXXX</td>
+				<td>23</td>
+				<td>2013-12-12</td>
+				<td>2023-12-12</td>
+				<td>已注册</td>
+				<td>正常</td>
+				<td>查看</td>
+				<td class="setbox">
+					<span>设置</span>
+					<div class="set">
+						<p>设置提醒</p>
+						<p>
+							提醒事项：
+							<span class="adddate">商标续展<input type="text" name=""></span>
+							<b class="add"><i class="iconfont icon-icon--"></i>增加提醒</b>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr style="background: #eef4f6">
+				<td><i class="iconfont icon-shanchu4"></i>999999</td>
+				<td>XXXXX</td>
+				<td>23</td>
+				<td>2013-12-12</td>
+				<td>2023-12-12</td>
+				<td>已注册</td>
+				<td>正常</td>
+				<td>查看</td>
+				<td class="setbox">
+					<span>设置</span>
+					<div class="set">
+						<p>设置提醒</p>
+						<p>
+							提醒事项：
+							<span class="adddate">商标续展<input type="text" name=""></span>
+							<b class="add"><i class="iconfont icon-icon--"></i>增加提醒</b>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td><i class="iconfont icon-shanchu4"></i>999999</td>
+				<td>XXXXX</td>
+				<td>23</td>
+				<td>2013-12-12</td>
+				<td>2023-12-12</td>
+				<td>已注册</td>
+				<td>正常</td>
+				<td>查看</td>
+				<td class="setbox">
+					<span>设置</span>
+					<div class="set">
+						<p>设置提醒</p>
+						<p>
+							提醒事项：
+							<span class="adddate">商标续展<input type="text" name=""></span>
+							<b class="add"><i class="iconfont icon-icon--"></i>增加提醒</b>
+						</p>
+					</div>
+				</td>
+			</tr>
+			<tr style="background: #eef4f6">
+				<td><i class="iconfont icon-shanchu4"></i>999999</td>
+				<td>XXXXX</td>
+				<td>23</td>
+				<td>2013-12-12</td>
+				<td>2023-12-12</td>
+				<td>已注册</td>
+				<td><font color="red">商标续展</font></td>
+				<td>查看</td>
+				<td class="setbox">
+					<span>设置</span>
+					<div class="set">
+						<p>设置提醒</p>
+						<p>
+							提醒事项：
+							<span class="adddate">商标续展<input type="text" name=""></span>
+							<b class="add"><i class="iconfont icon-icon--"></i>增加提醒</b>
+						</p>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div id="result"></div>
+</div>
+
+<include file='Public:footer' />
+<script type="text/javascript">
+
+$(function(){
+	index.load();
+});
+	
+var index = {
+	chg : function(){
+		$('.inputbox .searchtype').on('change',function(){
+			var that = $(this);
+			if(that.val() == 1){
+				that.parent().find('.goodstype').show();
+			}else{
+				that.parent().find('.goodstype').hide();
+			}
+		});
+	},
+	click : function(){
+
+		// 删除一行
+		$('body').on('click','.smbox .iconfont',function(){
+			$(this).parent().parent().remove();
+		});
+
+		// 添加管理的时候
+		$('body').on('click','input[type="checkbox"]',function(){
+			if($(this).is(':checked')){
+				layer.msg('添加成功');
+			}else{
+				layer.msg('取消成功');
+			}
+		});
+
+		// 搜索的时候，假数据
+		$('body').on('click','.search .submit',function(){
+			var html =  '<div class="tit"><font color="#3baaf2">查询结果</font></div><table class="smbox" cellspacing="0" cellpadding="0"><thead><tr style="background: #eef4f6"><th>注册号/申请号</th><th>商标名称</th><th>国际分类</th><th>注册日期</th><th>截止日期</th><th>最新流程</th><th>状态</th><th>详细信息</th><th>添加管理</th></tr></thead><tbody><tr><td>999999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td><input type="checkbox" name=""></td></tr><tr style="background: #eef4f6"><td>999999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td><input type="checkbox" name=""></td></tr><tr><td>999999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td><input type="checkbox" name=""></td></tr><tr style="background: #eef4f6"><td>999999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td><input type="checkbox" name=""></td></tr><tr><td>999999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td><input type="checkbox" name=""></td></tr><tr style="background: #eef4f6"><td>999999</td><td>XXXXX</td><td>23</td><td>2013-12-12</td><td>2023-12-12</td><td>已注册</td><td>正常</td><td>查看</td><td><input type="checkbox" name=""></td></tr></tbody></table>';
+			$('#result').html(html);
+		});
+	},
+	load : function(){
+		this.chg();
+
+		this.click();
+	}
+}
+
+</script>
+</body>
+</html>

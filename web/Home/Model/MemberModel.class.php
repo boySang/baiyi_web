@@ -38,7 +38,7 @@ class MemberModel extends Model{
 		setcookie("phone",$d['phone'], time()+2592000,'/');
         session('uniqid',$d['uniqid']);
         session('phone',$d['phone']);
-        return returnApi(200,'登陆成功！','',U('Member/index'));
+        return returnApi(200,'登陆成功！','',U('Index/index'));
 	}
 
 
@@ -71,6 +71,14 @@ class MemberModel extends Model{
 		}else{
 			return false;
 		}
+	}
+
+	public function logout(){
+		session('uniqid',null);
+    	session('phone',null);
+    	cookie('uniqid',null);
+    	cookie('phone',null);
+    	return true;
 	}
 
 
