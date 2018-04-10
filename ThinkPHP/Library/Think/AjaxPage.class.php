@@ -93,22 +93,22 @@ class AjaxPage{
 
         //上一页
         $up_row  = $this->nowPage - 1;
-        $up_page = $up_row > 0 ? '<li><a class="prev" page-id="'.$up_row.'" href="javascript:void(0);">' . $this->config['prev'] . '</a></li>' : '';
+        $up_page = $up_row > 0 ? '<a class="prev" page-id="'.$up_row.'" href="javascript:void(0);">' . $this->config['prev'] . '</a>' : '';
 
         //下一页
         $down_row  = $this->nowPage + 1;
-        $down_page = ($down_row <= $this->totalPages) ? '<li><a class="next" page-id="'.$down_row.'" href="javascript:void(0);">' . $this->config['next'] . '</a></li>' : '';
+        $down_page = ($down_row <= $this->totalPages) ? '<a class="next" page-id="'.$down_row.'" href="javascript:void(0);">' . $this->config['next'] . '</a>' : '';
 
         //第一页
         $the_first = '';
         if($this->totalPages > $this->rollPage && ($this->nowPage - $now_cool_page) >= 1){
-            $the_first = '<li><a class="first" page-id="1" href="javascript:void(0);">' . $this->config['first'] . '</a></li>';
+            $the_first = '<a class="first" page-id="1" href="javascript:void(0);">' . $this->config['first'] . '</a>';
         }
 
         //最后一页
         $the_end = '';
         if($this->totalPages > $this->rollPage && ($this->nowPage + $now_cool_page) < $this->totalPages){
-            $the_end = '<li><a class="end" page-id="'.$this->totalPages.'" href="javascript:void(0);">尾页</a></li>';
+            $the_end = '<a class="end" page-id="'.$this->totalPages.'" href="javascript:void(0);">尾页</a>';
         }
 
         //数字连接
@@ -124,13 +124,13 @@ class AjaxPage{
             if($page > 0 && $page != $this->nowPage){
 
                 if($page <= $this->totalPages){
-                    $link_page .= '<li><a class="num" page-id="'.$page.'" href="javascript:void(0);">' . $page . '</a></li>';
+                    $link_page .= '<a class="num" page-id="'.$page.'" href="javascript:void(0);">' . $page . '</a>';
                 }else{
                     break;
                 }
             }else{
                 if($page > 0 && $this->totalPages != 1){
-                    $link_page .= '<li class="active"><span>' . $page . '</span></li>';
+                    $link_page .= '<a class="active" page-id="" javascript:void(0);>' . $page . '</a>';
                 }
             }
         }

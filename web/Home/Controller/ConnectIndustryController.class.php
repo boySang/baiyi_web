@@ -114,6 +114,22 @@ class ConnectIndustryController extends LayoutController {
     	echo $_r;
     }
 
+    public function getTrademarkInquiriesNew(){
+    	header('Content-type:text/json');
+    	$cxkey = I('post.cxkey');
+    	$cxcls = I('post.cxcls','');
+    	$cxtype = I('post.cxtype')?I('post.cxtype'):2;
+    	$pagesize = I('post.pagesize')?I('post.pagesize'):15;
+    	$pageno = I('post.pageno')?I('post.pageno'):1;
+    	// if($cxkey == '' || $cxtype == '' || $pagesize == ''){
+    	// 	echo returnApi(201,'参数错误');
+    	// 	return false;
+    	// }
+    	$m = new Baitu();
+    	$r = $m->getTrademarkInquiries($cxkey,$cxcls,$cxtype,$pagesize,$pageno);
+    	echo $_r;
+    }
+
     // 读取一个商标的详细信息
     public function readmore($regno){
     	if(($regno != null) || ($regno != '')){
@@ -123,6 +139,20 @@ class ConnectIndustryController extends LayoutController {
 
     // ajax获取商标详细信息
     public function getmoreinfo(){
+    	$regno = I('get.regno');
+    	$intcls = I('get.intcls');
+		if($regno == '' || $intcls == ''){
+    		echo returnApi(201,'参数错误');
+    		return false;
+    	}
+    	$m = new Baitu();
+    	$r = $m->getTrademarkInfo($regno,$intcls);
+    	echo $_r;
+    }
+
+    // ajax获取商标详细信息
+    public function getmoreinfoNew(){
+    	header('Content-type:text/json');
     	$regno = I('get.regno');
     	$intcls = I('get.intcls');
 		if($regno == '' || $intcls == ''){
