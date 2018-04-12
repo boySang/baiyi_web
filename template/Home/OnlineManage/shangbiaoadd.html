@@ -204,7 +204,8 @@ var index = {
 
 		// 搜索的时候
 		$('body').on('click','#search .submit',function(){
-			index.search(1);
+			index.temp();
+			// index.search(1);
 		});
 
 		// 弹出类别
@@ -309,6 +310,19 @@ var index = {
 				$('#result').html(html);
 			}
 		});
+	},
+
+	// 测试数据用
+	temp : function(){
+		var html = '<div class="tit"><font>查询结果</font></div><table class="smbox" cellspacing="0" cellpadding="0"><thead><tr style="background: #eef4f6"><th>注册号/申请号</th><th>商标名称</th><th>国际分类</th><th>注册日期</th><th>截止日期</th><th>状态</th><th>详细信息</th><th>添加管理</th></tr></thead><tbody>';
+		var html2 = '{"jgcode":"0","jgmemo":"success","jgresidue":"25","jgnumber":"39","jgdata":[{"tmcode":"1600038","regno":"5318ABE942CF475F","zcdate":"2001-07-14","jzdate":"2011-07-13","intcls":"01","tmname":"NET  NET 123","appdate":"2000-01-07","appname":"美国实华开电子商务集团公司 SPARKICE.COM,INC.U.S.A.","tmimage":"http://pic.cha-tm.net/chatmimg/tmutil/default.do?method=showimage&guid=015318ABE942CF475F","tmlaw":"已销亡"},{"tmcode":"581932","regno":"262314B795C59C91","zcdate":"1992-02-10","jzdate":"2012-02-09","intcls":"01","tmname":"NC   123","appdate":"1991-02-22","appname":"NCH公司 NCH CORPORATION","tmimage":"http://pic.cha-tm.net/chatmimg/tmutil/default.do?method=showimage&guid=01262314B795C59C91","tmlaw":"已销亡"}]}';
+		html2 = JSON.parse(html2);
+		console.log(html2);
+		$(html2.jgdata).each(function(k,v){
+			html += '<tr><td>'+v.tmcode+'</td><td>'+v.tmname+'</td><td>'+v.intcls+'</td><td>'+v.zcdate+'</td><td>'+v.jzdate+'</td><td>'+v.tmlaw+'</td><td><a href="javascript:;" id="readmore" data-regno="'+v.regno+'" data-intcls="'+v.intcls+'" data-tmname="'+v.tmname+'" data-tmcode="'+v.tmcode+'">查看</a></td><td><input type="checkbox" class="toManage" data-regno="'+v.regno+'" data-intcls="'+v.intcls+'" data-tmname="'+v.tmname+'" data-tmcode="'+v.tmcode+'"></td></tr>';
+		});
+		html += '</tbody></table>';
+		$('#result').html(html);
 	},
 
 	// 阅读某个商标的详细信息
