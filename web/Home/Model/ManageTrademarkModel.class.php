@@ -163,6 +163,21 @@ class ManageTrademarkModel extends Model{
 	        ));
         }
 	}
+
+	public function getOne($regno,$intcls){
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			return returnApi(204,'请重新登录');
+		}
+
+		// 查找重复
+		$d = $this->where('regno="%s" AND intcls="%s"',$regno,$intcls)->find(); 
+		if($d){
+			return returnApi(200,'success',$d);
+		}else{
+			return returnApi(202,'未查询到数据！~');
+		}
+	}
 }
 
 

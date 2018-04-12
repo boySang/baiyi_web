@@ -146,33 +146,69 @@ $(function(){
 });
 var getmore = {
   init : function(){
-    $.get('__CONTROLLER__/getmoreinfo/regno/'+regno+'/intcls/'+intcls,function(data){
+    var url = '';
+    var type = '<?php echo I("get.type",""); ?>';
+    if(type == '0'){
+      url = 'getHistory';
+    }else{
+      url = 'getmoreinfo';
+    }
+    $.get('__CONTROLLER__/'+url+'/regno/'+regno+'/intcls/'+intcls,function(data){
       // console.log(data);
-      data = data.match(/{.*}/g);
+      // data = data.match(/{.*}/g);
       // console.log(_res1);
-      data = JSON.parse(data);
+      // data = JSON.parse(data);
       console.log(data);
-      if(data.jgcode == 0){
-        $('#tmname').text(data.jgdata[0]['tmname']);
-        $('#tmlaw').text(data.jgdata[0]['tmlaw']);
-        $('#regno').text(data.jgdata[0]['regno']);
-        $('#intcls').text(data.jgdata[0]['intcls']);
-        $('#appdate').text(data.jgdata[0]['appdate']);
-        $('#appname').text(data.jgdata[0]['appname']);
-        $('#appaddr').text(data.jgdata[0]['appaddr']);
-        $('#tmgroup').text(data.jgdata[0]['tmgroup']);
-        var temp_tmimage = data.jgdata[0]['tmimage'];
-        $('#tmimage img').attr('src','http://pic.cha-tm.net/chatmimg/tmutil/default.do?method=showimage&guid='+temp_tmimage);
-        $('#tmgoods').text(data.jgdata[0]['tmgoods']);
-        $('#csggqh').text(data.jgdata[0]['csggqh']);
-        $('#zcggqh').text(data.jgdata[0]['zcggqh']);
-        $('#csdate').text(data.jgdata[0]['csdate']);
-        $('#regdate').text(data.jgdata[0]['regdate']);
-        $('#enddate').text(data.jgdata[0]['enddate']);
-        $('#agentname').text(data.jgdata[0]['agentname']);
-        $('#tmsblx').text(data.jgdata[0]['tmsblx']);
+      if(type == '0'){
+        // 历史保存
+        if(data.state == 201){
+          window.location.href=data.url;
+        }else if(data.state == 200){
+          $('#tmname').text(data.data['tmname']);
+          $('#tmlaw').text(data.data['tmlaw']);
+          $('#regno').text(data.data['regno']);
+          $('#intcls').text(data.data['intcls']);
+          $('#appdate').text(data.data['appdate']);
+          $('#appname').text(data.data['appname']);
+          $('#appaddr').text(data.data['appaddr']);
+          $('#tmgroup').text(data.data['tmgroup']);
+          var temp_tmimage = data.data['tmimage'];
+          $('#tmimage img').attr('src','http://pic.cha-tm.net/chatmimg/tmutil/default.do?method=showimage&guid='+temp_tmimage);
+          $('#tmgoods').text(data.data['tmgoods']);
+          $('#csggqh').text(data.data['csggqh']);
+          $('#zcggqh').text(data.data['zcggqh']);
+          $('#csdate').text(data.data['csdate']);
+          $('#regdate').text(data.data['regdate']);
+          $('#enddate').text(data.data['enddate']);
+          $('#agentname').text(data.data['agentname']);
+          $('#tmsblx').text(data.data['tmsblx']);
+        }else{
+          layer.msg(data.msg);
+        }
       }else{
-        // 失败
+        // 读取接口数据
+        if(data.jgcode == 0){
+          $('#tmname').text(data.jgdata[0]['tmname']);
+          $('#tmlaw').text(data.jgdata[0]['tmlaw']);
+          $('#regno').text(data.jgdata[0]['regno']);
+          $('#intcls').text(data.jgdata[0]['intcls']);
+          $('#appdate').text(data.jgdata[0]['appdate']);
+          $('#appname').text(data.jgdata[0]['appname']);
+          $('#appaddr').text(data.jgdata[0]['appaddr']);
+          $('#tmgroup').text(data.jgdata[0]['tmgroup']);
+          var temp_tmimage = data.jgdata[0]['tmimage'];
+          $('#tmimage img').attr('src','http://pic.cha-tm.net/chatmimg/tmutil/default.do?method=showimage&guid='+temp_tmimage);
+          $('#tmgoods').text(data.jgdata[0]['tmgoods']);
+          $('#csggqh').text(data.jgdata[0]['csggqh']);
+          $('#zcggqh').text(data.jgdata[0]['zcggqh']);
+          $('#csdate').text(data.jgdata[0]['csdate']);
+          $('#regdate').text(data.jgdata[0]['regdate']);
+          $('#enddate').text(data.jgdata[0]['enddate']);
+          $('#agentname').text(data.jgdata[0]['agentname']);
+          $('#tmsblx').text(data.jgdata[0]['tmsblx']);
+        }else{
+          // 失败
+        }
       }
     });
   },
@@ -184,7 +220,7 @@ var getmore = {
       data = data.match(/{.*}/g);
       // console.log(_res1);
       data = JSON.parse(data);
-      console.log(data);
+      // console.log(data);
       if(data.jgcode == 0){
         var html = '<table class="table table-striped table-bordered table-hover text-center mar_bot_1"><tbody><tr><td width="50%">流程名称</td><td width="50%">流程日期</td></tr>';
         $(data.jgdata).each(function(k,v){

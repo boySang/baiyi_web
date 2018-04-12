@@ -139,6 +139,7 @@ class ConnectIndustryController extends LayoutController {
 
     // ajax获取商标详细信息
     public function getmoreinfo(){
+    	header('Content-type:text/json');
     	$regno = I('get.regno');
     	$intcls = I('get.intcls');
 		if($regno == '' || $intcls == ''){
@@ -147,7 +148,7 @@ class ConnectIndustryController extends LayoutController {
     	}
     	$m = new Baitu();
     	$r = $m->getTrademarkInfo($regno,$intcls);
-    	echo $_r;
+    	echo $r;
     }
 
     // ajax获取商标详细信息
@@ -161,7 +162,19 @@ class ConnectIndustryController extends LayoutController {
     	}
     	$m = new Baitu();
     	$r = $m->getTrademarkInfo($regno,$intcls);
-    	echo $_r;
+    	echo $r;
+    }
+
+    public function getHistory(){
+    	header('Content-type:text/json');
+    	$regno = I('get.regno');
+    	$intcls = I('get.intcls');
+		if($regno == '' || $intcls == ''){
+    		echo returnApi(201,'参数错误');
+    		return false;
+    	}
+    	$manageTraModel = D('ManageTrademark');
+		echo $manageTraModel->getOne($regno,$intcls);
     }
 
     // ajax获取商标流程

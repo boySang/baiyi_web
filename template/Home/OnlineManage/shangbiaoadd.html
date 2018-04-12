@@ -111,21 +111,25 @@
 		<span>客户名称：太原新泰基网络科技有限公司</span>
 	</div>
 	<div class="tit">
-		<span class="ed">已管理</span>
+		<span class="ed"></span>
 		<span><i class="iconfont icon-kefu-copy"></i>联系客服</span>
 	</div>
 	<div class="search clearfix">
 		<form id="search">
-			<div class="inputbox l">
-				<select class="searchtype" name="cxtype">
-					<option value="2">商标名称</option>
-					<option value="3">搜索人名称</option>
-					<option value="1">商标注册号</option>
-				</select>
-				<input type="text" name="cxkey" autocomplete="off" placeholder="请输入商标注册/申请号">
-				<span class="goodstype">类别</span>
+			<div class="clearfix">
+				<input type="hidden" name="cxcls" value="">
+				<div class="inputbox l">
+					<select class="searchtype" name="cxtype">
+						<option value="2">商标名称</option>
+						<option value="3">申请人名称</option>
+						<option value="1">商标注册号</option>
+					</select>
+					<input type="text" name="cxkey" autocomplete="off" placeholder="请输入商标注册/申请号">
+					<span class="goodstype" id="setcxcls">类别</span>
+				</div>
+				<a href="javascript:;" id="searchsubmit" class="l submit"><i class="iconfont icon-sousuo"></i></a>
 			</div>
-			<a href="javascript:;" id="searchsubmit" class="l submit"><i class="iconfont icon-sousuo"></i></a>
+			<p id="cxclsreview"></p>
 		</form>
 	</div>
 	<table class="smbox" id="reviewtmp" cellspacing="0" cellpadding="0" style="display:none;">
@@ -144,11 +148,13 @@
 	</table>
 	<div id="result">
 		<div class="nodata">
-			<small>请输入关键字查询数据~</small>
+			<small><br></small>
 		</div>
 	</div>
 	<div class="page" id="searchpage"></div>
 </div>
+
+<div id="cxclslist"><div class="clearfix"></div></div>
 
 <include file='Public:footer' />
 <script type="text/javascript">
@@ -200,6 +206,52 @@ var index = {
 		$('body').on('click','#search .submit',function(){
 			index.search(1);
 		});
+
+		// 弹出类别
+		$('body').on('click','#setcxcls',function(){
+			layer.open({
+				type: 1,
+				title: false,
+				closeBtn: 0,
+				area: '516px',
+				skin: 'layui-layer-nobg', //没有背景色
+				shadeClose: true,
+				content: $('#cxclslist')
+			});
+		});
+
+		// 选择类别
+		$('body').on('click','#cxclslist span font',function(){
+			var that = $(this).parent();
+			if(that.hasClass('active')){
+				that.removeClass('active');
+			}else{
+				that.addClass('active');
+			}
+			// 统计已选择的类别，并放入input
+			var tmp = [];
+			var tmpName = '<small>已选择：</small>';
+			// 定时器
+			var _i = 0;
+			$('#cxclslist span').each(function(k,v){
+				var thats = $(this);
+				if(thats.hasClass('active')){
+					// cid拼接
+					tmp.push(thats.attr('data-cid'));
+					// name拼接
+					tmpName += thats.html()+'、';
+					_i++;
+				}
+			});
+			if(_i == $('#cxclslist span.active').length){
+				$('input[name="cxcls"]').val(tmp);
+			}
+			if(_i > 0){
+				$('#cxclsreview').html(tmpName).show();
+			}else{
+				$('#cxclsreview').hide();
+			}
+		});
 	},
 
 	search : function(pageno){
@@ -211,7 +263,7 @@ var index = {
 		}
 		$.post('__MODULE__/ConnectIndustry/getTrademarkInquiriesNew',{
 			cxkey:$('input[name="cxkey"]').val(),
-			cxcls:'',
+			cxcls:$('input[name="cxcls"]').val(),
 			cxtype:$('select[name="cxtype"]').val(),
 			pagesize:15,
 			pageno:pageno,
@@ -355,6 +407,20 @@ var index = {
 		});
 	},
 
+	// 加载类别信息
+	loadcxcls : function(){
+		$.get('__MODULE__/TrademarkClassification/ajaxGetAllFromPid/pid/0',function(data){
+			console.log(data);
+			if(data.state == 200){
+				var html = '';
+				$(data.data).each(function(k,v){
+					html += '<span data-cid="'+v.cid+'"><font>第'+v.cid+'类&nbsp;'+v.title+'</font></span>';
+				});
+				$('#cxclslist div').html(html);
+			}
+		});
+	},
+
 	load : function(){
 		this.chg();
 
@@ -365,6 +431,9 @@ var index = {
 
 		// 保存或取消
 		this.toManage();
+
+		// 加载类别
+		this.loadcxcls();
 	}
 }
 
