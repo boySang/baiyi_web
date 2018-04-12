@@ -154,6 +154,13 @@ class ConnectIndustryController extends LayoutController {
     // ajax获取商标详细信息
     public function getmoreinfoNew(){
     	header('Content-type:text/json');
+    	$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			$r['jgcode'] = 10001;
+			$r['jgmemo'] = '请重新登录';
+			echo json_encode($r);
+			return false;
+		}
     	$regno = I('get.regno');
     	$intcls = I('get.intcls');
 		if($regno == '' || $intcls == ''){

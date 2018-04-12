@@ -383,21 +383,27 @@ var index = {
 								layer.msg(data2.msg);
 							}
 						});
+						
+						// 将所选数据复制到上面box
+						var td = that.parent().parent().find('td');
+						var html = '<tr id="tmcode'+td.eq(0).text()+'" data-tmcode="'+td.eq(0).text()+'"><td><i class="iconfont icon-shanchu4"></i>'+td.eq(0).text()+'</td><td>'+td.eq(1).text()+'</td><td>'+td.eq(2).text()+'</td><td>'+td.eq(3).text()+'</td><td>'+td.eq(4).text()+'</td><td>'+td.eq(5).text()+'</td><td><a href="javascript:;" id="readmore" data-regno="'+td.find('input').attr('data-regno')+'" data-intcls="'+td.eq(2).text()+'" data-tmname="'+td.eq(1).text()+'">查看</a></td></tr>';
+						$('#reviewtmp tbody').append(html);
+						if($('#reviewtmp tbody tr').length > 0){
+							$('#reviewtmp').show();
+						}
+						$('#reviewtmp tr:even').css('background','#eef4f6');
+					}else if(data.jgcode == 10001){
+						layer.close(index);
+						layer.msg(data.jgmemo);
+						setTimeout(function(){
+							window.location.href='__MODULE__/Member/login';
+						},1500);
 					}else{
 						layer.close(index);
 						layer.msg(data.jgmemo);
 						return false;
 					}
 				});
-				// 将所选数据复制到上面box
-				var td = that.parent().parent().find('td');
-				var html = '<tr id="tmcode'+td.eq(0).text()+'" data-tmcode="'+td.eq(0).text()+'"><td><i class="iconfont icon-shanchu4"></i>'+td.eq(0).text()+'</td><td>'+td.eq(1).text()+'</td><td>'+td.eq(2).text()+'</td><td>'+td.eq(3).text()+'</td><td>'+td.eq(4).text()+'</td><td>'+td.eq(5).text()+'</td><td><a href="javascript:;" id="readmore" data-regno="'+td.find('input').attr('data-regno')+'" data-intcls="'+td.eq(2).text()+'" data-tmname="'+td.eq(1).text()+'">查看</a></td></tr>';
-				$('#reviewtmp tbody').append(html);
-				if($('#reviewtmp tbody tr').length > 0){
-					$('#reviewtmp').show();
-				}
-				$('#reviewtmp tr:even').css('background','#eef4f6');
-
 			}else{
 				// 这里删除
 				$.get('__MODULE__/ManageTrademark/del/tmcode/'+that.attr('data-tmcode'),function(data){
