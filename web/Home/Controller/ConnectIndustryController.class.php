@@ -197,6 +197,15 @@ class ConnectIndustryController extends LayoutController {
     	echo $_r;
     }
 
+    // 生成pdf用的页面
+    public function html2pdf(){
+    	$this->assign(array(
+    		'data'			=>		session('html2pdf_tmp'),
+    		'nowtime'		=>		date('Y年m月d日',time()),
+    	));
+    	$this->display();
+    }
+
 
 
 

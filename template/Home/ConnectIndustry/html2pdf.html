@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>生成PDF</title>
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<style type="text/css">
+		body{
+			background: #fff;
+		}
+		.container{
+			width: 1100px;
+			padding:100px 0;
+		}
+		.l{
+			float: left;
+		}
+		.r{
+			float: right;
+		}
+		.header{
+			margin-bottom: 20px;
+		}
+		.header .address p{
+			line-height: 1;
+		}
+		.header .address p .addinfo1{
+			display: inline-block;
+			padding-left: 53px;
+		}
+		.header .address p .addinfo2{
+			display: inline-block;
+			padding-left: 50px;
+		}
+		.border_dotted{
+			border-top:1px dotted #ddd;
+			width: 100%;
+		}
+		.topinfo{
+			width: 100%;
+			margin-top:15px;
+		}
+		.table-bordered>tbody>tr>td{
+			border:1px solid #868686;
+			vertical-align: middle;
+		}
+		.table>tbody>tr>td{
+			padding:4px 10px;
+		}
+		h3{
+			font-size:20px;
+			font-weight: 400;
+			margin-top:50px;
+			margin-bottom:50px;
+		}
+		.tips p{
+			font-size:16px;
+			text-indent: 2em;
+			line-height: 1.8;
+		}
+		.contents{
+			margin-top: 40px;
+		}
+		.contents .tit{
+			font-size:16px;
+			font-weight: 400px;
+		}
+		.contents .table{
+			margin:20px 0;
+		}
+		.contents .table tr td span{
+			display: block;
+			float: left;
+			margin-right: 10px;
+		}
+		.contents .tipsp{
+			text-indent: 2em;
+			margin-top: 30px;
+			font-size:14px;
+		}
+		.footer{
+			margin-top:50px;
+		}
+		.footer p{
+			margin-bottom: 5px;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="header clearfix">
+			<div class="address l">
+				<p>上海市徐汇区桂平路410号漕河泾国际孵化中心一楼</p>
+				<p>电话：021-64878081<span class="addinfo1">传真：021-64878023</span></p>
+				<p>邮箱：foridom@foridom.com<span class="addinfo2">邮编：200233</span></p>
+			</div>
+			<div class="logo r">
+				<img src="__PUBLIC__/home/img/logo.png">
+			</div>
+		</div>
+		<div class="border_dotted"></div>
+		<table class="table-bordered table topinfo">
+			<tr>
+				<td>致：某某某公司</td>
+				<td>日期：{$nowtime}</td>
+			</tr>
+			<tr>
+				<td>事宜：商标注册方案建议</td>
+				<td>客服热线：021-64878081</td>
+			</tr>
+		</table>
+		<h3 class="text-center">商标注册方案建议</h3>
+		<div class="tips">
+			<p>品牌是公司的无形资产，是公司核心竞争力；商标作为品牌的法律基础，对其进行有效的保护是对公司无形资产与核心竞争力的有效保护。故对商标的保护不仅要在核心商品与服务商进行注册，更要放眼长远，未雨绸缪，在相关类别上进行防御性注册，可防止他人对公司品牌的恶意摹仿、抄袭及抢注行为，降低公司在维权上的成本。</p>
+			<p>商标具有两个重要功能：使用和防御功能，即自由使用而不侵犯他人的权利，保证行动自由；以及禁止他人使用，以保证品牌的唯一、独立和差异性。</p>
+		</div>
+		<div class="contents">
+			<div class="tit">具体类别建议：</div>
+			<table class="table-bordered table">
+				<tr>
+					<td width="21%">重要类别</td>
+					<td width="79%">主要商品/服务</td>
+				</tr>
+				<foreach name='data' item='v'>
+					<tr>
+						<td width="21%">第{$v.topcid.cid}类&nbsp;{$v.topcid.title}</td>
+						<td width="79%" class="clearfix">
+							<foreach name='v.childid' item='v1'>
+								<span>{$v1.cid}&nbsp;{$v1.title}、</span>
+							</foreach>
+						</td>
+					</tr>
+				</foreach>
+			</table>
+			<div class="tipsp">
+				<small>以上是对贵公司商标注册的类别建议，详情可咨询客服，或选择在线下单，自助提交注册申请。</small>
+			</div>
+		</div>
+		<div class="footer text-right">
+			<p>百一知识产权</p>
+			<p>{$nowtime}</p>
+		</div>
+	</div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<script src="__PUBLIC__/home/js/html2canvas.js"></script>
+<script src="__PUBLIC__/home/js/jsPdf.debug.js"></script>
+<script type="text/javascript">
+function html2pdf(){
+	html2canvas(document.body, {
+
+		allowTaint : true,
+
+		onrendered:function(canvas) {
+
+			var contentWidth = canvas.width;
+			var contentHeight = canvas.height;
+
+			//一页pdf显示html页面生成的canvas高度;
+			var pageHeight = contentWidth / 592.28 * 841.89;
+			//未生成pdf的html页面高度
+			var leftHeight = contentHeight;
+			//页面偏移
+			var position = 0;
+			//a4纸的尺寸[595.28,841.89]，html页面生成的canvas在pdf中图片的宽高
+			var imgWidth = 595.28;
+			var imgHeight = 592.28/contentWidth * contentHeight;
+
+			var pageData = canvas.toDataURL('image/jpeg', 1.0);
+
+			var pdf = new jsPDF('', 'pt', 'a4');
+
+			//有两个高度需要区分，一个是html页面的实际高度，和生成pdf的页面高度(841.89)
+			//当内容未超过pdf一页显示的范围，无需分页
+			if (leftHeight < pageHeight) {
+				pdf.addImage(pageData, 'JPEG', 0, 0, imgWidth, imgHeight );
+			} else {
+				while(leftHeight > 0) {
+					pdf.addImage(pageData, 'JPEG', 0, position, imgWidth, imgHeight)
+					leftHeight -= pageHeight;
+					position -= 841.89;
+					//避免添加空白页
+					if(leftHeight > 0) {
+						pdf.addPage();
+					}
+				}
+			}
+
+			pdf.save('【'+$.cookie("keywords")+'】商标类别建议方案.pdf');
+		}
+	})
+}
+</script>
+</body>
+</html>

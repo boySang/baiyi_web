@@ -105,6 +105,7 @@
 				<p class="resultTotalPrice">应付总额：<font color="#d82b2b">0 </font>元</p>
 			</div>
 			<div class="toCreateOrder r">
+				<a href="javascript:select.html2pdf();" class="html2pdf">生成方案</a>
 				<a href="javascript:select.onekeysearch();">一键检索</a>
 				<a href="javascript:select.onlinereg();" class="createOrder">在线注册</a>
 			</div>
@@ -112,6 +113,9 @@
 	</div>
 </div>
 
+<script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+<script src="https://cdn.bootcss.com/jspdf/1.3.5/jspdf.debug.js"></script>
+<iframe src="__CONTROLLER__/html2pdf" id="html2pdf" style="position: absolute;width: 100%;height:100%;z-index: -100;top:0;opacity: 0"></iframe>
 <!-- <include file='Public:footer' /> -->
 
 <script type="text/javascript">
@@ -228,6 +232,8 @@ var select = {
 				select.totalPrice();
 				// 修改商品项隐藏域
 				select.getGoodsAttr();
+				// 重新加载iframe
+				$('#html2pdf').attr('src','__CONTROLLER__/html2pdf');
 			}else{
 				console.log(data);
 			}
@@ -529,6 +535,10 @@ var select = {
 
 	onekeysearch : function (){
 		window.location.href='__CONTROLLER__/onekeysearch';
+	},
+
+	html2pdf : function(){
+		$("#html2pdf")[0].contentWindow.html2pdf();
 	},
 
 	load : function(){

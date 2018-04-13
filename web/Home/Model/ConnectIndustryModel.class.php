@@ -27,6 +27,7 @@ class ConnectIndustryModel extends Model{
 		if($_d){
 			$m = D('TrademarkClassification');
 			$_d['connect_val_arr'] = $m->getArrData($_d['connect_val']);
+			session('html2pdf_tmp',$_d['connect_val_arr']);
 			return returnApi(200,'success',$_d);
 		}else{
 			return returnApi(201,'获取具体行业失败');
