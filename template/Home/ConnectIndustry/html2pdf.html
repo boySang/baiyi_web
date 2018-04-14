@@ -95,75 +95,99 @@
 		.footer p{
 			margin-bottom: 5px;
 		}
+		.html2pdf{
+			position: fixed;
+		    left: 50%;
+		    margin-left: 560px;
+		    width: 1100px;
+		    bottom: 40px;
+		}
+		.html2pdf span{
+			display: inline-block;
+			color: #3baaf2;
+			border:1px solid #3baaf2;
+			border-radius: 3px;
+			padding: 6px 20px;
+			transition: .2s;
+			-webkit-transition: .2s;
+			-moz-transition: .2s;
+			-mz-transition: .2s;
+			-o-transition: .2s;
+		}
+		.html2pdf span:hover{
+			background: #3baaf2;
+			color: #fff;
+		}
 	</style>
 </head>
-<body>
+<body id="body">
 <div class="container">
-	<div class="row">
-		<div class="header clearfix">
-			<div class="address l">
-				<p>上海市徐汇区桂平路410号漕河泾国际孵化中心一楼</p>
-				<p>电话：021-64878081<span class="addinfo1">传真：021-64878023</span></p>
-				<p>邮箱：foridom@foridom.com<span class="addinfo2">邮编：200233</span></p>
-			</div>
-			<div class="logo r">
-				<img src="__PUBLIC__/home/img/logo.png">
-			</div>
+	<a href="javascript:html2pdf();" class="html2pdf"><span>下载方案</span></a>
+	<div class="header clearfix">
+		<div class="address l">
+			<p>上海市徐汇区桂平路410号漕河泾国际孵化中心一楼</p>
+			<p>电话：021-64878081<span class="addinfo1">传真：021-64878023</span></p>
+			<p>邮箱：foridom@foridom.com<span class="addinfo2">邮编：200233</span></p>
 		</div>
-		<div class="border_dotted"></div>
-		<table class="table-bordered table topinfo">
-			<tr>
-				<td>致：某某某公司</td>
-				<td>日期：{$nowtime}</td>
-			</tr>
-			<tr>
-				<td>事宜：商标注册方案建议</td>
-				<td>客服热线：021-64878081</td>
-			</tr>
-		</table>
-		<h3 class="text-center">商标注册方案建议</h3>
-		<div class="tips">
-			<p>品牌是公司的无形资产，是公司核心竞争力；商标作为品牌的法律基础，对其进行有效的保护是对公司无形资产与核心竞争力的有效保护。故对商标的保护不仅要在核心商品与服务商进行注册，更要放眼长远，未雨绸缪，在相关类别上进行防御性注册，可防止他人对公司品牌的恶意摹仿、抄袭及抢注行为，降低公司在维权上的成本。</p>
-			<p>商标具有两个重要功能：使用和防御功能，即自由使用而不侵犯他人的权利，保证行动自由；以及禁止他人使用，以保证品牌的唯一、独立和差异性。</p>
-		</div>
-		<div class="contents">
-			<div class="tit">具体类别建议：</div>
-			<table class="table-bordered table">
-				<tr>
-					<td width="21%">重要类别</td>
-					<td width="79%">主要商品/服务</td>
-				</tr>
-				<foreach name='data' item='v'>
-					<tr>
-						<td width="21%">第{$v.topcid.cid}类&nbsp;{$v.topcid.title}</td>
-						<td width="79%" class="clearfix">
-							<foreach name='v.childid' item='v1'>
-								<span>{$v1.cid}&nbsp;{$v1.title}、</span>
-							</foreach>
-						</td>
-					</tr>
-				</foreach>
-			</table>
-			<div class="tipsp">
-				<small>以上是对贵公司商标注册的类别建议，详情可咨询客服，或选择在线下单，自助提交注册申请。</small>
-			</div>
-		</div>
-		<div class="footer text-right">
-			<p>百一知识产权</p>
-			<p>{$nowtime}</p>
+		<div class="logo r">
+			<img src="__PUBLIC__/home/img/logo.png">
 		</div>
 	</div>
+	<div class="border_dotted"></div>
+	<table class="table-bordered table topinfo">
+		<tr>
+			<td>致：某某某公司</td>
+			<td>日期：{$nowtime}</td>
+		</tr>
+		<tr>
+			<td>事宜：商标注册方案建议</td>
+			<td>客服热线：021-64878081</td>
+		</tr>
+	</table>
+	<h3 class="text-center">商标注册方案建议</h3>
+	<div class="tips">
+		<p>品牌是公司的无形资产，是公司核心竞争力；商标作为品牌的法律基础，对其进行有效的保护是对公司无形资产与核心竞争力的有效保护。故对商标的保护不仅要在核心商品与服务商进行注册，更要放眼长远，未雨绸缪，在相关类别上进行防御性注册，可防止他人对公司品牌的恶意摹仿、抄袭及抢注行为，降低公司在维权上的成本。</p>
+		<p>商标具有两个重要功能：使用和防御功能，即自由使用而不侵犯他人的权利，保证行动自由；以及禁止他人使用，以保证品牌的唯一、独立和差异性。</p>
+	</div>
+	<div class="contents">
+		<div class="tit">具体类别建议：</div>
+		<table class="table-bordered table">
+			<tr>
+				<td width="21%">重要类别</td>
+				<td width="79%">主要商品/服务</td>
+			</tr>
+			<foreach name='data' item='v'>
+				<tr>
+					<td width="21%">第{$v.topcid.cid}类&nbsp;{$v.topcid.title}</td>
+					<td width="79%" class="clearfix">
+						<foreach name='v.childid' item='v1'>
+							<span>{$v1.cid}&nbsp;{$v1.title}、</span>
+						</foreach>
+					</td>
+				</tr>
+			</foreach>
+		</table>
+		<div class="tipsp">
+			<small>以上是对贵公司商标注册的类别建议，详情可咨询客服，或选择在线下单，自助提交注册申请。</small>
+		</div>
+	</div>
+	<div class="footer text-right">
+		<p>百一知识产权</p>
+		<p>{$nowtime}</p>
+	</div>
 </div>
-
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script src="__PUBLIC__/home/js/html2canvas.js"></script>
 <script src="__PUBLIC__/home/js/jsPdf.debug.js"></script>
 <script type="text/javascript">
 function html2pdf(){
+	var t = $("#body").offset().top;
+    $(window).scrollTop(t);
+	$('.html2pdf').hide();
 	html2canvas(document.body, {
 
-		allowTaint : true,
+		// allowTaint : true,
 
 		onrendered:function(canvas) {
 
@@ -201,6 +225,7 @@ function html2pdf(){
 			}
 
 			pdf.save('【'+$.cookie("keywords")+'】商标类别建议方案.pdf');
+			$('.html2pdf').show();
 		}
 	})
 }
