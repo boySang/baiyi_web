@@ -17,4 +17,14 @@ class OnlineManageController extends LayoutController {
 		$this->display();
 	}
 
+	public function login(){
+		// var_dump(cookie("uniqid"));
+		// var_dump(cookie("phone"));
+		$m = D('Member');
+		if($m->truelogin() == true){
+			header('Location:'.U('ing'));
+		}
+		$this->display();
+	}
+
 }

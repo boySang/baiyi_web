@@ -41,6 +41,26 @@ class MemberModel extends Model{
         return returnApi(200,'登陆成功！','',U('Index/index'));
 	}
 
+	public function ajaxManageLogin(){
+		$d = $this->field('uniqid,face,state,phone')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
+		if(!$d['uniqid']){
+			return returnApi(202,'账号或密码不正确!');
+		}
+		if($d['state'] == 0){
+			return returnApi(202,'该用户禁止登陆系统，请联系客服!');
+		}
+		// if(I('post.remember')){
+			setcookie("uniqid",$d['uniqid'], time()+2592000,'/');
+			setcookie("phone",$d['phone'], time()+2592000,'/');
+		// }else{
+		// 	setcookie("uniqid",$d['uniqid']);
+		// 	setcookie("phone",$d['phone']);
+		// }
+        session('uniqid',$d['uniqid']);
+        session('phone',$d['phone']);
+        return returnApi(200,'登陆成功！','',U('OnlineManage/ing'));
+	}
+
 
     // 仅cookie存在
     public function onlylogin(){

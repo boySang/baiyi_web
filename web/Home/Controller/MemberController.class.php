@@ -56,6 +56,12 @@ class MemberController extends LayoutController {
 		echo $m->ajaxLogin();
     }
 
+    public function ajaxManageLogin(){
+    	header('Content-type:text/json');
+    	$m = D('Member');
+		echo $m->ajaxManageLogin();
+    }
+
     public function logout(){
     	$m = D('Member');
     	if($m->logout()){
