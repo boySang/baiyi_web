@@ -1,7 +1,7 @@
 <div class="menu l text-c">
 	<div class="face">
 		<div class="img">
-			<img src="__PUBLIC__/home/img/face128x128.jpg" />
+			<img src="__PUBLIC__/home/img/member_face.png" />
 		</div>
 		<div class="name">
 			<a href="javascript:void(0);" title="<?php echo session('phone'); ?>">Hi<br /><span><?php echo session('phone'); ?></span></a>
@@ -12,14 +12,15 @@
 		<div class="tit">订单中心</div>
 		<ul>
 			<a href="__CONTROLLER__/index"><li class="<?php echo ACTION_NAME=='index'?'active':''; ?>">我的订单</li></a>
-			<a href="__CONTROLLER__/guanwen"><li class="last <?php echo ACTION_NAME=='guanwen'?'active':''; ?>">官文下载</li></a>
+			<a href="__CONTROLLER__/guanwen"><li class="<?php echo ACTION_NAME=='guanwen'?'active':''; ?>">官文下载</li></a>
+			<a href="__CONTROLLER__/fapiao"><li class="last <?php echo ACTION_NAME=='fapiao'?'active':''; ?>">发票申请</li></a>
 		</ul>
 	</div>
 	<div class="option">
 		<div class="tit">设置</div>
 		<ul>
 			<a href="javascript:void(0);"><li class="<?php echo ACTION_NAME=='index'?'active':''; ?>">基本信息</li></a>
-			<a href="javascript:void(0);"><li class="last <?php echo ACTION_NAME=='index'?'active':''; ?>">主体信息</li></a>
+			<a href="javascript:void(0);"><li class="last <?php echo ACTION_NAME=='safe'?'active':''; ?>">安全管理</li></a>
 		</ul>
 	</div>
 </div>

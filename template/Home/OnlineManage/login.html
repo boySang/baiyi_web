@@ -14,9 +14,9 @@
 	<meta name="keywords" content="关键字">
 	<title>百一知识产权</title>
 	<!-- 公共css -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
     <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/login.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/login.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_sk9ry3g0ho9u23xr.css">
     <!-- bootstrap -->
@@ -49,6 +49,7 @@
 					<h4>登录</h4>
 					<div class="log-form">
 						<form action="" method="post" id="login-form">
+							<input type="hidden" name="last_url" value="<?php echo PREV_URL; ?>">
 							<div class="input-box">
 								<input type="text" class="input-text" name="phone" id="phone" autocomplete="off" placeholder="登录账号">
 								<i class="iconfont icon-yonghuming posi"></i>

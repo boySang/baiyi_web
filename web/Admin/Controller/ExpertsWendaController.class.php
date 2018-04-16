@@ -9,8 +9,15 @@ class ExpertsWendaController extends Controller {
 	public function add(){
 		$model = D('ExpertsWenda');
     	if(IS_POST){
-            $model->add() ? $this->redirect('add') : $this->error('添加失败');
+            if($model->create()) {
+            	$model->add() ? $this->redirect('add') : $this->error('添加失败');
+            }
         }
+        // 获取顶级栏目
+        $data = $model->getTopNav();
+        $this->assign(array(
+        	'data'		=>		$data,
+        ));
 		$this->display();
 	}
 

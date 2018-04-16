@@ -38,14 +38,9 @@
 			<span>移动应用</span>
 			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
 		</div>
-		<div class="r reg">
-			<span>注册</span>
-			<ul>
-				<li>个人注册</li>
-				<li>企业注册</li>
-			</ul>
+		<div class="logstate r clearfix" id="logstate">
+			<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" style="padding-left: 20px;">
 		</div>
-		<div class="r login">登录</div>
 		<div class="r phone">客服电话：40000000000</div>
 	</div>
 </div>
@@ -58,11 +53,10 @@
 	</div>
 	<div class="pub-navs clearfix">
 		<div class="quick-link r">
-			<a href="javascript:void(0);">首页</a>
-			<a href="javascript:void(0);">申请系统</a>
-			<a href="javascript:void(0);">方案系统</a>
-			<a href="javascript:void(0);">商标在线管理</a>
-			<a href="javascript:void(0);">专家库</a>
+			<a href="/" title="首页">首页</a>
+			<foreach name='web_nav' item='v'>
+				<a class="" href="{$v.url}">{$v.title}</a>
+			</foreach>
 		</div>
 	</div>
 </div>
@@ -115,7 +109,10 @@ $(function(){
 
 	select.load();
 
+	// 全局登录注册
+	public_home.load();
 });
+
 
 var select = {
 
@@ -173,6 +170,46 @@ var select = {
 		this.init();
 		// 阅读某个商标的详细信息
 		this.readmore();
+	}
+}
+
+
+
+var public_home = {
+	// 登录状态
+	member_state : function(){
+		$.get('__MODULE__/Member/ajacChkState',function(data){
+			var html = '';
+			if(data.state == 200){
+				html = '<div class="r phone"><a href="__MODULE__/Member/index">个人中心</a></div>';
+			}else{
+				html = '<div class="r reg"><span onclick="public_home.pub_reg();">注册</span></div><div onclick="public_home.pub_login();" class="r login">登录</div>';
+			}
+			$('#logstate').html(html);
+		});
+	},
+	pub_reg : function(){
+		layer.open({
+			type: 2,
+			title:'',
+			shadeClose: true,
+			shade: 0.8,
+			area: ['803px', '604px'],
+			content: '__MODULE__/Member/reg' //iframe的url
+		}); 
+	},
+	pub_login : function(){
+		layer.open({
+			type: 2,
+			title:'',
+			shadeClose: true,
+			shade: 0.8,
+			area: ['803px', '604px'],
+			content: '__MODULE__/Member/login' //iframe的url
+		}); 
+	},
+	load : function(){
+		this.member_state();
 	}
 }
 

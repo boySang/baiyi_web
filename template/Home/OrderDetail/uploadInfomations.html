@@ -24,14 +24,9 @@
 			<span>移动应用</span>
 			<div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
 		</div>
-		<div class="r reg">
-			<span onclick="window.location.href='__MODULE__/Member/reg'">注册</span>
-			<!-- <ul>
-				<li>个人注册</li>
-				<li>企业注册</li>
-			</ul> -->
+		<div class="logstate r clearfix" id="logstate">
+			<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" style="padding-left: 20px;">
 		</div>
-		<div onclick="window.location.href='__MODULE__/Member/login'" class="r login">登录</div>
 		<div class="r phone">客服电话：40000000000</div>
 	</div>
 </div>
@@ -76,11 +71,9 @@
 			</div>
 		</div>
 		<div class="quick-link r">
-			<a href="javascript:void(0);">首页</a>
-			<a href="javascript:void(0);">申请系统</a>
-			<a href="javascript:void(0);">方案系统</a>
-			<a href="javascript:void(0);">商标在线管理</a>
-			<a href="__MODULE__/ExpertsWenda/index" target="_blank">专家库</a>
+			<foreach name='web_nav' item='v'>
+				<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
+			</foreach>
 		</div>
 	</div>
 </div>

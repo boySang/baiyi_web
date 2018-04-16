@@ -28,20 +28,16 @@
 	<div class="header-box">
 		<div class="header clearfix">
 			<div class="logo">
-				<!-- <img src="" alt="logo"> -->
-				logo
+				<a href="/" title="首页"><img src="__PUBLIC__/home/img/logo.png" alt="logo"></a>
 			</div>
 			<div class="nav">
-				<a href="/">首页</a>
-				<a class="active" href="__SELF__">商标智能方案</a>
-				<a href="__CONTROLLER__/ipsearch">商标查询</a>
-				<a href="#">在线申请</a>
-				<a href="#">知识产权管理</a>
-				<a href="#">知识产权专家库</a>
+				<a href="/" title="首页">首页</a>
+				<foreach name='web_nav' item='v'>
+					<a class="" href="{$v.url}">{$v.title}</a>
+				</foreach>
 			</div>
-			<div class="login-box">
-				<a href="__MODULE__/Member/reg" class="reg">注册</a>
-				<a href="__MODULE__/Member/login" class="login">登录</a>
+			<div class="login-box" id="logstate">
+				<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" style="padding-left: 20px;">
 			</div>
 		</div>
 	</div>
@@ -108,6 +104,9 @@
 
 $(function(){
 	aiSearch.load();
+
+	// 登录注册
+	public_home.load();
 });
 
 var aiSearch = {
@@ -188,6 +187,46 @@ var aiSearch = {
 		// this.getChild();
 	}
 }
+
+
+var public_home = {
+	// 登录状态
+	member_state : function(){
+		$.get('__MODULE__/Member/ajacChkState',function(data){
+			var html = '';
+			if(data.state == 200){
+				html = '<div class="r phone"><a href="__MODULE__/Member/index">个人中心</a></div>';
+			}else{
+				html = '<a href="javascript:public_home.pub_reg();" class="reg">注册</a><a href="javascript:public_home.pub_login();" class="login">登录</a>';
+			}
+			$('#logstate').html(html);
+		});
+	},
+	pub_reg : function(){
+		layer.open({
+			type: 2,
+			title:'',
+			shadeClose: true,
+			shade: 0.8,
+			area: ['803px', '604px'],
+			content: '__MODULE__/Member/reg' //iframe的url
+		}); 
+	},
+	pub_login : function(){
+		layer.open({
+			type: 2,
+			title:'',
+			shadeClose: true,
+			shade: 0.8,
+			area: ['803px', '604px'],
+			content: '__MODULE__/Member/login' //iframe的url
+		}); 
+	},
+	load : function(){
+		this.member_state();
+	}
+}
+
 
 </script>
 </body>

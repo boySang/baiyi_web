@@ -21,17 +21,12 @@
         <ul class="forminfo">
             <form action="__SELF__" method="post">
                 <li>
-                    <!-- <label>所属类别</label>
+                    <label>类别</label>
                     <select class="input-select" name="pid" style="width:120px;">
-                        <option value="商标">商标</option>
-                        <option value="专利">专利</option>
-                        <option value="版权">版权</option>
-                        <option value="其他">其他</option>
-                    </select> -->
-                </li>
-                <li>
-                    <label>pid</label>
-                    <input name="pid" type="text" value="0" class="dfinput" required />
+                        <foreach name='data' item='v'>
+                            <option value="{$v.id}">{$v.title}</option>
+                        </foreach>
+                    </select>
                 </li>
                 <li>
                     <label>问题</label>

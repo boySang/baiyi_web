@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/login.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_jrxuv59w769lik9.css">
+    <!-- bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- bootstrap end -->
 </head>
 <body class="reg-new-v1">
 
@@ -161,8 +164,9 @@ $('#reg-form').validate({
 					shade: [0.1,'#fff'] //0.1透明度的白色背景
 				});
 				setTimeout(function(){
-					window.location.href='__CONTROLLER__/regSuccess';
-				},1500);
+					window.parent.location.reload();
+					// window.location.href='__CONTROLLER__/regSuccess';
+				},1000);
 			}
 		});
     } 

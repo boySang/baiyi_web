@@ -12,13 +12,13 @@ class CategoryModel extends Model{
 		}else{
 			$bigtitLimit = 0;
 		}
-		$d = $this->field('id,title,urlname')->limit($bigtitLimit)->select();
+		$d = $this->field('id,title,urlname')->limit($bigtitLimit)->order('id asc')->select();
 		$goodsModel = D('Goods');
 		foreach($d as $k=>$v){
 			$d[$k]['goods'] = $goodsModel->getGoodsFromCate($v['id']);
 			if($tocate){
 				foreach($d[$k]['goods'] as $k1=>$v1){
-					if($k1 < 4){
+					if($k1 < 3){
 						$d[$k]['goods_limit'][$k1] = $v1;
 					}
 				}

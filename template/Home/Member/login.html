@@ -130,7 +130,11 @@ $('#reg-form').validate({
 				if(data.state == 200){
 					$('.input-box-inner .submit').css('background','green').attr('value','登陆成功');
 					setTimeout(function(){
-						window.location.href=data.url;
+						// parent.location.href="";
+						// var frameindex= parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+						// parent.layer.close(frameindex);
+						window.parent.location.reload();
+						// window.location.href=data.url;
 					},1500);
 				}else{
 					$.alert(data.msg);

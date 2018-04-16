@@ -46,10 +46,9 @@
 	<div class="nav">
 		<div class="wid1200">
 			<a href="/" title="上海百一知识产权代理有限公司">首页</a> | 
-			<a href="/Goods/detail/id/1.html" target="_blank">知识产权在线申请</a> | 
-			<a href="__MODULE__/InternationalReg/madeli">国际商标预算</a> | 
-			<a href="__MODULE__/OnlineManage/ing">知识产权在线管理</a> | 
-			<a href="__MODULE__/ExpertsWenda/index" target="_blank">知识产权专家顾问</a>
+			<foreach name='web_nav' item='v'>
+				<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a> | 
+			</foreach>
 		</div>
 	</div>
 </div>
@@ -62,10 +61,10 @@
 
 <div class="wid1200 midInfo clearfix">
 	<div class="navs l">
-		<a href="" class="smPic" style="background: url('__PUBLIC__/home/img/smpic1.jpg') left center no-repeat;">商标</a>
-		<a href="" class="smPic" style="background: url('__PUBLIC__/home/img/smpic2.jpg') left center no-repeat;">专利</a>
-		<a href="" class="smPic" style="background: url('__PUBLIC__/home/img/smpic3.jpg') left center no-repeat;">版权</a>
-		<a href="" class="bigPic" style="background: url('__PUBLIC__/home/img/smpic4.jpg') left center no-repeat;">其他</a>
+		<a href="__CONTROLLER__/show" class="smPic" style="background: url('__PUBLIC__/home/img/smpic1.jpg') left center no-repeat;">商标</a>
+		<a href="__CONTROLLER__/show" class="smPic" style="background: url('__PUBLIC__/home/img/smpic2.jpg') left center no-repeat;">专利</a>
+		<a href="__CONTROLLER__/show" class="smPic" style="background: url('__PUBLIC__/home/img/smpic3.jpg') left center no-repeat;">版权</a>
+		<a href="__CONTROLLER__/show" class="bigPic" style="background: url('__PUBLIC__/home/img/smpic4.jpg') left center no-repeat;">其他</a>
 	</div>
 	<div class="scrollNews r clearfix">
 		<div class="scroll l">
@@ -73,36 +72,30 @@
 				<h5>滚动新闻</h5>
 			</div>
 			<div class="newsList">
-				<div class="list clearfix"><span class="r">2017-04-12</span><a href="" title="我是题目"><b>·</b>山东德州2017年新申请商标数同比增长46.6%</a></div>
-				<div class="list clearfix"><span class="r">2017-02-23</span><a href="" title="我是题目"><b>·</b>国办发文规范知识产权对外转让</a></div>
-				<div class="list clearfix"><span class="r">2017-05-12</span><a href="" title="我是题目"><b>·</b>2017年PCT国际专利申请排名公布</a></div>
-				<div class="list clearfix"><span class="r">2018-03-02</span><a href="" title="我是题目"><b>·</b>2018中国版权服务年会在北京举办</a></div>
-				<div class="list clearfix"><span class="r">2017-02-16</span><a href="" title="我是题目"><b>·</b>金砖国家知识产权局局长会议召开</a></div>
-				<div class="list clearfix"><span class="r">2017-12-23</span><a href="" title="我是题目"><b>·</b>商务部对美将中国涉知识产权措施诉诸WTO表示遗憾</a></div>
-				<div class="list clearfix"><span class="r">2017-03-12</span><a href="" title="我是题目"><b>·</b>2017年WIPO受理的域名抢注案件再创新高</a></div>
-				<div class="list clearfix"><span class="r">2017-08-30</span><a href="" title="我是题目"><b>·</b>WIPO：中国有望在未来三年内成为国际专利申请领跑者</a></div>
-				<div class="list clearfix"><span class="r">2017-11-12</span><a href="" title="我是题目"><b>·</b>李克强：严格保护知识产权　平衡中美贸易</a></div>
+				<foreach name='data.news' item='v' key='k'>
+					<div class="list clearfix"><span class="r">{$v.addtime}</span><a href="javascript:;" title="{$v.title}"><b>·</b>{$v.title}</a></div>
+				</foreach>
 			</div>
 		</div>
 		<div class="scrollBanner">
 			<div id="myCarousel" class="carousel slide">
 		        <div class="carousel-inner">
 		            <div class="item active">
-		                <img src="" alt="">
+		                <img src="__PUBLIC__/home/img/ex1.jpg" alt="">
 		                <div class="carousel-caption">
-		                  <h4>标题一</h4>
+		                  <h4>金砖国家领导人厦门会晤新闻中心</h4>
 		                </div>
 		            </div>
 		            <div class="item">
-		                <img src="" alt="">
+		                <img src="__PUBLIC__/home/img/ex2.jpg" alt="">
 		                <div class="carousel-caption">
-		                   <h4>标题二</h4>
+		                   <h4>欧盟或制定假冒市场观察名单</h4>
 		                </div>
 		            </div>
 		            <div class="item">
-		            	<img src="" alt="">
+		            	<img src="__PUBLIC__/home/img/ex3.jpg" alt="">
 		                <div class="carousel-caption">
-		                  <h4>标题三</h4>
+		                  <h4>中日知识产权工作第六次会议在北京召开</h4>
 		                </div>
 		            </div>
 		      </div>
@@ -126,58 +119,23 @@
 <div class="expetInfos wid1200">
 	<h4>专家观点</h4>
 	<div class="expertList">
+		<foreach name='data.zhuanjia' item='v' key='k'>
 		<div class="list clearfix">
 			<div class="name l clearfix">
-				<div class="face l"><img src=""></div>
+				<div class="face l"><img src="__PUBLIC__/home/img/face<?php echo $k+1; ?>.png"></div>
 				<div class="names l">
-					<p>专家名字</p>
-					<p class="infos">我是简介我是简介我是简介我是简介我是简介</p>
+					<p>{$v.title}</p>
 				</div>
 			</div>
 			<div class="info l">
-				我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介
+				<div class="inner">{$v.answer}</div>
 			</div>
 		</div>
-		<div class="list clearfix">
-			<div class="name l clearfix">
-				<div class="face l"><img src=""></div>
-				<div class="names l">
-					<p>专家名字</p>
-					<p class="infos">我是简介我是简介我是简介我是简介我是简介</p>
-				</div>
-			</div>
-			<div class="info l">
-				我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介
-			</div>
-		</div>
-		<div class="list clearfix">
-			<div class="name l clearfix">
-				<div class="face l"><img src=""></div>
-				<div class="names l">
-					<p>专家名字</p>
-					<p class="infos">我是简介我是简介我是简介我是简介我是简介</p>
-				</div>
-			</div>
-			<div class="info l">
-				我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介
-			</div>
-		</div>
-		<div class="list clearfix">
-			<div class="name l clearfix">
-				<div class="face l"><img src=""></div>
-				<div class="names l">
-					<p>专家名字</p>
-					<p class="infos">我是简介我是简介我是简介我是简介我是简介</p>
-				</div>
-			</div>
-			<div class="info l">
-				我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介我是简介
-			</div>
-		</div>
+		</foreach>
 	</div>
 </div>
 
-<div class="othernews wid1200 clearfix">
+<!--div class="othernews wid1200 clearfix">
 	<div class="list l">
 		<div class="inner">
 			<div class="tit">各方观点</div>
@@ -220,7 +178,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div-->
 
 <div class="footer full">
 	<div class="top"></div>

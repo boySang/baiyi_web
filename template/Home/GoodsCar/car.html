@@ -29,14 +29,9 @@
                 <span>移动应用</span>
                 <div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
             </div>
-            <div class="r reg">
-                <span>注册</span>
-                <ul>
-                    <li>个人注册</li>
-                    <li>企业注册</li>
-                </ul>
+            <div class="logstate r clearfix" id="logstate">
+                <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" style="padding-left: 20px;">
             </div>
-            <div class="r login">登录</div>
             <div class="r phone">客服电话：40000000000</div>
         </div>
     </div>
@@ -71,13 +66,10 @@
                 <div class="nav-box hide"></div>
             </div>
             <div class="quick-link r">
-                <a href="#">首页</a>
-                <a href="#">首页</a>
-                <a href="#">首页</a>
-                <a href="#">首页</a>
-                <a href="#">首页</a>
-                <a href="#">首页</a>
-                <a href="#">知识产权专家顾问</a>
+                <a href="/" title="首页">首页</a>
+                <foreach name='web_nav' item='v'>
+                    <a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
+                </foreach>
             </div>
         </div>
     </div>
@@ -140,7 +132,7 @@
     </div>
     
     <include file='Public:footer' />
-    
+
 <script type="text/javascript">
     
 var car = {

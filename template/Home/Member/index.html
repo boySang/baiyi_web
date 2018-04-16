@@ -29,13 +29,10 @@
 				<a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
 			</div>
 			<div class="quick-link l">
-				<a href="#">首页</a>
-				<a href="#">首页</a>
-				<a href="#">首页</a>
-				<a href="#">首页</a>
-				<a href="#">首页</a>
-				<a href="#">首页</a>
-				<a href="#">知识产权专家顾问</a>
+				<a href="/" title="首页">首页</a>
+				<foreach name='web_nav' item='v'>
+					<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
+				</foreach>
 			</div>
 		</div>
 	</div>

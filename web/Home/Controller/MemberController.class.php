@@ -15,7 +15,7 @@ class MemberController extends LayoutController {
     public function reg(){
     	$m = D('Member');
 		if($m->truelogin()){
-			header('Location:'.U('index'));
+			header('Location:'.U('Index/index'));
 		}
         $this->display();
     }
@@ -45,7 +45,7 @@ class MemberController extends LayoutController {
     	// var_dump(cookie('phone'));
     	$m = D('Member');
 		if($m->truelogin()){
-			header('Location:'.U('Member/index'));
+			header('Location:'.U('Index/index'));
 		}
     	$this->display();
     }
@@ -62,10 +62,20 @@ class MemberController extends LayoutController {
 		echo $m->ajaxManageLogin();
     }
 
+    public function ajacChkState(){
+		header('Content-type:text/json');
+		$m = D('Member');
+		if($m->truelogin() == true){
+			echo returnApi(200,'logined');
+		}else{
+			echo returnApi(201,'notlogin');
+		}
+    }
+
     public function logout(){
     	$m = D('Member');
     	if($m->logout()){
-    		header('Location:'.U('Member/login'));
+    		header('Location:'.U('Index/index'));
     	}else{
     		$this->error('退出失败！');
     	}
@@ -73,9 +83,18 @@ class MemberController extends LayoutController {
 
     // 官文页面
     public function guanwen(){
-    	$this->assign(array(
-    		'active'		=>		true,
-    	));
     	$this->display();
     }
+
+    // 发票页面
+    public function fapiao(){
+    	$this->display();
+    }
+
+    // 安全管理页面
+    public function safe(){
+    	$this->display();
+    }
+
+
 }

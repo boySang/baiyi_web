@@ -31,7 +31,7 @@ class GoodsModel extends Model{
 		}elseif($toplace == 'cateIndex'){
 			$field = 'goods_id,goods_name,goods_default_price,goods_tips_home';
 		}
-		$d = $this->field($field)->where('cate_id=%d',$cate_id)->order('goods_id ASC')->select();
+		$d = $this->field($field)->where('cate_id=%d',$cate_id)->order('cate_order DESC')->select();
 		if($d){
 			foreach($d as $k=>$v){
 				$d[$k]['url'] = geturl('goods',$v['goods_id']);

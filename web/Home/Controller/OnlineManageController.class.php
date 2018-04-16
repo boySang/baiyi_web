@@ -6,14 +6,26 @@ class OnlineManageController extends LayoutController {
 
 
 	public function ing(){
+		$m = D('Member');
+		if($m->truelogin() == false){
+			header('Location:'.U('login'));
+		}
 		$this->display();
 	}
 
 	public function shangbiaoadd(){
+		$m = D('Member');
+		if($m->truelogin() == false){
+			header('Location:'.U('login'));
+		}
 		$this->display();
 	}
 
 	public function shangbiaosearch(){
+		$m = D('Member');
+		if($m->truelogin() == false){
+			header('Location:'.U('login'));
+		}
 		$this->display();
 	}
 

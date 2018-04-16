@@ -32,10 +32,9 @@
 			<a href="/" title="{$web_name}"><img src="__PUBLIC__/home/img/logo.png" /></a>
 		</div>
 		<div class="navs">
-			<a href="/Goods/detail/id/1.html" target="_blank">知识产权在线申请</a>
-			<a href="javascript:void(0);">国际商标预算</a>
-			<a href="javascript:void(0);">知识产权在线管理</a>
-			<a href="__MODULE__/ExpertsWenda/index" target="_blank">知识产权专家顾问</a>
+			<foreach name='web_nav' item='v'>
+				<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
+			</foreach>
 		</div>
 		<div class="phone r">
 			<i class="iconfont icon-dianhua"></i>

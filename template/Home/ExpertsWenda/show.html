@@ -26,7 +26,7 @@
 	<div class="bot clearfix">
 		<div class="wid1200">
 			<div class="logo l">
-				LOGO
+				<a href="/"><img src="__PUBLIC__/home/img/logo.png" alt="logo"></a>
 			</div>
 			<div class="search r clearfix">
 				<div class="search-box r">
@@ -43,10 +43,10 @@
 	</div>
 	<div class="nav">
 		<div class="wid1200">
-			<a href="">首页</a>|
-			<a href="">首页</a>|
-			<a href="">首页</a>|
-			<a href="">首页</a>
+			<a href="/" title="上海百一知识产权代理有限公司">首页</a> | 
+			<foreach name='web_nav' item='v'>
+				<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a> | 
+			</foreach>
 		</div>
 	</div>
 </div>
