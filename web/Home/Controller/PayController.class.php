@@ -61,7 +61,7 @@ class PayController extends LayoutController {
 		);
 
 		// 实例支付对象
-		$pay = new \Pay\Pay($config);
+		$pay = new \Pay($config);
 
 		try {
 		    $options = $pay->driver('alipay')->gateway('web')->apply($payOrder);
