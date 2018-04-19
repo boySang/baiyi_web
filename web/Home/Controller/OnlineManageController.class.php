@@ -6,25 +6,40 @@ class OnlineManageController extends LayoutController {
 
 
 	public function ing(){
-		$m = D('Member');
-		if($m->truelogin() == false){
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
 			header('Location:'.U('login'));
+		}
+		// 是否付费会员
+		if($memberModel->isVip() == false){
+			// header('Location:'.U('login'));
+			$this->error('您暂无权限进入');
 		}
 		$this->display();
 	}
 
 	public function shangbiaoadd(){
-		$m = D('Member');
-		if($m->truelogin() == false){
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
 			header('Location:'.U('login'));
+		}
+		// 是否付费会员
+		if($memberModel->isVip() == false){
+			// header('Location:'.U('login'));
+			$this->error('您暂无权限进入');
 		}
 		$this->display();
 	}
 
 	public function shangbiaosearch(){
-		$m = D('Member');
-		if($m->truelogin() == false){
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
 			header('Location:'.U('login'));
+		}
+		// 是否付费会员
+		if($memberModel->isVip() == false){
+			// header('Location:'.U('login'));
+			$this->error('您暂无权限进入');
 		}
 		$this->display();
 	}
@@ -32,8 +47,8 @@ class OnlineManageController extends LayoutController {
 	public function login(){
 		// var_dump(cookie("uniqid"));
 		// var_dump(cookie("phone"));
-		$m = D('Member');
-		if($m->truelogin() == true){
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == true){
 			header('Location:'.U('ing'));
 		}
 		$this->display();

@@ -206,6 +206,10 @@ class ConnectIndustryController extends LayoutController {
     	$this->display();
     }
 
+    public function uploadinfosucc(){
+    	$this->display();
+    }
+
 
 
 

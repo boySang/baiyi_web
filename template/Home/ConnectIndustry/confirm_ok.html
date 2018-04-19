@@ -37,7 +37,7 @@
 		<form action="__MODULE__/Pay/alipay" method="post" id="toPays">
 			<div class="type">
 				<input type="hidden" name="goods_id" value="{$data['goods_id']}">
-				<input type="hidden" name="goods_name" value="{$data['goods_name']}">
+				<input type="hidden" name="goods_name" value="【{$data['goods_name']}】商标自助申请">
 				<input type="hidden" name="total_price" value="{$data['total_price']}">
 				<input type="hidden" name="paytypeval" value="alipay">
 				<input type="text" name="tips" class="tips" placeholder="有什么要嘱咐的吗 ？请在这里备注~~" value="">
@@ -67,7 +67,7 @@
 						<img src="__PUBLIC__/home/img/alipay-logo.jpg" title="alipay" height="80">
 					</div>
 					<div class="pay-botton text-r">
-						<a href="javascript:window.location.href='__CONTROLLER__/payok/id/{$data['uniquenum']}'" id="pay-botton">立即支付</a>
+						<a href="javascript:;" id="pay-botton">立即支付</a>
 					</div>	
 				</div>
 			</div>
@@ -107,8 +107,10 @@ $(function(){
 
 var payIndex = {
 
-	payNow : function(){
-		window.location.href='__MODULE__/Member/index';
+	submit : function(){
+		$('body').on('click','#pay-botton',function(){
+			$('#toPays').submit();
+		});
 	},
 
 	selectPayType : function(){
@@ -130,6 +132,8 @@ var payIndex = {
 
 	load : function(){
 		this.selectPayType();
+
+		this.submit();
 	}
 }
 

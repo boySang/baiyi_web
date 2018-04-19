@@ -52,6 +52,13 @@ class TrademarkClassificationModel extends Model{
 		return $d['cid'];
 	}
 
+	public function getNameCid($id){
+		$d = $this->field('title,cid')->find($id);
+		return $d;
+	}
+
+
+
 
 
 

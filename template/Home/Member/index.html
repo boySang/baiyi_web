@@ -74,7 +74,9 @@
 				</div>
 				<div class="tit clearfix">
 					<span class="l left">订单详情</span>
-					<span class="l mid">合同号</span>
+					<span class="l mid">金额</span>
+					<span class="l mid">状态</span>
+					<span class="l mid">操作</span>
 				</div>
 				<div class="order-box">
 					<div class="loading">
@@ -181,7 +183,7 @@ var index = {
 			if(data.state == 200){
 				var html = '';
 				$(data.data).each(function(k,v){
-					html += '<div class="order-list-main clearfix"><div class="list-inners l left"><p>'+v.goods_name+'</p><span>订单编号：'+v.uniquenum+'</span><span>合同编号：'+v.contract_number+'</span><span>下单时间：'+v.addtime+'</span></div><div class="pay-moneys text-c l no mid"><span>'+v.total_price+'元</span><span class="status">未付款</span></div><div class="order-num text-c l mid"><span>合同确认</span></div><div class="editor text-c l no last"><a href="javascript:void(0);" id="del-order">删除订单</a><a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a></div></div>';
+					html += '<div class="order-list-main clearfix"><div class="list-inners l left"><p>'+v.goods_name+'</p><span>订单编号：'+v.uniquenum+'</span><span>合同编号：'+v.contract_number+'</span><span>下单时间：'+v.addtime+'</span></div><div class="pay-moneys text-c l mid"><span>'+v.total_price+'元</span><span class="status"></span></div><div class="order-num text-c l mid"><span>'+v.state_name+'</span></div><div class="editor text-c l no last"><a href="javascript:void(0);" id="del-order">删除订单</a><a href="javascript:void(0);" id="to-pay" class="to-pay">立即支付</a></div></div>';
 				});
 				$('#orderList .order-box .loading').remove();
 				if(page != 1){
@@ -192,6 +194,11 @@ var index = {
 				// 设置下一页
 				page++;
 				$('#orderList .loadmore').html('<span data-page="'+page+'">获取更多</span>');
+			}else if(data.state == 199){
+				layer.msg(data.msg);
+				setTimeout(function(){
+					window.location.href='__MODULE__/Member/login';
+				},1000);
 			}else{
 				if(page == 1){
 					$('#orderList .order-box').html('<div style="text-align:center;line-height:100px"><small>没查询到数据...</small></div>');

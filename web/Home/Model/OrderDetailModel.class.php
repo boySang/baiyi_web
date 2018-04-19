@@ -16,9 +16,11 @@ class OrderDetailModel extends Model{
 	}
 
 	public function getOneFromUniquenum($uniquenum){
-		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number,state,goods_attr')->where('uniquenum="%s"',$uniquenum)->find();
-		$d['total_price'] = $d['total_price']/100;
-		return $d;
+		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number,state,goods_attr,order_type')->where('uniquenum="%s"',$uniquenum)->find();
+		if($d){
+			$d['total_price'] = $d['total_price']/100;
+			return $d;
+		}
 	}
 
 	public function getGoodsName($uniquenum){
@@ -27,22 +29,46 @@ class OrderDetailModel extends Model{
 	}
 
 	public function getOrderList(){
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			return returnApi(199,'已经登录！');
+		}
 		$state = I('get.state','','htmlspecialchars');
 		$page = I('get.page')>0?(I('get.page')-1)*10:0;
-		$where = '1';
+		$where = 'member_uniqid="'.session('uniqid').'"';
 		if($state == 0){
-			$where = '1';
+			$where = 'member_uniqid="'.session('uniqid').'"';
 		}elseif($state == 300){
-			$where = 'state<>104';
+			$where .= ' AND state<>104';
 		}else{
-			$where = 'state='.$state;
+			$where .= ' AND state='.$state;
 		}
-		$d = $this->field('goods_name,total_price,addtime,paytime,uniquenum,contract_number,state')->where($where)->order('id DESC')->limit($page,10)->select();
+		$d = $this->field('goods_name,total_price,addtime,paytime,uniquenum,contract_number,state,order_type')->where($where)->order('id DESC')->limit($page,10)->select();
 		if($d){
 			foreach($d as $k=>$v){
 				$d[$k]['addtime'] = date('Y-m-d',$v['addtime']);
 				$d[$k]['paytime'] = date('Y-m-d',$v['paytime']);
 				$d[$k]['total_price'] = $v['total_price']/100;
+				if($v['order_type'] == 1){
+					$d[$k]['goods_name'] = $v['goods_name'].'<font color="red">（商标自助申请）</font>';
+				}
+				if($v['state'] == 101){
+					$d[$k]['state_name'] = '已付款';
+				}elseif($v['state'] == 102){
+					$d[$k]['state_name'] = '已上传资料';
+				}elseif($v['state'] == 103){
+					$d[$k]['state_name'] = '已完成';
+				}elseif($v['state'] == 104){
+					$d[$k]['state_name'] = '已邮寄';
+				}elseif($v['state'] == 201){
+					$d[$k]['state_name'] = '未付款';
+				}elseif($v['state'] == 202){
+					$d[$k]['state_name'] = '未上传资料';
+				}elseif($v['state'] == 203){
+					$d[$k]['state_name'] = '未上传合同';
+				}elseif($v['state'] == 204){
+					$d[$k]['state_name'] = '未邮寄';
+				}
 			}
 			return returnApi(200,'success',$d);
 		}else{

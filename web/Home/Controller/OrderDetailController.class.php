@@ -20,8 +20,13 @@ class OrderDetailController extends LayoutController {
 
 	// ajax创建订单
 	public function creat_order(){
+	    header('Content-type:text/json');
+		$memberModel = D('Member');
+		if($memberModel->truelogin() == false){
+			echo returnApi(201,'请先登录');
+			return false;
+		}
 		if(I('post.send') == 'ok'){
-	    	header('Content-type:text/json');
 			$m = D('OrderDetail');
 			$temp['goods_id'] = I('post.id');
 	    	$temp['goods_name'] = I('post.goods_name');
@@ -41,6 +46,8 @@ class OrderDetailController extends LayoutController {
 	    		$orderDetail['goods_price'] = $temp['goods_price']*100;
 	    		$orderDetail['total_price'] = $temp['goods_num']*$temp['goods_price']*100;
 	    		$orderDetail['contract_number'] = $temp['contract_number'];
+	    		$orderDetail['addtime'] = strtotime($temp['addtime']);
+	    		$orderDetail['member_uniqid'] = session('uniqid');
 	    		$result = $m->add($orderDetail);
 	    		if($result){
 	    			$orderGoodsDetailModel = D('OrderGoodsDetail');
@@ -66,11 +73,13 @@ class OrderDetailController extends LayoutController {
 	    		$orderDetail = array();
 	    		$orderDetail['total_price'] = 0;
 	    		foreach($temp['goods_id'] as $k=>$v){
-	    			$orderDetail['goods_name'] .= $temp['goods_name'][$k].'&nbsp;&nbsp;';
+	    			$orderDetail['goods_name'] .= $temp['goods_name'][$k].'、';
 	    			$orderDetail['total_price'] += ($temp['goods_num'][$k] * $temp['goods_price'][$k])*100;
 	    		}
     			$orderDetail['uniquenum'] = $temp['uniquenum'];
     			$orderDetail['contract_number'] = $temp['contract_number'];
+	    		$orderDetail['addtime'] = strtotime($temp['addtime']);
+	    		$orderDetail['member_uniqid'] = session('uniqid');
 	    		$result = $m->add($orderDetail);
 	    		if($result){
 	    			$orderGoodsDetailModel = D('OrderGoodsDetail');
@@ -95,6 +104,7 @@ class OrderDetailController extends LayoutController {
 	    		}
 	    	}
 	    	// 订单号
+	    	session('temp_creat_order_number',null);
 	    	session('temp_creat_order_number',$temp['uniquenum']);
 	    	unset($temp);
 	    	unset($orderDetail);
@@ -112,6 +122,7 @@ class OrderDetailController extends LayoutController {
     	if($temp_creat_order_number){
     		$orderDetailModel = D('OrderDetail');
     		$data = $orderDetailModel->getOneFromUniquenum($temp_creat_order_number);
+    		// var_dump($data);
     		$this->assign('data',$data);
 	    	$this->display();
     	}else{
@@ -125,7 +136,7 @@ class OrderDetailController extends LayoutController {
     	header('Content-type:text/json');
 		$memberModel = D('Member');
 		if($memberModel->truelogin() == false){
-			echo returnApi(222,'请先登录',U('Member/login'));
+			echo returnApi(222,'请先登录');
 			return false;
 		}
     	$keywords = I('post.keywords','','htmlspecialchars');
@@ -165,9 +176,9 @@ class OrderDetailController extends LayoutController {
 					$guanfei += 30;
 					$daili += 70;
 				}
-				// 顺便记录名称
-				$goodsname = $trademarkClassificationModel->getName($v1);
-				$tips .= $goodsname.'，';
+				// 顺便记录名称和cid
+				$goodsname = $trademarkClassificationModel->getNameCid($v1);
+				$tips .= $goodsname['cid'].' '.$goodsname['title'].'，';
 			}
 			$tips .= '<br />';
 		}
@@ -178,6 +189,7 @@ class OrderDetailController extends LayoutController {
 		$data['order_type'] = 1;
 		$data['addtime'] = time();
 		$data['goods_attr'] = $goodsattr;
+		$data['member_uniqid'] = session('uniqid');
 		$result = $orderDetailModel->add($data);
 		if($result){
 			echo returnApi(200,'','',U('ConnectIndustry/confirm/id/'.$data['uniquenum']));

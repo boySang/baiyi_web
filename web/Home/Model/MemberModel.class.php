@@ -61,6 +61,16 @@ class MemberModel extends Model{
         return returnApi(200,'登陆成功！','',U('OnlineManage/ing'));
 	}
 
+	// 是否付费会员
+	public function isVip(){
+		$d = $this->field('vip_state')->where('uniqid="%s"',session('uniqid'))->find();
+		if($d['vip_state'] == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 
     // 仅cookie存在
     public function onlylogin(){

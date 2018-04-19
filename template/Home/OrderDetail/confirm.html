@@ -88,8 +88,10 @@ $(function(){
 
 var payIndex = {
 
-	payNow : function(){
-		window.location.href='__MODULE__/Member/index';
+	submit : function(){
+		$('#pay-botton').on('click',function(){
+			$('#toPays').submit();
+		});
 	},
 
 	selectPayType : function(){
@@ -111,6 +113,9 @@ var payIndex = {
 
 	load : function(){
 		this.selectPayType();
+
+		// 付款
+		this.submit();
 	}
 }
 

@@ -19,6 +19,9 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/detail.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_9yxm5gf37m0zr529.css">
+    <!-- layer -->
+	<link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
 </head>
 <body>
 
@@ -111,10 +114,11 @@ var detailIndex = {
 	chk : function(){
 		if(true){
 			$.post('__MODULE__/OrderDetail/creat_order',$('#buyForm').serialize(),function(data){
+				console.log(data);
 				if(data.state == 200){
 					window.location.href = data.url;
-				}else{
-
+				}else if(data.state == 201){
+					public_home.pub_login();
 				}
 			});
 		}
@@ -124,10 +128,12 @@ var detailIndex = {
 		$.post('__MODULE__/GoodsCar/add_to_car',$('#buyForm').serialize(),function(data){
 			if(data.state == 200){
 				// 添加成功
-				alert('成功');
+				layer.msg('添加成功');
 				window.location.href="__MODULE__/GoodsCar/car";
+			}else if(data.state == 201){
+				public_home.pub_login();
 			}else{
-				alert('添加失败');
+				layer.msg('添加失败');
 			}
 		});
 	},

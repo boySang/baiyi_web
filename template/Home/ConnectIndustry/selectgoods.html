@@ -524,7 +524,7 @@ var select = {
 			if(data.state == 200){
 				window.location.href=data.url;
 			}else if(data.state == 222){
-				window.location.href=data.url;
+				public_home.pub_login();
 			}else{
 				layer.msg(data.msg);
 			}
