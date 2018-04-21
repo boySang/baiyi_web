@@ -8,7 +8,7 @@
 node_modules/
 
 #资源文件
-src/
+/src/
 
 #缓存
 runtime/
