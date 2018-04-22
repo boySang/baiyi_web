@@ -97,4 +97,9 @@ class PayController extends LayoutController {
 			header('Location:'.U('Index/index'));
 		}
 	}
+
+	// 支付异步验证
+	public function notify(){
+		session('notify_pay',$_POST);
+	}
 }
