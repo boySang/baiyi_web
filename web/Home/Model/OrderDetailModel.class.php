@@ -54,10 +54,10 @@ class OrderDetailModel extends Model{
 					// 订单状态
 					if($v['state'] == 101){
 						$d[$k]['state_name'] = '已付款';
-						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadinfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background: #3baaf2;">上传资料</a><a href="javascript:void(0);" id="del-order" class="del-order">退款</a>';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadInfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background: #3baaf2;">上传资料</a><a href="javascript:void(0);" id="del-order" class="del-order">退款</a>';
 					}elseif($v['state'] == 102){
 						$d[$k]['state_name'] = '已上传资料';
-						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadinfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background: #3baaf2;">上传资料</a>';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadInfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background: #3baaf2;">上传资料</a>';
 					}elseif($v['state'] == 103){
 						// $d[$k]['state_name'] = '已上传合同';
 						// $d[$k]['action'] = '<a href="javascript:void(0);" id="to-pay" class="to-pay">上传合同</a>';
@@ -69,7 +69,7 @@ class OrderDetailModel extends Model{
 						$d[$k]['action'] = '<a href="'.U('OrderDetail/pay_again/uniquenum/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background:#d9534f;">立即支付</a><a href="javascript:void(0);" id="del-order" class="del-order">关闭订单</a>';
 					}elseif($v['state'] == 202){
 						$d[$k]['state_name'] = '上传资料';
-						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadinfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions">继续上传资料</a>';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadInfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions">继续上传资料</a>';
 					}elseif($v['state'] == 203){
 						// $d[$k]['state_name'] = '未上传合同';
 						// $d[$k]['action'] = '<a href="javascript:void(0);" id="to-pay" class="to-pay">上传合同</a>';
