@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>百一知识产权</title>
+    <include file='Public/meta' />
+	
+</head>
+<body>
+
+<include file='Public:common_layout' />
+
+<div class="pay-page wid1200">
+	<div class="pay-type">
+		<div class="tit">支付方式</div>
+		<form action="__MODULE__/Pay/alipay" method="post" id="toPays">
+			<div class="type">
+				<input type="hidden" name="goods_id" value="{$data['goods_id']}">
+				<input type="hidden" name="goods_name" value="{$data['goods_name']}">
+				<input type="hidden" name="total_price" value="{$data['total_price']}">
+				<input type="hidden" name="paytypeval" value="alipay">
+				<input type="text" name="tips" class="tips" placeholder="有什么要嘱咐的吗 ？请在这里备注~~" value="">
+				<input type="hidden" name="uniquenum" value="{$data['uniquenum']}">
+				<div class="payMoney">
+					应支付金额：<b><font color="red">{$data['total_price']}</font></b>元
+				</div>
+				<div class="type-list">
+					<div class="radio-type">
+						<label for="alipay">
+							<input type="radio" name="paytype" id="alipay" checked value="alipay"> 支付宝
+						</label>
+					</div>
+					<div class="radio-type">
+						<label for="wxpay">
+							<input type="radio" name="paytype" id="wxpay" value="wxpay"> 微信
+						</label>
+					</div>
+					<div class="radio-type">
+						<label for="card">
+							<input type="radio" name="paytype" id="card" value="card"> 银行卡
+						</label>
+					</div>
+				</div>
+				<div class="topay">
+					<div class="logo">
+						<img src="__PUBLIC__/home/img/alipay-logo.jpg" title="alipay" height="80">
+					</div>
+					<div class="pay-botton text-r">
+						<a href="javascript:void(0);" id="pay-botton">立即支付</a>
+					</div>	
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<include file='Public:footer' />
+
+<script>
+
+$(function(){
+	payIndex.load();
+});
+
+var payIndex = {
+
+	submit : function(){
+		$('#pay-botton').on('click',function(){
+			$('#toPays').submit();
+		});
+	},
+
+	selectPayType : function(){
+		$('.radio-type input[name="paytype"]').on('click',function(){
+			var that = $(this);
+			if(that.val() == 'alipay'){
+				$('#toPays').attr('action','__MODULE__/Pay/alipay');
+				$('#toPays .topay .logo img').attr('src','__PUBLIC__/home/img/alipay-logo.jpg');
+			}else if(that.val() == 'wxpay'){
+				$('#toPays').attr('action','__MODULE__/Pay/wxpay');
+				$('#toPays .topay .logo img').attr('src','__PUBLIC__/home/img/wxpay-logo.jpg');
+			}else if(that.val() == 'card'){
+				$('#toPays').attr('action','__MODULE__/Pay/card');
+				$('#toPays .topay .logo img').attr('src','__PUBLIC__/home/img/card-logo.jpg');
+			}
+			$('input[name="paytypeval"]').val(that.val());
+		});
+	},
+
+	load : function(){
+		this.selectPayType();
+
+		// 付款
+		this.submit();
+	}
+}
+
+</script>
+
+</body>
+</html>

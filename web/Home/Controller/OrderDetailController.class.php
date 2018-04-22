@@ -131,6 +131,21 @@ class OrderDetailController extends LayoutController {
     	}
     }
 
+    // 这里是购买确认页面，显示一遍购买内容的信息
+    public function pay_again(){
+    	$uniquenum = I('get.uniquenum');
+    	if($uniquenum){
+    		$orderDetailModel = D('OrderDetail');
+    		$data = $orderDetailModel->getOneFromUniquenum($uniquenum);
+    		// var_dump($data);
+    		$this->assign('data',$data);
+	    	$this->display();
+    	}else{
+    		// 错误页面
+    		$this->error('参数错误');
+    	}
+    }
+
     // 自助选择商品类及商品项，创建订单
     public function order_create_zizhu(){
     	header('Content-type:text/json');

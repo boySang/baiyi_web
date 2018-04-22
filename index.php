@@ -11,7 +11,7 @@ define('APP_DEBUG',true);
 define('UPLOADS_PATH', 'http://'.$_SERVER['HTTP_HOST'].'/uploads/');
 
 //dist地址
-define('DIST', 'http://'.$_SERVER['HTTP_HOST'].'/uploads/');
+define('DIST', 'http://'.$_SERVER['HTTP_HOST'].'/dist/');
 
 // 缓存文件目录
 define('RUNTIME_PATH','./runtime/');

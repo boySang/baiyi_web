@@ -16,7 +16,7 @@ class OrderDetailModel extends Model{
 	}
 
 	public function getOneFromUniquenum($uniquenum){
-		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number,state,goods_attr,order_type')->where('uniquenum="%s"',$uniquenum)->find();
+		$d = $this->field('goods_name,total_price,addtime,uniquenum,contract_number,state,goods_attr,order_type')->where('uniquenum="%s" AND member_uniqid="%s"',$uniquenum,session('uniqid'))->find();
 		if($d){
 			$d['total_price'] = $d['total_price']/100;
 			return $d;
@@ -24,7 +24,7 @@ class OrderDetailModel extends Model{
 	}
 
 	public function getGoodsName($uniquenum){
-		$d = $this->field('goods_name')->where('uniquenum="%s"',$uniquenum)->find();
+		$d = $this->field('goods_name')->where('uniquenum="%s" AND member_uniqid="%s"',$uniquenum,session('uniqid'))->find();
 		return $d['goods_name'];
 	}
 
@@ -50,24 +50,41 @@ class OrderDetailModel extends Model{
 				$d[$k]['paytime'] = date('Y-m-d',$v['paytime']);
 				$d[$k]['total_price'] = $v['total_price']/100;
 				if($v['order_type'] == 1){
-					$d[$k]['goods_name'] = $v['goods_name'].'<font color="red">（商标自助申请）</font>';
-				}
-				if($v['state'] == 101){
-					$d[$k]['state_name'] = '已付款';
-				}elseif($v['state'] == 102){
-					$d[$k]['state_name'] = '已上传资料';
-				}elseif($v['state'] == 103){
-					$d[$k]['state_name'] = '已完成';
-				}elseif($v['state'] == 104){
-					$d[$k]['state_name'] = '已邮寄';
-				}elseif($v['state'] == 201){
-					$d[$k]['state_name'] = '未付款';
-				}elseif($v['state'] == 202){
-					$d[$k]['state_name'] = '未上传资料';
-				}elseif($v['state'] == 203){
-					$d[$k]['state_name'] = '未上传合同';
-				}elseif($v['state'] == 204){
-					$d[$k]['state_name'] = '未邮寄';
+					$d[$k]['goods_name'] = $v['goods_name'].'<font color="#d9534f">（商标自助申请）</font>';
+					// 订单状态
+					if($v['state'] == 101){
+						$d[$k]['state_name'] = '已付款';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadinfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background: #3baaf2;">上传资料</a><a href="javascript:void(0);" id="del-order" class="del-order">退款</a>';
+					}elseif($v['state'] == 102){
+						$d[$k]['state_name'] = '已上传资料';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadinfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background: #3baaf2;">上传资料</a>';
+					}elseif($v['state'] == 103){
+						// $d[$k]['state_name'] = '已上传合同';
+						// $d[$k]['action'] = '<a href="javascript:void(0);" id="to-pay" class="to-pay">上传合同</a>';
+					}elseif($v['state'] == 104){
+						$d[$k]['state_name'] = '已邮寄';
+						$d[$k]['action'] = '<a href="javascript:void(0);" id="to-pay" class="to-pay actions">正在安排邮寄</a>';
+					}elseif($v['state'] == 201){
+						$d[$k]['state_name'] = '未付款';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/pay_again/uniquenum/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background:#d9534f;">立即支付</a><a href="javascript:void(0);" id="del-order" class="del-order">关闭订单</a>';
+					}elseif($v['state'] == 202){
+						$d[$k]['state_name'] = '上传资料';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/uploadinfomations/id/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions">继续上传资料</a>';
+					}elseif($v['state'] == 203){
+						// $d[$k]['state_name'] = '未上传合同';
+						// $d[$k]['action'] = '<a href="javascript:void(0);" id="to-pay" class="to-pay">上传合同</a>';
+					}elseif($v['state'] == 204){
+						$d[$k]['state_name'] = '未邮寄';
+						$d[$k]['action'] = '<a href="javascript:void(0);" id="to-pay" class="to-pay actions">正在安排邮寄</a>';
+					}
+				}else{
+					if($v['state'] == 101){
+						$d[$k]['state_name'] = '已付款';
+						$d[$k]['action'] = '<a href="javascript:;" id="to-pay" class="to-pay actions" style="background:#f0ad4e;">联系客服</a>';
+					}else{
+						$d[$k]['state_name'] = '未付款';
+						$d[$k]['action'] = '<a href="'.U('OrderDetail/pay_again/uniquenum/'.$v['uniquenum']).'" id="to-pay" class="to-pay actions" style="background:#d9534f;">立即支付</a><a href="javascript:void(0);" id="del-order" class="del-order">关闭订单</a>';
+					}
 				}
 			}
 			return returnApi(200,'success',$d);
