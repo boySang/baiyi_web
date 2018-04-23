@@ -25,6 +25,9 @@
 					<div class="out">
 						<div class="tit"><a href="{$v.url}">{$v.title}</a></div>
 						<div class="sometit clearfix">
+							<?php if($k == 0){ ?>
+							<a href="__MODULE__/ConnectIndustry/aiplan" target="_blank" title="商标自助申请">商标自助申请</a>
+							<?php } ?>
 							<foreach name="v.goods_limit" item="v1">
 								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
 							</foreach>
@@ -42,7 +45,12 @@
 						}
 						?>
 						<div class="hidecate clearfix" style="top:{$top};">
-							<foreach name="v.goods" item="v1">
+							<foreach name="v.goods" item="v1" key="k1">
+								<?php if($k == 0){ ?>
+									<?php if($k1 == 0){ ?>
+										<a href="__MODULE__/ConnectIndustry/aiplan" target="_blank" title="商标自助申请">商标自助申请</a>
+									<?php } ?>
+								<?php } ?>
 								<a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
 							</foreach>
 						</div>
