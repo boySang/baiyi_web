@@ -9,7 +9,13 @@ class LayoutController extends Controller {
 
 		// 获取下拉菜单
 		$cateModel = D('Category');
-    	$layoutcateMenu = $cateModel->getMenuPublic(true);
+    	if(!F('layoutcateMenu')){
+    		$layoutcateMenu = $cateModel->getMenuPublic(true);
+    		F('layoutcateMenu',$layoutcateMenu);
+    		$layoutcateMenu = F('layoutcateMenu');
+    	}else{
+    		$layoutcateMenu = F('layoutcateMenu');
+    	}
     	// var_dump($layoutcateMenu);
     	$layoutdata['menu'] = $layoutcateMenu;
     	$web_nav[0]['title'] = '知识产权在线申请';

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <meta name="description" content="描述">
+    <meta name="keywords" content="关键字">
+    <title>马德里注册{$web_name}</title>
+    <include file='Public/meta' />
+    <!-- 有字库 -->
+    <link href='http://cdn.webfont.youziku.com/webfonts/nomal/95051/45873/5a5e2b67f629d8171c551265.css' rel='stylesheet' type='text/css' />
+    <!-- 有字库 end -->
+    <!-- jquery-cookie -->
+    <script src="https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+    <!-- jquery-cookie end -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <!-- bootstrap -->
+</head>
+
+<body class="interReg">
+    <div class="wid1200">
+        <div class="header clearfix">
+            <div class="logo l"><a href="/" title="百一知识产权"><img src="__PUBLIC__/home/img/logo.png"></a></div>
+            <div class="quick-nav">
+                <foreach name='web_nav' item='v'>
+                    <a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
+                </foreach>
+            </div>
+            <div class="phone r">
+                <i class="iconfont icon-dianhua"></i>
+                <div class="text">客服热线
+                    <br />400-000-1234</div>
+            </div>
+        </div>
+        <div class="tit danduguojia">
+            <h3>国际注册<br />单独国家注册</h3>
+        </div>
+        <div class="countryBox clearfix">
+            <div class="countryListOut l" id="countryListOut" style="height: 445px;">
+                <div class="list">
+                    <div class="dandutit clearfix">单独国家列表</div>
+                    <div class="continentList" id="continentList">
+                        <div class="continentInner cur">
+                            <div class="az"><span data-az="a">A</span><span data-az="b">B</span><span data-az="c">C</span><span data-az="f">F</span><span data-az="g">G</span><span data-az="h">H</span><span data-az="j">J</span><span data-az="l">L</span><span data-az="m">M</span><span data-az="r">R</span><span data-az="s">S</span><span data-az="t">T</span><span data-az="w">W</span><span data-az="x">X</span><span data-az="y">Y</span></div>
+                            <div class="countryList">
+                                <div class="listInner clearfix">
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="12" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="a"> 美国</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="11" data-is_alone="1" data-madeli_model="1" data-madeli_one="484" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="484" data-madeli_topnums="0" data-firstletter="a"> 英国</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="2" data-is_alone="1" data-madeli_model="1" data-madeli_one="1710" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="1710" data-madeli_topnums="0" data-firstletter="b"> 韩国</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="10" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="b"> 日本</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="13" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="c"> 泰国</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="14" data-is_alone="1" data-madeli_model="1" data-madeli_one="116" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="116" data-madeli_topnums="0" data-firstletter="f"> 新加坡</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="29" data-is_alone="1" data-madeli_model="1" data-madeli_one="314" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="115" data-madeli_topnums="0" data-firstletter="g"> 印度</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="3" data-is_alone="1" data-madeli_model="1" data-madeli_one="233" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="233" data-madeli_topnums="0" data-firstletter="h"> 墨西哥</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="26" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="h"> 古巴</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="15" data-is_alone="1" data-madeli_model="1" data-madeli_one="96" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="96" data-madeli_topnums="0" data-firstletter="j"> 丹麦</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="17" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="j"> 瑞典</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="23" data-is_alone="1" data-madeli_model="1" data-madeli_one="141" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="101" data-madeli_topnums="0" data-firstletter="l"> 意大利</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="20" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="m"> 德国</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="24" data-is_alone="1" data-madeli_model="1" data-madeli_one="108" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="82" data-madeli_topnums="0" data-firstletter="r"> 法国</label>
+                                    </div>
+                                    <div class="labelbox">
+                                        <label>
+                                            <input type="checkbox" name="country" data-id="47" data-is_alone="0" data-madeli_model="1" data-madeli_one="0" data-madeli_two="0" data-madeli_three="0" data-madeli_eachadd="null" data-madeli_topnums="0" data-firstletter="s"> 瑞士</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="result r">
+                <div class="serviceType clearfix">
+                    <div class="list clearfix">
+                        <div class="tit l">服务类型：</div>
+                        <div class="select-box l">
+                            <select name="servicetype">
+                                <option value="1">新注册</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="list clearfix">
+                        <div class="tit l">商标类数：</div>
+                        <div class="input-box l globelnums">
+                            <input type="text" name="globelnums" class="nums" value="1">
+                            <i class="iconfont icon-jian"></i>
+                            <i class="iconfont icon-jia"></i>
+                        </div>
+                    </div>
+                    <div class="list clearfix">
+                        <div class="tit l">商标颜色：</div>
+                        <div class="select-box l">
+                            <select name="trademark_type">
+                                <option value="0">黑白</option>
+                                <option value="1">彩色</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <p><span><a href="javascript:;">查看方案</a></span></p>
+                    <p><a class="getResult" href="javascript:index.getResult();">生成</a></p>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="wid1200 mar_top150 prices" id="prices"></div>
+    <div class="totalPrice" id="totalPrice" style="display: none;">
+        <h4>官费合计：CHF <font class="chf"></font>（￥<font class="dollar"></font>）</h4>
+    </div>
+    <include file='Public:footer' />
+    <script type="text/javascript">
+    $(function() {
+        index.load();
+    });
+
+    var index = {
+
+        focusCountry: function() {
+            $('body').on('mouseover', '.az span', function() {
+                var that = $(this);
+                $('.az span').removeClass('cur');
+                that.addClass('cur');
+                var az = that.attr('data-az');
+                var countryList = that.parent().parent().find('.countryList .listInner .labelbox');
+                countryList.removeClass('bgff6812');
+                countryList.each(function(k, v) {
+                    var thats = $(this);
+                    if (thats.find('input').attr('data-firstletter') == az) {
+                        thats.addClass('bgff6812');
+                    }
+                });
+            });
+        },
+
+        selectContinent: function() {
+            $('body').on('click', '#continentListTit span', function() {
+                var that = $(this);
+                $('#continentListTit span').removeClass('cur');
+                that.addClass('cur');
+                $('#continentList .continentInner').removeClass('cur');
+                $('#continentList .continentInner').eq(that.index()).addClass('cur');
+                // 给div设置高度
+                $('#countryListOut').height($('#continentList .continentInner.cur').height());
+            });
+        },
+
+        // 获取数据，包括所有国家信息和五大洲数据
+        getCountryAll: function() {
+            $.get('__CONTROLLER__/ajaxGetCountry/from/madeli', function(data) {
+                console.log(data);
+                if (data.state == 200) {
+                    var html = '<div class="continent clearfix" id="continentListTit">';
+
+                    $(data.data.continent).each(function(k, v) {
+                        var first = '';
+                        if (k == 0) {
+                            first = 'cur';
+                        } else {
+                            first = '';
+                        }
+                        html += '<span class="' + first + '">' + v + '</span>';
+                    });
+
+                    html += '</div><div class="continentList" id="continentList">';
+
+                    $(data.data.country).each(function(k, v) {
+
+                        var first = '';
+                        if (k == 0) {
+                            first = 'cur';
+                        } else {
+                            first = '';
+                        }
+
+                        html += '<div class="continentInner ' + first + '"><div class="az">';
+                        $(v.az).each(function(k1, v1) {
+                            html += '<span data-az="' + v1 + '">' + v1.toUpperCase() + '</span>';
+                        });
+                        html += '</div><div class="countryList"><div class="listInner clearfix">';
+                        $(v.countrys).each(function(k1, v1) {
+                            html += '<div class="labelbox"><label><input type="checkbox" name="country" data-id="' + v1.id + '" data-is_alone="' + v1.is_alone + '" data-madeli_model="' + v1.madeli_model + '" data-madeli_one="' + v1.madeli_one + '" data-madeli_two="' + v1.madeli_two + '" data-madeli_three="' + v1.madeli_three + '" data-madeli_eachadd="' + v1.madeli_eachadd + '" data-madeli_topnums="' + v1.madeli_topnums + '" data-firstletter="' + v1.first_letter + '"> ' + v1.title + '</label></div>';
+                        });
+                        html += '</div></div></div>';
+
+                    });
+
+                    html += '</div>';
+
+                    $('#countryListOut .list').html(html);
+
+                    // 给div设置高度
+                    $('#countryListOut').height($('#continentList .continentInner.cur').height());
+                } else {
+                    console.log(data);
+                }
+            });
+        },
+
+        chgGlobelnums: function() {
+            // -
+            $('body').on('click', '.globelnums .icon-jian', function() {
+                var that = $(this);
+                var globelnums = that.parent().find('input').val();
+                if (globelnums <= 1) {
+                    return false;
+                }
+                globelnums--;
+                that.parent().find('input').val(globelnums);
+            });
+
+            // +
+            $('body').on('click', '.globelnums .icon-jia', function() {
+                var that = $(this);
+                var globelnums = that.parent().find('input').val();
+                globelnums++;
+                that.parent().find('input').val(globelnums);
+            });
+
+            // nums
+            $('body').on('blur', 'input.nums', function() {
+                var that = $(this);
+                that.parent().find('input').val(parseInt(that.parent().find('input').val()));
+            });
+        },
+
+        getResult: function() {
+            var base = 0;
+            var html = '';
+            if ($('select[name="trademark_type"]').val() == 1) {
+                base = 903;
+            } else {
+                base = 653;
+            }
+            // 选中的个数大于1进行下一步
+            if ($('.labelbox input:checked').length >= 1) {
+
+                // 基础费用
+                html += '<div class="panel panel-default" id="baseprice"><div class="panel-heading"><span class="tit">基础官费</span></div><div class="panel-body clearfix"><span class="r smprice">' + base + '</span><span class="tit">基础官费</span></div></div>';
+
+                // 国家统一费用
+                var notAloneCheckedLength = $('.labelbox input[data-is_alone=0]:checked').length;
+                if (notAloneCheckedLength >= 1) {
+                    html += '<div class="panel panel-default" id="notalone">';
+                    html += index.notaloneChg($('input[name="globelnums"]').val());
+                    html += '</div>';
+                }
+
+                // 单独国家注册
+                var aloneCheckedLength = $('.labelbox input[data-is_alone=1]:checked').length;
+                if (aloneCheckedLength >= 1) {
+                    html += '<div class="panel panel-default" id="alone"><div class="panel-heading"><span class="tit">单独国家费用</span></div><div class="panel-body clearfix">';
+                    $('.labelbox input[data-is_alone=1]:checked').each(function(k, v) {
+                        var that = $(this);
+                        var madeli_model = that.attr('data-madeli_model');
+                        html += '<div class="panel panel-default" id="item' + that.attr('data-id') + '">';
+                        html += index.aloneChg(that.attr('data-id'), $('input[name="globelnums"]').val());
+                        html += '</div>';
+                    });
+                    html += '</div></div>';
+                }
+            } else {
+                layer.msg('请先选择国家');
+            }
+
+            // 
+            $('#prices').html(html);
+            // 计算价格
+            index.totalPrice();
+        },
+
+        totalPrice: function() {
+
+            // 计算价格
+            var price = 0;
+            $('.smprice').each(function(k, v) {
+                price += parseInt($(this).text());
+            });
+            $('#totalPrice .chf').text(price);
+            $('#totalPrice').show();
+        },
+
+        jiaOrJian: function() {
+
+            // notalone
+            $('body').on('click', '#notalone .icon-jian', function() {
+                // 国家统一费用
+                $('#notalone').html(index.notaloneChg($(this).parent().find('input').val()));
+
+                // 计算价格
+                index.totalPrice();
+            });
+
+            $('body').on('click', '#notalone .icon-jia', function() {
+                // 国家统一费用
+                $('#notalone').html(index.notaloneChg($(this).parent().find('input').val()));
+
+                // 计算价格
+                index.totalPrice();
+            });
+
+            // 删除国家
+            $('body').on('click', '#notalone .countryName span', function() {
+                if ($('.labelbox input[data-is_alone=0]:checked').length <= 1) {
+
+                    $('#notalone').remove();
+
+                    // 如果单独国家注册为0的花都删除
+                    if ($('.labelbox input[data-is_alone=1]:checked').length < 1) {
+                        $('#prices').html('');
+                        // 计算价格
+                        $('#totalPrice').hide();
+                    }
+                    return false;
+                }
+                var that = $(this);
+                // 获取数量
+                var nums = that.parent().parent().find('.panel-heading .input-box input').val();
+                // 去除选中状态
+                $('.labelbox input[data-id=' + that.attr('data-id') + ']').prop('checked', false);
+                // 删除国家
+                that.remove();
+                // 国家统一费用
+                $('#notalone').html(index.notaloneChg(nums));
+            });
+
+
+            // alone
+            $('body').on('click', '#alone .icon-jian', function() {
+                var that = $(this);
+                var id = that.parent().find('input').attr('data-id');
+                var nums = that.parent().find('input').val();
+                // 单独国家费用
+                $('#item' + id).html(index.aloneChg(id, nums));
+
+                // 计算价格
+                index.totalPrice();
+            });
+
+            // alone
+            $('body').on('click', '#alone .icon-jia', function() {
+                var that = $(this);
+                var id = that.parent().find('input').attr('data-id');
+                var nums = that.parent().find('input').val();
+                // 单独国家费用
+                $('#item' + id).html(index.aloneChg(id, nums));
+
+                // 计算价格
+                index.totalPrice();
+            });
+
+        },
+
+        aloneChg: function(id, num) {
+            var that = $('.labelbox input[data-id=' + id + ']')
+            var madeli_model = that.attr('data-madeli_model');
+            var html = '<div class="panel-heading clearfix"><span class="tit">' + that.parent().text() + '</span><div class="inputbox clearfix"><div class="smtit l">类别：</div><div class="input-box l globelnums"><input type="text" name="nums" class="nums" data-id="' + that.attr('data-id') + '" value="' + num + '"><i class="iconfont icon-jian"></i><i class="iconfont icon-jia"></i></div></div></div><div class="panel-body clearfix">';
+
+            if (madeli_model == 1) {
+                // 模式1只有初始价格和递增的价格
+                html += '<div class="one"><span class="r smprice">' + that.attr('data-madeli_one') + '</span><span class="tit">单独规费</span></div>';
+                // html += '<div class="two"><span class="r smprice">200</span><span class="tit">次类费</span></div>';
+                if (num > 1) {
+                    var _num = num - 1;
+                    var _p = _num * that.attr('data-madeli_eachadd');
+                    html += '<div class="eachadd clearfix"><span class="r smprice">' + _p + '</span><span class="tit l">增类费</span>';
+                    html += '<span class="_num l">' + that.attr('data-madeli_eachadd') + ' x ' + _num + '</span>';
+                    html += '</div>';
+                }
+
+            } else if (madeli_model == 2) {
+                // 模式2只有初始价格和递增的价格
+                html += '<div class="one"><span class="r smprice">' + that.attr('data-madeli_three') + '</span><span class="tit">单独规费</span></div>';
+                if (num > 3) {
+                    var _num = num - 3;
+                    var _p = _num * that.attr('data-madeli_eachadd');
+                    html += '<div class="eachadd clearfix"><span class="r smprice">' + _p + '</span><span class="tit l">增类费</span>';
+                    html += '<span class="_num l">' + that.attr('data-madeli_eachadd') + ' x ' + _num + '</span>';
+                    html += '</div>';
+                }
+
+            } else if (madeli_model == 3) {
+                // 模式3有初始价格和次类费和递增的价格
+                html += '<div class="one"><span class="r smprice">' + that.attr('data-madeli_one') + '</span><span class="tit">单独规费</span></div>';
+                if (num > 1) {
+                    html += '<div class="two"><span class="r smprice">' + that.attr('data-madeli_two') + '</span><span class="tit">次类费</span></div>';
+                }
+                if (num > 2) {
+                    var _num = num - 2;
+                    var _p = _num * that.attr('data-madeli_eachadd');
+                    html += '<div class="eachadd clearfix"><span class="r smprice">' + _p + '</span><span class="tit l">增类费</span>';
+                    html += '<span class="_num l">' + that.attr('data-madeli_eachadd') + ' x ' + _num + '</span>';
+                    html += '</div>';
+                }
+
+            } else if (madeli_model == 4) {
+                // 模式3有初始价格和递增的价格
+                html += '<div class="one"><span class="r smprice">' + that.attr('data-madeli_one') + '</span><span class="tit">单独规费</span></div>';
+                if (num > 8) {
+                    var _p = 9 * that.attr('data-madeli_eachadd');
+                    html += '<div class="eachadd clearfix"><span class="r smprice">' + _p + '</span><span class="tit l">增类费</span>';
+                    html += '<span class="_num l">' + that.attr('data-madeli_eachadd') + ' x ' + 9 + '</span>';
+                    html += '</div>';
+                } else if (num > 1) {
+                    var _num = num - 1;
+                    var _p = _num * that.attr('data-madeli_eachadd');
+                    html += '<div class="eachadd clearfix"><span class="r smprice">' + _p + '</span><span class="tit l">增类费</span>';
+                    html += '<span class="_num l">' + that.attr('data-madeli_eachadd') + ' x ' + _num + '</span>';
+                    html += '</div>';
+                }
+            }
+            html += '</div>';
+            return html;
+        },
+
+        notaloneChg: function(nums) {
+            var notAloneCheckedLength = $('.labelbox input[data-is_alone=0]:checked').length;
+            if (notAloneCheckedLength >= 1) {
+                var html = '<div class="panel-heading clearfix"><span class="tit">国家统一费用</span><div class="inputbox clearfix">	<div class="smtit l">类别：</div><div class="input-box l globelnums"><input type="text" name="nums" class="nums" value="' + nums + '"><i class="iconfont icon-jian"></i><i class="iconfont icon-jia"></i></div></div></div><div class="panel-body countryName clearfix">';
+                $('.labelbox input[data-is_alone=0]:checked').each(function(k, v) {
+                    var that = $(this);
+                    html += '<span data-id="' + that.attr('data-id') + '">' + that.parent().text() + '<i class="iconfont icon-shanchu4"></i></span>';
+                });
+                var _r = notAloneCheckedLength * 100;
+                html += '</div><div class="panel-footer clearfix"><span class="r smprice">' + _r + '</span><span class="tit l">补充注册费</span><span class="nums l">100 x ' + notAloneCheckedLength + '</span></div>';
+
+                // 如果个数超过3个，则加100
+                if (nums > 3) {
+                    var _r1 = (nums - 3) * 100;
+                    html += '<div class="panel-footer clearfix"><span class="r smprice">' + _r1 + '</span><span class="tit l">类别附加费</span><span class="nums l">100 x (' + nums + ' - 3)</span></div>';
+                }
+                return html;
+            }
+        },
+
+        load: function() {
+
+            // 初始时先加载国家信息
+            // this.getCountryAll();
+
+            // 选中大写字母后给对应开头为该字母的国家标色
+            this.focusCountry();
+
+            // 选择大洲
+            // this.selectContinent();
+
+            // 修改数量
+            // this.chgGlobelnums();
+
+            // 增加减少的事件
+            // this.jiaOrJian();
+
+        }
+    }
+    </script>
+</body>
+
+</html>
