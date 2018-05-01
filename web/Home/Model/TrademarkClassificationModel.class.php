@@ -57,6 +57,44 @@ class TrademarkClassificationModel extends Model{
 		return $d;
 	}
 
+	public function getTrademarkClassTop(){
+		if(F('getTrademarkClassTop')){
+			$d = F('getTrademarkClassTop');
+		}else{
+			$d = $this->field('id,title,pid')->where('pid=0')->order('cid ASC')->select();
+			if($d){
+				foreach($d as $k=>$v){
+					$d_mid = $this->field('id')->where('pid=%d',$v['id'])->order('id ASC')->find();
+					$d[$k]['lte_goods'] = $this->field('id,title,pid')->where('pid=%d',$d_mid['id'])->limit(8)->order('id ASC')->select();
+				}
+				F('getTrademarkClassTop',$d);
+				$d = F('getTrademarkClassTop');
+			}else{
+				return returnApi(201,'暂无数据');
+			}
+		}
+		return returnApi(200,'success',$d);
+	}
+
+	public function getTrademarkClassFromPid(){
+		$id = I('get.id');
+		if(!is_numeric($id)){
+			return returnApi(201,'参数错误');
+		}
+		if(F('getTrademarkClassFromPid_'.$id)){
+			$d = F('getTrademarkClassFromPid_'.$id);
+		}else{
+			$d = $this->field('id,title,pid')->where('pid=%d',$id)->select();
+			if($d){
+				F('getTrademarkClassFromPid_'.$id,$d);
+				$d = F('getTrademarkClassFromPid_'.$id);
+			}else{
+				return returnApi(201,'暂无数据');
+			}
+		}
+		return returnApi(200,'success',$d);
+	}
+
 
 
 
