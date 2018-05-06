@@ -33,24 +33,20 @@
                 <tr>
                     <th>题目</th>
                     <th>分类</th>
-                    <th>题目</th>
-                    <th>回答</th>
-                    <th>推荐</th>
+                    <th>状态</th>
                     <th>操作</th>
                 </tr>
             </thead>
             <tbody>
                 <foreach name="data.data" item="v">
                 <tr>
-                    <td>{$v.title}</td>
-                    <td>{$v.continent}</td>
-                    <td class="madeli" data-is_madeli="{$v.is_madeli}"></td>
-                    <td class="danduguojia" data-is_danduguojia="{$v.is_danduguojia}"></td>
-                    <td class="oumeng" data-is_oumeng="{$v.is_oumeng}"></td>
-                    <td>
-                        <a href="">{$v.state}</a>
-                        <a href="__CONTROLLER__/update/id/{$v.id}" class="tablelink">修改</a>
-                        <a href="__CONTROLLER__/del/id/{$v.id}" class="tablelink"> 删除</a></td>
+                    <td width="70%">{$v.title}</td>
+                    <td width="10%">{$v.cateName}</td>
+                    <td width="10%" class="state" data-state="{$v.state}">{$v.state}</td>
+                    <td width="10%">
+                        <a href="__CONTROLLER__/update/id/{$v.id}" class="tablelink"> 编辑</a>
+                        <a href="__CONTROLLER__/del/id/{$v.id}" class="tablelink"> 删除</a>
+                    </td>
                 </tr>
                 </foreach>
             </tbody>
@@ -62,6 +58,8 @@
             </ul>
         </div>
     </div>
+    <br>
+    <br>
     <script type="text/javascript">
     $('.tablelist tbody tr:odd').addClass('odd');
     </script>

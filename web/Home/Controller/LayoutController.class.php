@@ -22,6 +22,12 @@ class LayoutController extends Controller {
     	$web_nav[0]['url'] = U('Goods/detail/id/1');
     	$web_nav[1]['title'] = '国际商标预算';
     	$web_nav[1]['url'] = U('InternationalReg/madeli');
+    	$web_nav[1]['child'][0]['title'] = '单独国家注册';
+    	$web_nav[1]['child'][0]['url'] = U('InternationalReg/danduguojia');
+    	$web_nav[1]['child'][1]['title'] = '马德里注册';
+    	$web_nav[1]['child'][1]['url'] = U('InternationalReg/madeli');
+    	$web_nav[1]['child'][2]['title'] = '欧盟注册';
+    	$web_nav[1]['child'][2]['url'] = U('InternationalReg/oumeng');
     	$web_nav[2]['title'] = '知识产权在线管理';
     	$web_nav[2]['url'] = U('OnlineManage/ing');
     	$web_nav[3]['title'] = '知识产权专家顾问';
