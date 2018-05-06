@@ -7,14 +7,14 @@ class ExpertsWendaController extends Controller {
 
 
 	public function add(){
-		$model = D('ExpertsWenda');
+		$m = D('ExpertsWenda');
     	if(IS_POST){
-            if($model->create()) {
-            	$model->add() ? $this->redirect('add') : $this->error('添加失败');
+            if($m->create()) {
+            	$m->add() ? $this->redirect('add') : $this->error('添加失败');
             }
         }
         // 获取顶级栏目
-        $data = $model->getTopNav();
+        $data = $m->getTopNav();
         $this->assign(array(
         	'data'		=>		$data,
         ));
@@ -22,6 +22,11 @@ class ExpertsWendaController extends Controller {
 	}
 
 	public function show(){
+		$m = D('ExpertsWenda');
+        $data = $m->getAll();
+        $this->assign(array(
+        	'data'		=>		$data,
+        ));
 		$this->display();
 	}
 }

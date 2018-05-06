@@ -58,83 +58,12 @@
 </div>
 
 <div class="wid1200">
-	<div class="main clearfix">
-		<div class="cate l">
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-			<a href="javascript:;">专家观点</a>
-		</div>
-		<div class="content r">
-			<h5 class="tit">专家观点</h5>
-			<div class="answerbox">
-				<div class="list clearfix">
-					<div class="problem">
-						<div class="font">问</div>
-						<p>我是问题</p>
-					</div>
-					<div class="answer">
-						<div class="font">答</div>
-						<p>我是回答</p>
-					</div>
-				</div>
-
-				<div class="list clearfix">
-					<div class="problem">
-						<div class="font">问</div>
-						<p>我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题我是问题</p>
-					</div>
-					<div class="answer">
-						<div class="font">答</div>
-						<p>我是回答</p>
-					</div>
-				</div>
-
-
-				<div class="list clearfix">
-					<div class="problem">
-						<div class="font">问</div>
-						<p>我是问题</p>
-					</div>
-					<div class="answer">
-						<div class="font">答</div>
-						<p>我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答我是回答</p>
-					</div>
-				</div>
-
-				<div class="list clearfix">
-					<div class="problem">
-						<div class="font">问</div>
-						<p>我是问题</p>
-					</div>
-					<div class="answer">
-						<div class="font">答</div>
-						<p>我是回答</p>
-					</div>
-				</div>
-
-				<div class="list clearfix">
-					<div class="problem">
-						<div class="font">问</div>
-						<p>我是问题</p>
-					</div>
-					<div class="answer">
-						<div class="font">答</div>
-						<p>我是回答</p>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="main clearfix" id="main">
+		<div class="loading"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" width="15"></div>
 	</div>
 </div>
+
+<include file='Public:footer' />
 <script type="text/javascript">
 	
 $(function(){
@@ -153,8 +82,63 @@ var expert = {
 			}
 		});
 	},
+	getAll : function(){
+		$.get('__MODULE__/ExpertsWenda/ajaxGetAll',function(data){
+			console.log(data);
+			if(data.state == 200){
+				var leftMenu = '';
+				var rightMain = '';
+				$(data.data).each(function(k,v){
+					leftMenu += '<a href="javascript:;">'+v.title+'</a>';
+					var first = '';
+					if(k==0){
+						first = 'shows';
+					}else{
+						first = '';
+					}
+					if(v.id==9){
+						if(v.main){
+							rightMain += '<div class="content article '+first+'"><h5 class="tit">'+v.title+'</h5><div class="answerbox"><div class="artlist clearfix">';
+							$(v.main.data).each(function(k1,v1){
+								rightMain += '<a href="'+v1.url+'" target="_blank" class="clearfix"><span class="r">'+v1.addtime+'</span>'+v1.title+'</a>';
+							});
+							rightMain += '</div></div>';
+							rightMain += '<div class="page">'+v.main.page+'</div>';
+							rightMain += '</div>';
+						}else{
+							rightMain += '<div class="content article"><h5 class="tit">'+v.title+'</h5><div class="nodata"><small>暂无数据</small></div></div>';
+						}
+					}else{
+						if(v.main){
+							rightMain += '<div class="content '+first+'"><h5 class="tit">'+v.title+'</h5><div class="answerbox">';
+							$(v.main.data).each(function(k1,v1){
+								rightMain += '<div class="list clearfix"><div class="problem"><div class="font">问</div><p>'+v1.title+'</p></div><div class="answer"><div class="font">答</div><p>'+v1.answer+'</p></div></div>';
+							});
+							rightMain += '</div></div>';
+						}else{
+							rightMain += '<div class="content"><h5 class="tit">'+v.title+'</h5><div class="nodata"><small>暂无数据</small></div></div>';
+						}
+					}
+				});
+				var html = '<div class="cate l" id="cate">'+leftMenu+'</div><div class="contentList r" id="contentList">'+rightMain+'</div>';
+				// 左侧栏目+右侧内容
+				$('#main').html(html);
+			}
+		});
+	},
+	chktab : function(){
+		$('body').on('click','#cate a',function(){
+			$('#contentList .content').removeClass('shows').eq($(this).index()).addClass('shows');
+		});
+	},
 	load : function(){
 		this.showhide();
+
+		// 获取问答页面栏目及文章全部信息
+		this.getAll();
+
+		// 切换tab
+		this.chktab();
 	}
 }
 
