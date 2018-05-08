@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>百一知识产权</title>
+	<include file="Public/meta" />
+</head>
+<body class="experts">
+
+<div class="header">
+	<div class="top">
+		<div class="wid1200">
+			<a href="javascript:;">内容</a>|<a href="javascript:;">内容</a>|<a href="javascript:;">内容</a>
+		</div>
+	</div>
+	<div class="bot clearfix">
+		<div class="wid1200">
+			<div class="logo l">
+				<a href="/"><img src="__PUBLIC__/home/img/logo.png" alt="logo"></a>
+			</div>
+			<div class="search r clearfix">
+				<div class="search-box r">
+					<form>
+						<input type="text" name="keywords">
+						<a href="javascript:;"><i class="iconfont icon-sousuo"></i></a>
+					</form>
+				</div>
+				<div class="scrolltext r">
+					滚动文字
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="nav">
+		<div class="wid1200">
+			<a href="/" title="上海百一知识产权代理有限公司">首页</a> | 
+			<foreach name='web_nav' item='v'>
+				<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a> | 
+			</foreach>
+		</div>
+	</div>
+</div>
+
+<div class="banner" style="background: #e2e2e2;">
+	<div class="wid1200">
+		<a href="javascript:;"><img src=""></a>
+	</div>
+</div>
+
+<div class="wid1200">
+	<div class="detail clearfix" id="detail">
+		<h2>{$data['title']}</h2>
+		<p class="info"><span class="pidname">{$data.pidname}</span><span class="addtime">{$data['addtime']}</span></p>
+		<div class="content">
+			{$data['answer']}
+		</div>
+	</div>
+</div>
+
+<include file='Public:footer' />
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

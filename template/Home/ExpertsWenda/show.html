@@ -84,7 +84,7 @@ var expert = {
 	},
 	getAll : function(){
 		$.get('__MODULE__/ExpertsWenda/ajaxGetAll',function(data){
-			console.log(data);
+			// console.log(data);
 			if(data.state == 200){
 				var leftMenu = '';
 				var rightMain = '';
@@ -98,7 +98,7 @@ var expert = {
 					}
 					if(v.id==9){
 						if(v.main){
-							rightMain += '<div class="content article '+first+'"><h5 class="tit">'+v.title+'</h5><div class="answerbox"><div class="artlist clearfix">';
+							rightMain += '<div class="content article arttype'+v.id+' '+first+'" data-id="'+v.id+'"><h5 class="tit">'+v.title+'</h5><div class="answerbox"><div class="artlist clearfix">';
 							$(v.main.data).each(function(k1,v1){
 								rightMain += '<a href="'+v1.url+'" target="_blank" class="clearfix"><span class="r">'+v1.addtime+'</span>'+v1.title+'</a>';
 							});
@@ -106,17 +106,19 @@ var expert = {
 							rightMain += '<div class="page">'+v.main.page+'</div>';
 							rightMain += '</div>';
 						}else{
-							rightMain += '<div class="content article"><h5 class="tit">'+v.title+'</h5><div class="nodata"><small>暂无数据</small></div></div>';
+							rightMain += '<div class="content article arttype'+v.id+'"  data-id="'+v.id+'"><h5 class="tit">'+v.title+'</h5><div class="nodata"><small>暂无数据</small></div></div>';
 						}
 					}else{
 						if(v.main){
-							rightMain += '<div class="content '+first+'"><h5 class="tit">'+v.title+'</h5><div class="answerbox">';
+							rightMain += '<div class="content arttype'+v.id+' '+first+'"  data-id="'+v.id+'"><h5 class="tit">'+v.title+'</h5><div class="answerbox">';
 							$(v.main.data).each(function(k1,v1){
 								rightMain += '<div class="list clearfix"><div class="problem"><div class="font">问</div><p>'+v1.title+'</p></div><div class="answer"><div class="font">答</div><p>'+v1.answer+'</p></div></div>';
 							});
-							rightMain += '</div></div>';
+							rightMain += '</div>';
+							rightMain += '<div class="page">'+v.main.page+'</div>';
+							rightMain += '</div>';
 						}else{
-							rightMain += '<div class="content"><h5 class="tit">'+v.title+'</h5><div class="nodata"><small>暂无数据</small></div></div>';
+							rightMain += '<div class="content arttype'+v.id+'"  data-id="'+v.id+'"><h5 class="tit">'+v.title+'</h5><div class="nodata"><small>暂无数据</small></div></div>';
 						}
 					}
 				});
@@ -131,6 +133,44 @@ var expert = {
 			$('#contentList .content').removeClass('shows').eq($(this).index()).addClass('shows');
 		});
 	},
+	// page
+	page : function(){
+		$('body').on('click','.page a',function(){
+			var that = $(this);
+			var p = that.attr('page-id');
+			var articletype = that.parent().parent().attr('data-id');
+			// console.log(articletype);
+			p = p>0?p:1;
+			expert.getPage(p,articletype);
+		});
+	},
+	// 根据文章类型输出
+	getPage : function(p,articletype){
+		// p = p>0?p:1;
+		// console.log(p);
+		$.get('__MODULE__/ExpertsWenda/ajaxGetPageNews/articletype/'+articletype+'/p/'+p,function(data){
+			console.log(data);
+			var html = '';
+			if(data.state == 20000){
+				$(data.data.data).each(function(k,v){
+					html += '<a href="'+v.url+'" target="_blank" class="clearfix"><span class="r">'+v.addtime+'</span>'+v.title+'</a>';
+				});
+				$('#contentList .arttype'+articletype+' .artlist').html(html);
+				$('#contentList .arttype'+articletype+' .page').html(data.data.page);
+			}else if(data.state == 30000){
+				$(data.data.data).each(function(k,v){
+					html += '<div class="list clearfix"><div class="problem"><div class="font">问</div><p>'+v.title+'</p></div><div class="answer"><div class="font">答</div><p>'+v.answer+'</p></div></div>';
+				});
+				$('#contentList .arttype'+articletype+' .answerbox').html(html);
+				$('#contentList .arttype'+articletype+' .page').html(data.data.page);
+			}else if(data.state == 20001){
+				html = '<div class="errorbox">'+data.msg+'</div>';
+				$('#contentList .arttype'+articletype+' .artlist').html(html);
+			}else if(data.state == 30001){
+				$('#contentList .arttype'+articletype+' .artlist').html(html);
+			}
+		});
+	},
 	load : function(){
 		this.showhide();
 
@@ -139,6 +179,9 @@ var expert = {
 
 		// 切换tab
 		this.chktab();
+
+		// page
+		this.page();
 	}
 }
 
