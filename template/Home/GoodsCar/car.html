@@ -17,125 +17,205 @@
     <!-- 公共css -->
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css">
     <!-- index -->
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_36rsj1tjl09q9f6r.css">
 </head>
 
 <body>
-    <div class="full commen-header">
-        <div class="quick-nav wid1200 clearfix">
-            <div class="r app">
-                <span>移动应用</span>
-                <div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
-            </div>
-            <div class="logstate r clearfix" id="logstate">
-                <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" style="padding-left: 20px;">
-            </div>
-            <div class="r phone">客服电话：40000000000</div>
+<div class="full commen-header">
+    <div class="quick-nav wid1200 clearfix">
+        <div class="r app">
+            <span>移动应用</span>
+            <div class="code"><img src="__PUBLIC__/home/img/code.jpg"></div>
         </div>
+        <div class="logstate r clearfix" id="logstate">
+            <img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15" style="padding-left: 20px;">
+        </div>
+        <div class="r phone">客服电话：40000000000</div>
     </div>
-    <div class="pub-header wid1200 clearfix">
-        <div class="logo-header clearfix">
-            <div class="logo l">
-                <a href="#"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
-            </div>
-            <div class="search r clearfix">
-                <form action="" method="post" id="search-form">
-                    <div class="type l">
-                        <div class="shows">
-                            <span>服务类型</span><i class="iconfont icon-bottom"></i>
-                        </div>
-                        <div class="lists">
-                            <span data-name="类型1">类型1</span>
-                            <span data-name="类型2">类型2</span>
-                        </div>
-                    </div>
-                    <div class="input-search l">
-                        <input type="text" class="input-text" placeholder="请输入搜索关键字">
-                    </div>
-                    <div class="submit l">
-                        <a href="javascript:;" id="search-submit"><i class="iconfont icon-sousuo"></i></a>
-                    </div>
-                </form>
-            </div>
+</div>
+
+<div class="pub-header wid1200 clearfix">
+    <div class="logo-header clearfix">
+        <div class="logo l">
+            <a href="/"><img src="__PUBLIC__/home/img/logo.png" title="百一知识产权"></a>
         </div>
-        <div class="pub-navs clearfix">
-            <div class="navs-list l text-c">
-                <h4>全部服务分类</h4>
-                <div class="nav-box hide"></div>
-            </div>
-            <div class="quick-link r">
-                <a href="/" title="首页">首页</a>
-                <foreach name='web_nav' item='v'>
-                    <a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
-                </foreach>
-            </div>
-        </div>
-    </div>
-    <div class="shop-cart">
-        <div class="cart-box">
-            <form id="toCar" method="post">
-                <table class="table car-table text-c">
-                    <caption>购物车小计</caption>
-                    <thead>
-                        <tr>
-                            <th class="text-l">
-                                <label for="chkall"><input type="checkbox" name="chkall"> 全选</label>
-                            </th>
-                            <th>服务类型</th>
-                            <th>单价（元）</th>
-                            <th>数量</th>
-                            <th>小计</th>
-                            <th>操作</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <foreach name="data" item="v">
-                            <tr data-id="{$v.goods_name}">
-                                <th align="left"><input type="checkbox" name="chkone"></th>
-                                <td>
-                                    {$v.goods_name}
-                                    <input type="hidden" name="goods_name[]" value="{$v.goods_name}">
-                                    <input type="hidden" name="id[]" value="{$v.goods_id}">
-                                    <input type="hidden" name="goods_price[]" value="{$v.goods_default_price}">
-                                </td>
-                                <td>{$v.goods_default_price}元</td>
-                                <td>
-                                    <div class="num-box clearfix">
-                                        <span class="reduce l">-</span>
-                                        <input type="text" name="good_nums[]" value="{$v.nums}" class="goods_num l" id="goods_num">
-                                        <span class="add l">+</span>
-                                    </div>
-                                </td>
-                                <td>{$v.total_price}</td>
-                                <td><a href="javascript:void(0);" id="del">删除</a></td>
-                            </tr>
-                        </foreach>
-                        <tr>
-                            <td colspan="6">
-                                <br>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="6">
-                                <input type="hidden" name="send" value="ok">
-                                <span class="res to_pay r"><a href="javascript:car.chk();">去结算</a></span>
-                                <span class="res total_money r">总价：<font color="red"><b><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="14" /></b>元</font></span>
-                                <span class="res totel_num r">已选<font color="red">2</font>件商品</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="search r clearfix">
+            <form action="" method="post" id="search-form">
+                <div class="type l">
+                    <div class="shows">
+                        <span>服务类型</span><i class="iconfont icon-bottom"></i>
+                    </div>
+                    <div class="lists">
+                        <span data-name="类型1">类型1</span>
+                        <span data-name="类型2">类型2</span>
+                    </div>
+                </div>
+                <div class="input-search l">
+                    <input type="text" class="input-text" placeholder="请输入搜索关键字">
+                </div>
+                <div class="submit l">
+                    <a href="javascript:;" id="search-submit"><i class="iconfont icon-sousuo"></i></a>
+                </div>
             </form>
         </div>
     </div>
-    
-    <include file='Public:footer' />
+    <div class="pub-navs clearfix">
+        <div class="navs-list l text-c">
+            <h4>全部服务分类</h4>
+            <div class="nav-box hide">
+                <foreach name="layoutdata.menu" key="k" item="v">
+                    <div class="out">
+                        <div class="tit"><a href="{$v.url}">{$v.title}</a></div>
+                        <div class="sometit clearfix">
+                            <?php if($k == 0){ ?>
+                            <a href="__MODULE__/ConnectIndustry/aiplan" target="_blank" title="商标自助申请">商标自助申请</a>
+                            <?php } ?>
+                            <foreach name="v.goods_limit" item="v1">
+                                <a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+                            </foreach>
+                        </div>
+                        <?php if($k == 0){
+                            $top = '-1px';
+                        } elseif($k == 1){
+                            $top = '-86px';
+                        } elseif($k == 2){
+                            $top = '-171px';
+                        } elseif($k == 3){
+                            $top = '-238px';
+                        } elseif($k == 4){
+                            $top = '-323px';
+                        }
+                        ?>
+                        <div class="hidecate clearfix" style="top:{$top};">
+                            <foreach name="v.goods" item="v1" key="k1">
+                                <?php if($k == 0){ ?>
+                                    <?php if($k1 == 0){ ?>
+                                        <a href="__MODULE__/ConnectIndustry/aiplan" target="_blank" title="商标自助申请">商标自助申请</a>
+                                    <?php } ?>
+                                <?php } ?>
+                                <a href="{$v1.url}" target="_blank" title="{$v1.goods_name}">{$v1.goods_name}</a>
+                            </foreach>
+                        </div>
+                    </div>
+                </foreach>
+            </div>
+        </div>
+        <div class="quick-link r">
+            <foreach name='web_nav' item='v'>
+                <div class="toplink">
+                    <a href="{$v.url}" target="_blank" class="bgtit" title="{$v.title}">{$v.title}</a>
+                    <?php if($v['child']){ ?>
+                    <div class="child clearfix">
+                        <foreach name="v.child" item="v1">
+                            <a href="{$v1.url}" class="childnav" target="_blank"><span>{$v1.title}</span></a>
+                        </foreach>
+                    </div>
+                    <?php } ?>
+                </div>
+            </foreach>
+        </div>
+    </div>
+</div>
+
+<div class="shop-cart">
+    <div class="cart-box">
+        <form id="toCar" method="post">
+            <table class="table car-table text-c">
+                <caption>购物车小计</caption>
+                <thead>
+                    <tr>
+                        <th class="text-l">#</th>
+                        <th>服务类型</th>
+                        <th>单价（元）</th>
+                        <th>数量</th>
+                        <th>小计</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <foreach name="data" item="v">
+                        <tr data-id="{$v.goods_name}">
+                            <th align="left">#</th>
+                            <td>
+                                {$v.goods_name}
+                                <input type="hidden" name="goods_name[]" value="{$v.goods_name}">
+                                <input type="hidden" name="id[]" value="{$v.goods_id}">
+                                <input type="hidden" name="goods_price[]" value="{$v.goods_default_price}">
+                            </td>
+                            <td class="oneprice"><font>{$v.goods_default_price}</font>元</td>
+                            <td>
+                                <div class="num-box clearfix">
+                                    <span class="reduce l">-</span>
+                                    <input type="text" name="good_nums[]" value="{$v.nums}" class="goods_num l" id="goods_num">
+                                    <span class="add l">+</span>
+                                </div>
+                            </td>
+                            <td class="oneTotalPrice">{$v.total_price}</td>
+                            <td><a href="javascript:void(0);" id="del">删除</a></td>
+                        </tr>
+                    </foreach>
+                    <tr>
+                        <td colspan="6">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <input type="hidden" name="send" value="ok">
+                            <span class="res to_pay r"><a href="javascript:car.chk();">去结算</a></span>
+                            <span class="res total_money r" id="total_money">总价：<font color="red"><b><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="14" /></b>元</font></span>
+                            <span class="res totel_num r">已选<font color="red">2</font>件商品</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+<include file='Public:footer' />
 
 <script type="text/javascript">
+$(function(){
+    car.load();
+});
     
 var car = {
+    // +-
+    click : function(){
+
+        // -
+        $('body').on('click','.num-box .reduce',function(){
+            var that = $(this);
+            var num = that.parent().find('input').val();
+            if(num > 1){
+                num = num-1;
+                that.parent().find('input').val(num);
+                that.parent().parent().parent().find('.oneTotalPrice').text(that.parent().parent().parent().find('.oneprice font').text()*num);
+                car.total();
+            }
+        });
+
+        // +
+        $('body').on('click','.num-box .add',function(){
+            var that = $(this);
+            var num = that.parent().find('input').val();
+            num = Number(num)+Number(1);
+            that.parent().find('input').val(num);
+            that.parent().parent().parent().find('.oneTotalPrice').text(that.parent().parent().parent().find('.oneprice font').text()*num);
+            car.total();
+        });
+    },
+    // total
+    total : function(){
+        var total = 0;
+        $('table .oneTotalPrice').each(function(k,v){
+            total += Number($(this).text());
+        });
+        $('#total_money font b').text(total);
+    },
     chk : function(){
         $.post('__MODULE__/OrderDetail/creat_order',$('#toCar').serialize(),function(data){
             console.log(data);
@@ -146,7 +226,10 @@ var car = {
             }
         });
     },
-    load : function(){}
+    load : function(){
+        this.click();
+        this.total();
+    }
 }
 
 </script>
