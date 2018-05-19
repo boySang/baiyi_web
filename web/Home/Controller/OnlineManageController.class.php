@@ -54,4 +54,29 @@ class OnlineManageController extends LayoutController {
 		$this->display();
 	}
 
+	// 专利案件查询
+	public function patent_case_search(){
+		$this->display();
+	}
+
+	// 案件流程——进行中
+	public function patent_case_process_ing(){
+		$this->display();
+	}
+
+	// 案件流程——已完成
+	public function patent_case_process_complated(){
+		$this->display();
+	}
+
+	// 专利年费管理
+	public function patent_moneyyears(){
+		$this->display();
+	}
+
+	// 专利年费管理 异常
+	public function patent_money_error(){
+		$this->display();
+	}
+
 }
