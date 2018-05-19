@@ -1,0 +1,82 @@
+<include file='Public:manage_header' />
+
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="wid1200 main patent" id="contents">
+	<div class="q-link">
+		<a class="" href="__MODULE__/OnlineManage/patent_case_search#contents">案件查询</a>
+		<a class="act" href="__MODULE__/OnlineManage/patent_case_process_ing#contents">案件管理</a>
+		<a href="__MODULE__/OnlineManage/patent_moneyyears#contents">年费管理</a>
+	</div>
+	<div class="searchrightbox">
+		<form role="form">
+			<div class="boxinner">
+				<input type="text" name="" class="keywords" placeholder="文号、案件名称、客户名称、处理事项查询">
+				<i class="iconfont icon-sousuo"></i>
+				<a href="javascript:;">查询</a>
+				<a href="javascript:;">导出</a>
+			</div>
+		</form>
+	</div>
+	<div class="searchresult ing">
+		<form role="form">
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr class="tit">
+						<th colspan="10">
+							<a class="act" href="javascript:;">进行中</a>
+							<span>|</span>
+							<a href="__MODULE__/OnlineManage/patent_case_process_complated#contents">已完成</a>
+						</th>
+					</tr>
+					<tr>
+						<th>序号</th>
+						<th>审核号</th>
+						<th>案件名称</th>
+						<th>申请类型</th>
+						<th>处理事项</th>
+						<th>官方发文日</th>
+						<th>官方期限</th>
+						<th>内部期限</th>
+						<th>处理状态</th>
+						<th>案件阶段</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1</td>
+						<td>2017012012</td>
+						<td>名称</td>
+						<td>测试</td>
+						<td>测试</td>
+						<td>名称</td>
+						<td>名称</td>
+						<td>名称</td>
+						<td>名称</td>
+						<td>名称</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<div class="page">页码</div>
+	</div>
+</div>
+
+<div id="cxclslist"><div class="clearfix"></div></div>
+
+<include file='Public:footer' />
+<script type="text/javascript">
+
+$(function(){
+	index.load();
+});
+	
+var index = {
+
+	load : function(){
+	}
+}
+
+</script>
+</body>
+</html>

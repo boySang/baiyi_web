@@ -1,0 +1,109 @@
+<include file='Public:manage_header' />
+
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="wid1200 main patent" id="contents">
+	<div class="q-link">
+		<a class="act" href="__MODULE__/OnlineManage/patent_case_search#contents">案件查询</a>
+		<a href="__MODULE__/OnlineManage/patent_case_process_ing#contents">案件管理</a>
+		<a href="__MODULE__/OnlineManage/patent_moneyyears#contents">年费管理</a>
+	</div>
+	<div class="searchbox">
+		<form role="form">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th colspan="4">案件条件</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td width="14%" class="bgf2f6f8 text-center">申请号</td>
+						<td width="84%" colspan="3">
+							<textarea class="form-control" rows="3" placeholder="多件请用分号、空格或换行分隔"></textarea>
+						</td>
+					</tr>
+					<tr>
+						<td width="14%" class="bgf2f6f8 text-center">案件名称</td>
+						<td width="36%">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+						</td>
+						<td width="14%" class="bgf2f6f8 text-center">申请类型</td>
+						<td width="36%">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+						</td>
+					</tr>
+					<tr>
+						<td width="14%" class="bgf2f6f8 text-center">申请日</td>
+						<td width="36%">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+						</td>
+						<td width="14%" class="bgf2f6f8 text-center">PCT申请日</td>
+						<td width="36%">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+						</td>
+					</tr>
+					<tr>
+						<td width="14%" class="bgf2f6f8 text-center">申请人</td>
+						<td width="36%">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+						</td>
+						<td width="14%" class="bgf2f6f8 text-center">第一申请人地址</td>
+						<td width="36%">
+							<input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="button">
+				<a href="javascript:;">查询</a>
+				<a href="javascript:;">导出</a>
+				<a href="javascript:;">重置</a>
+			</div>
+		</form>
+	</div>
+	<div class="searchresult">
+		<form role="form">
+			<table class="table table-bordered text-center">
+				<thead>
+					<tr class="tit">
+						<th colspan="7">查询结果</th>
+					</tr>
+					<tr>
+						<th>序号</th>
+						<th>案件名称</th>
+						<th>申请人</th>
+						<th>申请号</th>
+						<th>申请日</th>
+						<th>申请类型</th>
+						<th>案件状态</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="nodata">
+						<td colspan="7">无数据</td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+</div>
+
+<div id="cxclslist"><div class="clearfix"></div></div>
+
+<include file='Public:footer' />
+<script type="text/javascript">
+
+$(function(){
+	index.load();
+});
+	
+var index = {
+
+	load : function(){
+	}
+}
+
+</script>
+</body>
+</html>
