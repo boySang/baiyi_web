@@ -138,8 +138,24 @@ var detailIndex = {
 		});
 	},
 
-	load : function(){
+	click : function(){
+		// reduce 
+		$('body').on('click','#reduce',function(){
+			var nums = $('input[name="good_nums"]').val();
+			if(nums > 1){
+				$('input[name="good_nums"]').val(Number(nums)-Number(1));
+			}
+		});
 
+		// add 
+		$('body').on('click','#add',function(){
+			var nums = $('input[name="good_nums"]').val();
+			$('input[name="good_nums"]').val(Number(nums)+Number(1));
+		});
+	},
+
+	load : function(){
+		this.click();
 	},
 }
 
