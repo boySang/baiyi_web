@@ -21,7 +21,7 @@ class MemberModel extends Model{
         //生成翻页字符串
         $show = $page->show();
 
-        $data = $this->field('user_id,phone,addtime,vip_state,state')->order('user_id DESC')->limit($page->firstRow,$page->listRows)->select();
+        $data = $this->field('user_id,phone,addtime,vip_state,state,uniqid')->order('user_id DESC')->limit($page->firstRow,$page->listRows)->select();
 
         if($data){
         	foreach($data as $k=>$v){
