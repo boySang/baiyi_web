@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+<!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+	<meta name="description" content="描述">
+	<meta name="keywords" content="关键字">
+	<title>{$name}百一知识产权</title>
+	<!-- 公共css -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/global.css?<?php echo time(); ?>">
+    <!-- index -->
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/detail.css?<?php echo time(); ?>">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_9yxm5gf37m0zr529.css">
+    <!-- layer -->
+	<link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+</head>
+<body>
+
+<include file='Public:common_layout' />
+
+<div class="wid1200 goodsproblem">
+	<div class="detail clearfix" id="detail">
+		<h2>{$data['title']}</h2>
+		<p class="info"><span class="goods_name">{$data['goods_name']}</span></p>
+		<div class="content">
+			{$data['content']}
+		</div>
+	</div>
+</div>
+
+<include file='Public:footer' />
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

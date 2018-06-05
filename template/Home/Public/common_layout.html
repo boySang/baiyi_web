@@ -59,9 +59,17 @@
 			</div>
 		</div>
 		<div class="quick-link r">
-			<a href="/" title="首页">首页</a>
 			<foreach name='web_nav' item='v'>
-				<a href="{$v.url}" target="_blank" title="{$v.title}">{$v.title}</a>
+				<div class="toplink">
+					<a href="{$v.url}" target="_blank" class="bgtit" title="{$v.title}">{$v.title}</a>
+					<?php if($v['child']){ ?>
+					<div class="child clearfix">
+						<foreach name="v.child" item="v1">
+							<a href="{$v1.url}" class="childnav" target="_blank"><span>{$v1.title}</span></a>
+						</foreach>
+					</div>
+					<?php } ?>
+				</div>
 			</foreach>
 		</div>
 		<script type="text/javascript">

@@ -4,7 +4,7 @@
 			<img src="__PUBLIC__/home/img/member_face.png" />
 		</div>
 		<div class="name">
-			<a href="javascript:void(0);" title="<?php echo session('phone'); ?>">Hi<br /><span><?php echo session('phone'); ?></span></a>
+			<a href="javascript:void(0);" title="<?php echo session('nickname')?session('nickname'):session('phone'); ?>">Hi<br /><span><?php echo session('nickname')?session('nickname'):session('phone'); ?></span></a>
 			<a href="__MODULE__/Member/logout">退出</a>
 		</div>
 	</div>

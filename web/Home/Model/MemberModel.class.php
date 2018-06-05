@@ -71,6 +71,33 @@ class MemberModel extends Model{
 		}
 	}
 
+	public function getNickname(){
+		if($this->truelogin() != true){
+			return returnApi(201,'请先登录','',U('Member/login'));
+		}
+		$d = $this->field('nickname')->where('uniqid="%s"',session('uniqid'))->find();
+		if($d['nickname']){
+			return returnApi(202,'has');
+		}else{
+			return returnApi(200,'donthas','',$d);
+		}
+	}
+
+	public function chgnickname(){
+		if($this->truelogin() != true){
+			return returnApi(201,'请先登录','',U('Member/login'));
+		}
+		$nickname = I('post.nickname');
+		$r = $this->where('uniqid="%s"',session('uniqid'))->setField('nickname',$nickname);
+		if($r !== false){
+			setcookie("nickname",$nickname, time()+2592000,'/');
+        	session('nickname',$nickname);
+			return returnApi(200,'修改成功！');
+		}else{
+			return returnApi(201,'修改失败！');
+		}
+	}
+
 
     // 仅cookie存在
     public function onlylogin(){
@@ -107,6 +134,8 @@ class MemberModel extends Model{
 		session('uniqid',null);
     	session('phone',null);
     	cookie('uniqid',null);
+    	session('nickname',null);
+    	cookie('nickname',null);
     	cookie('phone',null);
     	return true;
 	}

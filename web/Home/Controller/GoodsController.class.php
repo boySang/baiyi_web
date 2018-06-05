@@ -6,6 +6,9 @@ class GoodsController extends LayoutController {
 
 
     public function detail($id){
+    	if(!is_numeric($id)){
+    		$this->error('参数不合法');
+    	}
     	$m = D('Goods');
     	$d = $m->getGoodsOne($id);
     	$data['goodsinfo'] = $d;
@@ -13,9 +16,14 @@ class GoodsController extends LayoutController {
     	$cateModel = D('Category');
     	$cateMenu = $cateModel->getMenuPublic();
     	$data['menu'] = $cateMenu;
+
+    	// 调取帮助文章
+    	$goodsProblem_m = D('GoodsProblem');
+    	$goodsProblem_d = $goodsProblem_m->getFromGoodsId($id);
     	$this->assign(array(
     		'data'		=>		$data,
     		'name'		=>		$d['goods_name'].'_',
+    		'goodspro'	=>		$goodsProblem_d,
     	));
 		$this->display();
     }

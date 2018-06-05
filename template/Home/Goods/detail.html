@@ -95,7 +95,16 @@
 					<span class="active">服务介绍</span>
 					<span>常见问题</span>
 				</div>
-				<div class="detail-main">{$data.goodsinfo.goods_content}</div>
+				<div class="tabmain">
+					<div class="detail-main cur li">{$data.goodsinfo.goods_content}</div>
+					<div class="li pro">
+						<div class="inner">
+							<foreach name="goodspro" item="v">
+								<a href="{$v.url}" title="{$v.title}">{$v.title}</a>
+							</foreach>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -154,8 +163,17 @@ var detailIndex = {
 		});
 	},
 
+	tab : function(){
+		// detail与pro切换
+		$('.details-info .tit span').on('click',function(){
+			var index = $(this).index();
+			$('.details-info .tabmain .li').removeClass('cur').eq(index).addClass('cur');
+		});
+	},
+
 	load : function(){
 		this.click();
+		this.tab();
 	},
 }
 

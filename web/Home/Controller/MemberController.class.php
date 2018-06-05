@@ -82,6 +82,18 @@ class MemberController extends LayoutController {
     	}
     }
 
+    public function getNickname(){
+		header('Content-type:text/json');
+    	$m = D('Member');
+    	echo $m->getNickname();
+    }
+
+    public function chgnickname(){
+		header('Content-type:text/json');
+    	$m = D('Member');
+    	echo $m->chgnickname();
+    }
+
     // 官文页面
     public function guanwen(){
     	$this->display();
@@ -94,6 +106,11 @@ class MemberController extends LayoutController {
 
     // 安全管理页面
     public function safe(){
+    	$this->display();
+    }
+
+    // 忘记密码第一步
+    public function forget(){
     	$this->display();
     }
 
