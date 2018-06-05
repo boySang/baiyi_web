@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/home/css/index.css?<?php echo time(); ?>">
     <script type="text/javascript" src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="//at.alicdn.com/t/font_486719_i9dc7cn28dkotj4i.css">
+    <!-- layer -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+    <!-- layer end -->
 </head>
 <body class="member-index">
 
@@ -62,9 +66,9 @@
 					<span class="l mid">专属顾问</span>
 				</div>
 				<div class="cpn-info">
-					<span class="l left">我是测试公司名称</span>
-					<span class="l mid">我是姓名联系人</span>
-					<span class="l mid"><i class="iconfont icon-kefu-copy"></i>我是专属顾问</span>
+					<span class="l left">公司名称</span>
+					<span class="l mid"><?php echo session('nickname')?session('nickname'):session('phone'); ?></span>
+					<span class="l mid"><i class="iconfont icon-kefu-copy"></i>专属顾问</span>
 				</div>
 				<div class="orderType clearfix">
 					<a href="javascript:;" class="cur" data-state="0">全部订单</a>
@@ -92,6 +96,34 @@
 	</div>
 </div>
 
+<div id="setNickName">
+	<div class="inner">
+		<input type="text" name="nickname_pc" value="">
+		<a href="javascript:;" id="nickname_submit">确定</a>
+	</div>
+</div>
+<style type="text/css">
+	#setNickName{
+		padding: 15px;
+		width: 200px;
+	}
+	#setNickName .inner input{
+		width: 193px;
+	    padding: 5px 0 5px 5px;
+	    border-radius: 2px;
+	    border: 1px solid #ddd;
+	}
+	#setNickName .inner a{
+		width: 100%;
+	    display: block;
+	    text-align: center;
+	    line-height: 26px;
+	    color: #fff;
+	    background: #49a7e6;
+	    margin-top: 10px;
+	    border-radius: 2px;
+	}
+</style>
 <include file='Public:footer' />
 
 <script type="text/javascript">
@@ -152,6 +184,37 @@ var index = {
 		});
 	},
 
+	chkNickName : function(){
+		$.get('__MODULE__/Member/getNickname',function(data){
+			console.log(data);
+			if(data.state == 200){
+				layer.open({
+					type: 1,
+					skin: 'layui-layer-demo', //样式类名
+					title:'先给自己起个昵称吧~',
+					closeBtn: 0, //不显示关闭按钮
+					anim: 2,
+					shadeClose: true, //开启遮罩关闭
+					content: $('#setNickName')
+				});
+				$('input[name="nickname_pc"]').focus();
+			}
+		});
+
+		$('body').on('click','#nickname_submit',function(){
+			$.post('__MODULE__/Member/chgnickname',{nickname:$('input[name="nickname_pc"]').val()},function(data){
+				// console.log(data);
+				layer.closeAll();
+				layer.msg(data.msg);
+				if(data.state == 200){
+					setTimeout(function(){
+						location.replace(location.href);
+					},1000);
+				}
+			});
+		});
+	},
+
 	load : function(){
 		this.getOrderList(1,0);
 		// 更多
@@ -159,6 +222,9 @@ var index = {
 
 		// 根据分类选择
 		this.showForState();
+
+		// 验证昵称
+		this.chkNickName();
 	}
 }
 

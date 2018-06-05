@@ -137,7 +137,7 @@ var index = {
 		index.firstShow();
 	},
 	member : function(html){
-		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员管理</a><i></i></li>';
+		html = '<li class="active"><cite></cite><a href="__MODULE__/Member/show" target="rightFrame">会员管理</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员级别</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员通知</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员相册</a><i></i></li>';
@@ -157,9 +157,8 @@ var index = {
 		index.firstShow();
 	},
 	webSite : function(html){
-		html = '<li class="active"><cite></cite><a href="__MODULE__/Article/show" target="rightFrame">问答相关文章</a><i></i></li>';
 		html = '<li class="active"><cite></cite><a href="__MODULE__/ExpertsWenda/show" target="rightFrame">专家问答</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">文章管理</a><i></i></li>';
+		html += '<li><cite></cite><a href="__MODULE__/GoodsProblem/show" target="rightFrame">商品关联文章</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员协议</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">页面导航</a><i></i></li>';
 		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">广告管理</a><i></i></li>';

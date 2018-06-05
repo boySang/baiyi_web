@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <include file='Public/meta' />
+</head>
+
+<body>
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul clearfix">
+            <li><a href="javascript:void(0);">首页</a></li>
+            <li><a href="javascript:void(0);">列表</a></li>
+        </ul>
+    </div>
+    <div class="formbody">
+        <div class="formtitle"><span>添加</span></div>
+        <ul class="forminfo">
+            <form action="__SELF__" method="post">
+                <li>
+                    <label>所属商品</label>
+                    <select class="input-select" name="goods_id" style="width:120px;">
+                        <foreach name='goods' item='v'>
+                            <option value="{$v.goods_id}">{$v.goods_name}</option>
+                        </foreach>
+                    </select>
+                </li>
+                <li>
+                    <label>题目</label>
+                    <input name="title" type="text" class="dfinput" required />
+                </li>
+                <li>
+                    <label>正文</label>
+                    <div class="contentbox" style="float: left;width: 800px;">
+                        <script id="container" name="content" type="text/plain"></script>
+                    </div>
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input type="submit" class="btn-self" value="确认保存" />
+                </li>
+            </form>
+        </ul>
+    </div>
+</body>
+<!-- 配置文件 -->
+<script type="text/javascript" src="__PUBLIC__/admin/js/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script type="text/javascript" src="__PUBLIC__/admin/js/ueditor.all.min.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container');
+    $('input[name="title"]').focus();
+</script>
+
+</html>

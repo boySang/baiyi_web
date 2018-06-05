@@ -83,6 +83,16 @@ class GoodsModel extends Model{
 			
 	}
 
+	public function getList(){
+		$d = $this->field('goods_id,goods_name')->select();
+		return $d;
+	}
+
+	public function getName($goods_id){
+		$d = $this->field('goods_name')->find($goods_id);
+		return $d['goods_name'];
+	}
+
 	public function ajaxAdd(){
 		$data['goods_name'] = I('post.goods_name','','htmlspecialchars');
 		$data['cate_id'] = I('post.cate_id','','htmlspecialchars');

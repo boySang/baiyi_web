@@ -45,4 +45,9 @@ class GoodsModel extends Model{
 		return $d;
 	}
 
+	public function getGoodsName($goods_id){
+		$d = $this->field('goods_name')->find($goods_id);
+		return $d['goods_name'];
+	}
+
 }
