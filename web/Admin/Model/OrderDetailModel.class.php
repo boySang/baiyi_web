@@ -29,6 +29,23 @@ class OrderDetailModel extends Model{
         	foreach($data as $k=>$v){
 				$data[$k]['total_price'] = $v['total_price']/100;
 				$data[$k]['addtime'] = date('Y-m-d H:i:s',$v['addtime']);
+				if($v['state'] == 101){
+					$data[$k]['state_text'] = '已付款';
+				}elseif($v['state'] == 102){
+					$data[$k]['state_text'] = '已上传资料';
+				}elseif($v['state'] == 103){
+					$data[$k]['state_text'] = '已完成';
+				}elseif($v['state'] == 104){
+					$data[$k]['state_text'] = '已邮寄';
+				}elseif($v['state'] == 201){
+					$data[$k]['state_text'] = '未付款';
+				}elseif($v['state'] == 202){
+					$data[$k]['state_text'] = '未上传资料';
+				}elseif($v['state'] == 203){
+					$data[$k]['state_text'] = '未下载合同并上传合同';
+				}elseif($v['state'] == 204){
+					$data[$k]['state_text'] = '未邮寄';
+				}
 			}
         	return array(
 	        	'data'		=>		$data,
