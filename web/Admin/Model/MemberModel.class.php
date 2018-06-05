@@ -35,6 +35,7 @@ class MemberModel extends Model{
         		}else{
         			$data[$k]['state_text'] = '禁止登录';
         		}
+        		$data[$k]['addtime'] = date('Y-m-d H:i:s',$v['addtime']);
         	}
         	return array(
 	        	'data'		=>		$data,
