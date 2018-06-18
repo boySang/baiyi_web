@@ -24,4 +24,11 @@ class TrademarkClassificationController extends LayoutController {
 		$m = D('TrademarkClassification');
 		echo $m->getTrademarkClassFromPid();
 	}
+
+	
+	public function ajaxToSearch(){
+		header('Content-type:text/json');
+		$m = D('TrademarkClassification');
+		echo $m->ajaxToSearch();
+	}
 }
