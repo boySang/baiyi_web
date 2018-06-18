@@ -138,14 +138,14 @@ class TrademarkClassificationModel extends Model{
 	        	$secondStr = implode(',', $secondIdArr);
 	        	foreach($data as $k1=>$v1){
 	        		if(mb_strpos(','.$secondStr.',', ','.$v1['pid'].',')){
-	        			$_kw = '';
-	        			$_kw = preg_replace('/'.$kw.'/i','<font color="red">'.$kw.'</font>',$v1['title']);
-	        			$_v1 = array();
-	        			$_v1['title'] = $_kw;
-	        			$_v1['cid'] = $v1['cid'];
-	        			$_v1['id'] = $v1['id'];
-	        			$_v1['pid'] = $v1['pid'];
-	        			$topData[$k]['child'][] = $_v1;
+	        			// $_kw = '';
+	        			// $_kw = preg_replace('/'.$kw.'/i','<font color="red">'.$kw.'</font>',$v1['title']);
+	        			// $_v1 = array();
+	        			// $_v1['title'] = $_kw;
+	        			// $_v1['cid'] = $v1['cid'];
+	        			// $_v1['id'] = $v1['id'];
+	        			// $_v1['pid'] = $v1['pid'];
+	        			$topData[$k]['child'][] = $v1;
 	        		}
 	        	}
 	        }
