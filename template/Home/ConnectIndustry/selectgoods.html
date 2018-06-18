@@ -84,6 +84,22 @@
 		</div>
 		<div class="searchResult clearfix" id="goodsList">
 			<div class="bigtit" id="scrollResult"><a href="javascript:;" class="help r"><i class="iconfont icon-gantanhao"></i></a>建议保护的类别及商品/服务项</div>
+			<div class="goodsselectedbox">
+				<div class="inputbox">
+					<input type="text" name="searchname" placeholder="" class="input sm">
+					<a href="javascript:;" id="goodssearchbuttim" class="goodssearchbuttim">商品查询</a>
+				</div>
+				<div class="goodssearchresult">
+					<div class="boxinner">
+						<div class="innerlist" id="goodssearchresult">
+							<div class="loading">
+								<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading">
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="javascript:;" class="showOrHide" id="showOrHide">收起/展开</a>
+			</div>
 			<div class="allList" id="addListBox">
 				<div class="loading">
 					<img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading">
@@ -531,6 +547,42 @@ var select = {
 		});
 	},
 
+	// 查询商品 
+	goodssearch : function(){
+		$('body').on('click','#goodssearchbuttim',function(){
+			$('#goodssearchresult').html('<div class="loading"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" alt="loading"></div>');
+			$.get('__MODULE__/TrademarkClassification/ajaxToSearch/kw/'+$('input[name="searchname"]').val(),function(data){
+				console.log(data);
+				if(data.state == 200){
+					var html = '';
+					$(data.data).each(function(k,v){
+						html += '<li class="clearfix"><div class="bgtit">第'+v.cid+'类 '+v.title+'</div><div class="infos">';
+						$(v.child).each(function(k1,v1){
+							html += '<i>'+v1.cid+' '+v1.title+'</i>、';
+						});
+						html += '</div></li>';
+					});
+					$('#goodssearchresult').html(html);
+				}else{
+					var html = '';
+					html = '<div class="nodata"><small>'+data.msg+'</small></div>';
+					$('#goodssearchresult').html(html);
+				}
+			});
+			$('.goodsselectedbox .showOrHide').show();
+			$('.goodsselectedbox .goodssearchresult .boxinner').show();
+		});
+
+		// 显示隐藏结果
+		$('body').on('click','#showOrHide',function(){
+			if($('.goodssearchresult .boxinner').is(':hidden')){
+				$('.goodssearchresult .boxinner').show(200);
+			}else{
+				$('.goodssearchresult .boxinner').hide(200);
+			}
+		});
+	},
+
 	onekeysearch : function (){
 		window.location.href='__CONTROLLER__/onekeysearch';
 	},
@@ -556,6 +608,8 @@ var select = {
 		this.toSelf();
 		// 自动搜索
 		this.autoSearch();
+		// 商品查询
+		this.goodssearch();
 	}
 }
 

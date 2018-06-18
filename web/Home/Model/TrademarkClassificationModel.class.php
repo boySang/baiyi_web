@@ -95,6 +95,75 @@ class TrademarkClassificationModel extends Model{
 		return returnApi(200,'success',$d);
 	}
 
+// 获取pid=0的内容
+	public function getTop(){
+		if(F('TrademarkClassificationGetTop')){
+			$d = F('TrademarkClassificationGetTop');
+		}else{
+			$d = $this->field('id,title,cid,pid,type')->where('pid=0')->select();
+			F('TrademarkClassificationGetTop',$d);
+		}
+		return $d;
+	}
+
+// 获取全部的二级内容
+	public function getSecondFromPid($pid){
+		if(F('TrademarkClassification_getSecondFromPid_'.$pid)){
+			$d = F('TrademarkClassification_getSecondFromPid_'.$pid);
+		}else{
+			$d = $this->field('id,title,cid,pid,type')->where('pid=%d',$pid)->select();
+			F('TrademarkClassification_getSecondFromPid_'.$pid,$d);
+		}
+		return $d;
+	}
+
+	public function ajaxToSearch(){
+		$kw = I('get.kw','','htmlspecialchars');
+		if(empty($kw)){
+			return returnApi(202,'参数错误');
+		}
+
+        $data = $this->field('title,cid,id,pid')->where('type=3 AND title LIKE "%%%s%%"',$kw)->order('id DESC')->select();
+        if($data){
+
+        	// 获取pid0
+	        $topData = $this->getTop();
+	        foreach($topData as $k=>$v){
+	        	$secondData = $this->getSecondFromPid($v['id']);
+	        	$secondStr = '';
+	        	$secondIdArr = array();
+	        	foreach($secondData as $k1=>$v1){
+	        		$secondIdArr[] = $v1['id'];
+	        	}
+	        	$secondStr = implode(',', $secondIdArr);
+	        	foreach($data as $k1=>$v1){
+	        		if(mb_strpos(','.$secondStr.',', ','.$v1['pid'].',')){
+	        			$_kw = '';
+	        			$_kw = preg_replace('/'.$kw.'/i','<font color="red">'.$kw.'</font>',$v1['title']);
+	        			$_v1 = array();
+	        			$_v1['title'] = $_kw;
+	        			$_v1['cid'] = $v1['cid'];
+	        			$_v1['id'] = $v1['id'];
+	        			$_v1['pid'] = $v1['pid'];
+	        			$topData[$k]['child'][] = $_v1;
+	        		}
+	        	}
+	        }
+
+	        $returnData = array();
+	        foreach($topData as $k=>$v){
+	        	if($v['child']){
+	        		$returnData[] = $v;
+	        	}
+	        }
+	        return returnApi(200,'success',$returnData);
+        }else{
+	        return returnApi(201,'未查到数据，换个关键字试试？');
+        }
+
+	        
+
+	}
 
 
 

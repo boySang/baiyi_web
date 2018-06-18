@@ -57,4 +57,5 @@ class TrademarkClassificationController extends Controller {
 		$m = D('TrademarkClassification');
 		echo $m->ajaxGetGoods();
 	}
+
 }
