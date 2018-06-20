@@ -61,11 +61,11 @@ class TrademarkClassificationModel extends Model{
 		if(F('getTrademarkClassTop')){
 			$d = F('getTrademarkClassTop');
 		}else{
-			$d = $this->field('id,title,pid')->where('pid=0')->order('cid ASC')->select();
+			$d = $this->field('id,title,pid,cid')->where('pid=0')->order('cid ASC')->select();
 			if($d){
 				foreach($d as $k=>$v){
 					$d_mid = $this->field('id')->where('pid=%d',$v['id'])->order('id ASC')->find();
-					$d[$k]['lte_goods'] = $this->field('id,title,pid')->where('pid=%d',$d_mid['id'])->limit(8)->order('id ASC')->select();
+					$d[$k]['lte_goods'] = $this->field('id,title,pid,cid')->where('pid=%d',$d_mid['id'])->limit(8)->order('id ASC')->select();
 				}
 				F('getTrademarkClassTop',$d);
 				$d = F('getTrademarkClassTop');
