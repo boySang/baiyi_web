@@ -563,6 +563,11 @@ var select = {
 						html += '</div></li>';
 					});
 					$('#goodssearchresult').html(html);
+
+					// 判断是否可下拉
+					if($('#goodssearchresult li').length > 7){
+						$('#showOrHide').text('收起/展开（可滑动滚动条）');
+					}
 				}else{
 					var html = '';
 					html = '<div class="nodata"><small>'+data.msg+'</small></div>';
