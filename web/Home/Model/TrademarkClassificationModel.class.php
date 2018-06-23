@@ -123,7 +123,8 @@ class TrademarkClassificationModel extends Model{
 			return returnApi(202,'参数错误');
 		}
 
-        $data = $this->field('title,cid,id,pid')->where('type=3 AND title LIKE "%%%s%%"',$kw)->order('id DESC')->select();
+        $data = $this->field('title,cid,id,pid')->where('type=3 AND title LIKE "%'.$kw.'%"')->order('id DESC')->select();
+
         if($data){
 
         	// 获取pid0
@@ -136,8 +137,9 @@ class TrademarkClassificationModel extends Model{
 	        		$secondIdArr[] = $v1['id'];
 	        	}
 	        	$secondStr = implode(',', $secondIdArr);
-	        	foreach($data as $k1=>$v1){
-	        		if(mb_strpos(','.$secondStr.',', ','.$v1['pid'].',')){
+
+	        	foreach($data as $k2=>$v2){
+	        		if(mb_strpos(','.$secondStr.',', ','.$v2['pid'].',') !== false){
 	        			// $_kw = '';
 	        			// $_kw = preg_replace('/'.$kw.'/i','<font color="red">'.$kw.'</font>',$v1['title']);
 	        			// $_v1 = array();
@@ -145,7 +147,7 @@ class TrademarkClassificationModel extends Model{
 	        			// $_v1['cid'] = $v1['cid'];
 	        			// $_v1['id'] = $v1['id'];
 	        			// $_v1['pid'] = $v1['pid'];
-	        			$topData[$k]['child'][] = $v1;
+	        			$topData[$k]['child'][] = $v2;
 	        		}
 	        	}
 	        }
