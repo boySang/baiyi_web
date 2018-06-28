@@ -47,7 +47,7 @@ class GoodsProblemController extends Controller {
 	}
 
 	public function del($id){
-		$m = D('Goods');
+		$m = D('GoodsProblem');
 		$m->delete($id) !== false ? header('Location:'.PREV_URL):$this->error('删除失败');
 	}
 }
