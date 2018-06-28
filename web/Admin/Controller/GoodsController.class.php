@@ -40,6 +40,7 @@ class GoodsController extends Controller {
 		$optAttrData = $optAttrModel->goodsGetAll();
 
 		$goodsInfo = $m->getGoodsOne($goods_id);
+		// var_dump($goodsInfo);
 
 		$this->assign(array(
 			'cate'			=>		$cate,

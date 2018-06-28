@@ -61,7 +61,7 @@ class GoodsModel extends Model{
 		);
 		if($data){
 			foreach ($data as $k => $v) {
-				$data[$k]['goods_thumb'] = getImgOne($v['goods_thumb']);
+				$data[$k]['goods_thumb'] = getImgOne($v['goods_thumb'],'default.jpg');
 				$data[$k]['addtime'] = date('Y-m-d H:i',$v['addtime']);
 				$data[$k]['review_url'] = U('../Goods/detail/id/'.$v['goods_id']);
 				$goodsAttrModel = D('GoodsAttr');
@@ -69,7 +69,7 @@ class GoodsModel extends Model{
 				if($goodsAttrData){
 					$data[$k]['attrprice'] = $goodsAttrData;
 				}else{
-					$data[$k]['attrprice'] = '默认价格：'.($v['goods_default_price'] / 100).' 元';
+					$data[$k]['attrprice'] = '默认价格：'.$v['goods_default_price'].' 元';
 				}
 			}
 			//返回翻页字符串和数据
@@ -80,7 +80,6 @@ class GoodsModel extends Model{
 				'num'=>$num,
 			);
 		}
-			
 	}
 
 	public function getList(){
@@ -101,7 +100,7 @@ class GoodsModel extends Model{
 		$data['goods_tips'] = I('post.goods_tips','','htmlspecialchars');
 		$data['goods_content'] = I('post.goods_content','','htmlspecialchars');
 		$data['goods_thumb'] = I('post.goods_thumb','','htmlspecialchars');
-		$data['goods_default_price'] = I('post.goods_default_price','','htmlspecialchars')*100;
+		$data['goods_default_price'] = I('post.goods_default_price','','htmlspecialchars');
 		//$attr = I('post.attr');
 		$attrval = I('post.attrval');
 		$attr_price = I('post.attr_price');
@@ -113,7 +112,7 @@ class GoodsModel extends Model{
 					$_attr[$k]['goods_id'] = $result;
 					// $_attr[$k]['attr'] = $v;
 					$_attr[$k]['attrval'] = implode(',', $v);
-					$_attr[$k]['attr_price'] = $attr_price[$k]*100;
+					$_attr[$k]['attr_price'] = $attr_price[$k];
 				}
 				$goodsAttrModel = D('GoodsAttr');
 				$_attrResult = $goodsAttrModel->addAll($_attr);
@@ -134,10 +133,20 @@ class GoodsModel extends Model{
 		$goods_name = I('post.goods_name');
 		$goods_content = I('post.goods_content','','htmlspecialchars');
 		$goods_default_price = I('post.goods_default_price');
+		$cate_id = I('post.cate_id');
+		$goods_tips = I('post.goods_tips');
+		$keywords = I('post.keywords');
+		$goods_info = I('post.goods_info');
+		$sort_order = I('post.sort_order');
 		$r = $this->where('goods_id=%d',$goods_id)->setField(array(
 			'goods_name'				=>		$goods_name,
 			'goods_content'				=>		$goods_content,
 			'goods_default_price'		=>		$goods_default_price,
+			'cate_id'					=>		$cate_id,
+			'goods_tips'				=>		$goods_tips,
+			'keywords'					=>		$keywords,
+			'goods_info'				=>		$goods_info,
+			'sort_order'				=>		$sort_order,
 		));
 		if($r !== false){
 			return true;
@@ -147,7 +156,7 @@ class GoodsModel extends Model{
 	}
 
 	public function getGoodsOne($goods_id){
-		$d = $this->field('goods_id,goods_name,goods_content,goods_default_price')->where('goods_Id=%d',$goods_id)->find();
+		$d = $this->field('goods_id,goods_name,goods_content,goods_default_price,keywords,goods_info,goods_tips,cate_id')->where('goods_Id=%d',$goods_id)->find();
 		$d['goods_content'] = htmlspecialchars_decode($d['goods_content']);
 		return $d;
 	}
@@ -168,6 +177,25 @@ class GoodsModel extends Model{
 
 	protected function _before_insert(&$data, $options){
 		$data['addtime'] = time();
+		$data['updatetime'] = time();
+	}
+
+	protected function _before_update(&$data){
+		// if(isset($_FILES['face']) && $_FILES['face']['tmp_name']){
+  //           // 有旧文件的话先删除
+  //           $oldface = I('post.oldface');
+  //           if($oldface) @unlink('./Uploads/'.$oldface);
+
+  //           $upload = new \Think\Upload();// 实例化上传类
+  //           $upload->maxSize   =     4194304 ;// 设置附件上传大小
+  //           $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+  //           $upload->rootPath  =     './Uploads/'; // 设置附件上传根目录
+  //           $upload->savePath  =     'Banner/'; // 设置附件上传（子）目录
+  //           // 上传文件
+  //           $info   =   $upload->upload();
+  //           $face = $info['face']['savepath'].$info['face']['savename'];
+  //           $data['face'] = $face;
+  //       }
 		$data['updatetime'] = time();
 	}
 

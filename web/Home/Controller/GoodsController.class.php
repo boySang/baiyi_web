@@ -11,6 +11,9 @@ class GoodsController extends LayoutController {
     	}
     	$m = D('Goods');
     	$d = $m->getGoodsOne($id);
+    	if(!$d){
+    		$this->error('找不到该商品');
+    	}
     	$data['goodsinfo'] = $d;
     	// 获取侧边栏及里面的内容
     	$cateModel = D('Category');

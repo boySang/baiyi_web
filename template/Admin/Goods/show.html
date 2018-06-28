@@ -37,7 +37,7 @@
             <tbody>
                 <foreach name="data.data" item="product">
                 <tr id="item{$product.goods_id}">
-                    <td class="imgtd"><img src="__PUBLIC__/admin/img/img11.png" /></td>
+                    <td class="imgtd"><img src="{$product.goods_thumb}" width="80" /></td>
                     <td><a href="{$product.review_url}">{$product.goods_name}</a>
                         <p>发布时间：{$product.addtime}</p>
                     </td>
@@ -47,7 +47,7 @@
                     <td>{$product.hot}</td>
                     <td>
                         <a href="__CONTROLLER__/update/goods_id/{$product.goods_id}">编辑</a>
-                        <a href="javascript:goods.todel({$product.goods_id});">删除</a>
+                        <a href="javascript:goods.todel({$product.goods_id});" onclick="confirm('确定删除【{$product.goods_name}】吗？');">删除</a>
                     </td>
                 </tr>
                 </foreach>

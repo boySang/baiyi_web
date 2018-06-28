@@ -49,21 +49,28 @@
                         <label>所属栏目</label>
                         <select class="input-select" name="cate_id" style="width:120px;">
                             <foreach name="cate" item="cate">
-                            <option value="{$cate.id}">{$cate.title}</option>
+                                <?php 
+                                    if($goods['cate_id'] == $cate['id']) {
+                                        $slct = 'selected';
+                                    }else{
+                                        $slct = '';
+                                    }
+                                ?>
+                            <option {$slct} value="{$cate.id}">{$cate.title}</option>
                             </foreach>
                         </select>
                     </li>
                     <li>
                         <label>商品提示</label>
-                        <textarea name="goods_tips" class="input-textarea" style="width:600px;height:50px;"></textarea>
+                        <textarea name="goods_tips" class="input-textarea" style="width:600px;height:50px;">{$goods.goods_tips}</textarea>
                     </li>
                     <li>
                         <label>关键词</label>
-                        <input name="keywords" type="text" class="dfinput" placeholder="关键词之间用','隔开" style="width:600px;" />
+                        <input name="keywords" type="text" class="dfinput" value="{$goods.keywords}" placeholder="关键词之间用','隔开" style="width:600px;" />
                     </li>
                     <li>
                         <label>商品简介</label>
-                        <textarea name="goods_info" class="input-textarea" style="width:600px;height:100px;"></textarea>
+                        <textarea name="goods_info" class="input-textarea" style="width:600px;height:100px;">{$goods.goods_info}</textarea>
                     </li>
                     <li class="clearfix">
                         <label>详细内容</label>
@@ -87,7 +94,7 @@
                     </li>
                     <li>
                         <label>&nbsp;</label>
-                        <a href="javascript:;" id="submit" class="btn-self">确认修改</a>
+                        <a href="javascript:;" style="color: #fff;font-size: 14px;background: #3b95c8;padding: 0 40px;line-height: 32px;display: inline-block;border-radius: 3px;width: auto" id="submit" class="btn-self">确认修改</a>
                     </li>
                 </ul>
             </div>

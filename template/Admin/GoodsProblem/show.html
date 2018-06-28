@@ -44,7 +44,7 @@
                     <td width="20%">{$v.goods_name}</td>
                     <td width="10%">
                         <a href="__CONTROLLER__/update/id/{$v.id}" class="tablelink"> 编辑</a>
-                        <a href="__CONTROLLER__/del/id/{$v.id}" class="tablelink"> 删除</a>
+                        <a href="__CONTROLLER__/del/id/{$v.id}" onclick="confirm('确定删除吗？');" class="tablelink"> 删除</a>
                     </td>
                 </tr>
                 </foreach>
