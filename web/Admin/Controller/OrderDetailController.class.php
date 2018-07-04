@@ -15,4 +15,14 @@ class OrderDetailController extends Controller {
 		));
 		$this->display();
 	}
+
+	public function showall(){
+		$m = D('OrderDetail');
+		$d = $m->getAll();
+		// var_dump($d);
+		$this->assign(array(
+			'data'			=>		$d,
+		));
+		$this->display();
+	}
 }

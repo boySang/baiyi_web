@@ -9,6 +9,15 @@ class MemberModel extends Model{
 		//每页条数
         $pagesize = 15;
 
+        //当前页
+        if(I('get.p') == null) {
+              $nowpage = 0;
+        }else{
+              $nowpage = I('get.p')-1;
+        }
+        //翻页重新计数时候用的
+        $num = $pagesize * $nowpage;
+
         $total = $this->count();
 
 		$page = new \Think\Page($total,$pagesize);
@@ -21,12 +30,12 @@ class MemberModel extends Model{
         //生成翻页字符串
         $show = $page->show();
 
-        $data = $this->field('user_id,phone,addtime,vip_state,state,uniqid')->order('user_id DESC')->limit($page->firstRow,$page->listRows)->select();
+        $data = $this->field('user_id,phone,addtime,vip_state,nickname,state,uniqid')->order('user_id DESC')->limit($page->firstRow,$page->listRows)->select();
 
         if($data){
         	foreach($data as $k=>$v){
         		if($v['vip_state'] == 1){
-        			$data[$k]['vip_text'] = '付费会员';
+        			$data[$k]['vip_text'] = '<font color="red">付费会员</font>';
         		}else{
         			$data[$k]['vip_text'] = '普通会员';
         		}
@@ -41,7 +50,12 @@ class MemberModel extends Model{
 	        	'data'		=>		$data,
 	        	'page'		=>		$show,
 	        	'total'		=>		$total,
+	        	'num'		=>		$num,
 	        );
         }
+	}
+
+	public function getInfoFromUniqid($uniqid){
+		return $this->field('phone,nickname,vip_state,state')->where('uniqid="%s"',$uniqid)->find();
 	}
 }

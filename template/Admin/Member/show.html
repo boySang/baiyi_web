@@ -42,7 +42,7 @@
 <div class="smlink">
   <div class="container clearfix">
     <a href="javascript:;" class="sm btn btn-sm btn-default">快速添加会员</a>
-    <span class="r">共<font color="#ff7648">{$data['total']}</font>条记录</span>
+    <span class="r">共<font color="#ff7648">{$data['total']}</font>位会员</span>
   </div>
 </div>
 </div>
@@ -52,6 +52,7 @@
      <tr>
        <th>#</th>
        <th>手机号</th>
+       <th>昵称</th>
        <th>注册时间</th>
        <th>会员类别</th>
        <th>状态</th>
@@ -59,10 +60,11 @@
      </tr>
    </thead>
    <tbody>
-    <foreach name="data.data" item="v">
+    <foreach name="data.data" item="v" key="k">
      <tr>
-       <td width="10%">#</td>
-       <td width="25%">{$v.phone}</td>
+       <td width="10%"><script type="text/javascript">document.write({$data['num']}+{$k}+1);</script></td>
+       <td width="15%">{$v.phone}</td>
+       <td width="10%">{$v.nickname}</td>
        <td width="25%">{$v.addtime}</td>
        <td width="10%">{$v.vip_text}</td>
        <td width="10%">{$v.state_text}</td>
