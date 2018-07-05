@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>title</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/style.css?<?php echo time(); ?>">
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- layer -->
+    <script src="https://cdn.bootcss.com/layer/3.0.3/layer.min.js"></script>
+    <link href="https://cdn.bootcss.com/layer/3.0.3/skin/default/layer.min.css" rel="stylesheet">
+    <!-- layer end -->
+    <style type="text/css">
+      .table>thead>tr>th,.table-bordered>tbody>tr>td{
+        text-align: center;
+        vertical-align: middle;
+      }
+      .table-bordered>tbody>tr>td{
+        font-size:12px;
+      }
+    </style>
+</head>
+
+<body>
+<div>
+  <ol class="breadcrumb">
+  <li><a href="#">首页</a></li>
+  <li><a href="#">数据统计</a></li>
+</ol>
+<div class="listbox">
+  <div class="listinner" id="goods">
+    <div class="smlink">
+      <div class="container clearfix">
+        <a href="javascript:;" class="">【商品统计】</a>
+        <a href="__MODULE__/Goods/show" class="r"><small style="text-decoration: underline;color: red">商品列表>></small></a>
+      </div>
+    </div>
+    <div class="container">
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>商品总数</th>
+           <th>在售</th>
+           <th>下架</th>
+           <th>删除</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td width="25%"><span class="sell"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="down"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="del"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+         </tr>
+       </tbody>
+     </table>
+    </div>
+  </div>
+
+  <div class="listinner" id="member">
+    <div class="smlink">
+      <div class="container clearfix">
+        <a href="javascript:;" class="">【会员统计】</a>
+        <a href="__MODULE__/Goods/show" class="r"><small style="text-decoration: underline;color: red">会员列表>></small></a>
+      </div>
+    </div>
+    <div class="container">
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>今日</th>
+           <th>昨日</th>
+           <th>付费数量</th>
+           <th>会员总量</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td width="25%"><span class="today"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="yestoday"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="vip"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+         </tr>
+       </tbody>
+     </table>
+    </div>
+  </div>
+</div>
+
+<div class="listinner" id="order">
+    <div class="smlink">
+      <div class="container clearfix">
+        <a href="javascript:;" class="">【订单量统计】</a>
+        <a href="__MODULE__/Goods/show" class="r"><small style="text-decoration: underline;color: red">订单列表>></small></a>
+      </div>
+    </div>
+    <div class="container">
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>今日</th>
+           <th>昨日</th>
+           <th>一个月内</th>
+           <th>三个月内</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td width="25%"><span class="today"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="yestoday"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="onemonth"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="threemonth"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+         </tr>
+       </tbody>
+     </table>
+    </div>
+    <div class="container" class="box2">
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>#</th>
+           <th>商品订单量排名<small>（一个月内）</small></th>
+           <th>购买次数</th>
+         </tr>
+       </thead>
+       <tbody>
+         <!-- <tr>
+           <td width="15%"><span id="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="60%"><span id="sell"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span id="down"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+         </tr> -->
+         <tr>
+           <td colspan="3"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></td>
+         </tr>
+       </tbody>
+     </table>
+    </div>
+  </div>
+</div>
+
+<div class="listinner" id="money">
+    <div class="smlink">
+      <div class="container clearfix">
+        <a href="javascript:;" class="">【交易额统计】</a>
+      </div>
+    </div>
+    <div class="container">
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>今日</th>
+           <th>昨日</th>
+           <th>一个月内</th>
+           <th>三个月内</th>
+           <th>总额</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td width="20%"><span class="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="20%"><span class="sell"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="20%"><span class="down"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="20%"><span class="del"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="20%"><span class="del"><a href="javascripr:;" class="btn-sm btn btn-default radius">点击查看</a></span></td>
+         </tr>
+       </tbody>
+     </table>
+    </div>
+    <!-- <div class="container">
+      <table class="table table-striped table-bordered table-hover">
+       <thead>
+         <tr>
+           <th>#</th>
+           <th>交易额排名<small>（一个月内）</small></th>
+           <th>交易次数</th>
+         </tr>
+       </thead>
+       <tbody>
+         <tr>
+           <td width="15%"><span id="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="60%"><span id="sell"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span id="down"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+         </tr>
+       </tbody>
+     </table>
+    </div> -->
+  </div>
+</div>
+  
+</body>
+<script type="text/javascript">
+$(function(){
+  index.load();
+});
+
+
+var index = {
+  init : function(){
+    $.get('__MODULE__/Index/getDataTotal',function(data){
+      console.log(data);
+      if(data.state == 200){
+        // 商品统计
+        $('#goods .total').text(data.data.goods.total);
+        $('#goods .sell').text(data.data.goods.sell);
+        $('#goods .down').text(data.data.goods.down);
+        $('#goods .del').text(data.data.goods.del);
+
+        // 会员统计
+        $('#member .today').text(data.data.member.today);
+        $('#member .yestoday').text(data.data.member.yestoday);
+        $('#member .vip').text(data.data.member.vip);
+        $('#member .total').text(data.data.member.total);
+
+        // 订单统计
+        $('#order .today').text(data.data.order.today);
+        $('#order .yestoday').text(data.data.order.yestoday);
+        $('#order .onemonth').text(data.data.order.onemonth);
+        $('#order .threemonth').text(data.data.order.threemonth);
+
+      }else{
+        layer.msg(data.msg);
+      }
+    });
+  },
+  load : function(){
+    setTimeout(function(){
+      index.init();
+    },1000);
+  }
+}
+</script>
+</html>

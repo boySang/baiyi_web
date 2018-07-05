@@ -17,14 +17,14 @@
 					        <a href="main.html" target="_parent"></a>
 					    </div>
 					    <ul class="nav">
-					        <li><a href="javascript:index.selectLeftMenu('1');" class="selected"><img src="__PUBLIC__/admin/img/icon01.png" title="工作台" /><h2>工作台</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu('2');"><img src="__PUBLIC__/admin/img/icon02.png" title="设置" /><h2>设置</h2></a></li>
+					        <!-- <li><a href="javascript:index.selectLeftMenu('1');" class="selected"><img src="__PUBLIC__/admin/img/icon01.png" title="工作台" /><h2>工作台</h2></a></li> -->
+					        <!-- <li><a href="javascript:index.selectLeftMenu('2');"><img src="__PUBLIC__/admin/img/icon02.png" title="设置" /><h2>设置</h2></a></li> -->
 					        <li><a href="javascript:index.selectLeftMenu('3');"><img src="__PUBLIC__/admin/img/icon03.png" title="商品" /><h2>商品</h2></a></li>
 					        <li><a href="javascript:index.selectLeftMenu('4');"><img src="__PUBLIC__/admin/img/icon04.png" title="会员" /><h2>会员</h2></a></li>
 					        <li><a href="javascript:index.selectLeftMenu('5');"><img src="__PUBLIC__/admin/img/icon05.png" title="交易" /><h2>交易</h2></a></li>
 					        <li><a href="javascript:index.selectLeftMenu('6');"><img src="__PUBLIC__/admin/img/icon06.png" title="网站" /><h2>网站</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu('7');"><img src="__PUBLIC__/admin/img/icon06.png" title="运营" /><h2>运营</h2></a></li>
-					        <li><a href="javascript:index.selectLeftMenu('8');"><img src="__PUBLIC__/admin/img/icon06.png" title="统计" /><h2>统计</h2></a></li>
+					        <!-- <li><a href="javascript:index.selectLeftMenu('7');"><img src="__PUBLIC__/admin/img/icon06.png" title="运营" /><h2>运营</h2></a></li> -->
+					        <li><a href="javascript:index.selectLeftMenu('8');"><img src="__PUBLIC__/admin/img/icon01.png" title="统计" /><h2>统计</h2></a></li>
 					    </ul>
 					    <div class="topright">
 					        <ul>
@@ -97,39 +97,39 @@ var index = {
 		}
 	},
 	// 工作台
-	workSpace : function(html){
-		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">欢迎页面</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">关于我们</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">站点设置</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">商品管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">订单管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="/README.md" target="rightFrame">更新日志</a><i></i></li>';
-		$('#leftMenu').html(html);
-		// 默认打开第一个
-		index.firstShow();
-	},
+	// workSpace : function(html){
+	// 	html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">欢迎页面</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">关于我们</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">站点设置</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员管理</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">商品管理</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">订单管理</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="/README.md" target="rightFrame">更新日志</a><i></i></li>';
+	// 	$('#leftMenu').html(html);
+	// 	// 默认打开第一个
+	// 	index.firstShow();
+	// },
 	// 站点设置
-	webSetting : function(html){
-		html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">站点设置</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">SEO设置</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">消息通知</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">支付方式</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">权限设置</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">清理缓存</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">数据备份</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">性能优化</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">搜索设置</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">操作日志</a><i></i></li>';
-		$('#leftMenu').html(html);
-		// 默认打开第一个
-		index.firstShow();
-	},
+	// webSetting : function(html){
+	// 	html = '<li class="active"><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">站点设置</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">SEO设置</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">消息通知</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">支付方式</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">权限设置</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">清理缓存</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">数据备份</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">性能优化</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">搜索设置</a><i></i></li>';
+	// 	html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">操作日志</a><i></i></li>';
+	// 	$('#leftMenu').html(html);
+	// 	// 默认打开第一个
+	// 	index.firstShow();
+	// },
 	// 产品中心
 	goodsCenter : function(html){
 		html = '<li class="active"><cite></cite><a href="__MODULE__/OptAttr/show" target="rightFrame">属性及分类管理</a><i></i></li>';
 		html += '<li><cite></cite><a href="__MODULE__/Goods/show" target="rightFrame">产品管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">图片空间</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">图片空间</a><i></i></li>';
 		html += '<li><cite></cite><a href="__MODULE__/TrademarkClassification/show" target="rightFrame">商标细分类</a><i></i></li>';
 		html += '<li><cite></cite><a href="__MODULE__/Country/show" target="rightFrame">国家管理</a><i></i></li>';
 		$('#leftMenu').html(html);
@@ -138,20 +138,20 @@ var index = {
 	},
 	member : function(html){
 		html = '<li class="active"><cite></cite><a href="__MODULE__/Member/show" target="rightFrame">会员管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员级别</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员通知</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员相册</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">买家动态</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员级别</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员通知</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员相册</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">买家动态</a><i></i></li>';
 		$('#leftMenu').html(html);
 		// 默认打开第一个
 		index.firstShow();
 	},
 	trade : function(html){
 		html = '<li class="active"><cite></cite><a href="__MODULE__/OrderDetail/showall" target="rightFrame">订单管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">待寄订单</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">咨询管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">评价管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">投诉管理</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">待寄订单</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">咨询管理</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">评价管理</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">投诉管理</a><i></i></li>';
 		$('#leftMenu').html(html);
 		// 默认打开第一个
 		index.firstShow();
@@ -159,21 +159,24 @@ var index = {
 	webSite : function(html){
 		html = '<li class="active"><cite></cite><a href="__MODULE__/ExpertsWenda/show" target="rightFrame">专家问答</a><i></i></li>';
 		html += '<li><cite></cite><a href="__MODULE__/GoodsProblem/show" target="rightFrame">商品关联文章</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员协议</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">页面导航</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">广告管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">首页管理</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">推荐位</a><i></i></li>';
-		html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">友情链接</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">会员协议</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">页面导航</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">广告管理</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">首页管理</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">推荐位</a><i></i></li>';
+		// html += '<li><cite></cite><a href="__CONTROLLER__/wellcome" target="rightFrame">友情链接</a><i></i></li>';
 		$('#leftMenu').html(html);
 		// 默认打开第一个
 		index.firstShow();
 	},
-	operation : function(){
-		$.alert('运营中心正在完善');
-	},
+	// operation : function(){
+	// 	$.alert('运营中心正在完善');
+	// },
 	stat : function(){
-		$.alert('统计功能正在完善');
+		html = '<li class="active"><cite></cite><a href="__MODULE__/Index/dataCount" target="rightFrame">数据统计</a><i></i></li>';
+		$('#leftMenu').html(html);
+		// 默认打开第一个
+		index.firstShow();
 	},
 	// 设置左侧和右侧的高度
 	setHight : function(){
@@ -205,7 +208,7 @@ var index = {
 		});
 	},
 	load : function(){
-		this.workSpace();
+		this.goodsCenter();
 		this.setHight();
 		this.firstShow();
 		this.checkLeftMenu();
