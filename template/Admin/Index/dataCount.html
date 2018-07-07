@@ -58,10 +58,10 @@
        </thead>
        <tbody>
          <tr>
+           <td width="25%"><span class="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
            <td width="25%"><span class="sell"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
            <td width="25%"><span class="down"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
            <td width="25%"><span class="del"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
-           <td width="25%"><span class="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
          </tr>
        </tbody>
      </table>
@@ -72,7 +72,7 @@
     <div class="smlink">
       <div class="container clearfix">
         <a href="javascript:;" class="">【会员统计】</a>
-        <a href="__MODULE__/Goods/show" class="r"><small style="text-decoration: underline;color: red">会员列表>></small></a>
+        <a href="__MODULE__/Member/show" class="r"><small style="text-decoration: underline;color: red">会员列表>></small></a>
       </div>
     </div>
     <div class="container">
@@ -81,7 +81,7 @@
          <tr>
            <th>今日</th>
            <th>昨日</th>
-           <th>付费数量</th>
+           <th>付费会员数量</th>
            <th>会员总量</th>
          </tr>
        </thead>
@@ -102,7 +102,7 @@
     <div class="smlink">
       <div class="container clearfix">
         <a href="javascript:;" class="">【订单量统计】</a>
-        <a href="__MODULE__/Goods/show" class="r"><small style="text-decoration: underline;color: red">订单列表>></small></a>
+        <a href="__MODULE__/OrderDetail/show" class="r"><small style="text-decoration: underline;color: red">订单列表>></small></a>
       </div>
     </div>
     <div class="container">
@@ -112,7 +112,7 @@
            <th>今日</th>
            <th>昨日</th>
            <th>一个月内</th>
-           <th>三个月内</th>
+           <th>总量</th>
          </tr>
        </thead>
        <tbody>
@@ -120,7 +120,7 @@
            <td width="25%"><span class="today"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
            <td width="25%"><span class="yestoday"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
            <td width="25%"><span class="onemonth"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
-           <td width="25%"><span class="threemonth"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
+           <td width="25%"><span class="total"><img src="https://cdn.bootcss.com/layer/3.1.0/theme/default/loading-2.gif" height="15"></span></td>
          </tr>
        </tbody>
      </table>
@@ -226,7 +226,7 @@ var index = {
         $('#order .today').text(data.data.order.today);
         $('#order .yestoday').text(data.data.order.yestoday);
         $('#order .onemonth').text(data.data.order.onemonth);
-        $('#order .threemonth').text(data.data.order.threemonth);
+        $('#order .total').text(data.data.order.total);
 
       }else{
         layer.msg(data.msg);

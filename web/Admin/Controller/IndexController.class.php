@@ -29,20 +29,20 @@ class IndexController extends Controller {
     public function getDataTotal(){
     	header('Content-type:text/json');
 
-    	$data['goods']['total'] = 23;
-    	$data['goods']['sell'] = 23;
-    	$data['goods']['down'] = 23;
-    	$data['goods']['del'] = 23;
+    	$data['goods']['total'] = 32;
+    	$data['goods']['sell'] = 32;
+    	$data['goods']['down'] = 0;
+    	$data['goods']['del'] = 0;
 
-    	$data['member']['today'] = 23;
-    	$data['member']['yestoday'] = 23;
-    	$data['member']['vip'] = 23;
-    	$data['member']['total'] = 23;
+    	$data['member']['today'] = 12;
+    	$data['member']['yestoday'] = 10;
+    	$data['member']['vip'] = 236;
+    	$data['member']['total'] = 340;
 
-    	$data['order']['today'] = 23;
-    	$data['order']['yestoday'] = 23;
-    	$data['order']['onemonth'] = 23;
-    	$data['order']['threemonth'] = 23;
+    	$data['order']['today'] = 8;
+    	$data['order']['yestoday'] = 6;
+    	$data['order']['onemonth'] = 205;
+    	$data['order']['total'] = 590;
     	echo returnApi(200,'success',$data);
     }
 

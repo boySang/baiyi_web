@@ -42,7 +42,7 @@
        <th>#</th>
        <th>商品名</th>
        <th>总价</th>
-       <th>订单创建时间</th>
+       <!--th>订单创建时间</th-->
        <th>状态</th>
        <th>订单号/合同号</th>
      </tr>
@@ -52,9 +52,9 @@
      <tr>
        <td width="5%"><script type="text/javascript">document.write({$data['num']}+{$k}+1);</script></td>
        <td width="27%">{$v.goods_name}</td>
-       <td width="10%">{$v.total_price}</td>
-       <td width="15%">{$v.addtime}</td>
-       <td width="10%">{$v.state_text}</td>
+       <td width="15%">{$v.total_price}</td>
+       <!--td width="15%">{$v.addtime}</td-->
+       <td width="20%">{$v.state_text}</td>
        <td width="33%">
          <span>{$v.uniquenum} / {$v.contract_number}</span>
        </td>

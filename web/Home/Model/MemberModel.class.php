@@ -20,6 +20,11 @@ class MemberModel extends Model{
 		$data['paswd'] = md5($paswd);
 		$data['uniqid'] = md5(time().$phone.uniqid());
 		if($this->add($data)){
+setcookie("uniqid",$data['uniqid'], time()+2592000,'/');
+                setcookie("phone",$data['phone'], time()+2592000,'/');
+        session('uniqid',$data['uniqid']);
+        session('phone',$data['phone']);
+
 			return returnApi(200,'恭喜！注册成功');
 		}else{
 			return returnApi(202,'注册失败，请联系客服');
