@@ -67,6 +67,19 @@
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
 							<span class="list l">商标普通注册 <i class="iconfont icon-xiasanjiao"></i></span>
 						</li> -->
+						<?php if(I('get.id') == 19){ ?>
+						<li class="jisuan clearfix">
+							<a href="__MODULE__/InternationalReg/danduguojia" title="去计算">去计算</a>
+						</li>
+						<?php }elseif(I('get.id') == 20){ ?>
+						<li class="jisuan clearfix">
+							<a href="__MODULE__/InternationalReg/madeli" title="去计算">去计算</a>
+						</li>
+						<?php }elseif(I('get.id') == 38){ ?>
+						<li class="jisuan clearfix">
+							<a href="__MODULE__/InternationalReg/oumeng" title="去计算">去计算</a>
+						</li>
+						<?php }else{ ?>
 						<li class="price">价格：<span><b>{$data.goodsinfo.goods_default_price} 元</b></span></li>
 						<li class="other clearfix">
 							<span class="l">数量：</span>
@@ -81,6 +94,7 @@
 								<a href="#" class="need_help">详情咨询</a>
 							</div>
 						</li>
+						<?php } ?>
 					</ul>
 				</form>
 			</div>
