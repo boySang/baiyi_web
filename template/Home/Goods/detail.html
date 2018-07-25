@@ -53,6 +53,7 @@
 					<input type="hidden" name="id" value="{$data.goodsinfo.goods_id}">
 					<input type="hidden" name="goods_name" value="{$data.goodsinfo.goods_name}">
 					<input type="hidden" name="goods_price" value="{$data.goodsinfo.goods_default_price}">
+					<input type="hidden" name="goods_attr" value="">
 					<input type="hidden" name="send" value="ok">
 					<ul class="baseinfo r">
 						<li><h4 class="tit">{$data.goodsinfo.goods_name}</h4></li>
@@ -80,6 +81,29 @@
 							<a href="__MODULE__/InternationalReg/oumeng" title="去计算">去计算</a>
 						</li>
 						<?php }else{ ?>
+						<?php if($data['goods_attr']){ ?>
+						<div class="attrbox">
+							<?php if($data['goods_attr']['type1']){ ?>
+							<div class="attr" data-type="1">
+								<div class="inner">
+									<foreach name="data.goods_attr.type1" item="v" key="k">
+										<span data-id="{$v.id}" data-price="{$v.attr_price}" class="<?php if($k==3)echo 'cur'; ?>">{$v.attr_name}<i class="iconfont icon-xiasanjiao"></i></span>
+									</foreach>
+								</div>
+							</div>
+							<?php } ?>
+							<?php if($data['goods_attr']['type0']){ ?>
+							<div class="attr" data-type="0">
+								<div class="tit sm">可选：</div>
+								<div class="inner">
+									<foreach name="data.goods_attr.type0" item="v" key="k">
+										<span data-id="{$v.id}" data-price="{$v.attr_price}">{$v.attr_name}<i class="iconfont icon-xiasanjiao"></i></span>
+									</foreach>
+								</div>
+							</div>
+							<?php } ?>
+						</div>
+						<?php } ?>
 						<li class="price">价格：<span><b>{$data.goodsinfo.goods_default_price} 元</b></span></li>
 						<li class="other clearfix">
 							<span class="l">数量：</span>
@@ -134,6 +158,18 @@ $(function(){
 
 var detailIndex = {
 
+	init : function(){
+		var price = 0;
+		var goods_attr = [];
+		$('.attrbox span.cur').each(function(){
+			price += Number($(this).attr('data-price'));
+			goods_attr.push($(this).attr('data-id'));
+		});
+		$('.price span b').text(price+'元');
+		$('input[name="goods_price"]').val(price);
+		$('input[name="goods_attr"]').val(goods_attr);
+	},
+
 	chk : function(){
 		if(true){
 			$.post('__MODULE__/OrderDetail/creat_order',$('#buyForm').serialize(),function(data){
@@ -175,6 +211,30 @@ var detailIndex = {
 			var nums = $('input[name="good_nums"]').val();
 			$('input[name="good_nums"]').val(Number(nums)+Number(1));
 		});
+
+		// 选择价钱
+		$('body').on('click','.attrbox .inner span',function(){
+			var that = $(this);
+			var type = that.parent().parent().attr('data-type');
+			if(that.attr('data-id') == 35){
+				$('.other .btns').html('<a href="__MODULE__/ConnectIndustry/aiplan" style="padding: 0 30px;line-height: 39px;font-size: 16px;color: #fff;display: inline-block;border-radius: 3px;background: #f0ad4e;">去计算</a>');
+			}else{
+				$('.other .btns').html('<a href="javascript:detailIndex.chk();" class="buy_now">立即购买</a><a href="javascript:detailIndex.add_to_car();" id="add_to_car" class="add_to_car">加入购物车</a><a href="#" class="need_help">详情咨询</a>');
+			}
+			if(type == 1){
+				that.parent().find('span').removeClass('cur');
+				that.addClass('cur');
+			}else{
+				if(that.hasClass('cur')){
+					that.removeClass('cur');
+				}else{
+					that.addClass('cur');
+				}
+			}
+
+			// 计算价格
+			detailIndex.init();
+		});
 	},
 
 	tab : function(){
@@ -186,6 +246,9 @@ var detailIndex = {
 	},
 
 	load : function(){
+		<?php if($data['goods_attr']){ ?>
+		this.init();
+		<?php } ?>
 		this.click();
 		this.tab();
 	},

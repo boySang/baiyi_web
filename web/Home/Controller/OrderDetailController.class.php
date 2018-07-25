@@ -33,6 +33,7 @@ class OrderDetailController extends LayoutController {
 	    	$temp['goods_num'] = I('post.good_nums');
 	    	$temp['goods_price'] = I('post.goods_price');
 			$temp['uniquenum'] = 'BY'.date('YmdHis',time()).rand(100,999);
+			$temp['goods_attr'] = I('post.goods_attr');
 			$temp['contract_number'] = 'CN'.date('YmdHis',time()).rand(100,999);
 			$temp['addtime'] = date('Y-m-d',time());
 			// echo returnApi(200,$temp);
@@ -46,6 +47,7 @@ class OrderDetailController extends LayoutController {
 	    		$orderDetail['goods_price'] = $temp['goods_price']*100;
 	    		$orderDetail['total_price'] = $temp['goods_num']*$temp['goods_price']*100;
 	    		$orderDetail['contract_number'] = $temp['contract_number'];
+	    		$orderDetail['goods_attr'] = $temp['goods_attr'];
 	    		$orderDetail['addtime'] = strtotime($temp['addtime']);
 	    		$orderDetail['member_uniqid'] = session('uniqid');
 	    		$result = $m->add($orderDetail);
@@ -56,7 +58,7 @@ class OrderDetailController extends LayoutController {
 	    			$detail['goods_num'] = $temp['goods_num'];
 	    			$detail['goods_price'] = $temp['goods_price']*100;
 	    			$detail['goods_total_price'] = $temp['goods_num']*$temp['goods_price']*100;
-	    			$detail['goods_attr'] = I('post.attr','');
+	    			$detail['goods_attr'] = $temp['goods_attr'];
 	    			$detail['goods_id'] = $temp['goods_id'];
 	    			$r = $orderGoodsDetailModel->add($detail);
 	    			// 日志操作记录
@@ -122,6 +124,7 @@ class OrderDetailController extends LayoutController {
     	if($temp_creat_order_number){
     		$orderDetailModel = D('OrderDetail');
     		$data = $orderDetailModel->getOneFromUniquenum($temp_creat_order_number);
+    		$data['addtime'] = date('Y-m-d',$data['addtime']);
     		// var_dump($data);
     		$this->assign('data',$data);
 	    	$this->display();

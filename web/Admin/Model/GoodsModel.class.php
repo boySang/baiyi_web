@@ -138,6 +138,10 @@ class GoodsModel extends Model{
 		$keywords = I('post.keywords');
 		$goods_info = I('post.goods_info');
 		$sort_order = I('post.sort_order');
+
+		$attrval = I('post.attrval');
+		$attr_price = I('post.attr_price');
+
 		$r = $this->where('goods_id=%d',$goods_id)->setField(array(
 			'goods_name'				=>		$goods_name,
 			'goods_content'				=>		$goods_content,
@@ -149,7 +153,26 @@ class GoodsModel extends Model{
 			'sort_order'				=>		$sort_order,
 		));
 		if($r !== false){
-			return true;
+			if($attrval){
+				$goodsAttrModel = D('GoodsAttr');
+				$goodsAttrModel->where('goods_id=%d',$goods_id)->delete();
+				foreach($attrval as $k=>$v){
+					$_attr[$k]['goods_id'] = $goods_id;
+					// $_attr[$k]['attr'] = $v;
+					$_attr[$k]['attrval'] = implode(',', $v);
+					$_attr[$k]['attr_price'] = $attr_price[$k];
+				}
+				$_attrResult = $goodsAttrModel->addAll($_attr);
+				if($_attrResult){
+					return true;
+				}else{
+					return false;
+					// return returnApi(202,'添加商品属性失败');
+				}
+			}else{
+				return true;
+				// return returnApi(200,'添加商品成功');
+			}
 		}else{
 			return false;
 		}

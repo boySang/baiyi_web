@@ -23,6 +23,13 @@ class GoodsController extends LayoutController {
     	// 调取帮助文章
     	$goodsProblem_m = D('GoodsProblem');
     	$goodsProblem_d = $goodsProblem_m->getFromGoodsId($id);
+
+        // 获取分类
+        $goods_attr_m = D('GoodsAttr');
+        $goods_attr = $goods_attr_m->getAllFromGoodsId($id);
+        if($goods_attr){
+            $data['goods_attr'] = $goods_attr;
+        }
     	$this->assign(array(
     		'data'		=>		$data,
     		'name'		=>		$d['goods_name'].'_',
