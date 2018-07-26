@@ -87,7 +87,7 @@
 							<div class="attr" data-type="1">
 								<div class="inner">
 									<foreach name="data.goods_attr.type1" item="v" key="k">
-										<span data-id="{$v.id}" data-price="{$v.attr_price}" class="<?php if($k==3)echo 'cur'; ?>">{$v.attr_name}<i class="iconfont icon-xiasanjiao"></i></span>
+										<span data-id="{$v.id}" data-price="{$v.attr_price}" data-tips="{$v.tips}" class="<?php if($k==0)echo 'cur'; ?>">{$v.attr_name}<i class="iconfont icon-xiasanjiao"></i></span>
 									</foreach>
 								</div>
 							</div>
@@ -168,6 +168,9 @@ var detailIndex = {
 		$('.price span b').text(price+'元');
 		$('input[name="goods_price"]').val(price);
 		$('input[name="goods_attr"]').val(goods_attr);
+
+		
+		$('.baseinfo .tips').text($('.attrbox .inner span.cur').attr('data-tips'));
 	},
 
 	chk : function(){
@@ -217,9 +220,10 @@ var detailIndex = {
 			var that = $(this);
 			var type = that.parent().parent().attr('data-type');
 			if(that.attr('data-id') == 35){
-				$('.other .btns').html('<a href="__MODULE__/ConnectIndustry/aiplan" style="padding: 0 30px;line-height: 39px;font-size: 16px;color: #fff;display: inline-block;border-radius: 3px;background: #f0ad4e;">去计算</a>');
+				window.location.href="__MODULE__/ConnectIndustry/aiplan";
 			}else{
 				$('.other .btns').html('<a href="javascript:detailIndex.chk();" class="buy_now">立即购买</a><a href="javascript:detailIndex.add_to_car();" id="add_to_car" class="add_to_car">加入购物车</a><a href="#" class="need_help">详情咨询</a>');
+				$('.baseinfo .tips').text(that.attr('data-tips'));
 			}
 			if(type == 1){
 				that.parent().find('span').removeClass('cur');

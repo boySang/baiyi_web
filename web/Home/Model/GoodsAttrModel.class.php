@@ -6,7 +6,7 @@ class GoodsAttrModel extends Model{
 
 
 	public function getAllFromGoodsId($goods_id){
-		$d = $this->where('goods_id=%d',$goods_id)->select();
+		$d = $this->where('goods_id=%d',$goods_id)->order('id asc')->select();
 		if($d){
 			$_d = array();
 			$opt_attr_val_m = D('OptAttrVal');
