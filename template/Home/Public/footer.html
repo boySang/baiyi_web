@@ -20,6 +20,49 @@
 	</div>
 </div>
 
+<div class="suspension">
+	<div class="suspension-box">
+		<a href="#" class="a a-service "><i class="i"></i></a>
+		<a href="javascript:;" class="a a-service-phone "><i class="i"></i></a>
+		<!-- <a href="javascript:;" class="a a-qrcode"><i class="i"></i></a>
+		<a href="#" class="a a-cart"><i class="i"></i></a>
+		<a href="javascript:;" class="a a-top"><i class="i"></i></a> -->
+		<div class="d d-service">
+			<i class="arrow"></i>
+			<div class="inner-box">
+				<div class="d-service-item clearfix">
+					<a href="http://wpa.qq.com/msgrd?v=3&uin=4555827&site=qq&menu=yes&from=message&isappinstalled=0" class="clearfix"><span class="circle"><i class="i-qq"></i></span><h3>咨询在线客服</h3></a>
+				</div>
+			</div>
+		</div>
+		<div class="d d-service-phone">
+			<i class="arrow"></i>
+			<div class="inner-box">
+				<div class="d-service-item clearfix">
+					<span class="circle"><i class="i-tel"></i></span>
+					<div class="text">
+						<p>服务热线</p>
+						<p class="red number">18636805999</p>
+					</div>
+				</div>
+				<!-- <div class="d-service-intro clearfix">
+					<p><i></i>功能和特性</p>
+					<p><i></i>价格和优惠</p>
+					<p><i></i>获取内部资料</p>
+				</div> -->
+			</div>
+		</div>
+		<div class="d d-qrcode">
+			<i class="arrow"></i>
+			<div class="inner-box">
+				<div class="qrcode-img"><img src="images/side_ewm.jpg" alt=""></div>
+				<p>微信服务号</p>
+			</div>
+		</div>
+
+	</div>
+</div>
+
 <script type="text/javascript">
 
 $(function(){
@@ -32,7 +75,7 @@ var public_home = {
 		$.get('__MODULE__/Member/ajacChkState',function(data){
 			var html = '';
 			if(data.state == 200){
-				html = '<div class="r phone"><a href="__MODULE__/Member/index">个人中心</a></div>';
+				html = '<div class="r phone"><a href="__MODULE__/Member/index">个人中心</a><a href="__MODULE__/Member/logout">，退出</a></div>';
 			}else{
 				html = '<div class="r reg"><span onclick="public_home.pub_reg();">注册</span></div><div onclick="public_home.pub_login();" class="r login">登录</div>';
 			}
@@ -59,8 +102,41 @@ var public_home = {
 			content: '__MODULE__/Member/login' //iframe的url
 		}); 
 	},
+	xuanfu: function(){
+		$(document).on("mouseenter", ".suspension .a", function(){
+			var _this = $(this);
+			var s = $(".suspension");
+			var isService = _this.hasClass("a-service");
+			var isServicePhone = _this.hasClass("a-service-phone");
+			var isQrcode = _this.hasClass("a-qrcode");
+			if(isService){ s.find(".d-service").show().siblings(".d").hide();}
+			if(isServicePhone){ s.find(".d-service-phone").show().siblings(".d").hide();}
+			if(isQrcode){ s.find(".d-qrcode").show().siblings(".d").hide();}
+		});
+		$(document).on("mouseleave", ".suspension, .suspension .a-top", function(){
+			$(".suspension").find(".d").hide();
+		});
+		$(document).on("mouseenter", ".suspension .a-top", function(){
+			$(".suspension").find(".d").hide(); 
+		});
+		$(document).on("click", ".suspension .a-top", function(){
+			$("html,body").animate({scrollTop: 0});
+		});
+		$(window).scroll(function(){
+			var st = $(document).scrollTop();
+			var $top = $(".suspension .a-top");
+			if(st > 400){
+				$top.css({display: 'block'});
+			}else{
+				if ($top.is(":visible")) {
+					$top.hide();
+				}
+			}
+		});
+	},
 	load : function(){
 		this.member_state();
+		this.xuanfu();
 	}
 }
 

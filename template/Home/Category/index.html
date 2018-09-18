@@ -27,7 +27,11 @@
 		</div>
 		<div class="goodsList clearfix">
 			<div class="catePic list">
+				<?php if(I('get.id') == 1){ ?>
+				<img src="__PUBLIC__/home/img/gnsb.jpg" style="max-height: 100%;" title="{$data.cateInfo.title}" />
+				<?php }else{ ?>
 				<img src="{$data.cateInfo.pic}" title="{$data.cateInfo.title}" />
+				<?php } ?>
 			</div>
 			<foreach name="data.goods" item="v">
 				<div class="list goods">

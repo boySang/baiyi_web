@@ -53,14 +53,96 @@
         	</form>
         </div>
 	</div>
-	<div class="main-inner clearfix">
+	<style type="text/css">
+		.fapiaobox .mainbox .control{
+			margin: 10px 0;
+		}
+		.fapiaobox .mainbox .control .smtit{
+			float: left;
+			text-align-last: justify;
+			width: 90px;
+		}
+		.fapiaobox .mainbox .control .right{
+			float: left;
+		}
+		.fapiaobox .mainbox .control .right .input-text{
+			width: 260px;
+
+		}
+	</style>
+	<div class="main-inner clearfix fapiao">
 		<include file='Public/memLeftMenu' />
 		<div class="main r">
-			ing......
+			<h4>发票申领</h4>
+			<br>
+			<hr>
+			<div class="fapiaobox">
+				<br>
+				<div class="type clearfix">
+					<div class="inputbox l"><input style="" type="radio" name="tmname">增值税普通发票</div>
+					<div class="inputbox l"><input style="" type="radio" name="tmname">增值税专用发票</div>
+				</div>
+				<div class="mainbox">
+					<div class="control clearfix">
+						<div class="smtit">发票类型：</div>
+						<div class="right">
+							<label>
+								<input type="radio">个人
+							</label>
+							<label>
+								<input type="radio">企业
+							</label>
+						</div>
+					</div>
+					<div class="control clearfix">
+						<div class="smtit">发票抬头：</div>
+						<div class="right">
+							<input type="" class="input-text" name="">
+						</div>
+					</div>
+					<div class="control clearfix">
+						<div class="smtit">发票内容：</div>
+						<div class="right">
+							<input type="" class="input-text" name="" value="知识产权服务" disabled="disabled">
+						</div>
+					</div>
+					<div class="control clearfix">
+						<div class="smtit">邮寄地址：</div>
+						<div class="right">
+							<input type="" class="input-text" name="">
+						</div>
+					</div>
+					<div class="control clearfix">
+						<div class="smtit">详细地址：</div>
+						<div class="right">
+							<input type="" class="input-text" name="">
+						</div>
+					</div>
+					<div class="control clearfix">
+						<div class="smtit">收件人信息：</div>
+						<div class="right">
+							<input type="" class="input-text" style="width: 120px;margin-right: 10px;" name="" placeholder="姓名">
+							<input type="" class="input-text" style="width: 120px;" name="" placeholder="电话">
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
-
+<style type="text/css">
+	.fapiao .main h4{
+		text-align: center;
+		line-height: 40px;
+		font-size: 20px;
+		font-weight: 600;
+		margin-bottom: 10px;
+	}
+	.fapiao .main .fapiaobox{
+		width: 500px;
+		margin: 0 auto;
+	}
+</style>
 <script type="text/javascript">
 	
 $('body').on('click','#express',function(){

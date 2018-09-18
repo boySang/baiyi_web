@@ -5,7 +5,7 @@ use Home\Controller\LayoutController;
 class MemberController extends LayoutController {
 
 	public function index(){
-		// var_dump(session('notify_pay'));
+		// var_dump(session());
 		$m = D('Member');
 		if($m->truelogin() == false){
 			header('Location:'.U('login'));

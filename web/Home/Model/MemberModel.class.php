@@ -32,7 +32,7 @@ setcookie("uniqid",$data['uniqid'], time()+2592000,'/');
 	}
 
 	public function ajaxLogin(){
-		$d = $this->field('uniqid,face,state,phone')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
+		$d = $this->field('uniqid,face,state,nickname,phone')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
 		if(!$d['uniqid']){
 			return returnApi(202,'账号或密码不正确!');
 		}
@@ -41,13 +41,15 @@ setcookie("uniqid",$data['uniqid'], time()+2592000,'/');
 		}
 		setcookie("uniqid",$d['uniqid'], time()+2592000,'/');
 		setcookie("phone",$d['phone'], time()+2592000,'/');
+		setcookie("nickname",$d['nickname'], time()+2592000,'/');
         session('uniqid',$d['uniqid']);
         session('phone',$d['phone']);
+        session('nickname',$d['nickname']);
         return returnApi(200,'登陆成功！','',U('Index/index'));
 	}
 
 	public function ajaxManageLogin(){
-		$d = $this->field('uniqid,face,state,phone')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
+		$d = $this->field('uniqid,face,state,nickname,phone')->where('phone="%s" AND paswd="%s"',I('post.phone'),md5(I('post.paswd')))->find();
 		if(!$d['uniqid']){
 			return returnApi(202,'账号或密码不正确!');
 		}
@@ -57,12 +59,14 @@ setcookie("uniqid",$data['uniqid'], time()+2592000,'/');
 		// if(I('post.remember')){
 			setcookie("uniqid",$d['uniqid'], time()+2592000,'/');
 			setcookie("phone",$d['phone'], time()+2592000,'/');
+			setcookie("nickname",$d['nickname'], time()+2592000,'/');
 		// }else{
 		// 	setcookie("uniqid",$d['uniqid']);
 		// 	setcookie("phone",$d['phone']);
 		// }
         session('uniqid',$d['uniqid']);
         session('phone',$d['phone']);
+        session('nickname',$d['nickname']);
         return returnApi(200,'登陆成功！','',U('OnlineManage/ing'));
 	}
 
@@ -84,7 +88,7 @@ setcookie("uniqid",$data['uniqid'], time()+2592000,'/');
 		if($d['nickname']){
 			return returnApi(202,'has');
 		}else{
-			return returnApi(200,'donthas','',$d);
+			return returnApi(200,'donthas');
 		}
 	}
 
