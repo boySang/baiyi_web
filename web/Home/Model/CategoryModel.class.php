@@ -12,7 +12,7 @@ class CategoryModel extends Model{
 		}else{
 			$bigtitLimit = 0;
 		}
-		$d = $this->field('id,title,urlname')->limit($bigtitLimit)->order('id asc')->select();
+		$d = $this->field('id,title,urlname')->limit($bigtitLimit)->order('sort desc')->select();
 		$goodsModel = D('Goods');
 		foreach($d as $k=>$v){
 			$d[$k]['goods'] = $goodsModel->getGoodsFromCate($v['id']);
